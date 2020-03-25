@@ -70,7 +70,7 @@ Or look at this short video that shows basic functionality of the app:
 
 First clone this repo: ``` git clone https://github.com/GSG-G8/ca-wiki.git ```
 
-then run ```npm i``` to install the dependencies for the app.
+then run ```npm i``` and open new terminal then run ```cd client``` then ```npm i``` to install the dependencies for the app.
 
 ### Database Setup
 
