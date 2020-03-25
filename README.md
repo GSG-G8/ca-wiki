@@ -112,12 +112,25 @@ DATABASE_URL
 SECRET_KEY
 ```
 
-### Start the Server
+### Running the project
 
-You can now start the server! In your terminal write:
+1. To run the server, Open your terminal and run:
 
 ```
+npm run dev
+```
+
+2. To run the React Development server, Open another terminal and run:
+
+```
+cd client
 npm start
+```
+
+3. To run the tests:
+
+```
+npm test
 ```
 
 ## Data-Base Schema
