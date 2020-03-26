@@ -135,7 +135,7 @@ npm test
 
 ## Data-Base Schema
 
-![](https://i.imgur.com/Rzpmhka.png)
+![](https://imgur.com/hUW4wFD.png)
 
 
 
