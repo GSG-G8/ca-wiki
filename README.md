@@ -15,7 +15,7 @@
 
 ## Summary
 
-Ca-wiki is a web application which allows clients to view all cohorts that have been enrolled in Code Academy. Clients can view all students who graduated from the academy so that they can view every student and his/her projects he/she participated in, his/her github page, email address and which cohort graduated from. clients also  can serch by student name or by project name and they can filter the results easily.
+Ca-wiki is a web application which allows clients to view all cohorts that have been enrolled in Code Academy. Clients can view all students who graduated from the academy so that they can view every student and his/her projects he/she participated in, his/her github page, email address and which cohort graduated from. clients also  can search by student name or by project name and they can filter the results easily.
 
 ## Challenge
 
