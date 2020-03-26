@@ -19,6 +19,7 @@ CREATE TABLE cohort (
 CREATE TABLE student (
     id SERIAL PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL,
     imgUrl TEXT NOT NULL,
     githubLink TEXT NOT NULL,
     cohortId INTEGER REFERENCES cohort(id) ON UPDATE CASCADE

@@ -11,6 +11,8 @@ if (process.env.NODE_ENV === 'development') {
   dbUrl = process.env.TEST_DB_URL;
 }
 
+if (!dbUrl) throw new Error('No Database URL!!!');
+
 const options = {
   connectionString: dbUrl,
   ssl: true,
