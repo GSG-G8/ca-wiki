@@ -1,6 +1,6 @@
 BEGIN;
 
-DROP TABLE IF EXISTS admin, cohort, student, project, studentProject CASCADE;
+DROP TABLE IF EXISTS admin, cohort, student, project, student_project CASCADE;
 
 CREATE TABLE admin (
     id SERIAL PRIMARY KEY,
@@ -12,34 +12,34 @@ CREATE TABLE cohort (
     id SERIAL PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     description TEXT NOT NULL,
-    imgUrl TEXT NOT NULL,
-    githubLink TEXT NOT NULL
+    img_url TEXT NOT NULL,
+    github_link TEXT NOT NULL
 );
 
 CREATE TABLE student (
     id SERIAL PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     email VARCHAR(200) NOT NULL UNIQUE,
-    imgUrl TEXT NOT NULL,
-    githubLink TEXT NOT NULL,
-    cohortId INTEGER REFERENCES cohort(id) ON UPDATE CASCADE ON DELETE CASCADE
+    img_url TEXT NOT NULL,
+    github_link TEXT NOT NULL,
+    cohort_id INTEGER REFERENCES cohort(id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE project (
     id SERIAL PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     description TEXT NOT NULL,
-    imgUrl TEXT NOT NULL,
-    githubLink TEXT NOT NULL,
-    websiteLink TEXT NOT NULL,
-    projectType VARCHAR(100) NOT NULL,
-    cohortId INTEGER REFERENCES cohort(id) ON UPDATE CASCADE ON DELETE CASCADE
+    img_url TEXT NOT NULL,
+    github_link TEXT NOT NULL,
+    website_link TEXT NOT NULL,
+    project_type VARCHAR(100) NOT NULL,
+    cohort_id INTEGER REFERENCES cohort(id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
-CREATE TABLE studentProject (
+CREATE TABLE student_project (
     id SERIAL PRIMARY KEY,
-    studentId INTEGER REFERENCES student(id) ON UPDATE CASCADE ON DELETE CASCADE,
-    projectId INTEGER REFERENCES project(id) ON UPDATE CASCADE ON DELETE CASCADE
+    student_id INTEGER REFERENCES student(id) ON UPDATE CASCADE ON DELETE CASCADE,
+    project_id INTEGER REFERENCES project(id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 COMMIT;
