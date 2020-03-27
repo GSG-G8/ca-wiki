@@ -22,7 +22,7 @@ CREATE TABLE student (
     email VARCHAR(200) NOT NULL UNIQUE,
     imgUrl TEXT NOT NULL,
     githubLink TEXT NOT NULL,
-    cohortId INTEGER REFERENCES cohort(id) ON UPDATE CASCADE
+    cohortId INTEGER REFERENCES cohort(id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE project (
@@ -33,15 +33,13 @@ CREATE TABLE project (
     githubLink TEXT NOT NULL,
     websiteLink TEXT NOT NULL,
     projectType VARCHAR(100) NOT NULL,
-    cohortId INTEGER REFERENCES cohort(id) ON UPDATE CASCADE
+    cohortId INTEGER REFERENCES cohort(id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE studentProject (
     id SERIAL PRIMARY KEY,
-    studentId INTEGER REFERENCES student(id) ON UPDATE CASCADE,
-    projectId INTEGER REFERENCES project(id) ON UPDATE CASCADE
+    studentId INTEGER REFERENCES student(id) ON UPDATE CASCADE ON DELETE CASCADE,
+    projectId INTEGER REFERENCES project(id) ON UPDATE CASCADE ON DELETE CASCADE
 );
-
-INSERT INTO admin (username, password) VALUES ('admin', '123');
 
 COMMIT;
