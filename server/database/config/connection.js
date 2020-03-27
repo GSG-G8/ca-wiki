@@ -14,10 +14,8 @@ switch (process.env.NODE_ENV) {
     dbUrl = process.env.TEST_DB_URL;
     break;
   default:
-    dbUrl = '';
+    throw new Error('No Database URL!!!');
 }
-
-if (!dbUrl) throw new Error('No Database URL!!!');
 
 const options = {
   connectionString: dbUrl,
