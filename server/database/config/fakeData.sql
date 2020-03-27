@@ -4,9 +4,9 @@ INSERT INTO cohort (name , description , img_url , github_link) VALUES
 ('G8','GazaSkyGeeks Code Academy, 8th Cohort','https://avatars0.githubusercontent.com/u/59821022?s=200&v=4','https://github.com/GSG-G8');
 ('G7','GazaSkyGeeks Code Academy, 7th Cohort','https://avatars3.githubusercontent.com/u/52123464?s=200&v=4','https://github.com/GSG-G7');
 
-INSERT INTO student (name , img_url , github_link) VALUES
-('Alaa','https://avatars2.githubusercontent.com/u/26024288?s=60&u=573706aef193cc5bcb8a28969cff88bf282bb6ef&v=4','https://github.com/AlaaSaadeddin');
-('Rana','https://avatars1.githubusercontent.com/u/25321550?s=96&v=4','https://github.com/ranasobeid95')
+INSERT INTO student (name , email , img_url , github_link) VALUES
+('Alaa','alaa@gmail.com','https://avatars2.githubusercontent.com/u/26024288?s=60&u=573706aef193cc5bcb8a28969cff88bf282bb6ef&v=4','https://github.com/AlaaSaadeddin');
+('Rana','rana@gmail.com','https://avatars1.githubusercontent.com/u/25321550?s=96&v=4','https://github.com/ranasobeid95')
 
 INSERT INTO project (name , description , img_url , github_link , website_link , project_type) VALUES 
 ('ca-wiki',
