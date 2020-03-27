@@ -3,12 +3,18 @@ require('dotenv').config();
 
 let dbUrl;
 
-if (process.env.NODE_ENV === 'development') {
-  dbUrl = process.env.DB_URL;
-} else if (process.env.NODE_ENV === 'production') {
-  dbUrl = process.env.DATABASE_URL;
-} else if (process.env.NODE_ENV === 'test') {
-  dbUrl = process.env.TEST_DB_URL;
+switch (process.env.NODE_ENV) {
+  case 'development':
+    dbUrl = process.env.DB_URL;
+    break;
+  case 'production':
+    dbUrl = process.env.DATABASE_URL;
+    break;
+  case 'test':
+    dbUrl = process.env.TEST_DB_URL;
+    break;
+  default:
+    dbUrl = '';
 }
 
 if (!dbUrl) throw new Error('No Database URL!!!');
