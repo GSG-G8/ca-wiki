@@ -1,11 +1,12 @@
 const express = require('express');
 const compression = require('compression');
 const { join } = require('path');
+const bodyParser = require('body-parser');
 
 const controller = require('./controllers');
 
 const app = express();
-
+app.use(bodyParser.urlencoded({ extended: false }));
 app.disable('x-powered-by');
 app.set('port', process.env.PORT || 5000);
 
