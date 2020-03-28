@@ -20,4 +20,4 @@ INSERT INTO project (name , description , img_url , github_link , website_link ,
 'https://github.com/GSG-G8/events-booker',
 'https://github.com/GSG-G8/ca-wiki/blob/ed9f4cd9b5dc428f5420fe9a880a27e63f5f04d3/%5Blink%5D','Remotely project',2);
 
-INSERT INTO student_project (student_id , project_id) VALUES (1 , 2) , (2 , 1);
+INSERT INTO student_project (student_id , project_id) VALUES (1 , 1) , (2 , 2);
