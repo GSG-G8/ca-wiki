@@ -13,4 +13,3 @@ env:
 test: 
   adapter: postgresql
   database: cawiki
-  
