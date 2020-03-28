@@ -15,7 +15,8 @@
     "kill": "fuser -k 5000/tcp",
     "lint": "eslint server/",
     "lint-fix": "eslint server/ --fix",
-    "lint:react": "cd client && npm run lint"
+    "lint:react": "cd client && npm run lint",
+    "build:db": "NODE_ENV=test node server/database/config/build"
   },
   "repository": {
     "type": "git",

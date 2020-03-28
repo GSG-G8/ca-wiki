@@ -1,0 +1,15 @@
+language: node_js
+node_js:
+  - lts/*
+services:
+  - postgresql
+before_script:
+  - psql -c "CREATE DATABASE cawiki;" -U postgres
+  - psql -c "CREATE USER cawikiuser WITH PASSWORD '1';" -U postgres  
+  - "npm run build:db" 
+env: 
+  global: 
+  - PGPORT=5432
+test: 
+  adapter: postgresql
+  database: cawiki
