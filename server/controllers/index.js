@@ -1,7 +1,8 @@
 const router = require('express').Router();
 
-router.get('/', (req, res) => {
-  res.send('<h1>CA WIKI</h1>');
-});
+const { client, server } = require('./middlewares/errorHandle');
+
+router.all('*', client);
+router.use(server);
 
 module.exports = router;
