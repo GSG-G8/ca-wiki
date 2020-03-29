@@ -21,7 +21,7 @@ describe('Cohort', () => {
       .end((err, res) => {
         if (err) return done(err);
         expect(res.body.data.name).toBe('G8');
-        return done();
+        done();
       });
   });
 });

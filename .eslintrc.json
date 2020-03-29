@@ -1,6 +1,4 @@
 {
-    "consistent-return":"off",
-   "jest/no-test-callback":"off",
     "env": {
         "browser": true,
         "commonjs": true,
@@ -36,6 +34,8 @@
         "jest/no-focused-tests": "error",
         "jest/no-identical-title": "error",
         "jest/prefer-to-have-length": "warn",
-        "jest/valid-expect": "error"
+        "jest/valid-expect": "error",
+        "consistent-return":"off",
+        "jest/no-test-callback":"off"
     }
 }
