@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 exports.client = (req, res) => {
   res.status(404).json('404', { title: 'page not found 404' });
 };

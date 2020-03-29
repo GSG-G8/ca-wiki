@@ -1,6 +1,6 @@
-const {client, server } = require('./error');
+const { client, server } = require('./error');
 
 module.exports = {
-    client,
-    server
-}
+  client,
+  server,
+};
