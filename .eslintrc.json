@@ -1,4 +1,6 @@
 {
+    "consistent-return":"off",
+   "jest/no-test-callback":"off",
     "env": {
         "browser": true,
         "commonjs": true,
