@@ -13,14 +13,27 @@ afterAll(() => {
 });
 
 describe('Cohort', () => {
-  test('Route /cohort/1 status 200, json header, res.body[0].name =G8 ', (done) => {
+  test('Route /cohort/1 status 200, json header, data.name =G8 ', (done) => {
     return request(app)
       .get('/api/v1/cohort/1')
       .expect(200)
       .expect('Content-Type', /json/)
       .end((err, res) => {
+        const { data } = res.body;
         if (err) return done(err);
-        expect(res.body.data.name).toBe('G8');
+        expect(data.name).toBe('G8');
+        done();
+      });
+  });
+  test('Route /cohort/10 status 200, json header, data.message = "Sorry There\'s no cohort for this id" ', (done) => {
+    return request(app)
+      .get('/api/v1/cohort/10')
+      .expect(200)
+      .expect('Content-Type', /json/)
+      .end((err, res) => {
+        const { message } = res.body;
+        if (err) return done(err);
+        expect(message).toBe("Sorry There's no cohort for this id");
         done();
       });
   });
