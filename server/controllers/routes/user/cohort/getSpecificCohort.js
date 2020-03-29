@@ -2,9 +2,12 @@ const {
   cohort: { getSpecificCohort },
 } = require('../../../../database/queries');
 
-exports.getSpecificCohort = (req, res) => {
-  getSpecificCohort(req.params.cohortid)
-    .then(({ rows }) => res.json(rows))
-    // eslint-disable-next-line no-console
-    .catch((err) => console.error(err));
+exports.getSpecificCohort = async (req, res, next) => {
+  try {
+    const { rows } = await getSpecificCohort(req.params.cohortid);
+    const data = { ...rows[0] };
+    res.json({ statusCode: 200, data });
+  } catch (err) {
+    next(err);
+  }
 };
