@@ -13,28 +13,56 @@ afterAll(() => {
 });
 
 describe('Cohort', () => {
-  test('Route /cohort/1 status 200, json header, data.name =G8 ', (done) => {
+  test('PUT Route /cohort/1 status 200, json header, send data ', (done) => {
     return request(app)
-      .get('/api/v1/cohort/1')
+      .put('/api/v1/cohort/1')
+      .send({
+        name: 'G1',
+        description: 'Code GazaSkyGeeksAcademy, 1st Cohort',
+        img_url: 'https://avatars0.githubusercontent.com/u/59821022?s=200&v=4',
+        github_link: 'https://github.com/GSG-G1',
+      })
       .expect(200)
       .expect('Content-Type', /json/)
-      .end((err, res) => {
+      .end(async (err, res) => {
         if (err) return done(err);
-        const { data } = res.body;
-        expect(data.name).toBe('G8');
+        const { message } = res.body;
+        const { rows } = await connection.query(
+          'SELECT * from cohort WHERE id = 1',
+        );
+        expect(message).toBe('Changed Succefully');
+        expect(rows).toHaveLength(1);
+        expect(rows[0]).toEqual({
+          id: 1,
+          name: 'G1',
+          description: 'Code GazaSkyGeeksAcademy, 1st Cohort',
+          img_url:
+            'https://avatars0.githubusercontent.com/u/59821022?s=200&v=4',
+          github_link: 'https://github.com/GSG-G1',
+        });
         done();
       });
   });
 
-  test('Route /cohort/10 status 404, json header, data.message = "Sorry There\'s no cohort for this id" ', (done) => {
+  test('PUT Route /cohort/4 status 404, json header, send data ', (done) => {
     return request(app)
-      .get('/api/v1/cohort/10')
+      .put('/api/v1/cohort/4')
+      .send({
+        name: 'G4',
+        description: 'Code GazaSkyGeeksAcademy, 4th Cohort',
+        img_url: 'https://avatars0.githubusercontent.com/u/59821022?s=200&v=4',
+        github_link: 'https://github.com/GSG-G4',
+      })
       .expect(404)
       .expect('Content-Type', /json/)
-      .end((err, res) => {
+      .end(async (err, res) => {
         if (err) return done(err);
         const { message } = res.body;
-        expect(message).toBe("Sorry There's no cohort for this id");
+        const { rows } = await connection.query(
+          'SELECT * from cohort WHERE id = 4',
+        );
+        expect(message).toBe("Sorry There's no cohort for this id to change");
+        expect(rows).toHaveLength(0);
         done();
       });
   });

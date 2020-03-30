@@ -1,8 +1,8 @@
 const router = require('express').Router();
 const {
-  cohort: { getSpecificCohort },
-} = require('./routes/user');
+  cohort: { putSpecificCohort },
+} = require('./routes/admin');
 
-router.get('/cohort/:cohortid', getSpecificCohort);
+router.put('/cohort/:cohortid', putSpecificCohort);
 
 module.exports = router;
