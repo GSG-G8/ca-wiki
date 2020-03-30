@@ -26,7 +26,6 @@ const validateEditProject = (req, res, next) => {
   schema
     .validate(projectData)
     .then(() => {
-      console.log('next ???');
       next();
     })
     .catch((err) => {
