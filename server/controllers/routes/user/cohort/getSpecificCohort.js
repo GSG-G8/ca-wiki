@@ -10,8 +10,8 @@ exports.getSpecificCohort = async (req, res, next) => {
     if (data.id) {
       res.status(200).json({ statusCode: 200, data });
     } else {
-      res.status(404).json({
-        statusCode: 404,
+      res.status(400).json({
+        statusCode: 400,
         message: "Sorry There's no cohort for this id",
       });
     }

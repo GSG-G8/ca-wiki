@@ -25,10 +25,10 @@ describe('Cohort', () => {
         done();
       });
   });
-  test('Route /cohort/10 status 404, json header, data.message = "Sorry There\'s no cohort for this id" ', (done) => {
+  test('Route /cohort/10 status 400, json header, data.message = "Sorry There\'s no cohort for this id" ', (done) => {
     return request(app)
       .get('/api/v1/cohort/10')
-      .expect(404)
+      .expect(400)
       .expect('Content-Type', /json/)
       .end((err, res) => {
         const { message } = res.body;
