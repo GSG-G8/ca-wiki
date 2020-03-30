@@ -3,8 +3,7 @@ const { getCohorts } = require('../../../../database/queries');
 const getCohortsData = async (req, res, next) => {
   try {
     const { rows } = await getCohorts();
-    console.log(rows);
-    res.json({ msg: 'test' });
+    res.json({ status: 200, data: rows });
   } catch (err) {
     next(err);
   }
