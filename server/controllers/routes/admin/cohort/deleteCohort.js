@@ -1,4 +1,4 @@
-const deleteCohort = require('../../../../database/queries/cohort/deleteCohort');
+const { deleteCohort } = require('../../../../database/queries');
 
 const cohortDelete = async (req, res, next) => {
   try {
@@ -18,6 +18,4 @@ const cohortDelete = async (req, res, next) => {
   }
 };
 
-module.exports = {
-  cohortDelete,
-};
+module.exports = cohortDelete;
