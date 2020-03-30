@@ -14,4 +14,4 @@ const addProject = (
     [name, description, imgUrl, githubLink, websiteLink, projectType, cohortId],
   );
 
-module.exports = { addProject };
+module.exports = addProject;

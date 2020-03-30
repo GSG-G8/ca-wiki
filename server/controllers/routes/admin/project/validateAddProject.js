@@ -1,6 +1,6 @@
 const yup = require('yup');
 
-module.exports = (req, res, next) => {
+const validateAddProject = (req, res, next) => {
   const schema = yup.object({
     name: yup.string().required(),
     description: yup.string().required(),
@@ -29,3 +29,5 @@ module.exports = (req, res, next) => {
       next(err.message);
     });
 };
+
+module.exports = validateAddProject;

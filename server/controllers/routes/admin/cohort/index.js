@@ -1,4 +1,4 @@
-const { cohortDelete } = require('./deleteCohort');
+const cohortDelete = require('./deleteCohort');
 
 module.exports = {
   cohortDelete,

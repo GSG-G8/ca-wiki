@@ -5,8 +5,7 @@ const { projectAdd, validateAddProject } = require('./project');
 router
   .route('/cohorts/:cohortId')
   .all((req, res, next) => {
-    // runs for all HTTP verbs first
-    // think of it as route specific middleware!
+    // here will use middleware for authentication
     next();
   })
   .get((req, res, next) => {

@@ -1,4 +1,4 @@
-const { addProject } = require('./addProject');
+const addProject = require('./addProject');
 
 module.exports = {
   addProject,

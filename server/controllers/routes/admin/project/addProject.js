@@ -29,6 +29,4 @@ const projectAdd = async (req, res, next) => {
   }
 };
 
-module.exports = {
-  projectAdd,
-};
+module.exports = projectAdd;

@@ -12,6 +12,4 @@ const cohortDelete = async (req, res, next) => {
   }
 };
 
-module.exports = {
-  cohortDelete,
-};
+module.exports = cohortDelete;
