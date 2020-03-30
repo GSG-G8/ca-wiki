@@ -1,8 +1,10 @@
 /* eslint-disable no-unused-vars */
-exports.client = (req, res) => {
-  res.status(404).json('404', { title: 'page not found 404' });
+exports.clientError = (req, res) => {
+  res.status(404).json({ StatusCode: '404', title: 'page not found 404' });
 };
 
-exports.server = (err, req, res, next) => {
-  res.status(500).json('500', { title: 'internal server error 500', err });
+exports.serverError = (err, req, res, next) => {
+  res
+    .status(500)
+    .json({ StatusCode: '500', title: 'internal server error 500', err });
 };

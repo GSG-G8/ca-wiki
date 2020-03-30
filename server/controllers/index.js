@@ -1,8 +1,8 @@
 const router = require('express').Router();
 
-const { client, server } = require('./middlewares/errorHandle');
+const { clientError, serverError } = require('./middlewares/errorHandle');
 
-router.all('*', client);
-router.use(server);
+router.use(clientError);
+router.use(serverError);
 
 module.exports = router;
