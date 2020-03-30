@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const { cohortDelete } = require('./cohort');
-const { cohortAdd, validateAddProject } = require('./project');
+const { validateAddProject } = require('./project');
 
 router
   .route('/cohorts/:cohortId')
@@ -20,6 +20,6 @@ router
   })
   .delete(cohortDelete);
 
-router.post('/projects', validateAddProject, cohortAdd);
+router.post('/projects', validateAddProject);
 
 module.exports = router;
