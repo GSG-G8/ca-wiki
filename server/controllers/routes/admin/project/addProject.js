@@ -1,6 +1,6 @@
-const addProject = require('../../../../database/queries/project/addProject');
+const { addProject } = require('../../../../database/queries');
 
-const cohortAdd = async (req, res, next) => {
+const projectAdd = async (req, res, next) => {
   try {
     const {
       name,
@@ -30,5 +30,5 @@ const cohortAdd = async (req, res, next) => {
 };
 
 module.exports = {
-  cohortAdd,
+  projectAdd,
 };

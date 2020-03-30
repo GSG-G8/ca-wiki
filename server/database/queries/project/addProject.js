@@ -1,6 +1,6 @@
 const connection = require('../../config/connection');
 
-const addCohort = (
+const addProject = (
   name,
   description,
   imgUrl,
@@ -14,4 +14,4 @@ const addCohort = (
     [name, description, imgUrl, githubLink, websiteLink, projectType, cohortId],
   );
 
-module.exports = addCohort;
+module.exports = { addProject };
