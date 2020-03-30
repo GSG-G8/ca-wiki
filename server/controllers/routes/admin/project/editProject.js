@@ -2,7 +2,6 @@ const { editProject } = require('../../../../database/queries');
 
 const projectEdit = async (req, res, next) => {
   try {
-    console.log('tessssssssssst? ');
     const {
       name,
       description,
@@ -13,7 +12,6 @@ const projectEdit = async (req, res, next) => {
       cohortId,
     } = req.body;
     const { projectId } = req.params;
-    console.log('hellllllllllo', projectId);
     await editProject(
       name,
       description,
