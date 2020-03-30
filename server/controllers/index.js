@@ -1,7 +1,6 @@
-const router = require('express').Router();
+const Router = require('express').Router();
+const userRouter = require('./routes/user');
 
-router.get('/', (req, res) => {
-  res.send('<h1>CA WIKI</h1>');
-});
+Router.use(userRouter);
 
-module.exports = router;
+module.exports = Router;
