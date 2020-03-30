@@ -1,7 +1,12 @@
 const { getCohorts } = require('../../../../database/queries');
 
-exports.getCohortsData = async (req, res, next) => {
+const getCohortsData = async (req, res, next) => {
   try {
-    const result = await getCohorts(result.rows);
-  } catch (err) {}
+    const { rows } = await getCohorts();
+    console.log(rows);
+    res.json({ msg: 'test' });
+  } catch (err) {
+    next(err);
+  }
 };
+module.exports = { getCohortsData };

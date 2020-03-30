@@ -1,4 +1,4 @@
-const userRouter = require('express').Router;
+const userRouter = require('express').Router();
 
 const { getCohortsData } = require('./cohort');
 
