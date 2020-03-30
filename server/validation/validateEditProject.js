@@ -11,6 +11,7 @@ const validateEditProject = (req, res, next) => {
     cohortId: yup.number().integer().positive().required(),
     projectId: yup.number().integer().positive().required(),
   });
+
   const projectData = {
     name: req.body.name,
     description: req.body.description,
@@ -25,6 +26,7 @@ const validateEditProject = (req, res, next) => {
   schema
     .validate(projectData)
     .then(() => {
+      console.log('next ???');
       next();
     })
     .catch((err) => {
