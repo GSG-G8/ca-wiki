@@ -4,8 +4,7 @@ const { cohortDelete } = require('./cohort');
 router
   .route('/cohorts/:cohortId')
   .all((req, res, next) => {
-    // runs for all HTTP verbs first
-    // think of it as route specific middleware!
+    // ToDo: make middleware to check authentication
     next();
   })
   .get((req, res, next) => {
