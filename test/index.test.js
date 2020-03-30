@@ -19,20 +19,21 @@ describe('Cohort', () => {
       .expect(200)
       .expect('Content-Type', /json/)
       .end((err, res) => {
-        const { data } = res.body;
         if (err) return done(err);
+        const { data } = res.body;
         expect(data.name).toBe('G8');
         done();
       });
   });
-  test('Route /cohort/10 status 400, json header, data.message = "Sorry There\'s no cohort for this id" ', (done) => {
+
+  test('Route /cohort/10 status 404, json header, data.message = "Sorry There\'s no cohort for this id" ', (done) => {
     return request(app)
       .get('/api/v1/cohort/10')
-      .expect(400)
+      .expect(404)
       .expect('Content-Type', /json/)
       .end((err, res) => {
-        const { message } = res.body;
         if (err) return done(err);
+        const { message } = res.body;
         expect(message).toBe("Sorry There's no cohort for this id");
         done();
       });
