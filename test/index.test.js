@@ -22,9 +22,9 @@ describe('Cohort', () => {
     github_link: 'https://github.com/GSG-G1',
   };
 
-  test('PUT Route /cohort/1 status 200, json header, send data ', (done) => {
+  test('PUT Route /cohorts/1 status 200, json header, send data ', (done) => {
     return request(app)
-      .put('/api/v1/cohort/1')
+      .put('/api/v1/cohorts/1')
       .send(data)
       .expect(200)
       .expect('Content-Type', /json/)
@@ -48,9 +48,9 @@ describe('Cohort', () => {
       });
   });
 
-  test('PUT Route /cohort/4 status 404, json header, send data ', (done) => {
+  test('PUT Route /cohorts/4 status 404, json header, send data ', (done) => {
     return request(app)
-      .put('/api/v1/cohort/4')
+      .put('/api/v1/cohorts/4')
       .send(data)
       .expect(404)
       .expect('Content-Type', /json/)
@@ -66,9 +66,9 @@ describe('Cohort', () => {
       });
   });
 
-  test('PUT Route /cohort/1 status 400, json header, send wrong data and test the received message', (done) => {
+  test('PUT Route /cohorts/1 status 400, json header, send wrong data and test the received message', (done) => {
     return request(app)
-      .put('/api/v1/cohort/1')
+      .put('/api/v1/cohorts/1')
       .send(wrongData)
       .expect(400)
       .expect('Content-Type', /json/)

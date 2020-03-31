@@ -7,15 +7,9 @@ const validateEditCohort = (req, res, next) => {
     img_url: yup.string().url().required(),
     github_link: yup.string().url().required(),
   });
-  const projectData = {
-    name: req.body.name,
-    description: req.body.description,
-    img_url: req.body.img_url,
-    github_link: req.body.github_link,
-  };
 
   schema
-    .validate(projectData)
+    .validate(req.body)
     .then(() => {
       next();
     })

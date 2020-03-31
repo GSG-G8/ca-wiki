@@ -1,8 +1,6 @@
-const {
-  cohort: { putSpecificCohort },
-} = require('../../../../database/queries');
+const { putSpecificCohort } = require('../../../../database/queries');
 
-exports.putSpecificCohort = async (req, res, next) => {
+exports.editCohort = async (req, res, next) => {
   try {
     const result = await putSpecificCohort(req.params.cohortid, req.body);
     if (result.rowCount === 1) {

@@ -1,3 +1,3 @@
-const cohort = require('./cohort');
+const { editCohort } = require('./cohort');
 
-module.exports = { cohort };
+module.exports = { editCohort };
