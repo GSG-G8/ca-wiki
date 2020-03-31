@@ -24,7 +24,7 @@ const projectEdit = async (req, res, next) => {
     );
     res.json({
       StatusCode: 200,
-      data: { message: 'Cohort updated successfully' },
+      data: { message: 'project updated successfully' },
     });
   } catch (err) {
     next(err);
