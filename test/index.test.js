@@ -14,8 +14,8 @@ test('Get projects route', (done) => {
     .expect(200)
     .expect('Content-Type', /json/)
     .end(async (err, res) => {
-      const { data } = res.body;
       if (err) return done(err);
+      const { data } = res.body;
       expect(data).toHaveLength(2);
       done();
     });
