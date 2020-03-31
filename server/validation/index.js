@@ -1,5 +1,5 @@
-const validateAddProject = require('./validateAddProject');
+const addProjectSchema = require('./validateAddProject');
 
 module.exports = {
-  validateAddProject,
+  addProjectSchema,
 };

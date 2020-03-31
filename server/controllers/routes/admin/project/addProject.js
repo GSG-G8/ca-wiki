@@ -1,4 +1,5 @@
 const { addProjectQuery } = require('../../../../database/queries');
+const { addProjectSchema } = require('../../../../validation');
 
 const addProject = async (req, res, next) => {
   try {
@@ -11,6 +12,7 @@ const addProject = async (req, res, next) => {
       projectType,
       cohortId,
     } = req.body;
+    await addProjectSchema.validate(req.body);
     await addProjectQuery(
       name,
       description,
