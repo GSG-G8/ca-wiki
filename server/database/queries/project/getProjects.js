@@ -1,3 +1,3 @@
 const connection = require('../../config/connection');
 
-exports.getCohort = () => connection.query('SELECT * FROM project');
+exports.getProjects = () => connection.query('SELECT * FROM project');
