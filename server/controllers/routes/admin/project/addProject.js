@@ -1,6 +1,6 @@
-const { addProject } = require('../../../../database/queries');
+const { addProjectQuery } = require('../../../../database/queries');
 
-const projectAdd = async (req, res, next) => {
+const addProject = async (req, res, next) => {
   try {
     const {
       name,
@@ -11,7 +11,7 @@ const projectAdd = async (req, res, next) => {
       projectType,
       cohortId,
     } = req.body;
-    await addProject(
+    await addProjectQuery(
       name,
       description,
       imgUrl,
@@ -29,4 +29,4 @@ const projectAdd = async (req, res, next) => {
   }
 };
 
-module.exports = projectAdd;
+module.exports = addProject;

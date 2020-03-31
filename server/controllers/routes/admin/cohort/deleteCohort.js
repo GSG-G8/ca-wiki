@@ -1,8 +1,8 @@
-const { deleteCohort } = require('../../../../database/queries');
+const { deleteCohortQuery } = require('../../../../database/queries');
 
-const cohortDelete = async (req, res, next) => {
+const deleteCohort = async (req, res, next) => {
   try {
-    const check = await deleteCohort(req.params.cohortId);
+    const check = await deleteCohortQuery(req.params.cohortId);
     if (check.rowCount !== 0) {
       res.json({
         StatusCode: 200,
@@ -18,4 +18,4 @@ const cohortDelete = async (req, res, next) => {
   }
 };
 
-module.exports = cohortDelete;
+module.exports = deleteCohort;

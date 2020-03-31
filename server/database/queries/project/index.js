@@ -1,5 +1,5 @@
-const addProject = require('./addProject');
+const addProjectQuery = require('./addProject');
 
 module.exports = {
-  addProject,
+  addProjectQuery,
 };

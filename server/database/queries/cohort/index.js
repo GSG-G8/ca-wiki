@@ -1,5 +1,5 @@
-const deleteCohort = require('./deleteCohort');
+const deleteCohortQuery = require('./deleteCohort');
 
 module.exports = {
-  deleteCohort,
+  deleteCohortQuery,
 };

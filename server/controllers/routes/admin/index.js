@@ -1,6 +1,6 @@
 const router = require('express').Router();
-const { cohortDelete } = require('./cohort');
-const { projectAdd } = require('./project');
+const { deleteCohort } = require('./cohort');
+const { addProject } = require('./project');
 const { validateAddProject } = require('../../../validation');
 
 router
@@ -18,8 +18,8 @@ router
   .post((req, res, next) => {
     next(new Error('not implemented'));
   })
-  .delete(cohortDelete);
+  .delete(deleteCohort);
 
-router.post('/projects', validateAddProject, projectAdd);
+router.post('/projects', validateAddProject, addProject);
 
 module.exports = router;
