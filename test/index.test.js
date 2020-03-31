@@ -12,10 +12,10 @@ test('Post cohort route', (done) => {
   request(app)
     .post('/api/v1/cohorts')
     .send({
-      cName: 'G6',
-      cDescription: 'GazaSkyGeeks Code Academy, 6th Cohort',
-      cImgUrl: 'https://avatars0.githubusercontent.com/u/59821022?s=200&v=4',
-      cGithub: 'https://github.com/GSG-G8',
+      name: 'G6',
+      description: 'GazaSkyGeeks Code Academy, 6th Cohort',
+      imgUrl: 'https://avatars0.githubusercontent.com/u/59821022?s=200&v=4',
+      githubLink: 'https://github.com/GSG-G8',
     })
     .expect(200)
     .expect('Content-Type', /json/)
