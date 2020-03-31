@@ -1,19 +1,26 @@
 const getCohortQuery = require('../../../../database/queries');
 
-exports.getSpecificCohort = async (req, res) => {
+exports.getSpecificCohort = async (req, res, next) => {
   try {
     const { cohortid } = req.params;
-    const { rows } = await getCohortQuery(cohortid);
-    const data = { ...rows[0] };
-    if (data.id) {
-      res.json({ statusCode: 200, data });
+    if (cohortid > 0) {
+      const { rows } = await getCohortQuery(cohortid);
+      const data = { ...rows[0] };
+      if (data.id) {
+        res.json({ statusCode: 200, data });
+      } else {
+        res.status(404).json({
+          statusCode: 404,
+          message: "Sorry There's no cohort for this id",
+        });
+      }
     } else {
-      throw new Error();
+      res.status(404).json({
+        statusCode: 404,
+        message: 'You enterd wrong cohort ID',
+      });
     }
   } catch (err) {
-    res.status(404).json({
-      statusCode: 404,
-      message: "Sorry There's no cohort for this id",
-    });
+    next(err);
   }
 };
