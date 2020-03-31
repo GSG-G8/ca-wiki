@@ -1,9 +1,11 @@
 const {
   postCohort,
 } = require('../../../../database/queries/cohort/postCohort');
+const { addNewCohort } = require('../../../../validation/addNewCohort');
 
 const addCohort = async (req, res) => {
   try {
+    await addNewCohort.validate(req.body);
     const { rows } = await postCohort(req.body);
     res.json({
       StatusCode: 201,
