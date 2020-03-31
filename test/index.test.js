@@ -4,13 +4,9 @@ const dbBuild = require('../server/database/config/build');
 
 const app = require('../server/app');
 
-beforeAll(() => {
-  return dbBuild();
-});
+beforeAll(() => dbBuild());
 
-afterAll(() => {
-  return connection.end();
-});
+afterAll(() => connection.end());
 
 describe('Admin, Project', () => {
   test('Route /projects status 200, json header, data.message = Cohort Added successfully ', (done) => {
