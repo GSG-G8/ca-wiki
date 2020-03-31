@@ -1,25 +1,10 @@
-const { addProject } = require('../../../../database/queries');
+const { addProjectQuery } = require('../../../../database/queries');
+const { addProjectSchema } = require('../../../../validation');
 
-const projectAdd = async (req, res, next) => {
+const addProject = async (req, res, next) => {
   try {
-    const {
-      name,
-      description,
-      imgUrl,
-      githubLink,
-      websiteLink,
-      projectType,
-      cohortId,
-    } = req.body;
-    await addProject(
-      name,
-      description,
-      imgUrl,
-      githubLink,
-      websiteLink,
-      projectType,
-      cohortId,
-    );
+    await addProjectSchema.validate(req.body);
+    await addProjectQuery(req.body);
     res.json({
       StatusCode: 200,
       data: { message: 'Cohort Added successfully' },
@@ -29,4 +14,4 @@ const projectAdd = async (req, res, next) => {
   }
 };
 
-module.exports = projectAdd;
+module.exports = addProject;

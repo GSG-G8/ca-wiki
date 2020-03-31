@@ -1,7 +1,7 @@
-const projectAdd = require('./addProject');
+const addProject = require('./addProject');
 const projectEdit = require('./editProject');
 
 module.exports = {
-  projectAdd,
+  addProject,
   projectEdit,
 };
