@@ -36,7 +36,7 @@ describe('Admin, Project', () => {
           'SELECT * from project WHERE id = 3',
         );
         expect(rows[0].name).toBe('Mohmmedzw851@');
-        expect(message).toBe('Cohort Added successfully');
+        expect(message).toBe('Project Added successfully');
         done();
       });
   });
