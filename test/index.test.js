@@ -30,13 +30,13 @@ describe('Admin, Project', () => {
       .expect(200)
       .expect('Content-Type', /json/)
       .end(async (err, res) => {
-        const { data } = res.body;
+        const { message } = res.body.data;
         if (err) return done(err);
-        const result = await connection.query(
+        const { rows } = await connection.query(
           'SELECT * from project WHERE id = 3',
         );
-        expect(result.rows[0].name).toBe('Mohmmedzw851@');
-        expect(data.message).toBe('Cohort Added successfully');
+        expect(rows[0].name).toBe('Mohmmedzw851@');
+        expect(message).toBe('Cohort Added successfully');
         done();
       });
   });
@@ -49,13 +49,13 @@ describe('Admin, (/cohorts/:cohortId)', () => {
       .expect(200)
       .expect('Content-Type', /json/)
       .end(async (err, res) => {
-        const { data } = res.body;
+        const { message } = res.body.data;
         if (err) return done(err);
-        const result = await connection.query(
+        const { rows } = await connection.query(
           'SELECT * from cohort WHERE id = 1',
         );
-        expect(result.rows).toHaveLength(0);
-        expect(data.message).toBe('Cohort deleted successfully');
+        expect(rows).toHaveLength(0);
+        expect(message).toBe('Cohort deleted successfully');
         done();
       });
   });
