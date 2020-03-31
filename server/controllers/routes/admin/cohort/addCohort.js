@@ -3,11 +3,10 @@ const {
 } = require('../../../../database/queries/cohort/postCohort');
 const { cohortSchema } = require('../../../../validation/cohortSchema ');
 
-const addCohort = async (req, res, next) => {
+const addCohort = async (req, res) => {
   try {
     await cohortSchema.validate(req.body, { abortEarly: false });
-    const result = await postCohort(req.body);
-    const { rows } = result;
+    const { rows } = await postCohort(req.body);
     res.json({
       StatusCode: 201,
       data: {
