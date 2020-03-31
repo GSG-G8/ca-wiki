@@ -25,9 +25,14 @@ test('Post cohort route', (done) => {
       const { rows } = await connection.query(
         'SELECT * from cohort WHERE id = 3',
       );
-      const { name } = rows[0];
       expect(rows).toHaveLength(1);
-      expect(name).toBe('G6');
+      expect(rows[0]).toEqual({
+        id: 3,
+        name: 'G6',
+        description: 'GazaSkyGeeks Code Academy, 6th Cohort',
+        img_url: 'https://avatars0.githubusercontent.com/u/59821022?s=200&v=4',
+        github_link: 'https://github.com/GSG-G8',
+      });
       expect(message).toBe('Cohort added successfully');
       done();
     });
