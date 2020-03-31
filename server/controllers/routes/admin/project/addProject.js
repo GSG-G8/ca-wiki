@@ -5,7 +5,7 @@ const addProject = async (req, res, next) => {
   try {
     await projectSchema.validate(req.body, { abortEarly: false });
     await addProjectQuery(req.body);
-    res.json({
+    res.status(201).json({
       StatusCode: 201,
       data: { message: 'Project Added successfully' },
     });
