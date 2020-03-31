@@ -3,6 +3,6 @@ const {
   cohort: { getSpecificCohort },
 } = require('./routes/user');
 
-router.get('/cohort/:cohortid', getSpecificCohort);
+router.get('/cohorts/:cohortid', getSpecificCohort);
 
 module.exports = router;

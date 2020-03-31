@@ -13,9 +13,9 @@ afterAll(() => {
 });
 
 describe('Cohort', () => {
-  test('Route /cohort/1 status 200, json header, data.name =G8 ', (done) => {
+  test('Route /cohorts/1 status 200, json header, data.name =G8 ', (done) => {
     return request(app)
-      .get('/api/v1/cohort/1')
+      .get('/api/v1/cohorts/1')
       .expect(200)
       .expect('Content-Type', /json/)
       .end((err, res) => {
@@ -26,9 +26,9 @@ describe('Cohort', () => {
       });
   });
 
-  test('Route /cohort/10 status 404, json header, data.message = "Sorry There\'s no cohort for this id" ', (done) => {
+  test('Route /cohorts/10 status 404, json header, data.message = "Sorry There\'s no cohort for this id" ', (done) => {
     return request(app)
-      .get('/api/v1/cohort/10')
+      .get('/api/v1/cohorts/10')
       .expect(404)
       .expect('Content-Type', /json/)
       .end((err, res) => {

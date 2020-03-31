@@ -1,3 +1,3 @@
-const cohort = require('./cohort');
+const getCohortQuery = require('./cohort');
 
-module.exports = { cohort };
+module.exports = getCohortQuery;
