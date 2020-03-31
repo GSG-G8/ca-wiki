@@ -4,13 +4,9 @@ const dbBuild = require('../server/database/config/build');
 
 const app = require('../server/app');
 
-beforeAll(() => {
-  return dbBuild();
-});
+beforeAll(() => dbBuild());
 
-afterAll(() => {
-  return connection.end();
-});
+afterAll(() => connection.end());
 
 describe('Admin, (/cohorts/:cohortId)', () => {
   test('Route /cohorts/1 status 200, data.message = Cohort deleted successfully ', (done) => {
@@ -19,13 +15,13 @@ describe('Admin, (/cohorts/:cohortId)', () => {
       .expect(200)
       .expect('Content-Type', /json/)
       .end(async (err, res) => {
-        const { data } = res.body;
+        const { message } = res.body.data;
         if (err) return done(err);
-        const result = await connection.query(
+        const { rows } = await connection.query(
           'SELECT * from cohort WHERE id = 1',
         );
-        expect(result.rows).toHaveLength(0);
-        expect(data.message).toBe('Cohort deleted successfully');
+        expect(rows).toHaveLength(0);
+        expect(message).toBe('Cohort deleted successfully');
         done();
       });
   });
