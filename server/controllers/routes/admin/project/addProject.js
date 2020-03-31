@@ -15,7 +15,14 @@ const addProject = async (req, res, next) => {
       data: { message: 'Project Added successfully' },
     });
   } catch (err) {
-    next(err);
+    if (err.errors) {
+      res.json({
+        StatusCode: 400,
+        data: { message: err.errors },
+      });
+    } else {
+      next(err);
+    }
   }
 };
 
