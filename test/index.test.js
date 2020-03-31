@@ -19,6 +19,12 @@ describe('Cohort', () => {
     img_url: 'https://avatars0.githubusercontent.com/u/59821022?s=200&v=4',
     github_link: 'https://github.com/GSG-G1',
   };
+  const wrongData = {
+    name: 'G2',
+    description: 'Code GazaSkyGeeksAcademy, 2nd Cohort',
+    img_url: 'This is cohort Image',
+    github_link: 'https://github.com/GSG-G1',
+  };
 
   test('PUT Route /cohort/1 status 200, json header, send data ', (done) => {
     return request(app)
@@ -60,6 +66,23 @@ describe('Cohort', () => {
         );
         expect(message).toBe("Sorry There's no cohort for this id to change");
         expect(rows).toHaveLength(0);
+        done();
+      });
+  });
+
+  test('PUT Route /cohort/1 status 400, json header, send wrong data and test the received message', (done) => {
+    return request(app)
+      .put('/api/v1/cohort/1')
+      .send(wrongData)
+      .expect(400)
+      .expect('Content-Type', /json/)
+      .end(async (err, res) => {
+        if (err) return done(err);
+        const { message } = res.body;
+        const { rows } = await connection.query(
+          'SELECT * from cohort WHERE id = 1',
+        );
+        expect(message).toBe('img_url must be a valid URL');
         done();
       });
   });
