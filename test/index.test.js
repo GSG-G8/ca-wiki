@@ -12,14 +12,14 @@ describe('Cohort', () => {
   const data = {
     name: 'G1',
     description: 'Code GazaSkyGeeksAcademy, 1st Cohort',
-    img_url: 'https://avatars0.githubusercontent.com/u/59821022?s=200&v=4',
-    github_link: 'https://github.com/GSG-G1',
+    imgUrl: 'https://avatars0.githubusercontent.com/u/59821022?s=200&v=4',
+    githubLink: 'https://github.com/GSG-G1',
   };
   const wrongData = {
     name: 'G2',
     description: 'Code GazaSkyGeeksAcademy, 2nd Cohort',
-    img_url: 'This is cohort Image',
-    github_link: 'https://github.com/GSG-G1',
+    imgUrl: 'This is cohort Image',
+    githubLink: 'https://github.com/GSG-G1',
   };
 
   test('PUT Route /cohorts/1 status 200, json header, send data ', (done) => {
@@ -78,7 +78,7 @@ describe('Cohort', () => {
         const { rows } = await connection.query(
           'SELECT * from cohort WHERE id = 1',
         );
-        expect(message).toBe('img_url must be a valid URL');
+        expect(message).toBe('imgUrl must be a valid URL');
         done();
       });
   });

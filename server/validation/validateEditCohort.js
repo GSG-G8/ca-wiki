@@ -4,8 +4,8 @@ const validateEditCohort = (req, res, next) => {
   const schema = yup.object({
     name: yup.string().required(),
     description: yup.string().required(),
-    img_url: yup.string().url().required(),
-    github_link: yup.string().url().required(),
+    imgUrl: yup.string().url().required(),
+    githubLink: yup.string().url().required(),
   });
 
   schema
