@@ -2,10 +2,10 @@ const {
   postCohort,
 } = require('../../../../database/queries/cohort/postCohort');
 
-const addCohort = async (req, res, next) => {
+const addCohort = async (req, res) => {
   try {
     const { rows } = await postCohort(req.body);
-    return res.json({
+    res.json({
       StatusCode: 201,
       data: {
         cohortId: rows[0].id,
@@ -13,10 +13,22 @@ const addCohort = async (req, res, next) => {
       },
     });
   } catch (err) {
-    next(err);
+    res.status(400).json({
+      statusCode: 400,
+      data: {
+        message: 'Cohort already exists',
+      },
+    });
   }
 };
 
 module.exports = {
   addCohort,
 };
+
+// res.status(409).json({
+//   StatusCode: 409,
+//   data: {
+//     message: 'Cohort already exists',
+//   },
+// });
