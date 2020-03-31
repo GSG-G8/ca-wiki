@@ -3,12 +3,7 @@ const { projectSchema } = require('../../../../validation');
 
 const addProject = async (req, res, next) => {
   try {
-    await projectSchema.validate(req.body).catch((err) =>
-      res.json({
-        StatusCode: 400,
-        data: { message: err.errors },
-      }),
-    );
+    await projectSchema.validate(req.body);
     await addProjectQuery(req.body);
     res.json({
       StatusCode: 200,
