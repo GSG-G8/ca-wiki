@@ -1,5 +1,5 @@
-const addNewCohort = require('./addNewCohort');
+const cohortSchema = require('./cohortSchema ');
 
 module.exports = {
-  addNewCohort,
+  cohortSchema,
 };

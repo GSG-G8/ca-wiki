@@ -15,6 +15,12 @@ describe('Cohort', () => {
     imgUrl: 'https://avatars0.githubusercontent.com/u/59821022?s=200&v=4',
     githubLink: 'https://github.com/GSG-G8',
   };
+  const invalidData = {
+    name: 'G5',
+    description: 'GazaSkyGeeks Code Academy, 6th Cohort',
+    imgUrl: 'img url',
+    githubLink: 'github link',
+  };
   test('POST Route /cohorts status 200, json header, send data ', (done) => {
     request(app)
       .post('/api/v1/cohorts')
@@ -40,11 +46,11 @@ describe('Cohort', () => {
         done();
       });
   });
-  test('POST Route /cohorts status 400, json header, send data ', (done) => {
+  test('POST Route /cohorts status 409, json header, send data ', (done) => {
     request(app)
       .post('/api/v1/cohorts')
       .send(data)
-      .expect(400)
+      .expect(409)
       .expect('Content-Type', /json/)
       .end(async (err, res) => {
         const { message } = res.body.data;
@@ -54,6 +60,26 @@ describe('Cohort', () => {
         );
         expect(rows).toHaveLength(0);
         expect(message).toBe('Cohort already exists');
+        done();
+      });
+  });
+  test('POST Route /cohorts status 400, json header, send invalid data ', (done) => {
+    request(app)
+      .post('/api/v1/cohorts')
+      .send(invalidData)
+      .expect(400)
+      .expect('Content-Type', /json/)
+      .end(async (err, res) => {
+        const { message } = res.body.data;
+        if (err) return done(err);
+        const { rows } = await connection.query(
+          'SELECT * from cohort WHERE id = 4',
+        );
+        expect(rows).toHaveLength(0);
+        expect(message).toEqual([
+          'imgUrl must be a valid URL',
+          'githubLink must be a valid URL',
+        ]);
         done();
       });
   });

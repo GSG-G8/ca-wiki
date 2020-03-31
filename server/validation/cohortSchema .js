@@ -1,6 +1,6 @@
 const yup = require('yup');
 
-const addNewCohort = yup.object({
+const cohortSchema = yup.object({
   name: yup.string().required(),
   description: yup.string().required(),
   imgUrl: yup.string().url().required(),
@@ -8,5 +8,5 @@ const addNewCohort = yup.object({
 });
 
 module.exports = {
-  addNewCohort,
+  cohortSchema,
 };
