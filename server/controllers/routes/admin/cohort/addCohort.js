@@ -4,12 +4,11 @@ const {
 
 const addCohort = async (req, res, next) => {
   try {
-    const cohortInfo = req.body;
-    const result = await postCohort(cohortInfo);
+    const { rows } = await postCohort(req.body);
     return res.json({
       StatusCode: 201,
       data: {
-        cohortId: result.rows[0].id,
+        cohortId: rows[0].id,
         message: 'Cohort added successfully',
       },
     });
