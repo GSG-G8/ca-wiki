@@ -1,5 +1,3 @@
-const validateEditCohort = require('./validateEditCohort');
+const { editCohortSchema } = require('./editCohort');
 
-module.exports = {
-  validateEditCohort,
-};
+module.exports = { editCohortSchema };

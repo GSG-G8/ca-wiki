@@ -1,7 +1,6 @@
 const router = require('express').Router();
 const { editCohort } = require('./routes/admin');
-const { validateEditCohort } = require('../validation/index');
 
-router.put('/cohorts/:cohortid', validateEditCohort, editCohort);
+router.put('/cohorts/:cohortid', editCohort);
 
 module.exports = router;

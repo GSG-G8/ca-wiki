@@ -1,7 +1,10 @@
 const { putSpecificCohort } = require('../../../../database/queries');
+const { editCohortSchema } = require('../../../../validation/index');
 
-exports.editCohort = async (req, res, next) => {
+exports.editCohort = async (req, res) => {
   try {
+    await editCohortSchema.validate(req.body);
+
     const result = await putSpecificCohort(req.params.cohortid, req.body);
     if (result.rowCount === 1) {
       res.json({ statusCode: 200, message: 'Changed Succefully' });
@@ -12,6 +15,6 @@ exports.editCohort = async (req, res, next) => {
       });
     }
   } catch (err) {
-    next(err);
+    res.status(400).json({ statusCode: 400, message: err.message });
   }
 };
