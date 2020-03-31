@@ -3,7 +3,7 @@ const { projectSchema } = require('../../../../validation');
 
 const addProject = async (req, res, next) => {
   try {
-    await projectSchema.validate(req.body);
+    await projectSchema.validate(req.body, { abortEarly: false });
     await addProjectQuery(req.body);
     res.json({
       StatusCode: 200,
