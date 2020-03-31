@@ -4,13 +4,9 @@ const dbBuild = require('../server/database/config/build');
 
 const app = require('../server/app');
 
-beforeAll(() => {
-  return dbBuild();
-});
+beforeAll(() => dbBuild());
 
-afterAll(() => {
-  return connection.end();
-});
+afterAll(() => connection.end());
 
 describe('Cohort', () => {
   test('Route /cohorts status 200, json header, data', (done) => {
