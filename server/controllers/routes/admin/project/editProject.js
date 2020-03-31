@@ -1,27 +1,11 @@
-const { editProject } = require('../../../../database/queries');
+const { editProjectQuery } = require('../../../../database/queries');
+const { editProjectSchema } = require('../../../../validation');
 
-const projectEdit = async (req, res, next) => {
+const editProject = async (req, res, next) => {
   try {
-    const {
-      name,
-      description,
-      imgUrl,
-      githubLink,
-      websiteLink,
-      projectType,
-      cohortId,
-    } = req.body;
-    const { projectId } = req.params;
-    await editProject(
-      name,
-      description,
-      imgUrl,
-      githubLink,
-      websiteLink,
-      projectType,
-      cohortId,
-      projectId,
-    );
+    req.body.projectId = req.params.projectId;
+    await editProjectSchema.validate(req.body);
+    await editProjectQuery(req.body);
     res.json({
       StatusCode: 200,
       data: { message: 'project updated successfully' },
@@ -31,4 +15,4 @@ const projectEdit = async (req, res, next) => {
   }
 };
 
-module.exports = projectEdit;
+module.exports = editProject;
