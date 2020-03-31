@@ -15,12 +15,6 @@ describe('Cohort', () => {
     imgUrl: 'https://avatars0.githubusercontent.com/u/59821022?s=200&v=4',
     githubLink: 'https://github.com/GSG-G8',
   };
-  const wrongData = {
-    name: 'G5',
-    description: 'GazaSkyGeeks Code Academy, 6th Cohort',
-    imgUrl: 'https://avatars0.githubusercontent.com/u/59821022?s=200&v=4',
-    githubLink: 'githun link',
-  };
   test('POST Route /cohorts status 200, json header, send data ', (done) => {
     request(app)
       .post('/api/v1/cohorts')
