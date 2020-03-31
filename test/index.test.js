@@ -15,7 +15,7 @@ afterAll(() => {
 });
 
 describe('Cohort', () => {
-  test('Route /cohorts status 200, json header, data.id = data.id', (done) => {
+  test('Route /cohorts status 200, json header, data', (done) => {
     return request(app)
       .get('/api/v1/cohorts')
       .expect(200)
@@ -23,7 +23,7 @@ describe('Cohort', () => {
       .end((err, res) => {
         if (err) return done(err);
         const { data } = res.body;
-        expect(data.id).toBe(data.id);
+        expect(data).toHaveLength(2);
         done();
       });
   });
