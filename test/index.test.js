@@ -22,10 +22,12 @@ test('Post cohort route', (done) => {
     .end(async (err, res) => {
       const { message } = res.body.data;
       if (err) return done(err);
-      const result = await connection.query(
+      const { rows } = await connection.query(
         'SELECT * from cohort WHERE id = 3',
       );
-      expect(result.rows[0].name).toBe('G6');
+      const { name } = rows[0];
+      expect(rows).toHaveLength(1);
+      expect(name).toBe('G6');
       expect(message).toBe('Cohort added successfully');
       done();
     });
