@@ -5,6 +5,9 @@ const addProjectSchema = yup.object({
   description: yup.string().required(),
   imgUrl: yup.string().url().required(),
   githubLink: yup.string().url().required(),
+  websiteLink: yup.string().url().required(),
+  projectType: yup.string().required(),
+  cohortId: yup.number().integer().positive().required(),
 });
 
 module.exports = addProjectSchema;
