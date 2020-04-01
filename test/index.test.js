@@ -23,7 +23,7 @@ describe('Admin, Project', () => {
     return request(app)
       .post('/api/v1/projects')
       .send(reqData)
-      .expect(200)
+      .expect(201)
       .expect('Content-Type', /json/)
       .end(async (err, res) => {
         const { message } = res.body.data;
