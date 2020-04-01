@@ -28,8 +28,10 @@ describe('Cohort', () => {
       .expect(200)
       .expect('Content-Type', /json/)
       .end(async (err, res) => {
-        const { message } = res.body.data;
         if (err) return done(err);
+        const {
+          data: { message },
+        } = res.body;
         const { rows } = await connection.query(
           'SELECT * from cohort WHERE id = 3',
         );
@@ -42,7 +44,9 @@ describe('Cohort', () => {
             'https://avatars0.githubusercontent.com/u/59821022?s=200&v=4',
           github_link: 'https://github.com/GSG-G8',
         });
-        expect(message).toBe('Cohort added successfully');
+        expect(message).toBe(
+          `Cohort with Key (name)=(${data.name}) added successfully`,
+        );
         done();
       });
   });
@@ -53,13 +57,15 @@ describe('Cohort', () => {
       .expect(409)
       .expect('Content-Type', /json/)
       .end(async (err, res) => {
-        const { message } = res.body.data;
         if (err) return done(err);
+        const {
+          data: { message },
+        } = res.body;
         const { rows } = await connection.query(
           'SELECT * from cohort WHERE id = 4',
         );
         expect(rows).toHaveLength(0);
-        expect(message).toBe('Cohort already exists');
+        expect(message).toBe(`Key (name)=(${data.name}) already exists.`);
         done();
       });
   });
@@ -70,8 +76,10 @@ describe('Cohort', () => {
       .expect(400)
       .expect('Content-Type', /json/)
       .end(async (err, res) => {
-        const { message } = res.body.data;
         if (err) return done(err);
+        const {
+          data: { message },
+        } = res.body;
         const { rows } = await connection.query(
           'SELECT * from cohort WHERE id = 4',
         );
