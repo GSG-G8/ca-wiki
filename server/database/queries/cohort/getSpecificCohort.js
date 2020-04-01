@@ -1,4 +1,6 @@
 const connection = require('../../config/connection');
 
-exports.getCohortQuery = (id) =>
+const getCohortQuery = (id) =>
   connection.query('select * from cohort where id = $1', [id]);
+
+module.exports = getCohortQuery;

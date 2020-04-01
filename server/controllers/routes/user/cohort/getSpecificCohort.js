@@ -1,6 +1,6 @@
-const getCohortQuery = require('../../../../database/queries');
+const { getCohortQuery } = require('../../../../database/queries');
 
-exports.getSpecificCohort = async (req, res, next) => {
+const getSpecificCohort = async (req, res, next) => {
   try {
     const { cohortid } = req.params;
     if (cohortid > 0) {
@@ -24,3 +24,5 @@ exports.getSpecificCohort = async (req, res, next) => {
     next(err);
   }
 };
+
+module.exports = getSpecificCohort;

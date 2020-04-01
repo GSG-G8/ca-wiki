@@ -1,3 +1,8 @@
-const { getCohortQuery } = require('./getSpecificCohort');
+const getCohortQuery = require('./getSpecificCohort');
 
-module.exports = getCohortQuery;
+const deleteCohortQuery = require('./deleteCohort');
+
+module.exports = {
+  deleteCohortQuery,
+  getCohortQuery,
+};
