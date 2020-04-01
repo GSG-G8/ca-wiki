@@ -1,3 +1,7 @@
-const { postCohort } = require('./postCohort');
+const postCohort = require('./postCohort');
+const deleteCohortQuery = require('./deleteCohort');
 
-module.exports = { postCohort };
+module.exports = {
+  postCohort,
+  deleteCohortQuery,
+};
