@@ -1,7 +1,7 @@
 const {
   postCohort,
 } = require('../../../../database/queries/cohort/postCohort');
-const { cohortSchema } = require('../../../../validation/cohortSchema ');
+const cohortSchema = require('../../../../validation/cohortSchema ');
 
 const addCohort = async (req, res, next) => {
   try {
@@ -30,6 +30,4 @@ const addCohort = async (req, res, next) => {
   }
 };
 
-module.exports = {
-  addCohort,
-};
+module.exports = addCohort;

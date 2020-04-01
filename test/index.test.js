@@ -8,7 +8,7 @@ beforeAll(() => dbBuild());
 
 afterAll(() => connection.end());
 
-describe('Cohort', () => {
+describe('Admin, Add cohort', () => {
   const data = {
     name: 'G6',
     description: 'GazaSkyGeeks Code Academy, 6th Cohort',
@@ -94,7 +94,9 @@ describe('Cohort', () => {
         done();
       });
   });
+});
 
+describe('Get Specific Cohort', () => {
   test('Route /cohorts/1 status 200, json header, data.name =G8 ', (done) => {
     return request(app)
       .get('/api/v1/cohorts/1')
@@ -102,8 +104,8 @@ describe('Cohort', () => {
       .expect('Content-Type', /json/)
       .end((err, res) => {
         if (err) return done(err);
-        const { data: result } = res.body;
-        expect(result.name).toBe('G8');
+        const { data } = res.body;
+        expect(data.name).toBe('G8');
         done();
       });
   });
@@ -122,8 +124,8 @@ describe('Cohort', () => {
   });
 });
 
-describe('Admin, Project', () => {
-  test('Route /projects status 200, json header, data.message = Project Added successfully ', (done) => {
+describe('Admin, Post Project', () => {
+  test('Route /projects status 200, json header, data.message = Cohort Added successfully ', (done) => {
     const reqData = {
       name: 'Mohmmedzw851@',
       description: 'description',
@@ -152,7 +154,7 @@ describe('Admin, Project', () => {
   });
 });
 
-describe('Admin, (/cohorts/:cohortId)', () => {
+describe('Admin, Delete Specific Cohort', () => {
   test('Route /cohorts/1 status 200, data.message = Cohort deleted successfully ', (done) => {
     return request(app)
       .delete('/api/v1/cohorts/1')

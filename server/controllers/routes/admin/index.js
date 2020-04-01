@@ -2,7 +2,7 @@ const router = require('express').Router();
 const { addCohort, deleteCohort } = require('./cohort');
 const { addProject } = require('./project');
 
-router.route('/cohorts').post(addCohort);
+router.post('/cohorts', addCohort);
 
 router
   .route('/cohorts/:cohortId')

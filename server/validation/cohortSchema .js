@@ -7,6 +7,4 @@ const cohortSchema = yup.object({
   githubLink: yup.string().url().required(),
 });
 
-module.exports = {
-  cohortSchema,
-};
+module.exports = cohortSchema;
