@@ -1,3 +1,7 @@
-const { getSpecificCohort } = require('./cohort');
+const router = require('express').Router();
 
-module.exports = { getSpecificCohort };
+const { getCohortsData } = require('./cohort');
+
+router.get('/cohorts', getCohortsData);
+
+module.exports = router;
