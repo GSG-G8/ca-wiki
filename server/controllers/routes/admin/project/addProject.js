@@ -1,16 +1,23 @@
 const { addProjectQuery } = require('../../../../database/queries');
-const { addProjectSchema } = require('../../../../validation');
+const { projectSchema } = require('../../../../validation');
 
 const addProject = async (req, res, next) => {
   try {
-    await addProjectSchema.validate(req.body);
+    await projectSchema.validate(req.body, { abortEarly: false });
     await addProjectQuery(req.body);
-    res.json({
-      StatusCode: 200,
-      data: { message: 'Cohort Added successfully' },
+    res.status(201).json({
+      StatusCode: 201,
+      data: { message: 'Project Added successfully' },
     });
   } catch (err) {
-    next(err);
+    if (err.errors) {
+      res.json({
+        StatusCode: 400,
+        data: { message: err.errors },
+      });
+    } else {
+      next(err);
+    }
   }
 };
 
