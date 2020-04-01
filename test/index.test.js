@@ -75,10 +75,8 @@ describe('Cohort', () => {
       .end(async (err, res) => {
         if (err) return done(err);
         const { message } = res.body;
-        const { rows } = await connection.query(
-          'SELECT * from cohort WHERE id = 1',
-        );
-        expect(message).toBe('imgUrl must be a valid URL');
+        await connection.query('SELECT * from cohort WHERE id = 1');
+        expect(message[0]).toBe('imgUrl must be a valid URL');
         done();
       });
   });

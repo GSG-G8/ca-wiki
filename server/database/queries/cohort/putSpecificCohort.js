@@ -1,7 +1,9 @@
 const connection = require('../../config/connection');
 
-exports.putSpecificCohort = (id, req) =>
-  connection.query(
-    'UPDATE cohort SET name = $2, description = $3, img_url = $4, github_link = $5 WHERE id = $1 ',
-    [id, req.name, req.description, req.imgUrl, req.githubLink],
+exports.putSpecificCohort = (req) => {
+  const { name, description, imgUrl, githubLink, cohortId } = req;
+  return connection.query(
+    'UPDATE cohort SET name = $1, description = $2, img_url = $3, github_link = $4 WHERE id = $5 ',
+    [name, description, imgUrl, githubLink, cohortId],
   );
+};
