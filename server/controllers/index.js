@@ -3,7 +3,7 @@ const user = require('./routes/user');
 const admin = require('./routes/admin');
 const { getSpecificCohort } = require('./routes/user/cohort');
 
-router.get('/cohorts/:cohortid', getSpecificCohort);
+router.get('/cohorts/:cohortId', getSpecificCohort);
 router.use(user);
 router.use(admin);
 
