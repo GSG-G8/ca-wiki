@@ -1,3 +1,10 @@
-const project = require('./project');
+const { getProjects, addProjectQuery } = require('./project');
+const { getCohorts, getCohortQuery, deleteCohortQuery } = require('./cohort');
 
-module.exports = { project };
+module.exports = {
+  getProjects,
+  getCohorts,
+  deleteCohortQuery,
+  getCohortQuery,
+  addProjectQuery,
+};

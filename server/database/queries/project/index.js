@@ -1,3 +1,7 @@
-const { getProjects } = require('./getProjects');
+const getProjects = require('./getProjects');
+const addProjectQuery = require('./addProject');
 
-module.exports = { getProjects };
+module.exports = {
+  getProjects,
+  addProjectQuery,
+};

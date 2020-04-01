@@ -1,3 +1,5 @@
 const connection = require('../../config/connection');
 
-exports.getProjects = () => connection.query('SELECT * FROM project');
+const getProjects = () => connection.query('SELECT * FROM project');
+
+module.exports = getProjects;
