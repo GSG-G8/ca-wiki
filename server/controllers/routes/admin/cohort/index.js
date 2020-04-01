@@ -1,3 +1,7 @@
-const { editCohort } = require('./editCohort');
+const editCohort = require('./editCohort');
+const deleteCohort = require('./deleteCohort');
 
-module.exports = { editCohort };
+module.exports = {
+  deleteCohort,
+  editCohort,
+};

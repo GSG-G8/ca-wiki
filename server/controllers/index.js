@@ -1,8 +1,9 @@
 const router = require('express').Router();
-const { clientError, serverError } = require('./middlewares/errorHandle');
-const { editCohort } = require('./routes/admin');
 
-router.put('/cohorts/:cohortId', editCohort);
+const { clientError, serverError } = require('./middlewares/errorHandle');
+const admin = require('./routes/admin');
+
+router.use(admin);
 
 router.use(clientError);
 router.use(serverError);

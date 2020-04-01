@@ -1,7 +1,7 @@
 const { putSpecificCohort } = require('../../../../database/queries');
 const { editCohortSchema } = require('../../../../validation/index');
 
-exports.editCohort = async (req, res, next) => {
+const editCohort = async (req, res, next) => {
   try {
     req.body.cohortId = req.params.cohortId;
     await editCohortSchema.validate(req.body, { abortEarly: false });
@@ -22,3 +22,5 @@ exports.editCohort = async (req, res, next) => {
     }
   }
 };
+
+module.exports = editCohort;

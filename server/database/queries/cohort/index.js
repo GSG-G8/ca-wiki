@@ -1,3 +1,8 @@
 const { putSpecificCohort } = require('./putSpecificCohort');
 
-module.exports = { putSpecificCohort };
+const deleteCohortQuery = require('./deleteCohort');
+
+module.exports = {
+  deleteCohortQuery,
+  putSpecificCohort,
+};
