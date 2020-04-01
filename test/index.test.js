@@ -85,7 +85,7 @@ describe('Admin, (/cohorts/:cohortId)', () => {
 });
 
 describe('alumni', () => {
-  test('Route /alumni status 200, json header, data.name =G8 ', (done) => {
+  test('Route /alumni status 200, json header, data[0].name = Alaa ', (done) => {
     return request(app)
       .get('/api/v1/alumni')
       .expect(200)
