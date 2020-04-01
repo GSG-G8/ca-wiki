@@ -3,6 +3,8 @@ const compression = require('compression');
 const { join } = require('path');
 
 const controller = require('./controllers');
+const { clientError } = require('./controllers/middlewares/errorHandle');
+const { serverError } = require('./controllers/middlewares/errorHandle');
 
 const app = express();
 
@@ -19,5 +21,8 @@ app.use(express.static(join(__dirname, '..', 'client', 'build')));
 app.get('*', (req, res) => {
   res.sendFile(join(__dirname, '..', 'client', 'build', 'index.html'));
 });
+
+app.use(clientError);
+app.use(serverError);
 
 module.exports = app;

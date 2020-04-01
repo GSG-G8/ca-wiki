@@ -1,3 +1,8 @@
 const { editCohortSchema } = require('./editCohort');
 
-module.exports = { editCohortSchema };
+const projectSchema = require('./projectSchema');
+
+module.exports = {
+  projectSchema,
+  editCohortSchema,
+};
