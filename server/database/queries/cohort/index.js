@@ -1,9 +1,11 @@
 const postCohort = require('./postCohort');
-const deleteCohortQuery = require('./deleteCohort');
+const getCohorts = require('./getCohorts');
 const getCohortQuery = require('./getSpecificCohort');
+const deleteCohortQuery = require('./deleteCohort');
 
 module.exports = {
   postCohort,
+  getCohorts,
   deleteCohortQuery,
   getCohortQuery,
 };

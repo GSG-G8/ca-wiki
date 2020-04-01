@@ -7,7 +7,7 @@ const addCohort = async (req, res, next) => {
   try {
     await cohortSchema.validate(req.body, { abortEarly: false });
     const { rows } = await postCohort(req.body);
-    res.json({
+    res.status(201).json({
       StatusCode: 201,
       data: {
         cohort: rows[0],

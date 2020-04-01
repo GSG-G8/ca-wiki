@@ -1,12 +1,10 @@
 const router = require('express').Router();
-
-const { serverError } = require('./middlewares/errorHandle');
+const user = require('./routes/user');
 const admin = require('./routes/admin');
-const { getSpecificCohort } = require('./routes/user');
+const { getSpecificCohort } = require('./routes/user/cohort');
 
 router.get('/cohorts/:cohortid', getSpecificCohort);
+router.use(user);
 router.use(admin);
-
-router.use(serverError);
 
 module.exports = router;
