@@ -83,3 +83,19 @@ describe('Admin, (/cohorts/:cohortId)', () => {
       });
   });
 });
+
+describe('alumni', () => {
+  test('Route /alumni status 200, json header, data.name =G8 ', (done) => {
+    return request(app)
+      .get('/api/v1/alumni')
+      .expect(200)
+      .expect('Content-Type', /json/)
+      .end((err, res) => {
+        if (err) return done(err);
+        const { data } = res.body;
+        expect(data[0].name).toBe('Alaa');
+        expect(data).toHaveLength(2);
+        done();
+      });
+  });
+});
