@@ -4,7 +4,6 @@ const dbBuild = require('../server/database/config/build');
 
 const app = require('../server/app');
 
-// beforeAll(() => dbBuild());
 beforeEach(() => dbBuild());
 
 afterAll(() => connection.end());
