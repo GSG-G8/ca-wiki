@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { deleteCohort } = require('./cohort');
+const { addProject } = require('./project');
 
 router
   .route('/cohorts/:cohortId')
@@ -17,5 +18,7 @@ router
     next(new Error('not implemented'));
   })
   .delete(deleteCohort);
+
+router.post('/projects', addProject);
 
 module.exports = router;

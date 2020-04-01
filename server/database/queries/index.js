@@ -1,11 +1,11 @@
-<<<<<<< HEAD
 const { getCohorts } = require('./cohort');
-
-module.exports = { getCohorts };
-=======
+const { getCohortQuery } = require('./cohort');
 const { deleteCohortQuery } = require('./cohort');
+const { addProjectQuery } = require('./project');
 
 module.exports = {
+  getCohorts,
   deleteCohortQuery,
+  getCohortQuery,
+  addProjectQuery,
 };
->>>>>>> master

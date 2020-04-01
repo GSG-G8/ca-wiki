@@ -2,13 +2,14 @@ const router = require('express').Router();
 const userRouter = require('./routes/user');
 
 router.use(userRouter);
+
+const { serverError } = require('./middlewares/errorHandle');
 const admin = require('./routes/admin');
+const { getSpecificCohort } = require('./routes/user');
 
-const { clientError, serverError } = require('./middlewares/errorHandle');
-
-router.use(clientError);
-router.use(serverError);
-
+router.get('/cohorts/:cohortid', getSpecificCohort);
 router.use(admin);
+
+router.use(serverError);
 
 module.exports = router;
