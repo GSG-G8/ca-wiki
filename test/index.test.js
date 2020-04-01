@@ -21,6 +21,7 @@ describe('Cohort', () => {
     imgUrl: 'img url',
     githubLink: 'github link',
   };
+
   test('POST Route /cohorts status 200, json header, send data ', (done) => {
     request(app)
       .post('/api/v1/cohorts')
@@ -50,6 +51,7 @@ describe('Cohort', () => {
         done();
       });
   });
+
   test('POST Route /cohorts status 409, json header, send data ', (done) => {
     request(app)
       .post('/api/v1/cohorts')
@@ -69,6 +71,7 @@ describe('Cohort', () => {
         done();
       });
   });
+
   test('POST Route /cohorts status 400, json header, send invalid data ', (done) => {
     request(app)
       .post('/api/v1/cohorts')
@@ -88,6 +91,32 @@ describe('Cohort', () => {
           'imgUrl must be a valid URL',
           'githubLink must be a valid URL',
         ]);
+        done();
+      });
+  });
+
+  test('Route /cohorts/1 status 200, json header, data.name =G8 ', (done) => {
+    return request(app)
+      .get('/api/v1/cohorts/1')
+      .expect(200)
+      .expect('Content-Type', /json/)
+      .end((err, res) => {
+        if (err) return done(err);
+        const { data: result } = res.body;
+        expect(result.name).toBe('G8');
+        done();
+      });
+  });
+
+  test('Route /cohorts/10 status 404, json header, data.message = "Sorry There\'s no cohort for this id" ', (done) => {
+    return request(app)
+      .get('/api/v1/cohorts/10')
+      .expect(404)
+      .expect('Content-Type', /json/)
+      .end((err, res) => {
+        if (err) return done(err);
+        const { message } = res.body;
+        expect(message).toBe("Sorry There's no cohort for this id");
         done();
       });
   });
