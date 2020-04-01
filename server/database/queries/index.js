@@ -4,7 +4,7 @@ const {
   getCohortQuery,
   getCohorts,
 } = require('./cohort');
-const { addProjectQuery } = require('./project');
+const { addProjectQuery, editProjectQuery } = require('./project');
 
 module.exports = {
   postCohort,
@@ -12,4 +12,5 @@ module.exports = {
   deleteCohortQuery,
   getCohortQuery,
   addProjectQuery,
+  editProjectQuery,
 };
