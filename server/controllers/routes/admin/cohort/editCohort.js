@@ -3,9 +3,10 @@ const { editCohortSchema } = require('../../../../validation/index');
 
 const editCohort = async (req, res, next) => {
   try {
-    req.body.cohortId = req.params.cohortId;
-    await editCohortSchema.validate(req.body, { abortEarly: false });
-    const result = await putSpecificCohort(req.body);
+    const { cohortId } = req.params;
+    const data = { ...req.body, cohortId };
+    await editCohortSchema.validate(data, { abortEarly: false });
+    const result = await putSpecificCohort(data);
     if (result.rowCount === 1) {
       res.json({ statusCode: 200, message: 'Changed Succefully' });
     } else {
