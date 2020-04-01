@@ -1,4 +1,4 @@
-const { getCohorts } = require('./getCohorts');
+const getCohorts = require('./getCohorts');
 
 const getCohortQuery = require('./getSpecificCohort');
 
