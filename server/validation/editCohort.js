@@ -2,8 +2,8 @@ const yup = require('yup');
 
 exports.editCohortSchema = yup.object({
   cohortId: yup.number().required(),
-  name: yup.string(),
-  description: yup.string(),
-  imgUrl: yup.string().url(),
-  githubLink: yup.string().url(),
+  name: yup.string().required(),
+  description: yup.string().required(),
+  imgUrl: yup.string().url().required(),
+  githubLink: yup.string().url().required(),
 });
