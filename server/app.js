@@ -22,7 +22,7 @@ app.get('*', (req, res) => {
   res.sendFile(join(__dirname, '..', 'client', 'build', 'index.html'));
 });
 
-//app.use(clientError);
-//app.use(serverError);
+app.use(clientError);
+app.use(serverError);
 
 module.exports = app;
