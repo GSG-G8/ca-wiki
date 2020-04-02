@@ -189,6 +189,13 @@ describe('Admin, Put project', () => {
     githubLink: 'github link',
     cohortId: 1,
   };
+  const duplicateData = {
+    name: 'Rehab',
+    email: 'rana@gmail.com',
+    imgUrl: 'https://avatars3.githubusercontent.com/u/49806841?s=460&v=4',
+    githubLink: 'https://github.com/rehabas',
+    cohortId: 1,
+  };
 
   test('PUT Route /alumni/1 status 200, json header, put data ', (done) => {
     request(app)
@@ -209,6 +216,41 @@ describe('Admin, Put project', () => {
           id: 1,
           name: 'Rehab',
           email: 'rehab@gmail.com',
+          img_url:
+            'https://avatars3.githubusercontent.com/u/49806841?s=460&v=4',
+          github_link: 'https://github.com/rehabas',
+          cohort_id: 1,
+        });
+        expect(message).toBe("Student's data updated successfully");
+        done();
+      });
+  });
+
+  test('PUT Route /alumni/1 status 200, json header, put data with same email', (done) => {
+    request(app)
+      .put('/api/v1/alumni/1')
+      .send({
+        name: 'sara',
+        email: 'alaa@gmail.com',
+        imgUrl: 'https://avatars3.githubusercontent.com/u/49806841?s=460&v=4',
+        githubLink: 'https://github.com/rehabas',
+        cohortId: 1,
+      })
+      .expect(200)
+      .expect('Content-Type', /json/)
+      .end(async (err, res) => {
+        if (err) return done(err);
+        const {
+          data: { message },
+        } = res.body;
+        const { rows } = await connection.query(
+          'SELECT * from student WHERE id = 1',
+        );
+        expect(rows).toHaveLength(1);
+        expect(rows[0]).toEqual({
+          id: 1,
+          name: 'sara',
+          email: 'alaa@gmail.com',
           img_url:
             'https://avatars3.githubusercontent.com/u/49806841?s=460&v=4',
           github_link: 'https://github.com/rehabas',
@@ -256,6 +298,24 @@ describe('Admin, Put project', () => {
           'imgUrl must be a valid URL',
           'githubLink must be a valid URL',
         ]);
+        done();
+      });
+  });
+
+  test('PUT Route /alumni/1 status 409, json header, put data ', (done) => {
+    request(app)
+      .put('/api/v1/alumni/1')
+      .send(duplicateData)
+      .expect(409)
+      .expect('Content-Type', /json/)
+      .end(async (err, res) => {
+        if (err) return done(err);
+        const {
+          data: { message },
+        } = res.body;
+        expect(message).toBe(
+          `Key (email)=(${duplicateData.email}) already exists.`,
+        );
         done();
       });
   });
