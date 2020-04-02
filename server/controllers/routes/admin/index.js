@@ -1,4 +1,6 @@
 const router = require('express').Router();
+
+const { editCohort } = require('./cohort');
 const { deleteCohort } = require('./cohort');
 const { addProject, editProject } = require('./project');
 
@@ -11,9 +13,7 @@ router
   .get((req, res, next) => {
     next(new Error('not implemented'));
   })
-  .put((req, res, next) => {
-    next(new Error('not implemented'));
-  })
+  .put(editCohort)
   .post((req, res, next) => {
     next(new Error('not implemented'));
   })
