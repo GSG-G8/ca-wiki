@@ -126,6 +126,99 @@ describe('Get Specific Cohort Projects', () => {
   });
 });
 
+describe('Post Cohort', () => {
+  const data = {
+    name: 'G1',
+    description: 'Code GazaSkyGeeksAcademy, 1st Cohort',
+    imgUrl: 'https://avatars0.githubusercontent.com/u/59821022?s=200&v=4',
+    githubLink: 'https://github.com/GSG-G1',
+  };
+  const wrongData = {
+    name: 'G2',
+    description: 'Code GazaSkyGeeksAcademy, 2nd Cohort',
+    imgUrl: 'This is cohort Image',
+    githubLink: 'https://github.com/GSG-G1',
+  };
+
+  test('PUT Route /cohorts/1 status 200, json header, send data ', (done) => {
+    return request(app)
+      .put('/api/v1/cohorts/1')
+      .send(data)
+      .expect(200)
+      .expect('Content-Type', /json/)
+      .end(async (err, res) => {
+        if (err) return done(err);
+        const { message } = res.body;
+        const { rows } = await connection.query(
+          'SELECT * from cohort WHERE id = 1',
+        );
+        expect(message).toBe('Changed Succefully');
+        expect(rows).toHaveLength(1);
+        expect(rows[0]).toEqual({
+          id: 1,
+          name: 'G1',
+          description: 'Code GazaSkyGeeksAcademy, 1st Cohort',
+          img_url:
+            'https://avatars0.githubusercontent.com/u/59821022?s=200&v=4',
+          github_link: 'https://github.com/GSG-G1',
+        });
+        done();
+      });
+  });
+
+  test('PUT Route /cohorts/4 status 404, json header, send data ', (done) => {
+    return request(app)
+      .put('/api/v1/cohorts/4')
+      .send(data)
+      .expect(404)
+      .expect('Content-Type', /json/)
+      .end(async (err, res) => {
+        if (err) return done(err);
+        const { message } = res.body;
+        const { rows } = await connection.query(
+          'SELECT * from cohort WHERE id = 4',
+        );
+        expect(message).toBe("Sorry There's no cohort for this id to change");
+        expect(rows).toHaveLength(0);
+        done();
+      });
+  });
+
+  test('PUT Route /cohorts/1 status 400, json header, send wrong data and test the received message', (done) => {
+    return request(app)
+      .put('/api/v1/cohorts/1')
+      .send(wrongData)
+      .expect(400)
+      .expect('Content-Type', /json/)
+      .end(async (err, res) => {
+        if (err) return done(err);
+        const { message } = res.body;
+        await connection.query('SELECT * from cohort WHERE id = 1');
+        expect(message[0]).toBe('imgUrl must be a valid URL');
+        done();
+      });
+  });
+});
+
+describe('Admin, (/cohorts/:cohortId)', () => {
+  test('Route /cohorts/1 status 200, data.message = Cohort deleted successfully ', (done) => {
+    return request(app)
+      .delete('/api/v1/cohorts/1')
+      .expect(200)
+      .expect('Content-Type', /json/)
+      .end(async (err, res) => {
+        const { message } = res.body.data;
+        if (err) return done(err);
+        const { rows } = await connection.query(
+          'SELECT * from cohort WHERE id = 1',
+        );
+        expect(rows).toHaveLength(0);
+        expect(message).toBe('Cohort deleted successfully');
+        done();
+      });
+  });
+});
+
 describe('Admin, Post Project', () => {
   test('Route /projects status 200, json header, data.message = Cohort Added successfully ', (done) => {
     const reqData = {
@@ -195,6 +288,51 @@ describe('Admin, (/projects/:projectId)', () => {
         if (err) return done(err);
         const { message } = res.body.data;
         expect(message).toBe('project updated successfully');
+        done();
+      });
+  });
+});
+
+describe('Delete specific student by ID', () => {
+  test('Route /alumni/1 status 200, data.message = Student deleted successfully ', (done) => {
+    return request(app)
+      .delete('/api/v1/alumni/1')
+      .expect(200)
+      .expect('Content-Type', /json/)
+      .end(async (err, res) => {
+        const { message } = res.body.data;
+        if (err) return done(err);
+        const { rows } = await connection.query(
+          'SELECT * from student WHERE id = 1',
+        );
+        expect(rows).toHaveLength(0);
+        expect(message).toBe('Student deleted successfully');
+        done();
+      });
+  });
+
+  test('Route /alumni/10 status 404, data.message = Student does not exist ', (done) => {
+    return request(app)
+      .delete('/api/v1/alumni/10')
+      .expect(404)
+      .expect('Content-Type', /json/)
+      .end(async (err, res) => {
+        const { message } = res.body.data;
+        if (err) return done(err);
+        expect(message).toBe('Student does not exist');
+        done();
+      });
+  });
+
+  test('Route /alumni/Alaa status 404, data.message = You enterd wrong student ID ', (done) => {
+    return request(app)
+      .delete('/api/v1/alumni/Alaa')
+      .expect(404)
+      .expect('Content-Type', /json/)
+      .end(async (err, res) => {
+        const { message } = res.body.data;
+        if (err) return done(err);
+        expect(message).toBe('You enterd wrong student ID');
         done();
       });
   });
