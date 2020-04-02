@@ -306,7 +306,6 @@ describe('Admin, Post Project', () => {
         const { rows } = await connection.query(
           'SELECT * from project WHERE id = 8',
         );
-        console.log(rows);
         expect(rows[0].name).toBe('Mohmmedzw851@');
         expect(message).toBe('Project Added successfully');
         done();
