@@ -130,3 +130,31 @@ describe('Delete specific student by ID', () => {
       });
   });
 });
+
+describe('alumni for cohort', () => {
+  test('Route /alumni/1 status 200, json header, data.name =G8 ', (done) => {
+    return request(app)
+      .get('/api/v1/alumni/1')
+      .expect(200)
+      .expect('Content-Type', /json/)
+      .end((err, res) => {
+        if (err) return done(err);
+        const { data } = res.body;
+        expect(data.name).toBe('G8');
+        done();
+      });
+  });
+
+  test('Route /alumni/10 status 404, json header, data.message = "Sorry There\'s no Alumni for this Cohort id" ', (done) => {
+    return request(app)
+      .get('/api/v1/alumni/10')
+      .expect(404)
+      .expect('Content-Type', /json/)
+      .end((err, res) => {
+        if (err) return done(err);
+        const { message } = res.body;
+        expect(message).toBe("Sorry There's no Alumni for this Cohort id");
+        done();
+      });
+  });
+});
