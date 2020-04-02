@@ -100,7 +100,7 @@ pgcli postgres://[username]:[password]@localhost:5432/[database]
 Next, run SQL build file in your database:
 
 ```
-\i server/database/config/build.sql
+\i server/database/data/build.sql
 ```
 
 This will create the tables in your database.
