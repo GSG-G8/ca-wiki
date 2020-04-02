@@ -2,6 +2,7 @@ const editCohort = require('./admin/editCohort');
 const deleteCohort = require('./admin/deleteCohort');
 const addProject = require('./admin/addProject');
 const editProject = require('./admin/editProject');
+const deleteStudent = require('./admin/deleteStudent');
 const getCohortsData = require('./getCohortsData');
 const getSpecificCohort = require('./getSpecificCohort');
 const { clientError } = require('./errorHandle/error');
@@ -14,6 +15,7 @@ module.exports = {
   editProject,
   getCohortsData,
   getSpecificCohort,
+  deleteStudent,
   clientError,
   serverError,
 };
