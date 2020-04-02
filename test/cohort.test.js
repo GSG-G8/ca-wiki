@@ -139,6 +139,81 @@ describe('Get Specific Cohort', () => {
   });
 });
 
+describe('Get Specific Cohort Projects', () => {
+  test('Route /cohorts/1/projects?type=internal status 200, json header, data.length=1', (done) => {
+    return request(app)
+      .get('/api/v1/cohorts/1/projects?type=internal')
+      .expect(200)
+      .expect('Content-Type', /json/)
+      .end((err, res) => {
+        if (err) return done(err);
+        const { data } = res.body;
+        expect(data).toHaveLength(2);
+        expect(data[0].name).toBe('ca-wiki');
+        expect(data[0].project_type).toBe('Internal');
+        done();
+      });
+  });
+
+  test('Route /cohorts/1/projects?type=remotely status 200, json header, data.length=1', (done) => {
+    return request(app)
+      .get('/api/v1/cohorts/1/projects?type=remotely')
+      .expect(200)
+      .expect('Content-Type', /json/)
+      .end((err, res) => {
+        if (err) return done(err);
+        const { data } = res.body;
+        expect(data).toHaveLength(1);
+        expect(data[0].name).toBe('room-booker');
+        expect(data[0].project_type).toBe('Remotely');
+        done();
+      });
+  });
+
+  test('Route /cohorts/10/projects?type=internal status 200, json header, data.message = "No Data" ', (done) => {
+    return request(app)
+      .get('/api/v1/cohorts/10/projects?type=internal')
+      .expect(200)
+      .expect('Content-Type', /json/)
+      .end((err, res) => {
+        if (err) return done(err);
+        const { message } = res.body;
+        expect(message).toBe('No Data');
+        done();
+      });
+  });
+
+  test('Route /cohorts/G1/projects?type=internal status 404, json header, data.message = "You enterd wrong cohort ID" ', (done) => {
+    return request(app)
+      .get('/api/v1/cohorts/G1/projects?type=internal')
+      .expect(404)
+      .expect('Content-Type', /json/)
+      .end((err, res) => {
+        if (err) return done(err);
+        const { message } = res.body;
+        expect(message).toBe(
+          'Please check cohort ID you entered or project type',
+        );
+        done();
+      });
+  });
+
+  test('Route /cohorts/1/projects?type=international status 404, json header, data.message = "You enterd wrong cohort ID" ', (done) => {
+    return request(app)
+      .get('/api/v1/cohorts/G1/projects?type=international')
+      .expect(404)
+      .expect('Content-Type', /json/)
+      .end((err, res) => {
+        if (err) return done(err);
+        const { message } = res.body;
+        expect(message).toBe(
+          'Please check cohort ID you entered or project type',
+        );
+        done();
+      });
+  });
+});
+
 describe('Put Cohort', () => {
   const data = {
     name: 'G1',
@@ -213,7 +288,7 @@ describe('Put Cohort', () => {
   });
 });
 
-describe('Admin, Delete Specific Cohort', () => {
+describe('Admin, (/cohorts/:cohortId)', () => {
   test('Route /cohorts/1 status 200, data.message = Cohort deleted successfully ', (done) => {
     return request(app)
       .delete('/api/v1/cohorts/1')
