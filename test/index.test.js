@@ -155,4 +155,17 @@ describe('Delete specific student by ID', () => {
         done();
       });
   });
+
+  test('Route /alumni/Alaa status 404, data.message = You enterd wrong student ID ', (done) => {
+    return request(app)
+      .delete('/api/v1/alumni/Alaa')
+      .expect(404)
+      .expect('Content-Type', /json/)
+      .end(async (err, res) => {
+        const { message } = res.body.data;
+        if (err) return done(err);
+        expect(message).toBe('You enterd wrong student ID');
+        done();
+      });
+  });
 });
