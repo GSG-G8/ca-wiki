@@ -2,9 +2,9 @@ const router = require('express').Router();
 
 const { editCohort, deleteCohort } = require('../controllers/admin');
 
-const { getSpecificCohort } = require('../controllers/routes/user/cohort');
+const { getSpecificCohort } = require('../controllers');
 
-const { getCohortsData } = require('../controllers/routes/user/cohort');
+const { getCohortsData } = require('../controllers');
 
 router.get('/cohorts', getCohortsData);
 

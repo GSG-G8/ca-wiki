@@ -1,4 +1,4 @@
-const { getCohortQuery } = require('../../../../database/queries');
+const { getCohortQuery } = require('../database/queries');
 
 const getSpecificCohort = async (req, res, next) => {
   try {
