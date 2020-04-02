@@ -144,7 +144,6 @@ describe('Admin, (/cohorts/:cohortId)', () => {
   });
 });
 
-
 describe('Admin, Post Project', () => {
   test('Route /projects status 200, json header, data.message = Cohort Added successfully ', (done) => {
     const reqData = {
