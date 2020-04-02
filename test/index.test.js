@@ -145,7 +145,7 @@ describe('Admin, (/cohorts/:cohortId)', () => {
 });
 
 describe('Admin, Post Project', () => {
-  test('Route /projects status 200, json header, data.message = Cohort Added successfully ', (done) => {
+  test('Route /projects status 200, json header, data.message = Project Added successfully ', (done) => {
     const reqData = {
       name: 'Mohmmedzw851@',
       description: 'description',
@@ -165,7 +165,7 @@ describe('Admin, Post Project', () => {
         const { message } = res.body.data;
         if (err) return done(err);
         const { rows } = await connection.query(
-          'SELECT * from project WHERE id = 6',
+          'SELECT * from project WHERE id = 8',
         );
         expect(rows[0].name).toBe('Mohmmedzw851@');
         expect(message).toBe('Project Added successfully');
@@ -174,23 +174,29 @@ describe('Admin, Post Project', () => {
   });
 });
 
-describe('Admin, Delete Specific Cohort', () => {
-  test('Route /cohorts/1 status 200, data.message = Cohort deleted successfully ', (done) => {
-    return request(app)
-      .delete('/api/v1/cohorts/1')
-      .expect(200)
-      .expect('Content-Type', /json/)
-      .end(async (err, res) => {
-        const { message } = res.body.data;
-        if (err) return done(err);
-        const { rows } = await connection.query(
-          'SELECT * from cohort WHERE id = 1',
-        );
-        expect(rows).toHaveLength(0);
-        expect(message).toBe('Cohort deleted successfully');
-        done();
-      });
-  });
+test('Route /projects/10 status 404, data.message = Project does not exist ', (done) => {
+  return request(app)
+    .delete('/api/v1/projects/10')
+    .expect(404)
+    .expect('Content-Type', /json/)
+    .end(async (err, res) => {
+      const { message } = res.body.data;
+      if (err) return done(err);
+      expect(message).toBe('Project does not exist');
+      done();
+    });
+});
+test('Route /projects/ca-wiki status 404, data.message = You enterd wrong project ID ', (done) => {
+  return request(app)
+    .delete('/api/v1/projects/ca-wiki')
+    .expect(404)
+    .expect('Content-Type', /json/)
+    .end(async (err, res) => {
+      const { message } = res.body.data;
+      if (err) return done(err);
+      expect(message).toBe('You enterd wrong project ID');
+      done();
+    });
 });
 
 describe('Admin, (/projects/:projectId)', () => {
@@ -235,7 +241,6 @@ describe('Delete specific student by ID', () => {
         done();
       });
   });
-
   test('Route /alumni/10 status 404, data.message = Student does not exist ', (done) => {
     return request(app)
       .delete('/api/v1/alumni/10')
@@ -248,7 +253,6 @@ describe('Delete specific student by ID', () => {
         done();
       });
   });
-
   test('Route /alumni/Alaa status 404, data.message = You enterd wrong student ID ', (done) => {
     return request(app)
       .delete('/api/v1/alumni/Alaa')
