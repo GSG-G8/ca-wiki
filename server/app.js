@@ -18,10 +18,6 @@ app.use('/api/v1/', controller);
 
 app.use(express.static(join(__dirname, '..', 'client', 'build')));
 
-app.get('*', (req, res) => {
-  res.sendFile(join(__dirname, '..', 'client', 'build', 'index.html'));
-});
-
 app.use(clientError);
 app.use(serverError);
 
