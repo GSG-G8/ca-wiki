@@ -1,4 +1,4 @@
-const { deleteCohortQuery } = require('../../../../database/queries');
+const { deleteCohortQuery } = require('../../database/queries');
 
 const deleteCohort = async (req, res, next) => {
   try {

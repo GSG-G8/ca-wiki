@@ -1,9 +1,6 @@
 const router = require('express').Router();
 
-const {
-  editCohort,
-  deleteCohort,
-} = require('../controllers/routes/admin/cohort');
+const { editCohort, deleteCohort } = require('../controllers/admin');
 
 const { getSpecificCohort } = require('../controllers/routes/user/cohort');
 

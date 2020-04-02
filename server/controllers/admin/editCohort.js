@@ -1,5 +1,5 @@
-const { putSpecificCohort } = require('../../../../database/queries');
-const { editCohortSchema } = require('../../../../utils/validation');
+const { putSpecificCohort } = require('../../database/queries');
+const { editCohortSchema } = require('../../utils/validation');
 
 const editCohort = async (req, res, next) => {
   try {

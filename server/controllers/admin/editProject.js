@@ -1,5 +1,5 @@
-const { editProjectQuery } = require('../../../../database/queries');
-const { projectSchema } = require('../../../../utils/validation');
+const { editProjectQuery } = require('../../database/queries');
+const { projectSchema } = require('../../utils/validation');
 
 const editProject = async (req, res, next) => {
   try {
