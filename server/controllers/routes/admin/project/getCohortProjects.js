@@ -16,7 +16,7 @@ const getCohortProjects = async (req, res, next) => {
       }
     } else {
       res.status(404).json({
-        statusCode: 204,
+        statusCode: 404,
         message: 'Please check cohort ID you entered or project type',
       });
     }
