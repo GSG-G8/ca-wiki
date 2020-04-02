@@ -3,6 +3,7 @@ const router = require('express').Router();
 const { editCohort } = require('./cohort');
 const { deleteCohort } = require('./cohort');
 const { addProject, editProject } = require('./project');
+const { deleteStudent } = require('./student');
 
 router
   .route('/cohorts/:cohortId')
@@ -21,5 +22,6 @@ router
 
 router.put('/projects/:projectId', editProject);
 router.post('/projects', addProject);
+router.delete('/alumni/:studentId', deleteStudent);
 
 module.exports = router;
