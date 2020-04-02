@@ -50,6 +50,81 @@ describe('Get Specific Cohort', () => {
   });
 });
 
+describe('Get Specific Cohort Projects', () => {
+  test('Route /cohorts/1/projects?type=internal status 200, json header, data.length=1', (done) => {
+    return request(app)
+      .get('/api/v1/cohorts/1/projects?type=internal')
+      .expect(200)
+      .expect('Content-Type', /json/)
+      .end((err, res) => {
+        if (err) return done(err);
+        const { data } = res.body;
+        expect(data).toHaveLength(2);
+        expect(data[0].name).toBe('ca-wiki');
+        expect(data[0].project_type).toBe('Internal');
+        done();
+      });
+  });
+
+  test('Route /cohorts/1/projects?type=remotely status 200, json header, data.length=1', (done) => {
+    return request(app)
+      .get('/api/v1/cohorts/1/projects?type=remotely')
+      .expect(200)
+      .expect('Content-Type', /json/)
+      .end((err, res) => {
+        if (err) return done(err);
+        const { data } = res.body;
+        expect(data).toHaveLength(1);
+        expect(data[0].name).toBe('room-booker');
+        expect(data[0].project_type).toBe('Remotely');
+        done();
+      });
+  });
+
+  test('Route /cohorts/10/projects?type=internal status 200, json header, data.message = "No Data" ', (done) => {
+    return request(app)
+      .get('/api/v1/cohorts/10/projects?type=internal')
+      .expect(200)
+      .expect('Content-Type', /json/)
+      .end((err, res) => {
+        if (err) return done(err);
+        const { message } = res.body;
+        expect(message).toBe('No Data');
+        done();
+      });
+  });
+
+  test('Route /cohorts/G1/projects?type=internal status 404, json header, data.message = "You enterd wrong cohort ID" ', (done) => {
+    return request(app)
+      .get('/api/v1/cohorts/G1/projects?type=internal')
+      .expect(404)
+      .expect('Content-Type', /json/)
+      .end((err, res) => {
+        if (err) return done(err);
+        const { message } = res.body;
+        expect(message).toBe(
+          'Please check cohort ID you entered or project type',
+        );
+        done();
+      });
+  });
+
+  test('Route /cohorts/1/projects?type=international status 404, json header, data.message = "You enterd wrong cohort ID" ', (done) => {
+    return request(app)
+      .get('/api/v1/cohorts/G1/projects?type=international')
+      .expect(404)
+      .expect('Content-Type', /json/)
+      .end((err, res) => {
+        if (err) return done(err);
+        const { message } = res.body;
+        expect(message).toBe(
+          'Please check cohort ID you entered or project type',
+        );
+        done();
+      });
+  });
+});
+
 describe('Post Cohort', () => {
   const data = {
     name: 'G1',
@@ -183,36 +258,6 @@ describe('Admin, Delete Specific Project', () => {
   });
 });
 
-describe('Admin, Post Project', () => {
-  test('Route /projects status 200, json header, data.message = Cohort Added successfully ', (done) => {
-    const reqData = {
-      name: 'Mohmmedzw851@',
-      description: 'description',
-      imgUrl: 'https://avatars3.githubusercontent.com/u/52123464?s=200&v=4',
-      githubLink: 'https://avatars3.githubusercontent.com/u/52123464?s=200&v=4',
-      websiteLink:
-        'https://avatars3.githubusercontent.com/u/52123464?s=200&v=4',
-      projectType: 'internal',
-      cohortId: '1',
-    };
-    return request(app)
-      .post('/api/v1/projects')
-      .send(reqData)
-      .expect(201)
-      .expect('Content-Type', /json/)
-      .end(async (err, res) => {
-        const { message } = res.body.data;
-        if (err) return done(err);
-        const { rows } = await connection.query(
-          'SELECT * from project WHERE id = 6',
-        );
-        expect(rows[0].name).toBe('Mohmmedzw851@');
-        expect(message).toBe('Project Added successfully');
-        done();
-      });
-  });
-});
-
 describe('Admin, (/projects/:projectId)', () => {
   test('PUT Route /projects/1 status 200, json header, message:Cohort updated successfully', (done) => {
     const testData = {
@@ -237,6 +282,36 @@ describe('Admin, (/projects/:projectId)', () => {
       });
   });
 });
+
+// describe('Admin, Post Project', () => {
+//   test('Route /projects status 200, json header, data.message = Project Added successfully ', (done) => {
+//     const reqData = {
+//       name: 'Mohmmedzw851@',
+//       description: 'description',
+//       imgUrl: 'https://avatars3.githubusercontent.com/u/52123464?s=200&v=4',
+//       githubLink: 'https://avatars3.githubusercontent.com/u/52123464?s=200&v=4',
+//       websiteLink:
+//         'https://avatars3.githubusercontent.com/u/52123464?s=200&v=4',
+//       projectType: 'internal',
+//       cohortId: '1',
+//     };
+//     return request(app)
+//       .post('/api/v1/projects')
+//       .send(reqData)
+//       .expect(201)
+//       .expect('Content-Type', /json/)
+//       .end(async (err, res) => {
+//         const { message } = res.body.data;
+//         if (err) return done(err);
+//         const { rows } = await connection.query(
+//           'SELECT * from project WHERE id = 8',
+//         );
+//         expect(rows[0].name).toBe('Mohmmedzw851@');
+//         expect(message).toBe('Project Added successfully');
+//         done();
+//       });
+//   });
+// });
 
 describe('Delete specific student by ID', () => {
   test('Route /alumni/1 status 200, data.message = Student deleted successfully ', (done) => {
