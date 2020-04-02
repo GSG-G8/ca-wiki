@@ -3,6 +3,7 @@ const {
   getCohorts,
   getCohortQuery,
   deleteCohortQuery,
+  postCohort,
 } = require('./cohort');
 const {
   addProjectQuery,
@@ -10,9 +11,11 @@ const {
   deleteProject,
   getCohortProjectsQuery,
 } = require('./project');
+
 const { deleteStudentQuery } = require('./student');
 
 module.exports = {
+  postCohort,
   getCohorts,
   deleteCohortQuery,
   putSpecificCohort,
