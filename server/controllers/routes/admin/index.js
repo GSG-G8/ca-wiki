@@ -1,6 +1,27 @@
-const admin = require('express').Router();
-const { deleteProjectData } = require('./project');
+const router = require('express').Router();
 
-admin.delete('/projects/:projectId', deleteProjectData);
+const { editCohort, deleteCohort } = require('./cohort');
+const { addProject, editProject, deleteProjectData } = require('./project');
+const { deleteStudent } = require('./student');
 
-module.exports = admin;
+router
+  .route('/cohorts/:cohortId')
+  .all((req, res, next) => {
+    // ToDo: make middleware to check authentication
+    next();
+  })
+  .get((req, res, next) => {
+    next(new Error('not implemented'));
+  })
+  .put(editCohort)
+  .post((req, res, next) => {
+    next(new Error('not implemented'));
+  })
+  .delete(deleteCohort);
+
+router.put('/projects/:projectId', editProject);
+router.post('/projects', addProject);
+router.delete('/alumni/:studentId', deleteStudent);
+router.delete('/projects/:projectId', deleteProjectData);
+
+module.exports = router;

@@ -27,4 +27,4 @@ const deleteProjectData = async (req, res, next) => {
   }
 };
 
-module.exports = { deleteProjectData };
+module.exports = deleteProjectData;
