@@ -8,4 +8,4 @@ const getCohortsData = async (req, res, next) => {
     next(err);
   }
 };
-module.exports = { getCohortsData };
+module.exports = getCohortsData;

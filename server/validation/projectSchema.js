@@ -8,6 +8,7 @@ const projectSchema = yup.object({
   websiteLink: yup.string().url().required(),
   projectType: yup.mixed().oneOf(['internal', 'remotely']),
   cohortId: yup.number().integer().positive().required(),
+  projectId: yup.number().integer().positive(),
 });
 
 module.exports = projectSchema;

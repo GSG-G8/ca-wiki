@@ -1,6 +1,16 @@
 const router = require('express').Router();
-const { deleteCohort } = require('./cohort');
-const { addProject } = require('./project');
+
+const {
+  addProject,
+  editProject,
+  deleteProjectData,
+  getCohortProjects,
+} = require('./project');
+
+const { addCohort, deleteCohort, editCohort } = require('./cohort');
+const { deleteStudent } = require('./student');
+
+router.post('/cohorts', addCohort);
 
 router
   .route('/cohorts/:cohortId')
@@ -11,14 +21,16 @@ router
   .get((req, res, next) => {
     next(new Error('not implemented'));
   })
-  .put((req, res, next) => {
-    next(new Error('not implemented'));
-  })
+  .put(editCohort)
   .post((req, res, next) => {
     next(new Error('not implemented'));
   })
   .delete(deleteCohort);
 
+router.put('/projects/:projectId', editProject);
 router.post('/projects', addProject);
+router.get('/cohorts/:cohortId/projects', getCohortProjects);
+router.delete('/alumni/:studentId', deleteStudent);
+router.delete('/projects/:projectId', deleteProjectData);
 
 module.exports = router;
