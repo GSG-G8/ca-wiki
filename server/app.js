@@ -3,8 +3,8 @@ const compression = require('compression');
 const { join } = require('path');
 
 const routes = require('./routes');
-const { clientError } = require('./controllers/middlewares/errorHandle');
-const { serverError } = require('./controllers/middlewares/errorHandle');
+const { clientError } = require('./controllers/errorHandle');
+const { serverError } = require('./controllers/errorHandle');
 
 const app = express();
 
