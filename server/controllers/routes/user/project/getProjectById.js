@@ -2,9 +2,9 @@ const { getProjectById } = require('../../../../database/queries');
 
 const getProjectData = async (req, res, next) => {
   try {
-    const { id } = req.params;
-    if (id > 0) {
-      const { rows } = await getProjectById(id);
+    const { projectId } = req.params;
+    if (projectId > 0) {
+      const { rows } = await getProjectById(projectId);
       const data = { ...rows[0] };
       if (data.id) {
         res.json({ statusCode: 200, data });

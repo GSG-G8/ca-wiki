@@ -5,6 +5,6 @@ const { getProjectData } = require('./project');
 
 router.get('/cohorts', getCohortsData);
 router.get('/cohorts/:cohortid', getSpecificCohort);
-router.get('/projects/:id', getProjectData);
+router.get('/projects/:projectId', getProjectData);
 
 module.exports = router;
