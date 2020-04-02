@@ -9,6 +9,7 @@ const {
   addProjectQuery,
   editProjectQuery,
   getProjectById,
+  deleteProject,
   getCohortProjectsQuery,
 } = require('./project');
 
@@ -25,4 +26,5 @@ module.exports = {
   editProjectQuery,
   deleteStudentQuery,
   getProjectById,
+  deleteProject,
 };

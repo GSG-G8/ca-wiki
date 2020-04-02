@@ -81,6 +81,31 @@ describe('Admin, Post Project', () => {
   });
 });
 
+test('Route /projects/10 status 404, data.message = Project does not exist ', (done) => {
+  return request(app)
+    .delete('/api/v1/projects/10')
+    .expect(404)
+    .expect('Content-Type', /json/)
+    .end(async (err, res) => {
+      const { message } = res.body.data;
+      if (err) return done(err);
+      expect(message).toBe('Project does not exist');
+      done();
+    });
+});
+test('Route /projects/ca-wiki status 404, data.message = You enterd wrong project ID ', (done) => {
+  return request(app)
+    .delete('/api/v1/projects/ca-wiki')
+    .expect(404)
+    .expect('Content-Type', /json/)
+    .end(async (err, res) => {
+      const { message } = res.body.data;
+      if (err) return done(err);
+      expect(message).toBe('You enterd wrong project ID');
+      done();
+    });
+});
+
 describe('Admin, (/projects/:projectId)', () => {
   test('PUT Route /projects/1 status 200, json header, message:Cohort updated successfully', (done) => {
     const testData = {
@@ -123,7 +148,6 @@ describe('Delete specific student by ID', () => {
         done();
       });
   });
-
   test('Route /alumni/10 status 404, data.message = Student does not exist ', (done) => {
     return request(app)
       .delete('/api/v1/alumni/10')
@@ -136,7 +160,6 @@ describe('Delete specific student by ID', () => {
         done();
       });
   });
-
   test('Route /alumni/Alaa status 404, data.message = You enterd wrong student ID ', (done) => {
     return request(app)
       .delete('/api/v1/alumni/Alaa')

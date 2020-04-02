@@ -10,7 +10,7 @@ const getProjectData = async (req, res, next) => {
         res.json({ statusCode: 200, data });
       } else {
         res.status(200).json({
-          statusCode: 204,
+          statusCode: 200,
           message: 'There is no project for this id',
         });
       }
