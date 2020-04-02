@@ -8,6 +8,49 @@ beforeEach(() => dbBuild());
 
 afterAll(() => connection.end());
 
+describe('Get project by id', () => {
+  test('Route /projects/1 status 200, json header, data.name = ca-wiki ', (done) => {
+    return request(app)
+      .get('/api/v1/projects/1')
+      .expect(200)
+      .expect('Content-Type', /json/)
+      .end((err, res) => {
+        if (err) return done(err);
+        const {
+          data: { name },
+        } = res.body;
+        expect(name).toBe('ca-wiki');
+        done();
+      });
+  });
+
+  test('Route /projects/8 status 200, json header ', (done) => {
+    return request(app)
+      .get('/api/v1/projects/8')
+      .expect(200)
+      .expect('Content-Type', /json/)
+      .end((err, res) => {
+        if (err) return done(err);
+        const { message } = res.body;
+        expect(message).toBe('There is no project for this id');
+        done();
+      });
+  });
+
+  test('Route /projects/gg status 404, json header ', (done) => {
+    return request(app)
+      .get('/api/v1/projects/gg')
+      .expect(404)
+      .expect('Content-Type', /json/)
+      .end((err, res) => {
+        if (err) return done(err);
+        const { message } = res.body;
+        expect(message).toBe('Invalid id');
+        done();
+      });
+  });
+});
+
 describe('Get all Cohorts', () => {
   test('Route /cohorts status 200, json header, data', (done) => {
     return request(app)
@@ -143,7 +186,6 @@ describe('Admin, (/cohorts/:cohortId)', () => {
       });
   });
 });
-
 
 describe('Admin, Post Project', () => {
   test('Route /projects status 200, json header, data.message = Cohort Added successfully ', (done) => {
