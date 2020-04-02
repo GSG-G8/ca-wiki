@@ -39,3 +39,16 @@ test('Route /projects/10 status 404, data.message = Project does not exist ', (d
       done();
     });
 });
+
+test('Route /projects/ca-wiki status 404, data.message = You enterd wrong project ID ', (done) => {
+  return request(app)
+    .delete('/api/v1/projects/ca-wiki')
+    .expect(404)
+    .expect('Content-Type', /json/)
+    .end(async (err, res) => {
+      const { message } = res.body.data;
+      if (err) return done(err);
+      expect(message).toBe('You enterd wrong project ID');
+      done();
+    });
+});

@@ -1,3 +1,3 @@
-const deleteProjectData = require('./deleteProjectData');
+const { deleteProjectData } = require('./deleteProjectData');
 
-module.exports = deleteProjectData;
+module.exports = { deleteProjectData };

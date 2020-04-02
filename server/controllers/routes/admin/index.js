@@ -1,6 +1,6 @@
-const adminRouter = require('express').Router();
+const admin = require('express').Router();
 const { deleteProjectData } = require('./project');
 
-adminRouter.delete('/projects/:projectId', deleteProjectData);
+admin.delete('/projects/:projectId', deleteProjectData);
 
-module.exports = adminRouter;
+module.exports = admin;
