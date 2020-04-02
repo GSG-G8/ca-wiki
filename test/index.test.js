@@ -4,25 +4,38 @@ const dbBuild = require('../server/database/config/build');
 
 const app = require('../server/app');
 
-beforeAll(() => {
-  return dbBuild();
-});
+beforeAll(() => dbBuild());
 
-afterAll(() => {
-  return connection.end();
-});
+afterAll(() => connection.end());
 
-describe('Cohort', () => {
-  test('Route /cohorts status 200, json header, data', (done) => {
+describe('Admin, Delete Specific Project', () => {
+  test('Route /projects/1 status 200, data.message = Project deleted successfully', (done) => {
     return request(app)
-      .get('/api/v1/cohorts')
+      .delete('/api/v1/projects/1')
       .expect(200)
       .expect('Content-Type', /json/)
-      .end((err, res) => {
+      .end(async (err, res) => {
+        const { message } = res.body.data;
         if (err) return done(err);
-        const { data } = res.body;
-        expect(data).toHaveLength(2);
+        const { rows } = await connection.query(
+          'SELECT * FROM project WHERE id = 1',
+        );
+        expect(rows).toHaveLength(0);
+        expect(message).toBe('Project deleted successfully');
         done();
       });
   });
+});
+
+test('Route /projects/10 status 404, data.message = Project does not exist ', (done) => {
+  return request(app)
+    .delete('/api/v1/projects/10')
+    .expect(404)
+    .expect('Content-Type', /json/)
+    .end(async (err, res) => {
+      const { message } = res.body.data;
+      if (err) return done(err);
+      expect(message).toBe('Project does not exist');
+      done();
+    });
 });

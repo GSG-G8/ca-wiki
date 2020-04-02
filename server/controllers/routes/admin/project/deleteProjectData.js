@@ -9,12 +9,14 @@ const deleteProjectData = async (req, res, next) => {
         data: { message: 'Project deleted successfully' },
       });
     } else {
-      const err = new Error('project id does not exist');
-      next(err);
+      res.status(404).json({
+        StatusCode: 404,
+        data: { message: 'Project does not exist' },
+      });
     }
   } catch (err) {
     next(err);
   }
 };
 
-module.exports = { deleteProjectData };
+module.exports = deleteProjectData;
