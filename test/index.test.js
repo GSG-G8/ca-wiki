@@ -103,7 +103,24 @@ describe('Get Specific Cohort Projects', () => {
       .end((err, res) => {
         if (err) return done(err);
         const { message } = res.body;
-        expect(message).toBe('You enterd wrong cohort ID');
+        expect(message).toBe(
+          'Please check cohort ID you entered or project type',
+        );
+        done();
+      });
+  });
+
+  test('Route /cohorts/1/projects?type=international status 404, json header, data.message = "You enterd wrong cohort ID" ', (done) => {
+    return request(app)
+      .get('/api/v1/cohorts/G1/projects?type=international')
+      .expect(404)
+      .expect('Content-Type', /json/)
+      .end((err, res) => {
+        if (err) return done(err);
+        const { message } = res.body;
+        expect(message).toBe(
+          'Please check cohort ID you entered or project type',
+        );
         done();
       });
   });
