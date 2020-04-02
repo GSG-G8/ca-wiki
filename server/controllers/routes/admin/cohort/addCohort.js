@@ -1,17 +1,16 @@
-const {
-  postCohort,
-} = require('../../../../database/queries/cohort/postCohort');
+const { postCohort } = require('../../../../database/queries');
 const cohortSchema = require('../../../../validation/cohortSchema ');
 
 const addCohort = async (req, res, next) => {
   try {
     await cohortSchema.validate(req.body, { abortEarly: false });
     const { rows } = await postCohort(req.body);
+    const { name } = rows[0];
     res.status(201).json({
       StatusCode: 201,
       data: {
         cohort: rows[0],
-        message: `Cohort with Key (name)=(${rows[0].name}) added successfully`,
+        message: `Cohort with Key (name)=(${name}) added successfully`,
       },
     });
   } catch (err) {
