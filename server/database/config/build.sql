@@ -10,7 +10,7 @@ CREATE TABLE admin (
 
 CREATE TABLE cohort (
     id SERIAL PRIMARY KEY,
-    name VARCHAR(100) NOT NULL,
+    name VARCHAR(100) NOT NULL UNIQUE,
     description TEXT NOT NULL,
     img_url TEXT NOT NULL,
     github_link TEXT NOT NULL
