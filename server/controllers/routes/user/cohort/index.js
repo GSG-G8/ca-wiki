@@ -1,3 +1,7 @@
+const getCohortsData = require('./getCohortsData');
 const getSpecificCohort = require('./getSpecificCohort');
 
-module.exports = { getSpecificCohort };
+module.exports = {
+  getCohortsData,
+  getSpecificCohort,
+};

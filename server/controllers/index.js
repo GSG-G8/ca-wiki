@@ -1,11 +1,8 @@
 const router = require('express').Router();
-
+const user = require('./routes/user');
 const admin = require('./routes/admin');
-const { getSpecificCohort } = require('./routes/user');
-const { getAlumni } = require('./routes/user');
 
-router.get('/alumni', getAlumni);
-router.get('/cohorts/:cohortid', getSpecificCohort);
+router.use(user);
 router.use(admin);
 
 module.exports = router;
