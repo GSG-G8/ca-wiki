@@ -1,8 +1,8 @@
 const router = require('express').Router();
-const user = require('../controllers/routes/user');
-const admin = require('../controllers/routes/admin');
+const cohorts = require('./cohorts');
+const projects = require('./projects');
 
-router.use(user);
-router.use(admin);
+router.use(projects);
+router.use(cohorts);
 
 module.exports = router;
