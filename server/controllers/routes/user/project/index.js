@@ -1,7 +1,7 @@
-const { getProjectsData } = require('./getProjectsData');
-const { getProjectById } = require('./getProjectById');
+const getProjectsData = require('./getProjectsByType');
+const getProjectData = require('./getProjectById');
 
 module.exports = {
-  getProjectById,
   getProjectsData,
+  getProjectData,
 };

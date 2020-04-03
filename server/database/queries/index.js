@@ -8,6 +8,7 @@ const {
 const {
   addProjectQuery,
   editProjectQuery,
+  getProjectById,
   deleteProject,
   getCohortProjectsQuery,
   getProjects,
@@ -25,6 +26,7 @@ module.exports = {
   getCohortProjectsQuery,
   editProjectQuery,
   deleteStudentQuery,
+  getProjectById,
   deleteProject,
   getProjects,
 };

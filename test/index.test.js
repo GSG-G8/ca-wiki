@@ -4,40 +4,53 @@ const dbBuild = require('../server/database/config/build');
 
 const app = require('../server/app');
 
-beforeAll(() => dbBuild());
+beforeEach(() => dbBuild());
 
 afterAll(() => connection.end());
 
-describe('Project', () => {
-  test('Get projects route', () => {
-    expect(1).toBe(1);
+describe('Get project by id', () => {
+  test('Route /projects/1 status 200, json header, data.name = ca-wiki ', (done) => {
+    return request(app)
+      .get('/api/v1/projects/1')
+      .expect(200)
+      .expect('Content-Type', /json/)
+      .end((err, res) => {
+        if (err) return done(err);
+        const {
+          data: { name },
+        } = res.body;
+        expect(name).toBe('ca-wiki');
+        done();
+      });
+  });
+
+  test('Route /projects/8 status 200, json header ', (done) => {
+    return request(app)
+      .get('/api/v1/projects/8')
+      .expect(200)
+      .expect('Content-Type', /json/)
+      .end((err, res) => {
+        if (err) return done(err);
+        const { message } = res.body;
+        expect(message).toBe('There is no project for this id');
+        done();
+      });
+  });
+
+  test('Route /projects/gg status 404, json header ', (done) => {
+    return request(app)
+      .get('/api/v1/projects/gg')
+      .expect(404)
+      .expect('Content-Type', /json/)
+      .end((err, res) => {
+        if (err) return done(err);
+        const { message } = res.body;
+        expect(message).toBe('Invalid id');
+        done();
+      });
   });
 });
 
-// request(app)
-//   .post('/api/v1/projects?type=Internal+project')
-//   .expect(200)
-//   .expect('Content-Type', /json/)
-//   .end(async (err, res) => {
-//     if (err) return done(err);
-//     const { data } = res.body;
-//     expect(data).toHaveLength(1);
-//     expect(data[0]).toEqual({
-//       id: 1,
-//       name: 'ca-wiki',
-//       description:
-//         'Ca-wiki is a web application which allows clients to view all cohorts that have been enrolled in Code Academy. Clients can view all students who graduated from the academy so that they can view every student and his/her projects he/she participated in, his/her github page',
-//       img_url:
-//         'https://lh3.googleusercontent.com/proxy/fp_bF_rbMIKyCfgdgWodyuM9LGt3HwGgM8AMnQ4qxjftKcvEdmhngdaeA8F6xFgRDHVzezPLT6YZarpBcqnMD5WtAvUhKJXcWS7qvS6Bn3CllitLttt_uA',
-//       github_link:
-//         'https://github.com/GSG-G8/ca-wiki/tree/ed9f4cd9b5dc428f5420fe9a880a27e63f5f04d3',
-//       website_link:
-//         'https://github.com/GSG-G8/ca-wiki/blob/ed9f4cd9b5dc428f5420fe9a880a27e63f5f04d3/%5Blink%5D',
-//       project_type: 'Internal project',
-//       cohort_id: 1,
-//     });
-//     done();
-//   });
 describe('Admin, Post Project', () => {
   test('Route /projects status 200, json header, data.message = Project Added successfully ', (done) => {
     const reqData = {

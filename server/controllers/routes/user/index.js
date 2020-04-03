@@ -1,9 +1,10 @@
 const router = require('express').Router();
-const { getProjectsData } = require('./project');
+const { getProjectData, getProjectsData } = require('./project');
 const { getCohortsData, getSpecificCohort } = require('./cohort');
 
-router.get('/projects?type=', getProjectsData);
+router.get('/projects', getProjectsData);
 router.get('/cohorts', getCohortsData);
 router.get('/cohorts/:cohortid', getSpecificCohort);
+router.get('/projects/:projectId', getProjectData);
 
 module.exports = router;
