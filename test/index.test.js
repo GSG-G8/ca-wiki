@@ -266,3 +266,31 @@ describe('Delete specific student by ID', () => {
       });
   });
 });
+
+describe('Admin, Post Student', () => {
+  test('Route /alumni status 200, json header, data.message = Student Added successfully ', (done) => {
+    const reqData = {
+      name: 'Rehab',
+      email: 'rehab@gmail.com',
+      imgUrl:
+        'https://qph.fs.quoracdn.net/main-qimg-cd9c38fe6f5362af532dcc42cf22a6b7',
+      githubLink: 'https://github.com/rehabas',
+      cohortId: '1',
+    };
+    return request(app)
+      .post('/api/v1/alumni')
+      .send(reqData)
+      .expect(201)
+      .expect('Content-Type', /json/)
+      .end(async (err, res) => {
+        const { message } = res.body.data;
+        if (err) return done(err);
+        const { rows } = await connection.query(
+          'SELECT * from student WHERE id = 3',
+        );
+        expect(rows[0].name).toBe('Rehab');
+        expect(message).toBe('Student Added successfully');
+        done();
+      });
+  });
+});

@@ -8,7 +8,7 @@ const {
 } = require('./project');
 
 const { addCohort, deleteCohort, editCohort } = require('./cohort');
-const { deleteStudent } = require('./student');
+const { deleteStudent, addStudentData } = require('./student');
 
 router.post('/cohorts', addCohort);
 
@@ -32,5 +32,5 @@ router.post('/projects', addProject);
 router.get('/cohorts/:cohortId/projects', getCohortProjects);
 router.delete('/alumni/:studentId', deleteStudent);
 router.delete('/projects/:projectId', deleteProjectData);
-
+router.post('/alumni', addStudentData);
 module.exports = router;
