@@ -1,14 +1,13 @@
 const router = require('express').Router();
 
+const { deleteStudent, putStudentData } = require('./student');
+const { addCohort, deleteCohort, editCohort } = require('./cohort');
 const {
   addProject,
   editProject,
   deleteProjectData,
   getCohortProjects,
 } = require('./project');
-
-const { addCohort, deleteCohort, editCohort } = require('./cohort');
-const { deleteStudent } = require('./student');
 
 router.post('/cohorts', addCohort);
 
@@ -31,6 +30,7 @@ router.put('/projects/:projectId', editProject);
 router.post('/projects', addProject);
 router.get('/cohorts/:cohortId/projects', getCohortProjects);
 router.delete('/alumni/:studentId', deleteStudent);
+router.put('/alumni/:studentId', putStudentData);
 router.delete('/projects/:projectId', deleteProjectData);
 
 module.exports = router;
