@@ -14,6 +14,7 @@ const {
   deleteProject,
   getCohortProjectsQuery,
   getProjects,
+  getAllProjects,
 } = require('./project');
 
 module.exports = {
@@ -31,4 +32,5 @@ module.exports = {
   getProjectById,
   deleteProject,
   getProjects,
+  getAllProjects,
 };

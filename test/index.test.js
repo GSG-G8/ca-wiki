@@ -392,8 +392,10 @@ describe('Get stats', () => {
       .expect('Content-Type', /json/)
       .end((err, res) => {
         if (err) return done(err);
-        const { data } = res.body;
+        const { data } = res.body;console.log(data)
         expect(data[0].numOfCohorts).toBe(2);
+        expect(data[1].numOfProjects).toBe(7);
+        expect(data[2].numOfStudents).toBe(2);
         done();
       });
   });
