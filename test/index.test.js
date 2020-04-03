@@ -81,6 +81,41 @@ describe('Admin, Post Project', () => {
   });
 });
 
+describe('Admin, Delete Specific Cohort', () => {
+  test('Route /cohorts/1 status 200, data.message = Cohort deleted successfully ', (done) => {
+    return request(app)
+      .delete('/api/v1/cohorts/1')
+      .expect(200)
+      .expect('Content-Type', /json/)
+      .end(async (err, res) => {
+        const { message } = res.body.data;
+        if (err) return done(err);
+        const { rows } = await connection.query(
+          'SELECT * from cohort WHERE id = 1',
+        );
+        expect(rows).toHaveLength(0);
+        expect(message).toBe('Cohort deleted successfully');
+        done();
+      });
+  });
+});
+
+describe('alumni', () => {
+  test('Route /alumni status 200, json header, data[0].name = Alaa ', (done) => {
+    return request(app)
+      .get('/api/v1/alumni')
+      .expect(200)
+      .expect('Content-Type', /json/)
+      .end((err, res) => {
+        if (err) return done(err);
+        const { data } = res.body;
+        expect(data[0].name).toBe('Alaa');
+        expect(data).toHaveLength(2);
+        done();
+      });
+  });
+});
+
 test('Route /projects/10 status 404, data.message = Project does not exist ', (done) => {
   return request(app)
     .delete('/api/v1/projects/10')
