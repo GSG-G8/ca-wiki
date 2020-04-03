@@ -320,3 +320,18 @@ describe('Admin, Put project', () => {
       });
   });
 });
+
+describe('Get stats', () => {
+  test('Route /stats status 200, json header ', (done) => {
+    return request(app)
+      .get('/api/v1/stats')
+      .expect(200)
+      .expect('Content-Type', /json/)
+      .end((err, res) => {
+        if (err) return done(err);
+        const { data } = res.body;
+        expect(data[0].numOfCohorts).toBe(2);
+        done();
+      });
+  });
+});
