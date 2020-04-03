@@ -182,7 +182,7 @@ describe('Get project by type', () => {
       .expect('Content-Type', /json/)
       .end((err, res) => {
         if (err) return done(err);
-        const { name } = res.body.rows[0];
+        const { name } = res.body.data[0];
         expect(name).toBe('Applicants System');
         done();
       });

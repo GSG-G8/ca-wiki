@@ -11,7 +11,7 @@ const getProjectsData = async (req, res, next) => {
       if (rows.length > 0) {
         res.json({
           statusCode: 200,
-          rows,
+          data: rows,
         });
       } else {
         res.json({
