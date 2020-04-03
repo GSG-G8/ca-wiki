@@ -80,7 +80,7 @@ describe('Admin, Post Project', () => {
       });
   });
 });
-// sssssssssssssssssssss
+
 describe('Admin, Delete Specific Cohort', () => {
   test('Route /cohorts/1 status 200, data.message = Cohort deleted successfully ', (done) => {
     return request(app)
