@@ -174,6 +174,34 @@ describe('Delete specific student by ID', () => {
   });
 });
 
+describe('Get project by type', () => {
+  test('Route /projects?type=internal status 200, json header, rows[0].name = Applicants System ', (done) => {
+    return request(app)
+      .get('/api/v1/projects?type=internal')
+      .expect(200)
+      .expect('Content-Type', /json/)
+      .end((err, res) => {
+        if (err) return done(err);
+        const { name } = res.body.data[0];
+        expect(name).toBe('Applicants System');
+        done();
+      });
+  });
+
+  test('Route /projects?type=g58g status 404, json header ', (done) => {
+    return request(app)
+      .get('/api/v1/projects?type=gg')
+      .expect(404)
+      .expect('Content-Type', /json/)
+      .end((err, res) => {
+        if (err) return done(err);
+        const { message } = res.body;
+        expect(message).toBe('Please enter valid type');
+        done();
+      });
+  });
+});
+
 describe('Admin, Put project', () => {
   const validData = {
     name: 'Rehab',
