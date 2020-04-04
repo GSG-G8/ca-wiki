@@ -138,7 +138,7 @@ describe('Get Specific Cohort', () => {
       });
   });
 
-  test('Route /cohorts/g8 status 404, json header, data.message = "Sorry There\'s no cohort for this id" ', (done) => {
+  test('Route /cohorts/g8 status 404, json header, data.message = You enterd wrong cohort ID ', (done) => {
     return request(app)
       .get('/api/v1/cohorts/g8')
       .expect(404)
