@@ -20,6 +20,7 @@ const {
   getCohortProjectsQuery,
   getProjects,
 } = require('./project');
+const getStatsQuery = require('./getStatsQuery');
 
 module.exports = {
   postCohort,
@@ -37,4 +38,5 @@ module.exports = {
   deleteProject,
   getProjects,
   getStudentByIdQuery,
+  getStatsQuery,
 };
