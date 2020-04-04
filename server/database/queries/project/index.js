@@ -4,7 +4,6 @@ const getCohortProjectsQuery = require('./getCohortProjects');
 const editProjectQuery = require('./editProject');
 const getProjectById = require('./getProjectById');
 const deleteProject = require('./deleteProject');
-const getAllProjects = require('./getAllProjects');
 
 module.exports = {
   getProjects,
@@ -13,5 +12,4 @@ module.exports = {
   editProjectQuery,
   getProjectById,
   deleteProject,
-  getAllProjects,
 };
