@@ -1,5 +1,6 @@
 const express = require('express');
 const compression = require('compression');
+const cookieParser = require('cookie-parser');
 const { join } = require('path');
 
 const controller = require('./controllers');
@@ -14,6 +15,8 @@ app.set('port', process.env.PORT || 5000);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+
 app.use('/api/v1/', controller);
 
 app.use(express.static(join(__dirname, '..', 'client', 'build')));
