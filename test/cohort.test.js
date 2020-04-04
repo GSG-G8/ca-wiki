@@ -190,8 +190,8 @@ describe('Get Specific Cohort Projects', () => {
       .expect('Content-Type', /json/)
       .end((err, res) => {
         if (err) return done(err);
-        const { message } = res.body;
-        expect(message).toBe('No Data');
+        const { data } = res.body;
+        expect(data).toEqual([]);
         done();
       });
   });
@@ -204,9 +204,9 @@ describe('Get Specific Cohort Projects', () => {
       .end((err, res) => {
         if (err) return done(err);
         const { message } = res.body;
-        expect(message).toBe(
-          'Please check cohort ID you entered or project type',
-        );
+        expect(message).toEqual([
+          'cohortId must be a `number` type, but the final value was: `NaN` (cast from the value `"G1"`).',
+        ]);
         done();
       });
   });
@@ -219,9 +219,10 @@ describe('Get Specific Cohort Projects', () => {
       .end((err, res) => {
         if (err) return done(err);
         const { message } = res.body;
-        expect(message).toBe(
-          'Please check cohort ID you entered or project type',
-        );
+        expect(message).toEqual([
+          'cohortId must be a `number` type, but the final value was: `NaN` (cast from the value `"G1"`).',
+          'projectType must be one of the following values: internal, remotely',
+        ]);
         done();
       });
   });
