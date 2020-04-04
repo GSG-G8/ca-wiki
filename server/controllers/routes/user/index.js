@@ -5,7 +5,7 @@ const { getProjectData, getProjectsData } = require('./project');
 const { getCohortsData, getSpecificCohort } = require('./cohort');
 const { getAlumniCohort } = require('./student');
 
-router.get('/alumni/cohorts/:cohortId', getAlumniCohort);
+router.get('/cohorts/:cohortId/alumni', getAlumniCohort);
 router.get('/alumni', getAlumni);
 router.get('/projects', getProjectsData);
 router.get('/cohorts', getCohortsData);
