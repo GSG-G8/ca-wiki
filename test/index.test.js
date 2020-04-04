@@ -200,6 +200,46 @@ describe('Put Project By Id', () => {
   });
 });
 
+describe('alumni for cohort', () => {
+  test('Route /cohorts/2/alumni status 200, json header, data.name =Alaa ', (done) => {
+    return request(app)
+      .get('/api/v1/cohorts/2/alumni')
+      .expect(200)
+      .expect('Content-Type', /json/)
+      .end(async (err, res) => {
+        if (err) return done(err);
+        const { data } = res.body;
+        expect(data[0].name).toBe('Rana');
+        done();
+      });
+  });
+
+  test('Route /cohorts/10/alumni status 200, json header ', (done) => {
+    return request(app)
+      .get('/api/v1/cohorts/10/alumni')
+      .expect(200)
+      .expect('Content-Type', /json/)
+      .end((err, res) => {
+        if (err) return done(err);
+        const { data } = res.body;
+        expect(data).toHaveLength(0);
+        done();
+      });
+  });
+  test('Route /cohorts/g/alumni status 404, json header, data.message = "cohort does not exists" ', (done) => {
+    return request(app)
+      .get('/api/v1/cohorts/g/alumni')
+      .expect(404)
+      .expect('Content-Type', /json/)
+      .end((err, res) => {
+        if (err) return done(err);
+        const { message } = res.body;
+        expect(message).toBe('cohort does not exists');
+        done();
+      });
+  });
+});
+
 describe('Get project by type', () => {
   test('Route /projects?type=internal status 200, json header, rows[0].name = Applicants System ', (done) => {
     return request(app)
