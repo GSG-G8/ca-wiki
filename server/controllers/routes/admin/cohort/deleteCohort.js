@@ -10,8 +10,8 @@ const deleteCohort = async (req, res, next) => {
         data: { message: 'Cohort deleted successfully' },
       });
     } else {
-      res.status(404).json({
-        StatusCode: 404,
+      res.status(400).json({
+        StatusCode: 400,
         data: { message: 'Cohort does not exist' },
       });
     }

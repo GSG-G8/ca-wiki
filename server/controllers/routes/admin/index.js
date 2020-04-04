@@ -13,20 +13,7 @@ const logout = require('./logout');
 
 router.post('/cohorts', addCohort);
 
-router
-  .route('/cohorts/:cohortId')
-  .all((req, res, next) => {
-    // ToDo: make middleware to check authentication
-    next();
-  })
-  .get((req, res, next) => {
-    next(new Error('not implemented'));
-  })
-  .put(editCohort)
-  .post((req, res, next) => {
-    next(new Error('not implemented'));
-  })
-  .delete(deleteCohort);
+router.route('/cohorts/:cohortId').put(editCohort).delete(deleteCohort);
 
 router.put('/projects/:projectId', editProject);
 router.post('/projects', addProject);
