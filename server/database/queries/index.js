@@ -2,7 +2,7 @@ const {
   getAlumniQuery,
   deleteStudentQuery,
   putStudent,
-  getSpecificAlumnit,
+  getSpecificAlumni,
 } = require('./student');
 
 const {
@@ -35,6 +35,6 @@ module.exports = {
   putStudent,
   getProjectById,
   deleteProject,
-  getSpecificAlumnit,
+  getSpecificAlumni,
   getProjects,
 };

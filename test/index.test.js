@@ -210,15 +210,27 @@ describe('Delete specific student by ID', () => {
 });
 
 describe('alumni for cohort', () => {
-  test('Route /alumni/1 status 200, json header, data.name =G8 ', (done) => {
+  test('Route /alumni/cohorts/10 status 404, json header, data.message = "You enterd wrong cohort ID" ', (done) => {
     return request(app)
-      .get('/api/v1/alumni/1')
-      .expect(200)
+      .get('/api/v1/alumni/cohorts/10')
+      .expect(404)
       .expect('Content-Type', /json/)
       .end((err, res) => {
         if (err) return done(err);
-        const { name } = res.body.data;
-        expect(name).toBe('G8');
+        const { message } = res.body;
+        expect(message).toBe('You enterd wrong cohort ID');
+        done();
+      });
+  });
+  test('Route /alumni/cohorts/g status 404, json header, data.message = "You enterd wrong cohort ID" ', (done) => {
+    return request(app)
+      .get('/api/v1/alumni/cohorts/g')
+      .expect(404)
+      .expect('Content-Type', /json/)
+      .end((err, res) => {
+        if (err) return done(err);
+        const { message } = res.body;
+        expect(message).toBe('You enterd wrong cohort ID');
         done();
       });
   });
@@ -399,15 +411,15 @@ describe('Admin, Put project', () => {
   });
 });
 
-test('Route /alumni/10 status 404, json header, data.message = "Sorry There\'s no Alumni for this Cohort id" ', (done) => {
+test('Route /alumni/cohorts/2 status 200, json header, data.name =Alaa ', (done) => {
   return request(app)
-    .get('/api/v1/alumni/10')
-    .expect(404)
+    .get('/api/v1/alumni/cohorts/2')
+    .expect(200)
     .expect('Content-Type', /json/)
-    .end((err, res) => {
+    .end(async (err, res) => {
       if (err) return done(err);
-      const { message } = res.body;
-      expect(message).toBe("Sorry There's no Alumni for this Cohort id");
+      const { data } = res.body;
+      expect(data[0].name).toBe('Rana');
       done();
     });
 });

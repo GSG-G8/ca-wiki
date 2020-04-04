@@ -1,11 +1,11 @@
 const getAlumniQuery = require('./getAlumni');
 const deleteStudentQuery = require('./deleteStudentQuery');
-const getSpecificAlumnit = require('./getSpecificAlumnit');
+const getSpecificAlumni = require('./getSpecificAlumni');
 const putStudent = require('./putStudent');
 
 module.exports = {
   getAlumniQuery,
   deleteStudentQuery,
-  getSpecificAlumnit,
+  getSpecificAlumni,
   putStudent,
 };
