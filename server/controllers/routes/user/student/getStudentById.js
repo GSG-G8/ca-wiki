@@ -9,7 +9,7 @@ const getStudentById = async (req, res, next) => {
       if (data.id) {
         res.json({ statusCode: 200, data });
       } else {
-        res.status(200).json({
+        res.json({
           statusCode: 200,
           message: 'There is no student for this id',
         });
