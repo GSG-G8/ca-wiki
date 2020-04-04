@@ -262,6 +262,20 @@ describe('Get project by type', () => {
       .end((err, res) => {
         if (err) return done(err);
         const { message } = res.body;
+        expect(message).toEqual([
+          'projectType must be one of the following values: internal, remotely',
+        ]);
+        done();
+      });
+  });
+  test('Route /projects status 404, json header ', (done) => {
+    return request(app)
+      .get('/api/v1/projects')
+      .expect(404)
+      .expect('Content-Type', /json/)
+      .end((err, res) => {
+        if (err) return done(err);
+        const { message } = res.body;
         expect(message).toBe('Please enter valid type');
         done();
       });

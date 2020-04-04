@@ -226,6 +226,19 @@ describe('Get Specific Cohort Projects', () => {
         done();
       });
   });
+
+  test('Route /cohorts/1/projects status 404, json header, data.message = "Please enter valid type" ', (done) => {
+    return request(app)
+      .get('/api/v1/cohorts/G1/projects')
+      .expect(404)
+      .expect('Content-Type', /json/)
+      .end((err, res) => {
+        if (err) return done(err);
+        const { message } = res.body;
+        expect(message).toBe("Project Type can't be empty");
+        done();
+      });
+  });
 });
 
 describe('Put Cohort', () => {
