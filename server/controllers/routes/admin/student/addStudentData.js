@@ -15,6 +15,13 @@ const addStudentData = async (req, res, next) => {
         StatusCode: 400,
         data: { message: err.errors },
       });
+    } else if (err.detail) {
+      res.status(409).json({
+        statusCode: 409,
+        data: {
+          message: err.detail,
+        },
+      });
     } else {
       next(err);
     }
