@@ -11,7 +11,7 @@ const addProject = async (req, res, next) => {
     });
   } catch (err) {
     if (err.errors) {
-      res.json({
+      res.status(400).json({
         StatusCode: 400,
         data: { message: err.errors },
       });
