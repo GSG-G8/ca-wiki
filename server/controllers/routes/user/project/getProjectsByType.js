@@ -8,17 +8,10 @@ const getProjectsData = async (req, res, next) => {
       type.toLowerCase() === 'remotely'
     ) {
       const { rows } = await getProjects(type);
-      if (rows.length > 0) {
-        res.json({
-          statusCode: 200,
-          data: rows,
-        });
-      } else {
-        res.json({
-          statusCode: 200,
-          message: `There is no ${type} projects`,
-        });
-      }
+      res.json({
+        statusCode: 200,
+        data: rows,
+      });
     } else {
       res.status(404).json({
         statusCode: 404,

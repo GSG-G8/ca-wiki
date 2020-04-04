@@ -108,25 +108,20 @@ describe('Add Project', () => {
   });
 });
 
-describe('Delete Specific Cohort', () => {
-  test('Route /cohorts/1 status 200, data.message = Cohort deleted successfully ', (done) => {
+describe('Delete Project By Id', () => {
+  test('Route /projects/1 status 200, data.message = Project deleted successfully ', (done) => {
     return request(app)
-      .delete('/api/v1/cohorts/1')
+      .delete('/api/v1/projects/1')
       .expect(200)
       .expect('Content-Type', /json/)
       .end(async (err, res) => {
         const { message } = res.body.data;
         if (err) return done(err);
-        const { rows } = await connection.query(
-          'SELECT * from cohort WHERE id = 1',
-        );
-        expect(rows).toHaveLength(0);
-        expect(message).toBe('Cohort deleted successfully');
+        expect(message).toBe('Project deleted successfully');
         done();
       });
   });
-});
-describe('Delete Project By Id', () => {
+
   test('Route /projects/10 status 404, data.message = Project does not exist ', (done) => {
     return request(app)
       .delete('/api/v1/projects/10')
