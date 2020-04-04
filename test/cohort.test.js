@@ -137,6 +137,19 @@ describe('Get Specific Cohort', () => {
         done();
       });
   });
+
+  test('Route /cohorts/g8 status 404, json header, data.message = "Sorry There\'s no cohort for this id" ', (done) => {
+    return request(app)
+      .get('/api/v1/cohorts/g8')
+      .expect(404)
+      .expect('Content-Type', /json/)
+      .end((err, res) => {
+        if (err) return done(err);
+        const { message } = res.body;
+        expect(message).toBe('You enterd wrong cohort ID');
+        done();
+      });
+  });
 });
 
 describe('Get Specific Cohort Projects', () => {
@@ -288,7 +301,7 @@ describe('Put Cohort', () => {
   });
 });
 
-describe('Admin, (/cohorts/:cohortId)', () => {
+describe('Delete Specific Cohort)', () => {
   test('Route /cohorts/1 status 200, data.message = Cohort deleted successfully ', (done) => {
     return request(app)
       .delete('/api/v1/cohorts/1')
@@ -302,6 +315,19 @@ describe('Admin, (/cohorts/:cohortId)', () => {
         );
         expect(rows).toHaveLength(0);
         expect(message).toBe('Cohort deleted successfully');
+        done();
+      });
+  });
+
+  test('Route /cohorts/10 status 400, data.message = Cohort does not exist ', (done) => {
+    return request(app)
+      .delete('/api/v1/cohorts/10')
+      .expect(400)
+      .expect('Content-Type', /json/)
+      .end(async (err, res) => {
+        const { message } = res.body.data;
+        if (err) return done(err);
+        expect(message).toBe('Cohort does not exist');
         done();
       });
   });
