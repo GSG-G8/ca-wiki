@@ -393,9 +393,9 @@ describe('Get stats', () => {
       .end((err, res) => {
         if (err) return done(err);
         const { data } = res.body;
-        expect(data[0].numOfCohorts).toBe(2);
-        expect(data[1].numOfProjects).toBe(7);
-        expect(data[2].numOfStudents).toBe(2);
+        expect(data.cohortsCount).toBe('2');
+        expect(data.projectsCount).toBe('7');
+        expect(data.studentsCount).toBe('2');
         done();
       });
   });
