@@ -12,7 +12,7 @@ const getAlumniCohort = async (req, res, next) => {
       } else {
         res.status(404).json({
           statusCode: 404,
-          message: 'You enterd wrong cohort ID',
+          message: 'cohort does not exists',
         });
       }
     } else {

@@ -210,7 +210,7 @@ describe('Delete specific student by ID', () => {
 });
 
 describe('alumni for cohort', () => {
-  test('Route /alumni/cohorts/10 status 404, json header, data.message = "You enterd wrong cohort ID" ', (done) => {
+  test('Route /alumni/cohorts/10 status 404, json header, data.message = "cohort does not exists" ', (done) => {
     return request(app)
       .get('/api/v1/alumni/cohorts/10')
       .expect(404)
@@ -218,7 +218,7 @@ describe('alumni for cohort', () => {
       .end((err, res) => {
         if (err) return done(err);
         const { message } = res.body;
-        expect(message).toBe('You enterd wrong cohort ID');
+        expect(message).toBe('cohort does not exists');
         done();
       });
   });
