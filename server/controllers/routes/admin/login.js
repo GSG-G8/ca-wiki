@@ -39,8 +39,3 @@ const login = async (req, res, next) => {
 };
 
 module.exports = login;
-
-// bcrypt.hash(data.password, 10, (err, hash) => {
-//   // eslint-disable-next-line no-console
-//   console.log(hash);
-// });
