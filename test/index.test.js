@@ -320,6 +320,7 @@ describe('Admin, Post Student', () => {
     };
     return request(app)
       .post('/api/v1/alumni')
+      .set('Cookie', token)
       .send(reqData)
       .expect(201)
       .expect('Content-Type', /json/)
