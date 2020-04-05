@@ -512,3 +512,30 @@ describe('logout', () => {
       });
   });
 });
+
+describe('student for specific project', () => {
+  test('Test correct data status 200, json header, name = Alaa', (done) => {
+    return request(app)
+      .get('/api/v1/alumni/projects/1')
+      .expect(200)
+      .expect('Content-Type', /json/)
+      .end((err, res) => {
+        if (err) return done(err);
+        const { data } = res.body;
+        expect(data[0].name).toBe('Alaa');
+        done();
+      });
+  });
+  test('Test incorrect data status 200, json header, message = project does not exists', (done) => {
+    return request(app)
+      .get('/api/v1/alumni/projects/g')
+      .expect(404)
+      .expect('Content-Type', /json/)
+      .end((err, res) => {
+        if (err) return done(err);
+        const { message } = res.body;
+        expect(message).toBe('project does not exists');
+        done();
+      });
+  });
+});
