@@ -3,7 +3,10 @@ const {
   putStudent,
   getAlumniQuery,
   addStudent,
+  getStudentByIdQuery,
+  getSpecificAlumni,
 } = require('./student');
+
 const {
   putSpecificCohort,
   getCohorts,
@@ -19,6 +22,7 @@ const {
   getCohortProjectsQuery,
   getProjects,
 } = require('./project');
+const getStatsQuery = require('./getStatsQuery');
 
 module.exports = {
   postCohort,
@@ -35,5 +39,8 @@ module.exports = {
   getProjectById,
   deleteProject,
   addStudent,
+  getSpecificAlumni,
   getProjects,
+  getStudentByIdQuery,
+  getStatsQuery,
 };
