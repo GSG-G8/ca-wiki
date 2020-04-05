@@ -526,7 +526,7 @@ describe('student for specific project', () => {
         done();
       });
   });
-  test('Test incorrect data status 200, json header, message = project does not exists', (done) => {
+  test('Test incorrect data status 200, json header, message = projectId must be a `number` type, but the final value was: `NaN` (cast from the value `"g"`).', (done) => {
     return request(app)
       .get('/api/v1/alumni/projects/g')
       .expect(404)
@@ -534,7 +534,9 @@ describe('student for specific project', () => {
       .end((err, res) => {
         if (err) return done(err);
         const { message } = res.body;
-        expect(message).toBe('project does not exists');
+        expect(message[0]).toBe(
+          'projectId must be a `number` type, but the final value was: `NaN` (cast from the value `"g"`).',
+        );
         done();
       });
   });
