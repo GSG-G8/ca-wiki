@@ -4,8 +4,10 @@ const dbBuild = require('../server/database/config/build');
 
 const app = require('../server/app');
 
-beforeEach(() => dbBuild());
+const token =
+  'token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTg2MDU0MjM1fQ.ANOdUJz-kWK-m9hdOc4Ee-NA4bx_VaRK-pxehp399G8';
 
+beforeEach(() => dbBuild());
 afterAll(() => connection.end());
 
 describe('Get project by id', () => {
@@ -65,6 +67,7 @@ describe('Add Project', () => {
     };
     return request(app)
       .post('/api/v1/projects')
+      .set('Cookie', token)
       .send(reqData)
       .expect(201)
       .expect('Content-Type', /json/)
@@ -92,6 +95,7 @@ describe('Add Project', () => {
     };
     return request(app)
       .post('/api/v1/projects')
+      .set('Cookie', token)
       .send(missingData)
       .expect(400)
       .expect('Content-Type', /json/)
@@ -112,6 +116,7 @@ describe('Delete Project By Id', () => {
   test('Route /projects/1 status 200, data.message = Project deleted successfully ', (done) => {
     return request(app)
       .delete('/api/v1/projects/1')
+      .set('Cookie', token)
       .expect(200)
       .expect('Content-Type', /json/)
       .end(async (err, res) => {
@@ -125,6 +130,7 @@ describe('Delete Project By Id', () => {
   test('Route /projects/10 status 404, data.message = Project does not exist ', (done) => {
     return request(app)
       .delete('/api/v1/projects/10')
+      .set('Cookie', token)
       .expect(404)
       .expect('Content-Type', /json/)
       .end(async (err, res) => {
@@ -137,6 +143,7 @@ describe('Delete Project By Id', () => {
   test('Route /projects/ca-wiki status 404, data.message = You enterd wrong project ID ', (done) => {
     return request(app)
       .delete('/api/v1/projects/ca-wiki')
+      .set('Cookie', token)
       .expect(404)
       .expect('Content-Type', /json/)
       .end(async (err, res) => {
@@ -161,6 +168,7 @@ describe('Put Project By Id', () => {
     };
     return request(app)
       .put('/api/v1/projects/5')
+      .set('Cookie', token)
       .send(testData)
       .expect(200)
       .expect('Content-Type', /json/)
@@ -184,6 +192,7 @@ describe('Put Project By Id', () => {
     };
     return request(app)
       .put('/api/v1/projects/5')
+      .set('Cookie', token)
       .send(missingData)
       .expect(400)
       .expect('Content-Type', /json/)
@@ -286,6 +295,7 @@ describe('Get stats', () => {
   test('Route /stats status 200, json header ', (done) => {
     return request(app)
       .get('/api/v1/stats')
+      .set('Cookie', token)
       .expect(200)
       .expect('Content-Type', /json/)
       .end((err, res) => {
@@ -311,6 +321,7 @@ describe('Admin, Post Student', () => {
     };
     return request(app)
       .post('/api/v1/alumni')
+      .set('Cookie', token)
       .send(reqData)
       .expect(201)
       .expect('Content-Type', /json/)
@@ -322,6 +333,181 @@ describe('Admin, Post Student', () => {
         );
         expect(rows[0].name).toBe('Rehab');
         expect(message).toBe('Student Added successfully');
+        done();
+      });
+  });
+});
+
+describe('Admin Login and protected routes', () => {
+  test('Route /login status 200, data.message = logged in successfully ', (done) => {
+    return request(app)
+      .post('/api/v1/login')
+      .send({ username: 'Muhammad', password: '123456' })
+      .expect(200)
+      .expect('Content-Type', /json/)
+      .end(async (err, res) => {
+        const { message } = res.body;
+        if (err) return done(err);
+        expect(message).toBe('logged in successfully');
+        done();
+      });
+  });
+
+  test('Route /login status 400, data.message = schema validation ', (done) => {
+    return request(app)
+      .post('/api/v1/login')
+      .send({ username: 'Muh', password: '123' })
+      .expect(400)
+      .expect('Content-Type', /json/)
+      .end(async (err, res) => {
+        const { message } = res.body;
+        if (err) return done(err);
+        expect(message).toEqual([
+          'username must be at least 5 characters',
+          'password must be at least 4 characters',
+        ]);
+        done();
+      });
+  });
+
+  test("Route /login status 400, data.message = user doesn't exist", (done) => {
+    return request(app)
+      .post('/api/v1/login')
+      .send({ username: "Ala'a", password: '102030' })
+      .expect(400)
+      .expect('Content-Type', /json/)
+      .end(async (err, res) => {
+        const { message } = res.body;
+        if (err) return done(err);
+        expect(message).toBe("user doesn't exist");
+        done();
+      });
+  });
+
+  test('Route /login status 400, data.message = Password is incorrect', (done) => {
+    return request(app)
+      .post('/api/v1/login')
+      .send({ username: 'Muhammad', password: '102030' })
+      .expect(400)
+      .expect('Content-Type', /json/)
+      .end(async (err, res) => {
+        const { message } = res.body;
+        if (err) return done(err);
+        expect(message).toBe('Password is incorrect');
+        done();
+      });
+  });
+
+  test('Delete /projects/1, logged out/ no cookie, status 401, data.message = Sign-in first ', (done) => {
+    return request(app)
+      .delete('/api/v1/projects/1')
+      .expect(401)
+      .expect('Content-Type', /json/)
+      .end(async (err, res) => {
+        const { message } = res.body;
+        if (err) return done(err);
+        expect(message).toBe('Sign-in first');
+        done();
+      });
+  });
+
+  test('Delete /projects/1, wrong cookie token, status 401, data.message = Un-Authorized ', (done) => {
+    return request(app)
+      .delete('/api/v1/projects/1')
+      .set('Cookie', 'token=wrongtoken')
+      .expect(401)
+      .expect('Content-Type', /json/)
+      .end(async (err, res) => {
+        const { message } = res.body;
+        if (err) return done(err);
+        expect(message).toBe('Un-Authorized');
+        done();
+      });
+  });
+
+  test('PUT Route /alumni/1, logged out/ no cookie, status 401, json header, error message = Sign-in first ', (done) => {
+    request(app)
+      .put('/api/v1/alumni/1')
+      .send({
+        name: 'Rehab',
+        email: 'rehab@gmail.com',
+        imgUrl: 'https://avatars3.githubusercontent.com/u/49806841?s=460&v=4',
+        githubLink: 'https://github.com/rehabas',
+        cohortId: 1,
+      })
+      .expect(401)
+      .expect('Content-Type', /json/)
+      .end(async (err, res) => {
+        if (err) return done(err);
+        const { message } = res.body;
+        expect(message).toBe('Sign-in first');
+        done();
+      });
+  });
+
+  test('PUT Route /alumni/1, wrong cookie, status 401, json header, error message = Un-Authorized ', (done) => {
+    request(app)
+      .put('/api/v1/alumni/1')
+      .set('Cookie', 'token=wrongtoken')
+      .send({
+        name: 'Rehab',
+        email: 'rehab@gmail.com',
+        imgUrl: 'https://avatars3.githubusercontent.com/u/49806841?s=460&v=4',
+        githubLink: 'https://github.com/rehabas',
+        cohortId: 1,
+      })
+      .expect(401)
+      .expect('Content-Type', /json/)
+      .end(async (err, res) => {
+        if (err) return done(err);
+        const { message } = res.body;
+        expect(message).toBe('Un-Authorized');
+        done();
+      });
+  });
+
+  test('Delete /alumni/1, logged out/ no cookie, status 401, message = Sign-in first ', (done) => {
+    return request(app)
+      .delete('/api/v1/alumni/1')
+      .expect(401)
+      .expect('Content-Type', /json/)
+      .end(async (err, res) => {
+        if (err) return done(err);
+        const { message } = res.body;
+        expect(message).toBe('Sign-in first');
+        done();
+      });
+  });
+
+  test('Delete /alumni/1, logged out/ no cookie, status 401, message = Un-Authorized', (done) => {
+    return request(app)
+      .delete('/api/v1/alumni/1')
+      .set('Cookie', 'token=wrongtoken')
+      .expect(401)
+      .expect('Content-Type', /json/)
+      .end(async (err, res) => {
+        if (err) return done(err);
+        const { message } = res.body;
+        expect(message).toBe('Un-Authorized');
+        done();
+      });
+  });
+});
+
+describe('logout', () => {
+  test('Test logout status 200, message = logout successfully', (done) => {
+    return request(app)
+      .get('/api/v1/logout')
+      .set('Cookie', token)
+      .expect(200)
+      .expect('Content-Type', /json/)
+      .end(async (err, res) => {
+        const { message } = res.body;
+        if (err) return done(err);
+        expect(res.headers['set-cookie']).toEqual([
+          'token=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT',
+        ]);
+        expect(message).toBe('logout successfully');
         done();
       });
   });
