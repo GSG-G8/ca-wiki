@@ -21,6 +21,7 @@ const {
   deleteProject,
   getCohortProjectsQuery,
   getProjects,
+  studentProjectQuery,
 } = require('./project');
 const getStatsQuery = require('./getStatsQuery');
 const loginQuery = require('./loginQuery');
@@ -45,4 +46,5 @@ module.exports = {
   getStudentByIdQuery,
   getStatsQuery,
   loginQuery,
+  studentProjectQuery,
 };
