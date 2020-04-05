@@ -380,3 +380,22 @@ describe('Admin Login and protected routes', () => {
       });
   });
 });
+
+describe('logout', () => {
+  test('Test logout status 200, message = logout succefully', (done) => {
+    return request(app)
+      .get('/api/v1/logout')
+      .set('Cookie', token)
+      .expect(200)
+      .expect('Content-Type', /json/)
+      .end(async (err, res) => {
+        const { message } = res.body;
+        if (err) return done(err);
+        expect(res.headers['set-cookie']).toEqual([
+          'token=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT',
+        ]);
+        expect(message).toBe('logout succefully');
+        done();
+      });
+  });
+});
