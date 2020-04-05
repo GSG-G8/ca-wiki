@@ -5,12 +5,14 @@ const { loginQuery } = require('../../../database/queries');
 
 const login = async (req, res, next) => {
   try {
-    const data = await loginSchema.validate(req.body, { abortEarly: false });
-    const userData = await loginQuery(data.username);
+    const { username, password } = await loginSchema.validate(req.body, {
+      abortEarly: false,
+    });
+    const userData = await loginQuery(username);
     if (userData.rows[0]) {
-      const hashedPasswored = userData.rows[0].password;
-      const userId = userData.rows[0].id;
-      const match = await compare(data.password, hashedPasswored);
+      const { password: hashedPasswored } = userData.rows[0];
+      const { id: userId } = userData.rows[0];
+      const match = await compare(password, hashedPasswored);
       if (match) {
         const token = sign({ id: userId }, process.env.SECRET_KEY);
         res.cookie('token', token);
