@@ -4,6 +4,9 @@ const dbBuild = require('../server/database/config/build');
 
 const app = require('../server/app');
 
+const token =
+  'token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTg2MDU0MjM1fQ.ANOdUJz-kWK-m9hdOc4Ee-NA4bx_VaRK-pxehp399G8';
+
 beforeEach(() => dbBuild());
 afterAll(() => connection.end());
 
@@ -92,10 +95,7 @@ describe('Put Student By Id', () => {
   test('PUT Route /alumni/1 status 200, json header, put data ', (done) => {
     request(app)
       .put('/api/v1/alumni/1')
-      .set(
-        'Cookie',
-        'token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTg2MDU0MjM1fQ.ANOdUJz-kWK-m9hdOc4Ee-NA4bx_VaRK-pxehp399G8',
-      )
+      .set('Cookie', token)
       .send(validData)
       .expect(200)
       .expect('Content-Type', /json/)
@@ -125,10 +125,7 @@ describe('Put Student By Id', () => {
   test('PUT Route /alumni/1 status 200, json header, put data with same email', (done) => {
     request(app)
       .put('/api/v1/alumni/1')
-      .set(
-        'Cookie',
-        'token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTg2MDU0MjM1fQ.ANOdUJz-kWK-m9hdOc4Ee-NA4bx_VaRK-pxehp399G8',
-      )
+      .set('Cookie', token)
       .send({
         name: 'sara',
         email: 'alaa@gmail.com',
@@ -164,10 +161,7 @@ describe('Put Student By Id', () => {
   test('PUT Route /alumni/11 status 404, json header, put data ', (done) => {
     request(app)
       .put('/api/v1/alumni/11')
-      .set(
-        'Cookie',
-        'token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTg2MDU0MjM1fQ.ANOdUJz-kWK-m9hdOc4Ee-NA4bx_VaRK-pxehp399G8',
-      )
+      .set('Cookie', token)
       .send(validData)
       .expect(404)
       .expect('Content-Type', /json/)
@@ -188,10 +182,7 @@ describe('Put Student By Id', () => {
   test('PUT Route /alumni/1 status 400, json header, put invalid data ', (done) => {
     request(app)
       .put('/api/v1/alumni/1')
-      .set(
-        'Cookie',
-        'token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTg2MDU0MjM1fQ.ANOdUJz-kWK-m9hdOc4Ee-NA4bx_VaRK-pxehp399G8',
-      )
+      .set('Cookie', token)
       .send(invalidData)
       .expect(400)
       .expect('Content-Type', /json/)
@@ -213,10 +204,7 @@ describe('Put Student By Id', () => {
   test('PUT Route /alumni/1 status 409, json header, put data ', (done) => {
     request(app)
       .put('/api/v1/alumni/1')
-      .set(
-        'Cookie',
-        'token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTg2MDU0MjM1fQ.ANOdUJz-kWK-m9hdOc4Ee-NA4bx_VaRK-pxehp399G8',
-      )
+      .set('Cookie', token)
       .send(duplicateData)
       .expect(409)
       .expect('Content-Type', /json/)
@@ -237,10 +225,7 @@ describe('Delete specific student by ID', () => {
   test('Route /alumni/1 status 200, data.message = Student deleted successfully ', (done) => {
     return request(app)
       .delete('/api/v1/alumni/1')
-      .set(
-        'Cookie',
-        'token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTg2MDU0MjM1fQ.ANOdUJz-kWK-m9hdOc4Ee-NA4bx_VaRK-pxehp399G8',
-      )
+      .set('Cookie', token)
       .expect(200)
       .expect('Content-Type', /json/)
       .end(async (err, res) => {
@@ -257,10 +242,7 @@ describe('Delete specific student by ID', () => {
   test('Route /alumni/10 status 404, data.message = Student does not exist ', (done) => {
     return request(app)
       .delete('/api/v1/alumni/10')
-      .set(
-        'Cookie',
-        'token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTg2MDU0MjM1fQ.ANOdUJz-kWK-m9hdOc4Ee-NA4bx_VaRK-pxehp399G8',
-      )
+      .set('Cookie', token)
       .expect(404)
       .expect('Content-Type', /json/)
       .end(async (err, res) => {
@@ -273,10 +255,7 @@ describe('Delete specific student by ID', () => {
   test('Route /alumni/Alaa status 404, data.message = You enterd wrong student ID ', (done) => {
     return request(app)
       .delete('/api/v1/alumni/Alaa')
-      .set(
-        'Cookie',
-        'token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTg2MDU0MjM1fQ.ANOdUJz-kWK-m9hdOc4Ee-NA4bx_VaRK-pxehp399G8',
-      )
+      .set('Cookie', token)
       .expect(404)
       .expect('Content-Type', /json/)
       .end(async (err, res) => {
