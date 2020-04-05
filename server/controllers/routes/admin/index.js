@@ -11,19 +11,22 @@ const {
 const getStats = require('./stats');
 const login = require('./login');
 const logout = require('./logout');
+const protectedRoute = require('../../middlewares/auth');
 
-router.post('/cohorts', addCohort);
-
-router.route('/cohorts/:cohortId').put(editCohort).delete(deleteCohort);
-
-router.put('/projects/:projectId', editProject);
-router.post('/projects', addProject);
-router.get('/cohorts/:cohortId/projects', getCohortProjects);
-router.delete('/alumni/:studentId', deleteStudent);
-router.put('/alumni/:studentId', putStudentData);
-router.delete('/projects/:projectId', deleteProjectData);
-router.get('/stats', getStats);
 router.post('/login', login);
 router.get('/logout', logout);
+
+router
+  .route('/cohorts/:cohortId')
+  .put(protectedRoute, editCohort)
+  .delete(protectedRoute, deleteCohort);
+router.post('/cohorts', protectedRoute, addCohort);
+router.put('/projects/:projectId', protectedRoute, editProject);
+router.post('/projects', protectedRoute, addProject);
+router.get('/cohorts/:cohortId/projects', getCohortProjects);
+router.delete('/alumni/:studentId', protectedRoute, deleteStudent);
+router.put('/alumni/:studentId', protectedRoute, putStudentData);
+router.delete('/projects/:projectId', protectedRoute, deleteProjectData);
+router.get('/stats', getStats);
 
 module.exports = router;
