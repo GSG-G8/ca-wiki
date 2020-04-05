@@ -396,9 +396,23 @@ describe('Admin Login and protected routes', () => {
       });
   });
 
-  test('Delete /projects/1, logged out/ no cookie, status 401, data.message = Un-Authorized ', (done) => {
+  test('Delete /projects/1, logged out/ no cookie, status 401, data.message = Sign-in first ', (done) => {
     return request(app)
       .delete('/api/v1/projects/1')
+      .expect(401)
+      .expect('Content-Type', /json/)
+      .end(async (err, res) => {
+        const { message } = res.body;
+        if (err) return done(err);
+        expect(message).toBe('Sign-in first');
+        done();
+      });
+  });
+
+  test('Delete /projects/1, wrong cookie token, status 401, data.message = Un-Authorized ', (done) => {
+    return request(app)
+      .delete('/api/v1/projects/1')
+      .set('Cookie', 'token=wrongtoken')
       .expect(401)
       .expect('Content-Type', /json/)
       .end(async (err, res) => {
@@ -409,9 +423,30 @@ describe('Admin Login and protected routes', () => {
       });
   });
 
-  test('PUT Route /alumni/1, logged out/ no cookie, status 401, json header, error message = Un-Authorized ', (done) => {
+  test('PUT Route /alumni/1, logged out/ no cookie, status 401, json header, error message = Sign-in first ', (done) => {
     request(app)
       .put('/api/v1/alumni/1')
+      .send({
+        name: 'Rehab',
+        email: 'rehab@gmail.com',
+        imgUrl: 'https://avatars3.githubusercontent.com/u/49806841?s=460&v=4',
+        githubLink: 'https://github.com/rehabas',
+        cohortId: 1,
+      })
+      .expect(401)
+      .expect('Content-Type', /json/)
+      .end(async (err, res) => {
+        if (err) return done(err);
+        const { message } = res.body;
+        expect(message).toBe('Sign-in first');
+        done();
+      });
+  });
+
+  test('PUT Route /alumni/1, wrong cookie, status 401, json header, error message = Un-Authorized ', (done) => {
+    request(app)
+      .put('/api/v1/alumni/1')
+      .set('Cookie', 'token=wrongtoken')
       .send({
         name: 'Rehab',
         email: 'rehab@gmail.com',
@@ -429,9 +464,23 @@ describe('Admin Login and protected routes', () => {
       });
   });
 
-  test('Delete /alumni/1, logged out/ no cookie, status 401, message = Un-Authorized ', (done) => {
+  test('Delete /alumni/1, logged out/ no cookie, status 401, message = Sign-in first ', (done) => {
     return request(app)
       .delete('/api/v1/alumni/1')
+      .expect(401)
+      .expect('Content-Type', /json/)
+      .end(async (err, res) => {
+        if (err) return done(err);
+        const { message } = res.body;
+        expect(message).toBe('Sign-in first');
+        done();
+      });
+  });
+
+  test('Delete /alumni/1, logged out/ no cookie, status 401, message = Un-Authorized', (done) => {
+    return request(app)
+      .delete('/api/v1/alumni/1')
+      .set('Cookie', 'token=wrongtoken')
       .expect(401)
       .expect('Content-Type', /json/)
       .end(async (err, res) => {
