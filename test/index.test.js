@@ -415,7 +415,7 @@ describe('Admin Login and protected routes', () => {
 });
 
 describe('logout', () => {
-  test('Test logout status 200, message = logout succefully', (done) => {
+  test('Test logout status 200, message = logout successfully', (done) => {
     return request(app)
       .get('/api/v1/logout')
       .set('Cookie', token)
@@ -427,7 +427,7 @@ describe('logout', () => {
         expect(res.headers['set-cookie']).toEqual([
           'token=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT',
         ]);
-        expect(message).toBe('logout succefully');
+        expect(message).toBe('logout successfully');
         done();
       });
   });
