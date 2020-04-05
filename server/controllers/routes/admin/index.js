@@ -16,7 +16,6 @@ const protectedRoute = require('../../middlewares/auth');
 router.post('/login', login);
 router.get('/logout', logout);
 router.get('/cohorts/:cohortId/projects', getCohortProjects);
-router.get('/stats', getStats);
 
 router.use(protectedRoute);
 
@@ -28,5 +27,6 @@ router.delete('/alumni/:studentId', deleteStudent);
 router.put('/alumni/:studentId', putStudentData);
 router.delete('/projects/:projectId', deleteProjectData);
 router.post('/alumni', addStudentData);
+router.get('/stats', getStats);
 
 module.exports = router;

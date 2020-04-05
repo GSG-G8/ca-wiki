@@ -295,6 +295,7 @@ describe('Get stats', () => {
   test('Route /stats status 200, json header ', (done) => {
     return request(app)
       .get('/api/v1/stats')
+      .set('Cookie', token)
       .expect(200)
       .expect('Content-Type', /json/)
       .end((err, res) => {
