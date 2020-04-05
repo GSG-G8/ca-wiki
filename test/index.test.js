@@ -4,8 +4,6 @@ const dbBuild = require('../server/database/config/build');
 
 const app = require('../server/app');
 
-const token =
-  'token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTg2MDU0MjM1fQ.ANOdUJz-kWK-m9hdOc4Ee-NA4bx_VaRK-pxehp399G8';
 beforeEach(() => dbBuild());
 afterAll(() => connection.end());
 
@@ -66,7 +64,10 @@ describe('Add Project', () => {
     };
     return request(app)
       .post('/api/v1/projects')
-      .set('Cookie', token)
+      .set(
+        'Cookie',
+        'token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTg2MDU0MjM1fQ.ANOdUJz-kWK-m9hdOc4Ee-NA4bx_VaRK-pxehp399G8',
+      )
       .send(reqData)
       .expect(201)
       .expect('Content-Type', /json/)
@@ -94,7 +95,10 @@ describe('Add Project', () => {
     };
     return request(app)
       .post('/api/v1/projects')
-      .set('Cookie', token)
+      .set(
+        'Cookie',
+        'token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTg2MDU0MjM1fQ.ANOdUJz-kWK-m9hdOc4Ee-NA4bx_VaRK-pxehp399G8',
+      )
       .send(missingData)
       .expect(400)
       .expect('Content-Type', /json/)
@@ -115,7 +119,10 @@ describe('Delete Project By Id', () => {
   test('Route /projects/1 status 200, data.message = Project deleted successfully ', (done) => {
     return request(app)
       .delete('/api/v1/projects/1')
-      .set('Cookie', token)
+      .set(
+        'Cookie',
+        'token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTg2MDU0MjM1fQ.ANOdUJz-kWK-m9hdOc4Ee-NA4bx_VaRK-pxehp399G8',
+      )
       .expect(200)
       .expect('Content-Type', /json/)
       .end(async (err, res) => {
@@ -129,7 +136,10 @@ describe('Delete Project By Id', () => {
   test('Route /projects/10 status 404, data.message = Project does not exist ', (done) => {
     return request(app)
       .delete('/api/v1/projects/10')
-      .set('Cookie', token)
+      .set(
+        'Cookie',
+        'token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTg2MDU0MjM1fQ.ANOdUJz-kWK-m9hdOc4Ee-NA4bx_VaRK-pxehp399G8',
+      )
       .expect(404)
       .expect('Content-Type', /json/)
       .end(async (err, res) => {
@@ -142,7 +152,10 @@ describe('Delete Project By Id', () => {
   test('Route /projects/ca-wiki status 404, data.message = You enterd wrong project ID ', (done) => {
     return request(app)
       .delete('/api/v1/projects/ca-wiki')
-      .set('Cookie', token)
+      .set(
+        'Cookie',
+        'token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTg2MDU0MjM1fQ.ANOdUJz-kWK-m9hdOc4Ee-NA4bx_VaRK-pxehp399G8',
+      )
       .expect(404)
       .expect('Content-Type', /json/)
       .end(async (err, res) => {
@@ -167,7 +180,10 @@ describe('Put Project By Id', () => {
     };
     return request(app)
       .put('/api/v1/projects/5')
-      .set('Cookie', token)
+      .set(
+        'Cookie',
+        'token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTg2MDU0MjM1fQ.ANOdUJz-kWK-m9hdOc4Ee-NA4bx_VaRK-pxehp399G8',
+      )
       .send(testData)
       .expect(200)
       .expect('Content-Type', /json/)
@@ -191,7 +207,10 @@ describe('Put Project By Id', () => {
     };
     return request(app)
       .put('/api/v1/projects/5')
-      .set('Cookie', token)
+      .set(
+        'Cookie',
+        'token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTg2MDU0MjM1fQ.ANOdUJz-kWK-m9hdOc4Ee-NA4bx_VaRK-pxehp399G8',
+      )
       .send(missingData)
       .expect(400)
       .expect('Content-Type', /json/)
@@ -418,7 +437,10 @@ describe('logout', () => {
   test('Test logout status 200, message = logout successfully', (done) => {
     return request(app)
       .get('/api/v1/logout')
-      .set('Cookie', token)
+      .set(
+        'Cookie',
+        'token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTg2MDU0MjM1fQ.ANOdUJz-kWK-m9hdOc4Ee-NA4bx_VaRK-pxehp399G8',
+      )
       .expect(200)
       .expect('Content-Type', /json/)
       .end(async (err, res) => {

@@ -4,9 +4,6 @@ const dbBuild = require('../server/database/config/build');
 
 const app = require('../server/app');
 
-const token =
-  'token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTg2MDU0MjM1fQ.ANOdUJz-kWK-m9hdOc4Ee-NA4bx_VaRK-pxehp399G8';
-
 beforeAll(() => dbBuild());
 afterAll(() => connection.end());
 
@@ -27,7 +24,10 @@ describe('Admin, Add cohort', () => {
   test('POST Route /cohorts status 201, json header, send data ', (done) => {
     request(app)
       .post('/api/v1/cohorts')
-      .set('Cookie', token)
+      .set(
+        'Cookie',
+        'token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTg2MDU0MjM1fQ.ANOdUJz-kWK-m9hdOc4Ee-NA4bx_VaRK-pxehp399G8',
+      )
       .send(validData)
       .expect(201)
       .expect('Content-Type', /json/)
@@ -58,7 +58,10 @@ describe('Admin, Add cohort', () => {
   test('POST Route /cohorts status 409, json header, send data ', (done) => {
     request(app)
       .post('/api/v1/cohorts')
-      .set('Cookie', token)
+      .set(
+        'Cookie',
+        'token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTg2MDU0MjM1fQ.ANOdUJz-kWK-m9hdOc4Ee-NA4bx_VaRK-pxehp399G8',
+      )
       .send(validData)
       .expect(409)
       .expect('Content-Type', /json/)
@@ -79,7 +82,10 @@ describe('Admin, Add cohort', () => {
   test('POST Route /cohorts status 400, json header, send invalid data ', (done) => {
     request(app)
       .post('/api/v1/cohorts')
-      .set('Cookie', token)
+      .set(
+        'Cookie',
+        'token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTg2MDU0MjM1fQ.ANOdUJz-kWK-m9hdOc4Ee-NA4bx_VaRK-pxehp399G8',
+      )
       .send(invalidData)
       .expect(400)
       .expect('Content-Type', /json/)
@@ -263,7 +269,10 @@ describe('Put Cohort', () => {
   test('PUT Route /cohorts/1 status 200, json header, send data ', (done) => {
     return request(app)
       .put('/api/v1/cohorts/1')
-      .set('Cookie', token)
+      .set(
+        'Cookie',
+        'token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTg2MDU0MjM1fQ.ANOdUJz-kWK-m9hdOc4Ee-NA4bx_VaRK-pxehp399G8',
+      )
       .send(data)
       .expect(200)
       .expect('Content-Type', /json/)
@@ -290,7 +299,10 @@ describe('Put Cohort', () => {
   test('PUT Route /cohorts/4 status 404, json header, send data ', (done) => {
     return request(app)
       .put('/api/v1/cohorts/4')
-      .set('Cookie', token)
+      .set(
+        'Cookie',
+        'token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTg2MDU0MjM1fQ.ANOdUJz-kWK-m9hdOc4Ee-NA4bx_VaRK-pxehp399G8',
+      )
       .send(data)
       .expect(404)
       .expect('Content-Type', /json/)
@@ -309,7 +321,10 @@ describe('Put Cohort', () => {
   test('PUT Route /cohorts/1 status 400, json header, send wrong data and test the received message', (done) => {
     return request(app)
       .put('/api/v1/cohorts/1')
-      .set('Cookie', token)
+      .set(
+        'Cookie',
+        'token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTg2MDU0MjM1fQ.ANOdUJz-kWK-m9hdOc4Ee-NA4bx_VaRK-pxehp399G8',
+      )
       .send(wrongData)
       .expect(400)
       .expect('Content-Type', /json/)
@@ -327,7 +342,10 @@ describe('Delete Specific Cohort)', () => {
   test('Route /cohorts/1 status 200, data.message = Cohort deleted successfully ', (done) => {
     return request(app)
       .delete('/api/v1/cohorts/1')
-      .set('Cookie', token)
+      .set(
+        'Cookie',
+        'token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTg2MDU0MjM1fQ.ANOdUJz-kWK-m9hdOc4Ee-NA4bx_VaRK-pxehp399G8',
+      )
       .expect(200)
       .expect('Content-Type', /json/)
       .end(async (err, res) => {
@@ -345,7 +363,10 @@ describe('Delete Specific Cohort)', () => {
   test('Route /cohorts/10 status 400, data.message = Cohort does not exist ', (done) => {
     return request(app)
       .delete('/api/v1/cohorts/10')
-      .set('Cookie', token)
+      .set(
+        'Cookie',
+        'token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTg2MDU0MjM1fQ.ANOdUJz-kWK-m9hdOc4Ee-NA4bx_VaRK-pxehp399G8',
+      )
       .expect(400)
       .expect('Content-Type', /json/)
       .end(async (err, res) => {
