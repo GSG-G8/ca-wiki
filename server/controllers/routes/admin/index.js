@@ -18,8 +18,9 @@ router.get('/logout', logout);
 
 router
   .route('/cohorts/:cohortId')
-  .put(protectedRoute, editCohort)
-  .delete(protectedRoute, deleteCohort);
+  .all(protectedRoute)
+  .put(editCohort)
+  .delete(deleteCohort);
 router.post('/cohorts', protectedRoute, addCohort);
 router.put('/projects/:projectId', protectedRoute, editProject);
 router.post('/projects', protectedRoute, addProject);

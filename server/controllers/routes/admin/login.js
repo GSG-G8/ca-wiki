@@ -1,5 +1,5 @@
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
+const { compare } = require('bcrypt');
+const { sign } = require('jsonwebtoken');
 const { loginSchema } = require('../../../validation');
 const { loginQuery } = require('../../../database/queries');
 
@@ -10,19 +10,16 @@ const login = async (req, res, next) => {
     if (userData.rows[0]) {
       const hashedPasswored = userData.rows[0].password;
       const userId = userData.rows[0].id;
-      bcrypt.compare(data.password, hashedPasswored, (err, result) => {
-        if (err) {
-          next(err);
-        } else if (result === false) {
-          res
-            .status(400)
-            .json({ statusCode: 400, message: 'Password is incorrect' });
-        } else {
-          const token = jwt.sign({ id: userId }, process.env.SECRET_KEY);
-          res.cookie('token', token);
-          res.json({ message: 'logged in successfully' });
-        }
-      });
+      const match = await compare(data.password, hashedPasswored);
+      if (match) {
+        const token = sign({ id: userId }, process.env.SECRET_KEY);
+        res.cookie('token', token);
+        res.json({ message: 'logged in successfully' });
+      } else {
+        res
+          .status(400)
+          .json({ statusCode: 400, message: 'Password is incorrect' });
+      }
     } else {
       res.status(400).json({ statusCode: 400, message: "user doesn't exist" });
     }
