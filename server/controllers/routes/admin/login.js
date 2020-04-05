@@ -20,7 +20,7 @@ const login = async (req, res, next) => {
         } else {
           const token = jwt.sign({ id: userId }, process.env.SECRET_KEY);
           res.cookie('token', token);
-          res.json({ msg: 'logged in successfully' });
+          res.json({ message: 'logged in successfully' });
         }
       });
     } else {

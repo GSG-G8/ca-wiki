@@ -306,3 +306,77 @@ describe('Get stats', () => {
       });
   });
 });
+
+describe('Admin Login and protected routes', () => {
+  test('Route /login status 200, data.message = logged in successfully ', (done) => {
+    return request(app)
+      .post('/api/v1/login')
+      .send({ username: 'Muhammad', password: '123456' })
+      .expect(200)
+      .expect('Content-Type', /json/)
+      .end(async (err, res) => {
+        const { message } = res.body;
+        if (err) return done(err);
+        expect(message).toBe('logged in successfully');
+        done();
+      });
+  });
+
+  test('Route /login status 400, data.message = schema validation ', (done) => {
+    return request(app)
+      .post('/api/v1/login')
+      .send({ username: 'Muh', password: '123' })
+      .expect(400)
+      .expect('Content-Type', /json/)
+      .end(async (err, res) => {
+        const { message } = res.body;
+        if (err) return done(err);
+        expect(message).toEqual([
+          'username must be at least 5 characters',
+          'password must be at least 4 characters',
+        ]);
+        done();
+      });
+  });
+
+  test("Route /login status 400, data.message = user doesn't exist", (done) => {
+    return request(app)
+      .post('/api/v1/login')
+      .send({ username: "Ala'a", password: '102030' })
+      .expect(400)
+      .expect('Content-Type', /json/)
+      .end(async (err, res) => {
+        const { message } = res.body;
+        if (err) return done(err);
+        expect(message).toBe("user doesn't exist");
+        done();
+      });
+  });
+
+  test('Route /login status 400, data.message = Password is incorrect', (done) => {
+    return request(app)
+      .post('/api/v1/login')
+      .send({ username: 'Muhammad', password: '102030' })
+      .expect(400)
+      .expect('Content-Type', /json/)
+      .end(async (err, res) => {
+        const { message } = res.body;
+        if (err) return done(err);
+        expect(message).toBe('Password is incorrect');
+        done();
+      });
+  });
+
+  test('Route /projects/1 status 401, data.message = Un-Authorized ', (done) => {
+    return request(app)
+      .delete('/api/v1/projects/1')
+      .expect(401)
+      .expect('Content-Type', /json/)
+      .end(async (err, res) => {
+        const { message } = res.body;
+        if (err) return done(err);
+        expect(message).toBe('Un-Authorized');
+        done();
+      });
+  });
+});
