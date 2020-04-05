@@ -5,7 +5,8 @@ const studentSchema = yup.object({
   email: yup.string().email().required(),
   imgUrl: yup.string().url().required(),
   githubLink: yup.string().url().required(),
-  cohortId: yup.number().integer().positive().required(),
+  cohortId: yup.number().positive().required(),
+  studentId: yup.number().positive(),
 });
 
 module.exports = studentSchema;
