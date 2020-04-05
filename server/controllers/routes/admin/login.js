@@ -1,21 +1,19 @@
 const bcrypt = require('bcrypt');
 const { loginSchema } = require('../../../validation');
+const { loginQuery } = require('../../../database/queries');
 
 const login = async (req, res, next) => {
   try {
-    const hashP =
-      '$2b$10$vn9nkZiBDjonmpgYwM.JKupf9K/Zz4SaY/XPIe91W3oksCtO40tTa';
     const data = await loginSchema.validate(req.body, { abortEarly: false });
-    bcrypt.hash(data.password, 10, (err, hash) => {
-      // eslint-disable-next-line no-console
-      console.log(hash);
-    });
-    bcrypt.compare(req.body.password, hashP, (err, result) => {
+    const userData = await loginQuery(data.username);
+    // console.log(userData);
+    const hashedPasswored = userData.rows[0].password;
+    bcrypt.compare(data.password, hashedPasswored, (err, result) => {
       if (err) {
         next(err);
       } else {
         // eslint-disable-next-line no-console
-        console.log(result);
+        res.json(result);
       }
     });
   } catch (err) {
@@ -31,3 +29,8 @@ const login = async (req, res, next) => {
 };
 
 module.exports = login;
+
+// bcrypt.hash(data.password, 10, (err, hash) => {
+//   // eslint-disable-next-line no-console
+//   console.log(hash);
+// });

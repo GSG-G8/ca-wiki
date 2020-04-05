@@ -1,4 +1,4 @@
-INSERT INTO admin (username , password) VALUES ('Mohammed','123456');
+INSERT INTO admin (username , password) VALUES ('Muhammad','$2b$10$n99wQBmJs3ecMzRQSsGs2.ogSubljcshvD85TiYcl/ZO.63eRBpJW');
 
 INSERT INTO cohort (name , description , img_url , github_link) VALUES 
 ('G8','GazaSkyGeeks Code Academy, 8th Cohort','https://avatars0.githubusercontent.com/u/59821022?s=200&v=4','https://github.com/GSG-G8'),
