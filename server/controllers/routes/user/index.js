@@ -16,6 +16,6 @@ router.get('/projects', getProjectsData);
 router.get('/cohorts', getCohortsData);
 router.get('/cohorts/:cohortId', getSpecificCohort);
 router.get('/projects/:projectId', getProjectData);
-router.get('/alumni/projects/:projectId', getStudentProject);
+router.get('/projects/:projectId/alumni', getStudentProject);
 
 module.exports = router;

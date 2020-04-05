@@ -6,15 +6,17 @@ const getStudentProject = async (req, res, next) => {
     const { projectId } = req.params;
     await generalSchema.validate({ projectId });
     const { rows } = await studentProjectQuery(projectId);
-    res.json({ statusCode: 200, data: rows });
+    const students = rows.map((student) => student.name);
+    res.json({ statusCode: 200, data: students });
   } catch (err) {
     if (err.errors) {
       res.status(404).json({
         statusCode: 404,
         message: err.errors,
       });
+    } else {
+      next(err);
     }
-    next(err);
   }
 };
 

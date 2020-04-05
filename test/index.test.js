@@ -516,19 +516,19 @@ describe('logout', () => {
 describe('student for specific project', () => {
   test('Test correct data status 200, json header, name = Alaa', (done) => {
     return request(app)
-      .get('/api/v1/alumni/projects/1')
+      .get('/api/v1/projects/1/alumni')
       .expect(200)
       .expect('Content-Type', /json/)
       .end((err, res) => {
         if (err) return done(err);
         const { data } = res.body;
-        expect(data[0].name).toBe('Alaa');
+        expect(data[0]).toBe('Alaa');
         done();
       });
   });
   test('Test incorrect data status 200, json header, message = projectId must be a `number` type, but the final value was: `NaN` (cast from the value `"g"`).', (done) => {
     return request(app)
-      .get('/api/v1/alumni/projects/g')
+      .get('/api/v1/projects/g/alumni')
       .expect(404)
       .expect('Content-Type', /json/)
       .end((err, res) => {
