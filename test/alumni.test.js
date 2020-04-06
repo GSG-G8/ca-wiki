@@ -1,5 +1,5 @@
 const request = require('supertest');
-const connection = require('../server/database/config/connection');
+const connection = require('../server/database/connection');
 const dbBuild = require('../server/database/config/build');
 
 const app = require('../server/app');

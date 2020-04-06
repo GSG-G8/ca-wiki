@@ -1,4 +1,4 @@
-const connection = require('../../config/connection');
+const connection = require('../../connection');
 
 const putSpecificCohort = (req) => {
   const { name, description, imgUrl, githubLink, cohortId } = req;

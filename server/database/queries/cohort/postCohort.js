@@ -1,4 +1,4 @@
-const connection = require('../../config/connection');
+const connection = require('../../connection');
 
 const postCohort = (reqData) => {
   const { name, description, imgUrl, githubLink } = reqData;

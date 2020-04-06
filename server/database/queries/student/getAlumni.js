@@ -1,4 +1,4 @@
-const connection = require('../../config/connection');
+const connection = require('../../connection');
 
 const getAlumniQuery = () => connection.query('SELECT * FROM student');
 
