@@ -1,4 +1,4 @@
-const connection = require('../../config/connection');
+const connection = require('../../connection');
 
 const studentProjectQuery = (projectId) =>
   connection.query(
