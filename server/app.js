@@ -3,9 +3,9 @@ const compression = require('compression');
 const cookieParser = require('cookie-parser');
 const { join } = require('path');
 
-const controller = require('./controllers');
-const { clientError } = require('./controllers/middlewares/errorHandle');
-const { serverError } = require('./controllers/middlewares/errorHandle');
+const routes = require('./routes');
+const { clientError } = require('./controllers/errorHandle');
+const { serverError } = require('./controllers/errorHandle');
 
 const app = express();
 
@@ -17,7 +17,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-app.use('/api/v1/', controller);
+app.use('/api/v1/', routes);
 
 app.use(express.static(join(__dirname, '..', 'client', 'build')));
 

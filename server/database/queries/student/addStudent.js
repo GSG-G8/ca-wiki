@@ -1,4 +1,4 @@
-const connection = require('../../config/connection');
+const connection = require('../../connection');
 
 const addStudent = (data) => {
   const { name, email, imgUrl, githubLink, cohortId } = data;

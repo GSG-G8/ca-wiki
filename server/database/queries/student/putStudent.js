@@ -1,4 +1,4 @@
-const connection = require('../../config/connection');
+const connection = require('../../connection');
 
 const putStudent = (reqData) => {
   const { name, email, imgUrl, githubLink, cohortId, studentId } = reqData;
