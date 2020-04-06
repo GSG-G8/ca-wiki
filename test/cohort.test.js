@@ -1,6 +1,6 @@
 const request = require('supertest');
 const connection = require('../server/database/connection');
-const dbBuild = require('../server/database/config/build');
+const dbBuild = require('../server/database/data/build');
 
 const app = require('../server/app');
 
