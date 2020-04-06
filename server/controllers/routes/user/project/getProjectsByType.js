@@ -1,5 +1,5 @@
 const { getProjects } = require('../../../../database/queries');
-const { generalSchema } = require('../../../../validation');
+const { generalSchema } = require('../../../../utils');
 
 const getProjectsData = async (req, res, next) => {
   try {

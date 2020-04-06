@@ -1,6 +1,6 @@
 const { compare } = require('bcrypt');
 const { sign } = require('jsonwebtoken');
-const { loginSchema } = require('../../../validation');
+const { loginSchema } = require('../../../utils');
 const { loginQuery } = require('../../../database/queries');
 
 const login = async (req, res, next) => {

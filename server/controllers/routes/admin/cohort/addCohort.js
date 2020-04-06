@@ -1,5 +1,5 @@
 const { postCohort } = require('../../../../database/queries');
-const cohortSchema = require('../../../../validation/cohortSchema ');
+const { cohortSchema } = require('../../../../utils');
 
 const addCohort = async (req, res, next) => {
   try {

@@ -1,5 +1,5 @@
 const { getCohortProjectsQuery } = require('../../../../database/queries');
-const { generalSchema } = require('../../../../validation');
+const { generalSchema } = require('../../../../utils');
 
 const getCohortProjects = async (req, res, next) => {
   try {

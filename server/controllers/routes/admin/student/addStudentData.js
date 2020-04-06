@@ -1,5 +1,5 @@
 const { addStudent } = require('../../../../database/queries');
-const { studentSchema } = require('../../../../validation');
+const { studentSchema } = require('../../../../utils');
 
 const addStudentData = async (req, res, next) => {
   try {
