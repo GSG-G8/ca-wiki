@@ -6,7 +6,7 @@ export default () => {
   return (
     <AdminCohort
       buttonContent="Add Cohort"
-      contentComponent={<Test location="hello from Admin Cohort Page" />}
+      contentComponent={<Test location="hello from Admin Home Page" />}
     />
   );
 };
