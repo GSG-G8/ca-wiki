@@ -7,7 +7,7 @@ import './style.css';
 
 const { Header } = Layout;
 
-const AdminContainer = ({ buttonContent, contentComponent }) => {
+const AdminContainer = ({ children, buttonContent }) => {
   return (
     <>
       <Layout>
@@ -41,18 +41,18 @@ const AdminContainer = ({ buttonContent, contentComponent }) => {
               </div>
             </div>
           </div>
-          <div className="admin-content">{contentComponent}</div>
+          <div className="admin-content">{children}</div>
         </div>
       </Layout>
     </>
   );
 };
 
-AdminContainer.defaultProps = { buttonContent: 'add cohort' };
+AdminContainer.defaultProps = { buttonContent: 'add cohort', children: 'test' };
 
 AdminContainer.propTypes = {
   buttonContent: PropTypes.string,
-  contentComponent: PropTypes.element.isRequired,
+  children: PropTypes.string,
 };
 
 export default AdminContainer;
