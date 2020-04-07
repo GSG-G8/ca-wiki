@@ -12,10 +12,10 @@ const AdminContainer = ({ buttonContent, contentComponent }) => {
     <>
       <Layout>
         <Header>
-          <div className="header-image">
+          <div className="admin-header-image">
             <img src={logo} alt="logo" />
           </div>
-          <div className="header-btn">
+          <div className="admin-header-btn">
             {buttonContent !== undefined && (
               <Button type="primary" danger>
                 {buttonContent}
@@ -23,9 +23,9 @@ const AdminContainer = ({ buttonContent, contentComponent }) => {
             )}
           </div>
         </Header>
-        <div className="container">
-          <div className="container-side">
-            <div className="side-content">
+        <div className="admin-container">
+          <div className="adin-container-side">
+            <div className="admin-side">
               <Menu>
                 <Menu.Item key="1">
                   <Link exact="true" to="/admin">
@@ -38,14 +38,14 @@ const AdminContainer = ({ buttonContent, contentComponent }) => {
                   </Link>
                 </Menu.Item>
               </Menu>
-              <div className="side-content-btn">
+              <div className="admin-side-btn">
                 <Button type="primary" danger>
                   Logout
                 </Button>
               </div>
             </div>
           </div>
-          <div className="container-content">{contentComponent}</div>
+          <div className="admin-content">{contentComponent}</div>
         </div>
       </Layout>
     </>

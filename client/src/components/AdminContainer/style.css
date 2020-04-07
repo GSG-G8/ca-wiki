@@ -5,26 +5,26 @@
   padding: 15px 130px 20px 50px;
 }
 
-.header-image {
+.admin-header-image{
   display: flex;
   text-align: left;
 }
 
-.header-image img {
+.admin-header-image img {
   width: 250px;
   height: 50px;
 }
 
-.header-btn {
+.admin-header-btn {
 display: flex;
 justify-content: flex-end;
 }
-.header-btn button {
+.admin-header-btn button {
   width: 160px;
   height: 35px;
 }
 
-.container {
+.admin-container {
   display: flex;
   background-color: white;
   height: 85vh;
@@ -32,11 +32,11 @@ justify-content: flex-end;
   padding-bottom: 30px;
 }
 
-.container-side {
+.admin-container-side {
   width: 20%;
 }
 
-.side-content {
+.admin-side {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -49,13 +49,13 @@ justify-content: flex-end;
   min-height: 95%;
 }
 
-.side-content-btn {
+.admin-side-btn {
   display: flex;
   align-items: flex-end;
   padding-bottom: 30px;
 }
 
-.side-content ul  {
+.admin-side ul  {
   width: 100%;
 }
 
@@ -69,7 +69,7 @@ justify-content: flex-end;
   background-color: white;
 }
 
-.container-content {
+.admin-content {
   width: 80%;
   padding-right: 200px;
 }
