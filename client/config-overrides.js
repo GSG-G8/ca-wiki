@@ -1,4 +1,5 @@
 const { override, fixBabelImports, addLessLoader } = require('customize-cra');
+const lessVariables = require('./lessVariables');
 
 module.exports = override(
   fixBabelImports('import', {
@@ -8,6 +9,6 @@ module.exports = override(
   }),
   addLessLoader({
     javascriptEnabled: true,
-    modifyVars: { '@primary-color': '#E8505B' },
+    modifyVars: lessVariables,
   })
 );
