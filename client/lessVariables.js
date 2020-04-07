@@ -1,5 +1,3 @@
-const lessVariables = {
+module.exports = {
   '@primary-color': '#E8505B',
 };
-
-module.exports = lessVariables;
