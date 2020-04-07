@@ -28,12 +28,12 @@ const AdminContainer = ({ buttonContent, contentComponent }) => {
             <div className="side-content">
               <Menu>
                 <Menu.Item key="1">
-                  <Link exact="true" to="/admin/home">
+                  <Link exact="true" to="/admin">
                     Home
                   </Link>
                 </Menu.Item>
                 <Menu.Item key="2">
-                  <Link exact="true" to="/admin/cohort">
+                  <Link exact="true" to="/admin/cohorts">
                     Cohorts
                   </Link>
                 </Menu.Item>
