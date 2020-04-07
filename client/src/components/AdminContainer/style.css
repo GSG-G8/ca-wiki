@@ -1,0 +1,75 @@
+.ant-layout-header {
+  height: 15vh;
+  min-height: 119px;
+  background-color: white;
+  padding: 15px 130px 20px 50px;
+}
+
+.header-image {
+  display: flex;
+  text-align: left;
+}
+
+.header-image img {
+  width: 250px;
+  height: 50px;
+}
+
+.header-btn {
+display: flex;
+justify-content: flex-end;
+}
+.header-btn button {
+  width: 160px;
+  height: 35px;
+}
+
+.container {
+  display: flex;
+  background-color: white;
+  height: 85vh;
+  min-height: 650px;
+  padding-bottom: 30px;
+}
+
+.container-side {
+  width: 20%;
+}
+
+.side-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  background-color: salmon;
+  margin: 15px 30px 0 90px;
+  background: #ffffff 0% 0% no-repeat padding-box;
+  box-shadow: 0px 1px 8px #142e6e1a;
+  border-radius: 5px;
+  opacity: 1;
+  min-height: 95%;
+}
+
+.side-content-btn {
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: 30px;
+}
+
+.side-content ul  {
+  width: 100%;
+}
+
+.ant-menu-item-selected > a,
+.ant-menu-item-selected > a:hover {
+  color: #e8505b;
+  font-weight: bold;
+}
+
+.ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
+  background-color: white;
+}
+
+.container-content {
+  width: 80%;
+  padding-right: 200px;
+}
