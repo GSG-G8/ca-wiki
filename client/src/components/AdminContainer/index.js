@@ -12,7 +12,7 @@ const AdminContainer = ({ buttonContent, contentComponent }) => {
     <>
       <Layout>
         <Header>
-          <div className="header-img">
+          <div className="header-image">
             <img src={logo} alt="logo" />
           </div>
           <div className="header-btn">
