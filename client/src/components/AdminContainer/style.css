@@ -6,7 +6,7 @@
   font: var(--header-font);
 }
 
-.admin-header-image{
+.admin-header-image {
   display: flex;
   text-align: left;
 }
@@ -17,8 +17,8 @@
 }
 
 .admin-header-btn {
-display: flex;
-justify-content: flex-end;
+  display: flex;
+  justify-content: flex-end;
 }
 .admin-header-btn button {
   width: 180px;
@@ -67,10 +67,9 @@ justify-content: flex-end;
   margin-bottom: 15px;
 }
 
-.admin-menu-a{
-  color: #3A5A6E;
+.admin-menu-a {
+  color: #3a5a6e;
 }
-
 
 .admin-menu-active {
   color: #e8505b;
