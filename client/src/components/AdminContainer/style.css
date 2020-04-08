@@ -3,7 +3,7 @@
   min-height: 119px;
   background-color: var(--main-white);
   padding: 15px 130px 20px 50px;
-  font: var(--header-font);
+  font-family: var(--main-font);
 }
 
 .admin-header-image {
@@ -32,7 +32,7 @@
   height: 80vh;
   min-height: 500px;
   padding-bottom: 30px;
-  font: var(--content-font);
+  font-family: var(--main-font);
 }
 
 .admin-container-side {
@@ -44,7 +44,7 @@
   flex-wrap: wrap;
   justify-content: center;
   margin: 15px 30px 0 90px;
-  box-shadow: 0px 1px 8px #142e6e1a;
+  box-shadow: var(--box-shadow);
   border-radius: 5px;
   min-height: 95%;
 }
@@ -68,11 +68,11 @@
 }
 
 .admin-menu-a {
-  color: #3a5a6e;
+  color: var(--content-blue-green);
 }
 
 .admin-menu-active {
-  color: #e8505b;
+  color: var(--main-color);
   font-weight: bold;
 }
 

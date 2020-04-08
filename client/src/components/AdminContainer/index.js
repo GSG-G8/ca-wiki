@@ -62,12 +62,12 @@ const AdminContainer = ({ children, buttonContent, buttonFunction }) => {
   );
 };
 
-AdminContainer.defaultProps = { buttonContent: 'add cohort', children: 'test' };
+AdminContainer.defaultProps = { buttonContent: undefined };
 
 AdminContainer.propTypes = {
   buttonContent: PropTypes.string,
   buttonFunction: PropTypes.func.isRequired,
-  children: PropTypes.string,
+  children: PropTypes.string.isRequired,
 };
 
 export default AdminContainer;
