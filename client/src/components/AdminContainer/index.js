@@ -7,7 +7,7 @@ import './style.css';
 
 const { Header } = Layout;
 
-const AdminContainer = ({ children, buttonContent }) => {
+const AdminContainer = ({ children, buttonContent, buttonFunction }) => {
   return (
     <>
       <Layout>
@@ -17,7 +17,7 @@ const AdminContainer = ({ children, buttonContent }) => {
           </div>
           <div className="admin-header-btn">
             {buttonContent !== undefined && (
-              <Button type="primary" danger>
+              <Button onClick={buttonFunction} type="primary" danger>
                 {buttonContent}
               </Button>
             )}
@@ -66,6 +66,7 @@ AdminContainer.defaultProps = { buttonContent: 'add cohort', children: 'test' };
 
 AdminContainer.propTypes = {
   buttonContent: PropTypes.string,
+  buttonFunction: PropTypes.func.isRequired,
   children: PropTypes.string,
 };
 
