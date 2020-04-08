@@ -1,7 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { Layout, Button, Menu } from 'antd';
+import { Layout, Button } from 'antd';
 import logo from '../../assets/images/logo.png';
 import './style.css';
 
@@ -24,16 +24,28 @@ const AdminContainer = ({ children, buttonContent }) => {
           </div>
         </Header>
         <div className="admin-container">
-          <div className="adin-container-side">
+          <div className="admin-container-side">
             <div className="admin-side">
-              <Menu>
-                <Menu.Item key="1">
-                  <Link to="/admin">Home</Link>
-                </Menu.Item>
-                <Menu.Item key="2">
-                  <Link to="/admin/cohorts">Cohorts</Link>
-                </Menu.Item>
-              </Menu>
+              <ul className="admin-menu">
+                <li>
+                  <NavLink
+                    exact
+                    to="/admin"
+                    activeClassName="admin-menu-active"
+                  >
+                    Home
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    exact
+                    to="/admin/cohorts"
+                    activeClassName="admin-menu-active"
+                  >
+                    Cohorts
+                  </NavLink>
+                </li>
+              </ul>
               <div className="admin-side-btn">
                 <Button type="primary" danger>
                   Logout
