@@ -31,6 +31,7 @@ const AdminContainer = ({ children, buttonContent }) => {
                   <NavLink
                     exact
                     to="/admin"
+                    className="admin-menu-a"
                     activeClassName="admin-menu-active"
                   >
                     Home
@@ -40,6 +41,7 @@ const AdminContainer = ({ children, buttonContent }) => {
                   <NavLink
                     exact
                     to="/admin/cohorts"
+                    className="admin-menu-a"
                     activeClassName="admin-menu-active"
                   >
                     Cohorts
