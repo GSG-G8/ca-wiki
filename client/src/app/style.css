@@ -6,9 +6,12 @@
 
 :root {
   --main-color: #E8505B;
+  --main-white: #FFFFFF;
+  --main-black: #000000;
   --content-grey: #636D73;
-  --header-font: 'Open Sans bold';
-  --content-font: 'Open Sans regular';
+  --content-blue-green: #3A5A6E;
+  --main-font: 'Open Sans', sans-serif;
+  --box-shadow: 0px 1px 8px #142e6e1a;
 }
 
 .login-container{
