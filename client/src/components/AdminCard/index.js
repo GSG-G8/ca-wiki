@@ -59,13 +59,13 @@ const AdminCard = ({
       {ComProject && (
         <div>
           <h3>Community p</h3>
-          <Link to="/admin/projects?type=internal">View</Link>
+          <Link to="/admin/projects/:cohortId?type=internal">View</Link>
         </div>
       )}
       {CliProject && (
         <div>
           <h3>Clients p</h3>
-          <Link to="/admin/projects?type=remotely">View</Link>
+          <Link to="/admin/projects/:cohortId?type=remotely">View</Link>
         </div>
       )}
       <div>
