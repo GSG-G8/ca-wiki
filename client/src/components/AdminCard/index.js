@@ -39,9 +39,7 @@ const AdminCard = ({
             )}
             <div>
               <h3>Github link</h3>
-              <NavLink exact to={githbUrl}>
-                Click
-              </NavLink>
+              <a href={githbUrl}>Click</a>
             </div>
             {student && (
               <div>
@@ -54,9 +52,7 @@ const AdminCard = ({
             {websiteLink && (
               <div>
                 <h3>Website</h3>
-                <NavLink exact to={websiteLink}>
-                  View
-                </NavLink>
+                <a href={websiteLink}>View</a>
               </div>
             )}
             {studentNames && (

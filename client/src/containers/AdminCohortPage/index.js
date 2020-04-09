@@ -9,7 +9,7 @@ export default () => {
         imgUrl="https://avatars0.githubusercontent.com/u/59821022?s=200&v=4"
         name="FACG8"
         description="GazaSkyGeeks Code Academy, 8th Cohort"
-        githbUrl="https://github.com/GSG-G8'"
+        githbUrl="https://github.com/GSG-G8"
         student="ff"
         ComProject="pp"
         CliProject="fh"
