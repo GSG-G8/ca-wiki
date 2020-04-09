@@ -1,11 +1,11 @@
 import React from 'react';
 import './style.css';
 import { Form, Input, Button, message } from 'antd';
-import getUserData from '../postData';
+import postData from '../postData';
 
 const Demo = () => {
   const onFinish = async (values) => {
-    const response = await getUserData('/api/v1/cohorts', values);
+    const response = await postData('/api/v1/cohorts', values);
     const { message: resMessage } = response.data.data;
     if (response.status === 201) {
       message.success(resMessage);

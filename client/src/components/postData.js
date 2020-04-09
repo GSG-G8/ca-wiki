@@ -1,6 +1,6 @@
 const axios = require('axios');
 
-const getUserData = async (url, obj) => {
+const postData = async (url, obj) => {
   try {
     const request = await axios.post(url, obj);
     return request;
@@ -9,4 +9,4 @@ const getUserData = async (url, obj) => {
   }
 };
 
-export default getUserData;
+export default postData;
