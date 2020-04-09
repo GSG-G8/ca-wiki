@@ -24,3 +24,11 @@ html {
 .App {
   text-align: center;
 }
+
+li {
+  list-style-type: none;
+}
+
+.admin-list-card {
+  margin-bottom: 16px;
+}

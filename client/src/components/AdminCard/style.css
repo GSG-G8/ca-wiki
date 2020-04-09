@@ -1,46 +1,44 @@
-li.admin-card {
-    width: 80%;
-    margin: 50px auto;
+.admin-card {
     display: grid;
     grid-template-columns: 15% 21% repeat(4, 12.6%) [last-col] 13.5%;
     box-shadow: var(--card-shadow);
-    margin-bottom: 30px;
-    padding: 20px 0;
+    padding: 10px 0;
 }
 
-li.admin-card > div:last-of-type {
+.admin-card > div:last-of-type {
     grid-column: last-col / span 1;
 }
 
-li.admin-card > div {
+.admin-card > div {
     border-left: 1px dashed #C8C7C7;
-    padding: 0 20px;
+    padding: 0 10px;
 }
 
-li.admin-card > div:first-of-type {
+.admin-card > div:first-of-type {
     border-left: none;
 }
 
-li.admin-card .name-img-card {
+.admin-card .name-img-card {
     display: flex;
     justify-content: space-between;
 }
 
-li.admin-card .name-img-card > div {
+.admin-card .name-img-card > div {
     width: 40%;
 }
 
-li.admin-card .img-card {
+.admin-card .img-card {
     align-self: center;
 }
 
-li.admin-card .name-img-card img {
+.admin-card .name-img-card img {
     width: 50px;
 }
 
-li.admin-card h3 {
+.admin-card h3 {
     color: var(--main-color);
     margin-bottom: 11px;
+    font-size: 14px;
 }
 
 .card-btn {
@@ -54,9 +52,7 @@ li.admin-card h3 {
 }
 
 .card-btn:hover {
-    background-color: var(--main-color);
-    color: var(--main-white);
-    /* border-color: var(--border-white); */
+    border-color: var(--border-white);
 }
 
 .edit {
@@ -64,6 +60,6 @@ li.admin-card h3 {
     color: var(--main-color);
 }
 
-li.admin-card a, li.admin-card p {
+.admin-card a, .admin-card p {
     color: var(--content-grey);
 }

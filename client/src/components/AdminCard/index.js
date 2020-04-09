@@ -18,7 +18,7 @@ const AdminCard = ({
   deleteCard,
 }) => {
   return (
-    <li className="admin-card">
+    <div className="admin-card">
       <div className="name-img-card">
         <div className="img-card">
           <img src={imgUrl} alt="card" />
@@ -76,7 +76,7 @@ const AdminCard = ({
           Delete
         </Button>
       </div>
-    </li>
+    </div>
   );
 };
 
