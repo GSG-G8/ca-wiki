@@ -1,0 +1,91 @@
+.card-container {
+    width: 80%;
+    margin: 50px auto;
+}
+
+.card-container ul li {
+    display: grid;
+    grid-template-columns: 15% 21% repeat(4, 12.6%) [last-col] 13.5%;
+    box-shadow: var(--card-shadow);
+    margin-bottom: 30px;
+    padding: 20px 0;
+}
+
+.card-container ul li > div:last-of-type {
+    grid-column: last-col / span 1;
+}
+
+.card-container ul li > div {
+    border-left: 1px dashed #C8C7C7;
+    padding: 0 20px;
+}
+
+.card-container ul li > div:first-of-type {
+    border-left: none;
+}
+
+.card-container ul li .name-img-card {
+    display: flex;
+    justify-content: space-between;
+}
+
+.card-container ul li .name-img-card > div {
+    width: 40%;
+}
+
+.card-container ul li .img-card {
+    align-self: center;
+}
+
+.card-container ul li .name-img-card img {
+    width: 50px;
+}
+
+.card-container ul li h3 {
+    color: var(--main-color);
+}
+
+.card-btn {
+    display: block;
+    width: 100px;
+    border-color: var(--border-white);
+    color: #414D55;
+    border-radius: 5px;
+}
+
+.card-btn:hover {
+    box-shadow: 0px 0px 8px 1px #f3f2f3;
+    color: var(--main-color);
+}
+
+.edit {
+    margin-bottom: 10px;
+}
+
+.card-container ul li a, .card-container ul li p {
+    color: var(--content-grey);
+}
+
+.card-container ul li a:hover {
+    text-decoration: underline;
+}
+
+.ant-pagination-item a {
+    color: var(--pagination-color);
+}
+
+.ant-pagination-item-active a {
+    color: var(--main-white);
+}
+
+.ant-pagination-item:hover {
+    background-color: var(--main-color);
+}
+
+.ant-pagination-item:hover a {
+    color: var(--main-white);
+}
+
+.ant-pagination-item-active:focus a {
+    color: var(--main-white);
+}

@@ -10,15 +10,18 @@ const AdminCard = ({
   githbUrl,
   websiteLink,
   student,
-  project,
+  ComProject,
+  CliProject,
+  editCard,
+  deleteCard,
 }) => {
   return (
     <>
       <section className="card-container">
         <ul>
           <li>
-            <div>
-              <div>
+            <div className="name-img-card">
+              <div className="img-card">
                 <img src={imgUrl} alt="card" />
               </div>
               <div>
@@ -34,73 +37,39 @@ const AdminCard = ({
             )}
             <div>
               <h3>Github link</h3>
-              <p>{githbUrl}</p>
+              <a href={githbUrl}>Click</a>
             </div>
             {websiteLink && (
               <div>
                 <h3>Website</h3>
-                <p>{websiteLink}</p>
+                <a href={websiteLink}>View</a>
               </div>
             )}
             {student && (
               <div>
                 <h3>Student</h3>
-                <p>{student}</p>
+                <a href={student}>View</a>
               </div>
             )}
-            {project && (
+            {ComProject && (
               <div>
-                <h3>Student</h3>
-                <p>{project}</p>
+                <h3>Community p</h3>
+                <a href={ComProject}>View</a>
               </div>
             )}
-            <div>
-              <Button>Edit</Button>
-              <Button>Delete</Button>
-            </div>
-          </li>
-
-          <li>
-            <div>
+            {CliProject && (
               <div>
-                <img src={imgUrl} alt="card" />
-              </div>
-              <div>
-                <h3>Name</h3>
-                <p>{name}</p>
-              </div>
-            </div>
-            {description && (
-              <div>
-                <h3>Description</h3>
-                <p>{description}</p>
+                <h3>Clients p</h3>
+                <a href={CliProject}>View</a>
               </div>
             )}
             <div>
-              <h3>Github link</h3>
-              <p>{githbUrl}</p>
-            </div>
-            {websiteLink && (
-              <div>
-                <h3>Website</h3>
-                <p>{websiteLink}</p>
-              </div>
-            )}
-            {student && (
-              <div>
-                <h3>Student</h3>
-                <p>{student}</p>
-              </div>
-            )}
-            {project && (
-              <div>
-                <h3>Student</h3>
-                <p>{project}</p>
-              </div>
-            )}
-            <div>
-              <Button>Edit</Button>
-              <Button>Delete</Button>
+              <Button onClick={editCard} className="card-btn edit">
+                Edit
+              </Button>
+              <Button onClick={deleteCard} className="card-btn">
+                Delete
+              </Button>
             </div>
           </li>
         </ul>
@@ -114,7 +83,8 @@ AdminCard.defaultProps = {
   description: undefined,
   websiteLink: undefined,
   student: undefined,
-  project: undefined,
+  ComProject: undefined,
+  CliProject: undefined,
 };
 
 AdminCard.propTypes = {
@@ -124,7 +94,10 @@ AdminCard.propTypes = {
   githbUrl: PropTypes.string.isRequired,
   websiteLink: PropTypes.string,
   student: PropTypes.string,
-  project: PropTypes.string,
+  ComProject: PropTypes.string,
+  CliProject: PropTypes.string,
+  editCard: PropTypes.func.isRequired,
+  deleteCard: PropTypes.func.isRequired,
 };
 
 export default AdminCard;
