@@ -74,7 +74,9 @@ const AdminCard = ({
           </li>
         </ul>
       </section>
-      <Pagination defaultCurrent={1} total={50} />
+      <section className="pagination">
+        <Pagination defaultCurrent={1} total={50} />
+      </section>
     </>
   );
 };

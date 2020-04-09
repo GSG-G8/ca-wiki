@@ -43,19 +43,22 @@
 
 .card-container ul li h3 {
     color: var(--main-color);
+    margin-bottom: 11px;
 }
 
 .card-btn {
     display: block;
-    width: 100px;
+    width: 90px;
     border-color: var(--border-white);
     color: #414D55;
     border-radius: 5px;
+    margin: 0 auto;
 }
 
 .card-btn:hover {
     box-shadow: 0px 0px 8px 1px #f3f2f3;
     color: var(--main-color);
+    border-color: var(--border-white);
 }
 
 .edit {
@@ -68,6 +71,13 @@
 
 .card-container ul li a:hover {
     text-decoration: underline;
+}
+
+.pagination {
+    position: absolute;
+    bottom: 5%;
+    left: 50%;
+    transform: translate(-50%, -5%);
 }
 
 .ant-pagination-item a {
