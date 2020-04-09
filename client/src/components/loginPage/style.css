@@ -1,4 +1,4 @@
-/* .login-container{
+.login-container{
   display: flex;
   justify-content: space-around;
 
@@ -9,20 +9,68 @@ background: #E8505B 0% 0% no-repeat padding-box;
 border: 1px solid #707070;
 }
 
-.login-logo img{
-    width: 100px;
-    height: 110px;
-} */
 
+.ant-btn-primary {
+  color: #E8505B;
+  background-color: white;
+  border-color: #E8505B;
+}
 
-/* #components-form-demo-normal-login .login-form {
+.ant-input-affix-wrapper {
+  position: relative;
+  display: inline-block;
+  width: 30%;
+  min-width: 0;
+  padding: 4px 11px;
+  color: rgba(0, 0, 0, 0.65);
+  font-size: 14px;
+  line-height: 1.5715;
+  background-color: #E8505B;
+  border: 1px solid #d9d9d9;
+  border-radius: 2px;
+  display: inline-flex;
 }
-#components-form-demo-normal-login .login-form-forgot {
-  float: right;
+
+.login-logo {
+  align-items: center;
+  margin-top: 150px;
 }
-#components-form-demo-normal-login .ant-col-rtl .login-form-forgot {
-  float: left;
-}
+
 #components-form-demo-normal-login .login-form-button {
   width: 100%;
-} */
+  background-color: white;
+}
+
+.anticon svg {
+  display: inline-block;
+  color: white;
+}
+
+
+.login-logo h1{
+  font: Bold 34px/46px Open Sans;
+  letter-spacing: 0px;
+  color: #FFFFFF;
+  }
+  
+  .login-logo p {
+  font: SemiBold 19px/26px Open Sans;
+  letter-spacing: 0px;
+  color: #FFFFFF;
+  }
+
+  .ant-input-affix-wrapper > input.ant-input {
+    padding: 0;
+    border: none;
+    outline: none;
+    color: white;
+  }
+
+  #normal_login_username.ant-input , #normal_login_password.ant-input{
+    background-color: #E8505B;
+  }
+  #normal_login_username.ant-input , #normal_login_password.ant-input ::placeholder{
+    color: white;
+    opacity: 1;
+  }
+  
