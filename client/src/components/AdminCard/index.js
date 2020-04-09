@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Button, Pagination } from 'antd';
 import './style.css';
@@ -8,8 +9,9 @@ const AdminCard = ({
   name,
   description,
   githbUrl,
-  websiteLink,
   student,
+  websiteLink,
+  studentNames,
   ComProject,
   CliProject,
   editCard,
@@ -37,30 +39,46 @@ const AdminCard = ({
             )}
             <div>
               <h3>Github link</h3>
-              <a href={githbUrl}>Click</a>
+              <NavLink exact to={githbUrl}>
+                Click
+              </NavLink>
             </div>
-            {websiteLink && (
-              <div>
-                <h3>Website</h3>
-                <a href={websiteLink}>View</a>
-              </div>
-            )}
             {student && (
               <div>
                 <h3>Student</h3>
-                <a href={student}>View</a>
+                <NavLink exact to="/admin/students">
+                  View
+                </NavLink>
+              </div>
+            )}
+            {websiteLink && (
+              <div>
+                <h3>Website</h3>
+                <NavLink exact to={websiteLink}>
+                  View
+                </NavLink>
+              </div>
+            )}
+            {studentNames && (
+              <div>
+                <h3>Student</h3>
+                <p>{studentNames}</p>
               </div>
             )}
             {ComProject && (
               <div>
                 <h3>Community p</h3>
-                <a href={ComProject}>View</a>
+                <NavLink exact to="/admin/projects?type=internal">
+                  View
+                </NavLink>
               </div>
             )}
             {CliProject && (
               <div>
                 <h3>Clients p</h3>
-                <a href={CliProject}>View</a>
+                <NavLink exact to="/admin/projects?type=remotely">
+                  View
+                </NavLink>
               </div>
             )}
             <div>
@@ -83,6 +101,7 @@ const AdminCard = ({
 
 AdminCard.defaultProps = {
   description: undefined,
+  studentNames: undefined,
   websiteLink: undefined,
   student: undefined,
   ComProject: undefined,
@@ -96,6 +115,7 @@ AdminCard.propTypes = {
   githbUrl: PropTypes.string.isRequired,
   websiteLink: PropTypes.string,
   student: PropTypes.string,
+  studentNames: PropTypes.string,
   ComProject: PropTypes.string,
   CliProject: PropTypes.string,
   editCard: PropTypes.func.isRequired,
