@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Button, Pagination } from 'antd';
 import './style.css';
@@ -44,9 +44,7 @@ const AdminCard = ({
             {student && (
               <div>
                 <h3>Student</h3>
-                <NavLink exact to="/admin/students">
-                  View
-                </NavLink>
+                <Link to="/admin/students">View</Link>
               </div>
             )}
             {websiteLink && (
@@ -64,17 +62,13 @@ const AdminCard = ({
             {ComProject && (
               <div>
                 <h3>Community p</h3>
-                <NavLink exact to="/admin/projects?type=internal">
-                  View
-                </NavLink>
+                <Link to="/admin/projects?type=internal">View</Link>
               </div>
             )}
             {CliProject && (
               <div>
                 <h3>Clients p</h3>
-                <NavLink exact to="/admin/projects?type=remotely">
-                  View
-                </NavLink>
+                <Link to="/admin/projects?type=remotely">View</Link>
               </div>
             )}
             <div>
