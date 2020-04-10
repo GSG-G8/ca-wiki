@@ -71,9 +71,7 @@ const AdminCard = ({
       {remotelyProject && (
         <div>
           <h3>Clients p</h3>
-          <Link
-            to={`/admin/cohorts/${remotelyProject}/projects??type=remotely`}
-          >
+          <Link to={`/admin/cohorts/${remotelyProject}/projects?type=remotely`}>
             View
           </Link>
         </div>
