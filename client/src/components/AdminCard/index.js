@@ -12,8 +12,8 @@ const AdminCard = ({
   student,
   websiteLink,
   studentNames,
-  ComProject,
-  CliProject,
+  internalProject,
+  remotelyProject,
   editCard,
   deleteCard,
 }) => {
@@ -41,7 +41,7 @@ const AdminCard = ({
       {student && (
         <div>
           <h3>Student</h3>
-          <Link to="/admin/students">View</Link>
+          <Link to={`/admin/cohorts/${student}/students`}>View</Link>
         </div>
       )}
       {websiteLink && (
@@ -56,16 +56,20 @@ const AdminCard = ({
           <p>{studentNames}</p>
         </div>
       )}
-      {ComProject && (
+      {internalProject && (
         <div>
           <h3>Community p</h3>
-          <Link to="/admin/projects/:cohortId?type=internal">View</Link>
+          <Link to={`/admin/projects/${internalProject}?type=internal`}>
+            View
+          </Link>
         </div>
       )}
-      {CliProject && (
+      {remotelyProject && (
         <div>
           <h3>Clients p</h3>
-          <Link to="/admin/projects/:cohortId?type=remotely">View</Link>
+          <Link to={`/admin/projects/${remotelyProject}?type=remotely`}>
+            View
+          </Link>
         </div>
       )}
       <div>
@@ -85,8 +89,8 @@ AdminCard.defaultProps = {
   studentNames: undefined,
   websiteLink: undefined,
   student: undefined,
-  ComProject: undefined,
-  CliProject: undefined,
+  internalProject: undefined,
+  remotelyProject: undefined,
 };
 
 AdminCard.propTypes = {
@@ -97,8 +101,8 @@ AdminCard.propTypes = {
   websiteLink: PropTypes.string,
   student: PropTypes.string,
   studentNames: PropTypes.string,
-  ComProject: PropTypes.string,
-  CliProject: PropTypes.string,
+  internalProject: PropTypes.string,
+  remotelyProject: PropTypes.string,
   editCard: PropTypes.func.isRequired,
   deleteCard: PropTypes.func.isRequired,
 };

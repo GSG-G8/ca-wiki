@@ -43,8 +43,8 @@ export default () => {
           description={description}
           githbUrl={githubUrl}
           student={id}
-          ComProject={id}
-          CliProject={id}
+          internalProject={id}
+          remotelyProject={id}
         />
       </li>
     );
