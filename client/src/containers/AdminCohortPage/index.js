@@ -51,10 +51,8 @@ export default () => {
   });
 
   return (
-    <div className="App">
-      <AdminContainer buttonContent="Add Cohort">
-        <ul className="cohorts">{items}</ul>
-      </AdminContainer>
-    </div>
+    <AdminContainer buttonContent="Add Cohort">
+      <ul className="cohorts">{items}</ul>
+    </AdminContainer>
   );
 };

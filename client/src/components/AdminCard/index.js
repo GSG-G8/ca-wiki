@@ -36,7 +36,9 @@ const AdminCard = ({
       )}
       <div>
         <h3>Github link</h3>
-        <a href={githbUrl}>Click</a>
+        <a href={githbUrl} target="blank">
+          Click
+        </a>
       </div>
       {student && (
         <div>
@@ -47,7 +49,9 @@ const AdminCard = ({
       {websiteLink && (
         <div>
           <h3>Website</h3>
-          <a href={websiteLink}>View</a>
+          <a href={websiteLink} target="blank">
+            View
+          </a>
         </div>
       )}
       {studentNames && (

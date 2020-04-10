@@ -1,4 +1,5 @@
 {
+    "parser": "babel-eslint",
     "extends": [
         "airbnb",
         "prettier",
@@ -45,7 +46,8 @@
                 "trailingComma": "es5",
                 "singleQuote": true
             }
-        ]
+        ],
+        "react/state-in-constructor": [0, "always"]
     },
     "plugins": [
         "react",
