@@ -1,6 +1,5 @@
 module.exports = {
   '@primary-color': '#E8505B',
-  '@white': '#FFFFFF',
   '@btn-font-weight': '400',
   '@btn-primary-color': '@primary-color',
   '@btn-danger-bg': '@primary-color',

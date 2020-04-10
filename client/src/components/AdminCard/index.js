@@ -63,7 +63,7 @@ const AdminCard = ({
       {internalProject && (
         <div>
           <h3>Community p</h3>
-          <Link to={`/admin/projects/${internalProject}?type=internal`}>
+          <Link to={`/admin/cohorts/${internalProject}/projects?type=internal`}>
             View
           </Link>
         </div>
@@ -71,7 +71,9 @@ const AdminCard = ({
       {remotelyProject && (
         <div>
           <h3>Clients p</h3>
-          <Link to={`/admin/projects/${remotelyProject}?type=remotely`}>
+          <Link
+            to={`/admin/cohorts/${remotelyProject}/projects??type=remotely`}
+          >
             View
           </Link>
         </div>
