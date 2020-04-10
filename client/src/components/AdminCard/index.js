@@ -103,10 +103,10 @@ AdminCard.propTypes = {
   description: PropTypes.string,
   githbUrl: PropTypes.string.isRequired,
   websiteLink: PropTypes.string,
-  student: PropTypes.string,
+  student: PropTypes.number,
   studentNames: PropTypes.string,
-  internalProject: PropTypes.string,
-  remotelyProject: PropTypes.string,
+  internalProject: PropTypes.number,
+  remotelyProject: PropTypes.number,
   editCard: PropTypes.func.isRequired,
   deleteCard: PropTypes.func.isRequired,
 };
