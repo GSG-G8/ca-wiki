@@ -14,7 +14,9 @@ class AdminCard extends Component {
     const { projectId } = this.props;
     if (projectId) {
       const result = await axios.get(`/api/v1/projects/${projectId}/alumni`);
-      const { data: students } = result.data;
+      const {
+        data: { data: students },
+      } = result;
       this.setState({ students });
     }
   }
