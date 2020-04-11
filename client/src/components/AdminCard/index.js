@@ -114,10 +114,10 @@ class AdminCard extends Component {
           </div>
         )}
         <div>
-          <Button onClick={editCard} className="card-btn edit">
+          <Button onClick={() => editCard} className="card-btn edit">
             Edit
           </Button>
-          <Button onClick={deleteCard} className="card-btn">
+          <Button onClick={() => deleteCard} className="card-btn">
             Delete
           </Button>
         </div>
