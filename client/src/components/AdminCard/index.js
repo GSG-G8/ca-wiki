@@ -12,11 +12,13 @@ class AdminCard extends Component {
 
   async componentDidMount() {
     const { studentNames } = this.props;
-    const result = await axios.get(
-      `../../../api/v1/projects/${studentNames}/alumni`
-    );
-    const { data: students } = result.data;
-    this.setState({ students });
+    if (studentNames) {
+      const result = await axios.get(
+        `../../../api/v1/projects/${studentNames}/alumni`
+      );
+      const { data: students } = result.data;
+      this.setState({ students });
+    }
   }
 
   render() {
