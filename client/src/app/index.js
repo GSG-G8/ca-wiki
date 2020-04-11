@@ -6,13 +6,13 @@ import AdminCohrtPage from '../containers/AdminCohortPage';
 
 function App() {
   return (
-    <div className="App">
-      <BrowserRouter>
+    <BrowserRouter>
+      <div className="App">
         <Switch>
           <Route exact path={ROUTES.COHORT_PAGE} component={AdminCohrtPage} />
         </Switch>
-      </BrowserRouter>
-    </div>
+      </div>
+    </BrowserRouter>
   );
 }
 

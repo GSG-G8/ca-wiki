@@ -11,11 +11,9 @@ class AdminCard extends Component {
   };
 
   async componentDidMount() {
-    const { studentNames } = this.props;
-    if (studentNames) {
-      const result = await axios.get(
-        `../../../api/v1/projects/${studentNames}/alumni`
-      );
+    const { projectId } = this.props;
+    if (projectId) {
+      const result = await axios.get(`/api/v1/projects/${projectId}/alumni`);
       const { data: students } = result.data;
       this.setState({ students });
     }
@@ -30,7 +28,7 @@ class AdminCard extends Component {
       githbUrl,
       student,
       websiteLink,
-      studentNames,
+      projectId,
       internalProject,
       remotelyProject,
       editCard,
@@ -73,7 +71,7 @@ class AdminCard extends Component {
             </a>
           </div>
         )}
-        {studentNames && (
+        {projectId && (
           <div>
             <h3>Student</h3>
             {students.map((row) => (
@@ -116,7 +114,7 @@ class AdminCard extends Component {
 
 AdminCard.defaultProps = {
   description: undefined,
-  studentNames: undefined,
+  projectId: undefined,
   websiteLink: undefined,
   student: undefined,
   internalProject: undefined,
@@ -130,7 +128,7 @@ AdminCard.propTypes = {
   githbUrl: PropTypes.string.isRequired,
   websiteLink: PropTypes.string,
   student: PropTypes.number,
-  studentNames: PropTypes.number,
+  projectId: PropTypes.number,
   internalProject: PropTypes.number,
   remotelyProject: PropTypes.number,
   editCard: PropTypes.func.isRequired,
