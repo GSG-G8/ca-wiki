@@ -1,18 +1,11 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import * as ROUTES from '../constants/routes';
 import './style.css';
-import AdminCohrtPage from '../containers/AdminCohortPage';
 
 function App() {
   return (
-    <BrowserRouter>
-      <div className="App">
-        <Switch>
-          <Route exact path={ROUTES.COHORT_PAGE} component={AdminCohrtPage} />
-        </Switch>
-      </div>
-    </BrowserRouter>
+    <div className="App">
+      <h1>CA wiki website</h1>
+    </div>
   );
 }
 
