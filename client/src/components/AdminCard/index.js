@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import PropTypes from 'prop-types';
-import { Button } from 'antd';
+import { Button, notification } from 'antd';
 import './style.css';
 
 class AdminCard extends Component {
@@ -11,13 +11,25 @@ class AdminCard extends Component {
   };
 
   async componentDidMount() {
-    const { projectId } = this.props;
-    if (projectId) {
-      const result = await axios.get(`/api/v1/projects/${projectId}/alumni`);
+    try {
+      const { projectId } = this.props;
+      if (projectId) {
+        const result = await axios.get(`/api/v1/projects/-5/alumni`);
+        const {
+          data: { data: students },
+        } = result;
+        this.setState({ students });
+      }
+    } catch (err) {
       const {
-        data: { data: students },
-      } = result;
-      this.setState({ students });
+        response: {
+          data: { message },
+        },
+      } = err;
+      notification.error({
+        message: 'Error 404',
+        description: message,
+      });
     }
   }
 
