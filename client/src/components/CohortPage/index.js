@@ -18,9 +18,10 @@ class Cohort extends Component {
   // eslint-disable-next-line no-console
   onClick = () => console.log('Clicked');
 
+  // eslint-disable-next-line no-console
   editCohort = (id) => console.log(`Edited ${id}`);
 
-  deleteCohort = async(id) => {
+  deleteCohort = async (id) => {
     try {
       await axios.delete(`/api/v1/cohorts/${id}`);
     } catch (err) {
@@ -34,7 +35,7 @@ class Cohort extends Component {
         description: message,
       });
     }
-  }
+  };
 
   render() {
     const { data } = this.state;
