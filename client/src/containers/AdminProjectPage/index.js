@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
+import { notification } from 'antd';
 import AdminCard from '../../components/AdminCard';
 import AdminContainer from '../../components/AdminContainer';
 
@@ -10,19 +11,31 @@ class AdminProject extends Component {
   };
 
   async componentDidMount() {
-    const {
-      match: {
-        params: { cohortId },
-      },
-    } = this.props;
-    const {
-      location: { search },
-    } = this.props;
-    const res = await axios.get(
-      `../../../api/v1/cohorts/${cohortId}/projects${search}`
-    );
-    const { data } = res.data;
-    this.setState({ data });
+    try {
+      const {
+        match: {
+          params: { cohortId },
+        },
+      } = this.props;
+      const {
+        location: { search },
+      } = this.props;
+      const res = await axios.get(
+        `../../../api/v1/cohorts/${cohortId}/projects${search}`
+      );
+      const { data } = res.data;
+      this.setState({ data });
+    } catch (err) {
+      const {
+        response: {
+          data: { message },
+        },
+      } = err;
+      notification.error({
+        message: 'Error 404',
+        description: message,
+      });
+    }
   }
 
   render() {
