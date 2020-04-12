@@ -23,7 +23,16 @@ class Cohort extends Component {
 
   deleteCohort = async (id) => {
     try {
-      await axios.delete(`/api/v1/cohorts/${id}`);
+      const result = await axios.delete(`/api/v1/cohorts/${id}`);
+      const {
+        data: {
+          data: { message },
+        },
+      } = result;
+      notification.success({
+        message: 'Cohort deleted successfully',
+        description: message,
+      });
     } catch (err) {
       const {
         response: {
@@ -31,7 +40,7 @@ class Cohort extends Component {
         },
       } = err;
       notification.error({
-        message: 'Error 401',
+        message: 'Error 401 Un-Authorized',
         description: message,
       });
     }
