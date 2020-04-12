@@ -10,8 +10,11 @@
   --main-black: #000000;
   --content-grey: #636D73;
   --content-blue-green: #3A5A6E;
+  --border-white: #FAFBFD;
+  --pagination-color: #343338;
   --main-font: 'Open Sans', sans-serif;
   --box-shadow: 0px 1px 8px #142e6e1a;
+  --card-shadow: 0px 3px 6px #00000014;
 }
 
 html {
@@ -20,4 +23,12 @@ html {
 
 .App {
   text-align: center;
+}
+
+li {
+  list-style-type: none;
+}
+
+.admin-list-card {
+  margin-bottom: 16px;
 }
