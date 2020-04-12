@@ -81,3 +81,30 @@
   padding-right: 200px;
   padding-top: 15px;
 }
+
+.pagination {
+  position: absolute;
+  bottom: 5%;
+  left: 50%;
+  transform: translate(-50%, -5%);
+}
+
+.ant-pagination-item a {
+  color: var(--pagination-color);
+}
+
+.ant-pagination-item-active a {
+  color: var(--main-white);
+}
+
+.ant-pagination-item:hover {
+  background-color: var(--main-color);
+}
+
+.ant-pagination-item:hover a {
+  color: var(--main-white);
+}
+
+.ant-pagination-item-active:focus a {
+  color: var(--main-white);
+}
