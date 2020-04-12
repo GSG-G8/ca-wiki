@@ -1,4 +1,51 @@
 .ant-form {
-  text-align: center;
-  margin: 70px 270px 0 0;
+  margin: 50px auto;
+  width: 1000px;
+  padding: 24px 30px 24px 30px;
+  box-shadow: var(--box-shadow);
+  border-radius: 10px;
+}
+
+.ant-form-item-label {
+  text-align: left;
+}
+
+.cohort-form {
+  margin: 0;
+  text-align: right;
+}
+
+.cohort-form button {
+  width: 108px;
+  height: 40px;
+  border: 0;
+}
+
+.cohort-form button:first-child {
+  background-color: var(--main-white);
+  color: var(--main-color);
+  border-radius: 8px 0px 0px 8px;
+  box-shadow: var(--box-shadow);
+}
+
+.cohort-form button:last-child {
+  background-color: var(--border-white);
+  color: var(--content-blue-green);
+  border-radius: 0px 8px 8px 0px;
+}
+
+.ant-input {
+  border: 0;
+}
+
+.ant-col {
+  border-bottom: 1px solid var(--input-border);
+}
+
+.cohort-form .ant-col{
+border: 0;
+}
+
+.ant-input:focus {
+    box-shadow: 0 0 0 2px var(--main-color);
 }
