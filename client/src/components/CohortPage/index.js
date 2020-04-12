@@ -7,7 +7,6 @@ import AdminCard from '../AdminCard';
 class Cohort extends Component {
   state = {
     data: [],
-    isDeleted: false,
   };
 
   async componentDidMount() {
@@ -25,8 +24,10 @@ class Cohort extends Component {
   deleteCohort = async (id) => {
     try {
       const result = await axios.delete(`/api/v1/cohorts/${id}`);
-      const { isDeleted } = this.state;
-      this.setState({ isDeleted: !isDeleted });
+      const { data } = this.state;
+      this.setState({
+        data: data.filter((cohort) => cohort.id !== id),
+      });
       const {
         data: {
           data: { message },
