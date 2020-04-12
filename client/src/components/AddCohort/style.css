@@ -20,6 +20,11 @@
   height: 40px;
   border: 0;
 }
+.cohort-form a {
+  display: inline-block;
+  padding: 9px 32.5px;
+  border: 0;
+}
 
 .cohort-form button:first-child {
   background-color: var(--main-white);
@@ -28,7 +33,7 @@
   box-shadow: var(--box-shadow);
 }
 
-.cohort-form button:last-child {
+.cohort-form a {
   background-color: var(--border-white);
   color: var(--content-blue-green);
   border-radius: 0px 8px 8px 0px;
