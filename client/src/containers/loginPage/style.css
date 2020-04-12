@@ -79,3 +79,34 @@ border: 1px solid #707070;
     opacity: 1;
   }
   
+  .ant-form-item-has-error .ant-input-affix-wrapper, .ant-input, .ant-form-item-has-error .ant-input-affix-wrapper, .ant-form-item-has-error .ant-input:hover, .ant-form-item-has-error .ant-input-affix-wrapper:hover {
+    background-color: #E8505B;
+    border: 1px solid #d9d9d9;
+  }
+
+  .ant-form-item-explain > div {
+    color: #FFFFFF;
+  }
+
+  .ant-input-affix-wrapper:hover, .ant-form-item-has-error .ant-input-affix-wrapper:not([disabled]):hover {
+    border-color: #d9d9d9;
+  }
+
+  .ant-form-item-has-error .ant-input:not([disabled]):hover {
+    border: none;
+  }
+
+  .ant-btn-primary:focus {
+    color: #E8505B;
+    background-color: #FFFFFF;
+    border-color: #E8505B;
+  }
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active  {
+    box-shadow: 0 0 0 30px #E8505B inset !important;
+    -webkit-text-fill-color: #FFFFFF !important;
+    caret-color: white;
+}
