@@ -1,6 +1,7 @@
 import React from 'react';
 import './style.css';
 import { Form, Input, Button, message } from 'antd';
+import { Link } from 'react-router-dom';
 
 const axios = require('axios');
 
@@ -75,7 +76,7 @@ const AddCohortForm = () => {
         <Button type="primary" htmlType="submit">
           Add
         </Button>
-        <Button type="primary">Cancel</Button>
+        <Link to="/admin/cohorts">Cancel</Link>
       </Form.Item>
     </Form>
   );
