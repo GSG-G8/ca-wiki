@@ -5,16 +5,16 @@
 }
 .login-left-side {
 width: 50%;
-background: #E8505B 0% 0% no-repeat padding-box;
+background: var(--main-color) 0% 0% no-repeat padding-box;
 border: 1px solid #707070;
 height: 100vh;
 }
 
 
 .ant-btn-primary {
-  color: #E8505B;
+  color: var(--main-color);
   background-color: white;
-  border-color: #E8505B;
+  border-color: var(--main-color);
   padding: 20px;
   border: 2px solid gray;
   border-radius: 50px;
@@ -74,7 +74,7 @@ height: 100vh;
   }
 
   #normal_login_username.ant-input , #normal_login_password.ant-input{
-    background-color: #E8505B;
+    background-color: var(--main-color);
   }
 
   #normal_login_username.ant-input , #normal_login_password.ant-input ::placeholder{
