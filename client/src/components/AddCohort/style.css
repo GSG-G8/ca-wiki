@@ -47,5 +47,16 @@ border: 0;
 }
 
 .ant-input:focus {
-    box-shadow: 0 0 0 2px var(--main-color);
+    box-shadow: 0 0 0 2px transparent;
+    border-color: transparent;
+}
+
+
+.ant-form-item-has-error .ant-input {
+  box-shadow: 0 0 0 2px transparent;
+}
+
+
+.ant-form-item-has-error .ant-input:focus{
+  box-shadow: 0 0 0 2px transparent;
 }
