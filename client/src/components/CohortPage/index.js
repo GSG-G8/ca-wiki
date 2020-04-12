@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import AdminContainer from '../AdminContainer';
+import AdminCard from '../AdminCard';
 
 class Cohort extends Component {
   state = {
@@ -25,15 +26,14 @@ class Cohort extends Component {
           buttonFunction={this.onClick}
         >
           {data.map((cohort) => (
-            <ul key={cohort.id}>
-              <li>{cohort.id}</li>
-              <li>{cohort.name}</li>
-              <li>{cohort.description}</li>
-              <li>
-                <img src={cohort.img_url} alt="Cohort Logo" />
-              </li>
-              <li>{cohort.github_link}</li>
-            </ul>
+            <AdminCard
+              name={cohort.name}
+              description={cohort.description}
+              githbUrl={cohort.github_link}
+              imgUrl={cohort.img_url}
+              cohortId={cohort.id}
+              student={cohort.id}
+            />
           ))}
         </AdminContainer>
       </div>
