@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { notification } from 'antd';
 import AdminContainer from '../AdminContainer';
 import AdminCard from '../AdminCard';
 
@@ -9,13 +10,31 @@ class Cohort extends Component {
   };
 
   async componentDidMount() {
-    const res = await axios.get('../api/v1/cohorts');
+    const res = await axios.get('/api/v1/cohorts');
     const { data } = res.data;
     this.setState({ data });
   }
 
   // eslint-disable-next-line no-console
   onClick = () => console.log('Clicked');
+
+  editCohort = (id) => console.log(`Edited ${id}`);
+
+  deleteCohort = async(id) => {
+    try {
+      await axios.delete(`/api/v1/cohorts/${id}`);
+    } catch (err) {
+      const {
+        response: {
+          data: { message },
+        },
+      } = err;
+      notification.error({
+        message: 'Error 401',
+        description: message,
+      });
+    }
+  }
 
   render() {
     const { data } = this.state;
@@ -27,12 +46,15 @@ class Cohort extends Component {
         >
           {data.map((cohort) => (
             <AdminCard
+              key={cohort.id}
               name={cohort.name}
               description={cohort.description}
               githbUrl={cohort.github_link}
               imgUrl={cohort.img_url}
               cohortId={cohort.id}
               student={cohort.id}
+              editCard={this.editCohort}
+              deleteCard={this.deleteCohort}
             />
           ))}
         </AdminContainer>
