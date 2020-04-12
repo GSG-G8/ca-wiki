@@ -3,18 +3,28 @@ import React from 'react';
 import { Form, Input, Button } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import axios from 'axios';
+import PropTypes from 'prop-types';
+import * as ROUTES from '../../constants/routes';
 
 import logo from '../../assets/images/login-logo.png';
 import loginImg from '../../assets/images/Group 369.svg';
 
 import './style.css';
 
-const LoginPage = () => {
+const LoginPage = ({ updateAuth, history }) => {
   const onFinish = async (values) => {
+    const { push } = history;
     try {
-      const { data } = await axios.post('/api/v1/login', values);
-      console.log('data', data);
-    } catch (err) {}
+      const {
+        data: { statusCode },
+      } = await axios.post('/api/v1/login', values);
+      if (statusCode === 200) {
+        updateAuth();
+        push(ROUTES.HOME_PAGE);
+      }
+    } catch (err) {
+      console.log('error', err);
+    }
   };
 
   return (
@@ -81,6 +91,11 @@ const LoginPage = () => {
       </div>
     </div>
   );
+};
+
+LoginPage.propTypes = {
+  updateAuth: PropTypes.func.isRequired,
+  history: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 
 export default LoginPage;

@@ -10,9 +10,6 @@
   --main-black: #000000;
   --content-grey: #636D73;
   --content-blue-green: #3A5A6E;
- display: inline-block;
-  margin: 4px 2px;
-  cursor: pointer;
 }
 
 html {
