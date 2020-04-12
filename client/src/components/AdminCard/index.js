@@ -14,7 +14,7 @@ class AdminCard extends Component {
     try {
       const { projectId } = this.props;
       if (projectId) {
-        const result = await axios.get(`/api/v1/projects/-5/alumni`);
+        const result = await axios.get(`/api/v1/projects/${projectId}/alumni`);
         const {
           data: { data: students },
         } = result;
@@ -43,8 +43,7 @@ class AdminCard extends Component {
       student,
       websiteLink,
       projectId,
-      internalProject,
-      remotelyProject,
+      cohortId,
       editCard,
       deleteCard,
     } = this.props;
@@ -93,31 +92,27 @@ class AdminCard extends Component {
             ))}
           </div>
         )}
-        {internalProject && (
+        {cohortId && (
           <div>
             <h3>Community p</h3>
-            <Link
-              to={`/admin/cohorts/${internalProject}/projects?type=internal`}
-            >
+            <Link to={`/admin/cohorts/${cohortId}/projects?type=internal`}>
               View
             </Link>
           </div>
         )}
-        {remotelyProject && (
+        {cohortId && (
           <div>
             <h3>Clients p</h3>
-            <Link
-              to={`/admin/cohorts/${remotelyProject}/projects?type=remotely`}
-            >
+            <Link to={`/admin/cohorts/${cohortId}/projects?type=remotely`}>
               View
             </Link>
           </div>
         )}
         <div>
-          <Button onClick={() => editCard} className="card-btn edit">
+          <Button onClick={() => editCard()} className="card-btn edit">
             Edit
           </Button>
-          <Button onClick={() => deleteCard} className="card-btn">
+          <Button onClick={() => deleteCard()} className="card-btn">
             Delete
           </Button>
         </div>
@@ -131,8 +126,7 @@ AdminCard.defaultProps = {
   projectId: undefined,
   websiteLink: undefined,
   student: undefined,
-  internalProject: undefined,
-  remotelyProject: undefined,
+  cohortId: undefined,
 };
 
 AdminCard.propTypes = {
@@ -143,8 +137,7 @@ AdminCard.propTypes = {
   websiteLink: PropTypes.string,
   student: PropTypes.number,
   projectId: PropTypes.number,
-  internalProject: PropTypes.number,
-  remotelyProject: PropTypes.number,
+  cohortId: PropTypes.number,
   editCard: PropTypes.func.isRequired,
   deleteCard: PropTypes.func.isRequired,
 };
