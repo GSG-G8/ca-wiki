@@ -1,16 +1,18 @@
 import React from 'react';
 import './style.css';
 import { Form, Input, Button, message } from 'antd';
-import postData from '../postData';
 
-const Demo = () => {
+const axios = require('axios');
+
+const AddCohortForm = () => {
   const onFinish = async (values) => {
-    const response = await postData('/api/v1/cohorts', values);
-    const { message: resMessage } = response.data.data;
-    if (response.status === 201) {
+    try {
+      const response = await axios.post('/api/v1/cohorts', values);
+      const { message: resMessage } = response.data.data;
       message.success(resMessage);
-    } else {
-      message.error(resMessage);
+    } catch (err) {
+      const { message: errMessage } = err.response.data.data;
+      message.error(errMessage);
     }
   };
 
@@ -78,4 +80,4 @@ const Demo = () => {
   );
 };
 
-export default Demo;
+export default AddCohortForm;
