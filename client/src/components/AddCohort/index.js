@@ -21,8 +21,8 @@ const AddCohortForm = () => {
   };
   return (
     <Form
-      labelCol={{ span: 8 }}
-      wrapperCol={{ span: 16 }}
+      labelCol={{ span: 3 }}
+      wrapperCol={{ span: 21 }}
       name="basic"
       initialValues={{ remember: true }}
       onFinish={onFinish}
@@ -71,10 +71,11 @@ const AddCohortForm = () => {
         <Input />
       </Form.Item>
 
-      <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-        <Button style={{ color: 'white' }} type="primary" htmlType="submit">
-          Submit
+      <Form.Item className="cohort-form" wrapperCol={{ offset: 8, span: 16 }}>
+        <Button type="primary" htmlType="submit">
+          Add
         </Button>
+        <Button type="primary">Cancel</Button>
       </Form.Item>
     </Form>
   );
