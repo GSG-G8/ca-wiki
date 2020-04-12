@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { notification } from 'antd';
+import { notification, Modal } from 'antd';
+import { ExclamationCircleOutlined } from '@ant-design/icons';
 import AdminContainer from '../AdminContainer';
 import AdminCard from '../AdminCard';
+
+const { confirm } = Modal;
 
 class Cohort extends Component {
   state = {
@@ -15,40 +18,50 @@ class Cohort extends Component {
     this.setState({ data });
   }
 
+  deleteCohort = (id, name) => {
+    confirm({
+      title: 'Are you sure you want to delete this cohort ?',
+      icon: <ExclamationCircleOutlined />,
+      content: `Cohort ID: ${id}, Name: ${name}`,
+      okText: 'Yes',
+      okType: 'danger',
+      cancelText: 'No',
+      onOk: async () => {
+        try {
+          const result = await axios.delete(`/api/v1/cohorts/${id}`);
+          const { data } = this.state;
+          this.setState({
+            data: data.filter((cohort) => cohort.id !== id),
+          });
+          const {
+            data: {
+              data: { message },
+            },
+          } = result;
+          notification.success({
+            message: 'Cohort deleted successfully',
+            description: message,
+          });
+        } catch (err) {
+          const {
+            response: {
+              data: { message },
+            },
+          } = err;
+          notification.error({
+            message: 'Error 401 Un-Authorized',
+            description: message,
+          });
+        }
+      },
+    });
+  };
+
   // eslint-disable-next-line no-console
   onClick = () => console.log('Clicked');
 
   // eslint-disable-next-line no-console
   editCohort = (id) => console.log(`Edited ${id}`);
-
-  deleteCohort = async (id) => {
-    try {
-      const result = await axios.delete(`/api/v1/cohorts/${id}`);
-      const { data } = this.state;
-      this.setState({
-        data: data.filter((cohort) => cohort.id !== id),
-      });
-      const {
-        data: {
-          data: { message },
-        },
-      } = result;
-      notification.success({
-        message: 'Cohort deleted successfully',
-        description: message,
-      });
-    } catch (err) {
-      const {
-        response: {
-          data: { message },
-        },
-      } = err;
-      notification.error({
-        message: 'Error 401 Un-Authorized',
-        description: message,
-      });
-    }
-  };
 
   render() {
     const { data } = this.state;
