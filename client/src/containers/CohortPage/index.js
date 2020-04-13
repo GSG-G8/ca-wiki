@@ -3,8 +3,8 @@ import axios from 'axios';
 import { notification, Modal, Empty, List, Pagination } from 'antd';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 
-import AdminContainer from '../AdminContainer';
-import AdminCard from '../AdminCard';
+import AdminContainer from '../../components/AdminContainer';
+import AdminCard from '../../components/AdminCard';
 
 const { confirm } = Modal;
 
@@ -17,9 +17,16 @@ class Cohort extends Component {
   };
 
   async componentDidMount() {
-    const res = await axios.get('/api/v1/cohorts');
-    const { data } = res.data;
-    this.setState({ data, total: data.length * 2.5 });
+    try {
+      const res = await axios.get('/api/v1/cohorts');
+      const { data } = res.data;
+      this.setState({ data, total: data.length * 2.5 });
+    } catch (err) {
+      notification.error({
+        message: 'Internal Server Error',
+        description: err.message,
+      });
+    }
   }
 
   deleteCohort = (id, name) => {

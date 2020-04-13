@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import 'antd/dist/antd.css';
 import './style.css';
 import * as ROUTES from '../constants/routes';
-import CohortPage from '../components/CohortPage';
+import CohortPage from '../containers/CohortPage';
 
 function App() {
   return (
