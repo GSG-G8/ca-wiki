@@ -12,7 +12,7 @@ afterAll(() => connection.end());
 
 describe('Admin, Add cohort', () => {
   const validData = {
-    name: 'G6',
+    name: 'G9',
     description: 'GazaSkyGeeks Code Academy, 6th Cohort',
     imgUrl: 'https://avatars0.githubusercontent.com/u/59821022?s=200&v=4',
     githubLink: 'https://github.com/GSG-G8',
@@ -37,12 +37,12 @@ describe('Admin, Add cohort', () => {
           data: { message },
         } = res.body;
         const { rows } = await connection.query(
-          'SELECT * from cohort WHERE id = 3',
+          'SELECT * from cohort WHERE id = 9',
         );
         expect(rows).toHaveLength(1);
         expect(rows[0]).toEqual({
-          id: 3,
-          name: 'G6',
+          id: 9,
+          name: 'G9',
           description: 'GazaSkyGeeks Code Academy, 6th Cohort',
           img_url:
             'https://avatars0.githubusercontent.com/u/59821022?s=200&v=4',
@@ -68,7 +68,7 @@ describe('Admin, Add cohort', () => {
           data: { message },
         } = res.body;
         const { rows } = await connection.query(
-          'SELECT * from cohort WHERE id = 4',
+          'SELECT * from cohort WHERE id = 10',
         );
         expect(rows).toHaveLength(0);
         expect(message).toBe(`Key (name)=(${validData.name}) already exists.`);
@@ -89,7 +89,7 @@ describe('Admin, Add cohort', () => {
           data: { message },
         } = res.body;
         const { rows } = await connection.query(
-          'SELECT * from cohort WHERE id = 4',
+          'SELECT * from cohort WHERE id = 10',
         );
         expect(rows).toHaveLength(0);
         expect(message).toEqual([
@@ -110,14 +110,14 @@ describe('Get all Cohorts', () => {
       .end((err, res) => {
         if (err) return done(err);
         const { data } = res.body;
-        expect(data).toHaveLength(3);
+        expect(data).toHaveLength(9);
         done();
       });
   });
 });
 
 describe('Get Specific Cohort', () => {
-  test('Route /cohorts/1 status 200, json header, data.name =G8 ', (done) => {
+  test('Route /cohorts/1 status 200, json header, data.name =G1 ', (done) => {
     return request(app)
       .get('/api/v1/cohorts/1')
       .expect(200)
@@ -125,7 +125,7 @@ describe('Get Specific Cohort', () => {
       .end((err, res) => {
         if (err) return done(err);
         const { data } = res.body;
-        expect(data.name).toBe('G8');
+        expect(data.name).toBe('G1');
         done();
       });
   });
@@ -287,9 +287,9 @@ describe('Put Cohort', () => {
       });
   });
 
-  test('PUT Route /cohorts/4 status 404, json header, send data ', (done) => {
+  test('PUT Route /cohorts/10 status 404, json header, send data ', (done) => {
     return request(app)
-      .put('/api/v1/cohorts/4')
+      .put('/api/v1/cohorts/10')
       .set('Cookie', token)
       .send(data)
       .expect(404)
@@ -298,7 +298,7 @@ describe('Put Cohort', () => {
         if (err) return done(err);
         const { message } = res.body;
         const { rows } = await connection.query(
-          'SELECT * from cohort WHERE id = 4',
+          'SELECT * from cohort WHERE id = 10',
         );
         expect(message).toBe("Sorry There's no cohort for this id to change");
         expect(rows).toHaveLength(0);
