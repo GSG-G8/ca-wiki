@@ -7,7 +7,7 @@ import './style.css';
 
 const { Header } = Layout;
 
-const AdminContainer = ({ children, buttonContent, buttonFunction }) => {
+const AdminContainer = ({ children, buttonContent, buttonRoute }) => {
   return (
     <>
       <Layout>
@@ -17,9 +17,11 @@ const AdminContainer = ({ children, buttonContent, buttonFunction }) => {
           </div>
           <div className="admin-header-btn">
             {buttonContent !== undefined && (
-              <Button onClick={buttonFunction} type="primary" danger>
+              // <Button onClick={buttonRoute} type="primary" danger>
+              <NavLink to={`${buttonRoute}`} className="Add-Link">
                 {buttonContent}
-              </Button>
+              </NavLink>
+              // </Button>
             )}
           </div>
         </Header>
@@ -64,12 +66,12 @@ const AdminContainer = ({ children, buttonContent, buttonFunction }) => {
 
 AdminContainer.defaultProps = {
   buttonContent: undefined,
-  buttonFunction: undefined,
+  buttonRoute: undefined,
 };
 
 AdminContainer.propTypes = {
   buttonContent: PropTypes.string,
-  buttonFunction: PropTypes.func,
+  buttonRoute: PropTypes.string,
   children: PropTypes.node.isRequired,
 };
 

@@ -82,7 +82,7 @@ class Cohort extends Component {
       <div>
         <AdminContainer
           buttonContent="Add Cohort"
-          buttonFunction={this.onClick}
+          buttonRoute="/admin/cohorts/add"
         >
           {data.length === 0 ? (
             <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} className="empty" />
@@ -102,7 +102,7 @@ class Cohort extends Component {
                       imgUrl={item.img_url}
                       cohortId={item.id}
                       student={item.id}
-                      editCard={this.editCohort}
+                      editCard={`/admin/cohorts/${item.id}/edit`}
                       deleteCard={this.deleteCohort}
                     />
                   </List.Item>
