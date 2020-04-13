@@ -24,10 +24,10 @@ class AdminProject extends Component {
         location: { search },
       } = this.props;
       const res = await axios.get(
-        `../../../api/v1/cohorts/${cohortId}/projects${search}`
+        `/api/v1/cohorts/${cohortId}/projects${search}`
       );
       const { data } = res.data;
-      const total = Math.ceil(data.length / 4) * 10;
+      const total = data.length * 2.5;
       this.setState({ data, total });
     } catch (err) {
       const {
@@ -42,13 +42,6 @@ class AdminProject extends Component {
     }
   }
 
-  onHandleChange = (page) => {
-    this.setState({
-      startPage: page * 4 - 4,
-      endPage: page * 4,
-    });
-  };
-
   render() {
     const { data, total, startPage, endPage } = this.state;
     const dataList = data.slice(startPage, endPage);
@@ -62,7 +55,7 @@ class AdminProject extends Component {
               <List
                 dataSource={dataList}
                 renderItem={(item) => (
-                  <List.Item className="admin-list-card">
+                  <List.Item key={item.id} className="admin-list-card">
                     <AdminCard
                       imgUrl={item.img_url}
                       name={item.name}
@@ -76,8 +69,14 @@ class AdminProject extends Component {
               />
               <Pagination
                 className="pagination"
+                defaultCurrent={1}
                 showQuickJumper
-                onChange={this.onHandleChange}
+                onChange={(page) => {
+                  this.setState({
+                    startPage: page * 4 - 4,
+                    endPage: page * 4,
+                  });
+                }}
                 total={total}
               />
             </>
@@ -89,8 +88,8 @@ class AdminProject extends Component {
 }
 
 AdminProject.propTypes = {
-  match: PropTypes.isRequired,
-  location: PropTypes.isRequired,
+  match: PropTypes.func.isRequired,
+  location: PropTypes.func.isRequired,
 };
 
 export default AdminProject;

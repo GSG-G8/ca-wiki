@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import PropTypes from 'prop-types';
-import { Button, notification } from 'antd';
+import { Button, notification, Popover } from 'antd';
 import './style.css';
 
 class AdminCard extends Component {
@@ -55,13 +55,22 @@ class AdminCard extends Component {
           </div>
           <div>
             <h3>Name</h3>
-            <p>{name}</p>
+            <p>
+              {name}
+              {projectId}
+            </p>
           </div>
         </div>
         {description && (
           <div>
             <h3>Description</h3>
-            <p>{description}</p>
+            {description.length > 40 ? (
+              <Popover placement="bottom" content={description} trigger="click">
+                <Button>Click</Button>
+              </Popover>
+            ) : (
+              <p>{description}</p>
+            )}
           </div>
         )}
         <div>

@@ -84,7 +84,7 @@
 
 .pagination {
   position: absolute;
-  bottom: 5%;
+  bottom: 3%;
   left: 50%;
   transform: translate(-50%, -5%);
 }
@@ -107,4 +107,9 @@
 
 .ant-pagination-item-active:focus a {
   color: var(--main-white);
+}
+
+.ant-list-split .ant-list-item {
+  border-bottom: none;
+  padding: 0;
 }
