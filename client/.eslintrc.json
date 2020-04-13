@@ -1,4 +1,5 @@
-{   
+{
+
     "parser": "babel-eslint",
     "extends": [
         "airbnb",
@@ -35,12 +36,7 @@
                 ]
             }
         ],
-        "react/state-in-constructor":[0,{
-            "extensions": [
-                ".js",
-                ".jsx"
-            ]
-        }],
+       
         "react/prefer-stateless-function":[0],
         "react/jsx-props-no-spreading":[0],
         "quotes": [
@@ -57,7 +53,8 @@
                 "trailingComma": "es5",
                 "singleQuote": true
             }
-        ]
+        ],
+        "react/state-in-constructor": [0, "always"]
     },
     "plugins": [
         "react",
