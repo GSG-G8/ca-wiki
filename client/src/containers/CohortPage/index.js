@@ -69,12 +69,6 @@ class Cohort extends Component {
     });
   };
 
-  // eslint-disable-next-line no-console
-  onClick = () => console.log('Clicked');
-
-  // eslint-disable-next-line no-console
-  editCohort = (id) => console.log(`Edited ${id}`);
-
   render() {
     const { data, startPage, endPage, total } = this.state;
     const list = data.slice(startPage, endPage);
