@@ -78,7 +78,7 @@ class Cohort extends Component {
           buttonFunction={this.onClick}
         >
           {data.length === 0 ? (
-            <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />
+            <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} className="empty" />
           ) : (
             <div>
               <List
@@ -110,6 +110,7 @@ class Cohort extends Component {
                     endPage: pageNumber * 4,
                   });
                 }}
+                className="pagination"
               />
             </div>
           )}

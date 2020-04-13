@@ -78,6 +78,21 @@
 
 .admin-content {
   width: 80%;
+  position: relative;
   padding-right: 200px;
   padding-top: 15px;
+}
+
+.pagination {
+  position: absolute;
+  left: 30%;
+  bottom: -10px;
+}
+.ant-modal {
+  margin-top: 130px;
+}
+.empty {
+  position: absolute;
+  top: 30%;
+  left: 40%;
 }
