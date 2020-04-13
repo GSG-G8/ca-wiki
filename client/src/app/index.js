@@ -1,7 +1,7 @@
 import React from 'react';
 import './style.css';
 import { BrowserRouter as Router } from 'react-router-dom';
-import AddDataForm from '../components/AddCohort';
+import AddDataForm from '../components/AddDataForm';
 
 function App() {
   return (
