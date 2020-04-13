@@ -6,9 +6,7 @@ import PropTypes from 'prop-types';
 
 const axios = require('axios');
 
-const AddDataForm = (props) => {
-  const { formType, apiLink, cohortId } = props;
-
+const AddDataForm = ({ formType, apiLink, cohortId }) => {
   const onFinish = async (values) => {
     try {
       const sendValues = values;
