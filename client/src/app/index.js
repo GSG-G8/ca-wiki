@@ -1,11 +1,15 @@
 import React from 'react';
 import './style.css';
+import { BrowserRouter as Router } from 'react-router-dom';
+import AddDataForm from '../components/AddCohort';
 
 function App() {
   return (
-    <div className="App">
-      <h1>CA wiki website</h1>
-    </div>
+    <Router>
+      <div className="App">
+        <AddDataForm formType="student" apiLink="/api/v1/alumni" cohortId={1} />
+      </div>
+    </Router>
   );
 }
 
