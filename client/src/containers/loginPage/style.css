@@ -72,6 +72,7 @@ border: 1px solid #707070;
     opacity: 1;
   }
 
+  
   .ant-form-item-has-error .ant-input-affix-wrapper, .ant-input, .ant-form-item-has-error .ant-input-affix-wrapper, .ant-form-item-has-error .ant-input:hover, .ant-form-item-has-error .ant-input-affix-wrapper:hover {
     background-color: #E8505B;
     border: 1px solid #d9d9d9;
