@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 const axios = require('axios');
 
-const AddCohortForm = () => {
+const AddDataForm = () => {
   const onFinish = async (values) => {
     try {
       const response = await axios.post('/api/v1/cohorts', values);
@@ -82,4 +82,4 @@ const AddCohortForm = () => {
   );
 };
 
-export default AddCohortForm;
+export default AddDataForm;
