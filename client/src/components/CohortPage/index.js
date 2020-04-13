@@ -13,7 +13,7 @@ class Cohort extends Component {
     data: [],
     startPage: 0,
     endPage: 4,
-    total: 0,
+    total: 5,
   };
 
   async componentDidMount() {
@@ -36,7 +36,7 @@ class Cohort extends Component {
           const { data } = this.state;
           this.setState({
             data: data.filter((cohort) => cohort.id !== id),
-            total: data.length * 2.5,
+            total: data.length * 2.5 - 4,
           });
           const {
             data: {
