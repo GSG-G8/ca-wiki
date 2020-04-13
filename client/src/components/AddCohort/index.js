@@ -2,13 +2,18 @@ import React from 'react';
 import './style.css';
 import { Form, Input, Button, message } from 'antd';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 const axios = require('axios');
 
-const AddDataForm = () => {
+const AddDataForm = (props) => {
+  const { formType, apiLink, cohortId } = props;
+
   const onFinish = async (values) => {
     try {
-      const response = await axios.post('/api/v1/cohorts', values);
+      const sendValues = values;
+      sendValues.cohortId = cohortId;
+      const response = await axios.post(apiLink, sendValues);
       const { message: resMessage } = response.data.data;
       message.success(resMessage);
     } catch (err) {
@@ -42,15 +47,33 @@ const AddDataForm = () => {
         <Input />
       </Form.Item>
 
-      <Form.Item
-        label="Description"
-        name="description"
-        rules={[
-          { required: true, message: 'Please input cohort description!' },
-        ]}
-      >
-        <Input />
-      </Form.Item>
+      {formType !== 'student' && (
+        <Form.Item
+          label="Description"
+          name="description"
+          rules={[
+            { required: true, message: 'Please input cohort description!' },
+          ]}
+        >
+          <Input />
+        </Form.Item>
+      )}
+
+      {formType === 'student' && (
+        <Form.Item
+          label="Email"
+          name="email"
+          rules={[
+            {
+              required: true,
+              type: 'email',
+              message: 'Please input student email!',
+            },
+          ]}
+        >
+          <Input />
+        </Form.Item>
+      )}
 
       <Form.Item
         label="Image URL"
@@ -72,6 +95,39 @@ const AddDataForm = () => {
         <Input />
       </Form.Item>
 
+      {formType === 'project' && (
+        <>
+          <Form.Item
+            label="Website Link"
+            name="websiteLink"
+            rules={[
+              {
+                required: true,
+                type: 'url',
+                message: 'Please input website link!',
+              },
+            ]}
+          >
+            <Input />
+          </Form.Item>
+
+          <Form.Item
+            label="Project Type"
+            name="projectType"
+            rules={[
+              {
+                required: true,
+                type: 'string',
+                enum: ['internal', 'remotely'],
+                message: 'Please input project type!',
+              },
+            ]}
+          >
+            <Input />
+          </Form.Item>
+        </>
+      )}
+
       <Form.Item className="cohort-form" wrapperCol={{ offset: 8, span: 16 }}>
         <Button type="primary" htmlType="submit">
           Add
@@ -80,6 +136,16 @@ const AddDataForm = () => {
       </Form.Item>
     </Form>
   );
+};
+
+AddDataForm.propTypes = {
+  formType: PropTypes.oneOf(['cohort', 'student', 'project']).isRequired,
+  apiLink: PropTypes.oneOf([
+    '/api/v1/alumni',
+    '/api/v1/projects',
+    '/api/v1/cohorts',
+  ]).isRequired,
+  cohortId: PropTypes.number.isRequired,
 };
 
 export default AddDataForm;
