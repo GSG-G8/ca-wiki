@@ -1,14 +1,8 @@
 INSERT INTO admin (username , password) VALUES ('Muhammad','$2b$10$n99wQBmJs3ecMzRQSsGs2.ogSubljcshvD85TiYcl/ZO.63eRBpJW');
 
 INSERT INTO cohort (name , description , img_url , github_link) VALUES 
-('G1','GazaSkyGeeks Code Academy, 1st Cohort','https://is4-ssl.mzstatic.com/image/thumb/Purple124/v4/6c/23/0a/6c230ac2-0fa2-6f45-6a8b-7284610b1911/AppIcon_g1_prod-0-1x_U007emarketing-0-0-GLES2_U002c0-512MB-sRGB-0-0-0-85-220-0-0-0-10.png/246x0w.png','https://github.com/FACG1'),
-('G2','GazaSkyGeeks Code Academy, 2nd Cohort','https://www.g2.com/square-logo.png','https://github.com/FACG2'),
-('G3','GazaSkyGeeks Code Academy, 3rd Cohort','https://clubberia.com/image/venue/3442/1/1/3442.jpg','https://github.com/FACG3'),
-('G4','GazaSkyGeeks Code Academy, 4th Cohort','https://avatars1.githubusercontent.com/u/37267768?s=200&v=4','https://github.com/FACG4'),
-('G5','GazaSkyGeeks Code Academy, 5th Cohort','https://avatars3.githubusercontent.com/u/37267782?s=200&v=4','https://github.com/FACG5'),
-('G6','GazaSkyGeeks Code Academy, 6th Cohort','https://avatars3.githubusercontent.com/u/37267794?s=200&v=4','https://github.com/FACG6'),
-('G7','GazaSkyGeeks Code Academy, 7th Cohort','https://avatars3.githubusercontent.com/u/52123464?s=200&v=4','https://github.com/GSG-G7'),
-('G8','GazaSkyGeeks Code Academy, 8th Cohort','https://avatars0.githubusercontent.com/u/59821022?s=200&v=4','https://github.com/GSG-G8');
+('G8','GazaSkyGeeks Code Academy, 8th Cohort','https://avatars0.githubusercontent.com/u/59821022?s=200&v=4','https://github.com/GSG-G8'),
+('G7','GazaSkyGeeks Code Academy, 7th Cohort','https://avatars3.githubusercontent.com/u/52123464?s=200&v=4','https://github.com/GSG-G7');
 
 INSERT INTO student (name , email , img_url , github_link , cohort_id) VALUES
 ('Alaa','alaa@gmail.com','https://avatars2.githubusercontent.com/u/26024288?s=60&u=573706aef193cc5bcb8a28969cff88bf282bb6ef&v=4','https://github.com/AlaaSaadeddin',1),
