@@ -1,0 +1,83 @@
+.ant-layout-header {
+  height: 15vh;
+  min-height: 119px;
+  background-color: var(--main-white);
+  padding: 15px 130px 20px 50px;
+  font-family: var(--main-font);
+}
+
+.admin-header-image {
+  display: flex;
+  text-align: left;
+}
+
+.admin-header-image img {
+  width: 250px;
+  height: 50px;
+}
+
+.admin-header-btn {
+  display: flex;
+  justify-content: flex-end;
+}
+.admin-header-btn button {
+  width: 180px;
+  height: 50px;
+  font-size: 18px;
+}
+
+.admin-container {
+  display: flex;
+  background-color: var(--main-white);
+  height: 80vh;
+  min-height: 500px;
+  padding-bottom: 30px;
+  font-family: var(--main-font);
+}
+
+.admin-container-side {
+  width: 20%;
+}
+
+.admin-side {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 15px 30px 0 90px;
+  box-shadow: var(--box-shadow);
+  border-radius: 5px;
+  min-height: 95%;
+}
+
+.admin-side-btn {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  width: 100%;
+  padding-bottom: 30px;
+}
+
+.admin-menu {
+  width: 100%;
+  list-style: none;
+  padding: 30px 0;
+}
+
+.admin-menu li {
+  margin-bottom: 15px;
+}
+
+.admin-menu-a {
+  color: var(--content-blue-green);
+}
+
+.admin-menu-active {
+  color: var(--main-color);
+  font-weight: bold;
+}
+
+.admin-content {
+  width: 80%;
+  padding-right: 200px;
+  padding-top: 15px;
+}
