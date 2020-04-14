@@ -1,0 +1,36 @@
+
+.state {
+    width: 580px;
+    height: 300px;
+    padding: 20px;
+    box-shadow: var(--box-shadow);
+    border-radius: 5px;
+}
+
+.titles {
+    display: flex;
+    justify-content: space-between;
+    margin-right: 50px;
+    margin-top: 20px;
+
+}
+ .state h1 {
+    text-align: left;
+    font: Bold 16px/16px Open Sans;
+    margin-bottom: 50px;
+    color: #101C36;
+ }
+
+ .titles h4 , p {
+    font: Regular 14px/28px Open Sans;
+    color: #101C36;
+ }
+
+
+.ant-progress-inner {
+    background-color: #D8E4FF;
+}
+
+.ant-progress-bg {
+background-color: var(--main-color);
+}
