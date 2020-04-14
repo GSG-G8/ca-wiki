@@ -6,16 +6,19 @@ import './style.css';
 
 class Statistics extends Component {
   state = {
-    data: [],
+    data: {
+      cohortsCount: '',
+      projectsCount: '',
+      studentsCount: '',
+    },
   };
 
   async componentDidMount() {
     try {
-      const res = await axios.get('/api/v1/stats');
-      console.log('response', res);
-      // const { result } = res.data;
-      // console.log('data is', result);
-      this.setState({ data: res.data });
+      const {
+        data: { data },
+      } = await axios.get('/api/v1/stats');
+      this.setState({ data });
     } catch (err) {
       console.log('There is no data');
     }
@@ -30,24 +33,28 @@ class Statistics extends Component {
             <h1>Control Panel Homepage</h1>
             <div className="titles">
               <h4>NumberOfCohorts</h4>
-              <p>{cohortsCount}</p>
-            </div>
-            <Progress percent={cohortsCount} size="small" status="active" />
-            <div className="titles">
-              <h4>NumberOfProjects</h4>
-              <p>{projectsCount}</p>
+              <p>{data.cohortsCount}</p>
             </div>
             <Progress
-              percent={projectsCount / cohortsCount}
+              percent={data.cohortsCount}
+              size="small"
+              status="active"
+            />
+            <div className="titles">
+              <h4>NumberOfProjects</h4>
+              <p>{data.projectsCount}</p>
+            </div>
+            <Progress
+              percent={data.projectsCount / data.cohortsCount}
               size="small"
               status="active"
             />
             <div className="titles">
               <h4>NumberOfStudents</h4>
-              <p>{studentsCount}</p>
+              <p>{data.studentsCount}</p>
             </div>
             <Progress
-              percent={studentsCount / cohortsCount}
+              percent={data.studentsCount / data.cohortsCount}
               size="small"
               status="active"
             />
