@@ -55,6 +55,7 @@ const AdminContainer = ({
               </ul>
               <div className="admin-side-btn">
                 <Button
+                  className="logout-btn"
                   type="primary"
                   onClick={() => {
                     logout();

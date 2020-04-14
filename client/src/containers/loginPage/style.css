@@ -1,85 +1,109 @@
-.login-container{
+.login-container {
   display: flex;
   justify-content: space-around;
-  height:100vh;
-  widows: 100%;
 
 }
+
 .login-left-side {
 width: 50%;
-background: #E8505B 0% 0% no-repeat padding-box;
+background: var( --main-color) 0% 0% no-repeat padding-box;
 border: 1px solid #707070;
 }
 
+.login-right-side {
+  width: 50%;
+}
+
+.login-form {
+  width: 40%;
+  height: 3vh;
+  margin: 5px 160px;
+}
+
+.login-logo {
+  align-items: center;
+  margin-top: 190px;
+}
+
+.anticon svg {
+  display: inline-block;
+  color: var(--main-white);
+}
+
+.login-logo h3 {
+  font: bold 30px/30px var(--main-font);
+  letter-spacing: 0px;
+  color: var(--main-white);
+  margin: 40px 260px 10px 0px;
+  }
+
+.login-logo p {
+  letter-spacing: 0px;
+  color: var(--main-white);
+  font: 600 13px/16px var(--main-font);
+  margin: 10px 170px 10px 0px;
+
+  }
+
+.logo {
+  width: 260px;
+  height: 7vh;
+  margin-right: 100px;
+  }
 
 .ant-btn-primary {
-  color: #E8505B;
-  background-color: white;
-  border-color: #E8505B;
+  color: var( --main-color);
+  background-color: var(--main-white);
+  border-color: var( --main-color);
   height: 40px;
   width: 120px;
-  margin-right: 80px;
+  margin-right: 200px;
 }
 
 .ant-input-affix-wrapper {
   position: relative;
   width: 30%;
   padding: 4px 11px;
-  background-color: #E8505B;
+  background-color: var( --main-color);
   border: 1px solid #d9d9d9;
   border-radius: 2px;
   display: inline-flex;
 }
 
-.login-logo {
-  align-items: center;
-  margin-top: 150px;
-}
-
-.anticon svg {
-  display: inline-block;
-  color: white;
-}
-
-
-.login-logo h1{
-  font: Bold 34px/46px Open Sans;
-  letter-spacing: 0px;
-  color: #FFFFFF;
-  margin-right: 120px;
+.right-side-img{
+  height: 100vh;
+  width: 516px;
   }
 
-  .login-logo p {
-  font: SemiBold 19px/26px Open Sans;
-  letter-spacing: 0px;
-  color: #FFFFFF;
-  margin-right: 46px;
-  font: SemiBold 19px/26px Open Sans;
+.form-input {
+  height: 6vh;
+  color: var(--main-white);
   }
 
-  .ant-input-affix-wrapper > input.ant-input {
+.ant-input-affix-wrapper > input.ant-input {
     padding: 0;
     border: none;
     outline: none;
-    color: white;
+    color:var(--main-white);
   }
 
   #normal_login_username.ant-input , #normal_login_password.ant-input{
-    background-color: #E8505B;
-  }
-  #normal_login_username.ant-input , #normal_login_password.ant-input ::placeholder{
-    color: white;
-    opacity: 1;
+    background-color: var( --main-color);
   }
 
-  
+  #normal_login_username.ant-input , #normal_login_password.ant-input ::placeholder{
+    color: var(--main-white);
+    opacity: 0.6;
+  }
+
   .ant-form-item-has-error .ant-input-affix-wrapper, .ant-input, .ant-form-item-has-error .ant-input-affix-wrapper, .ant-form-item-has-error .ant-input:hover, .ant-form-item-has-error .ant-input-affix-wrapper:hover {
-    background-color: #E8505B;
-    border: 1px solid #d9d9d9;
+    background-color: var( --main-color);
+    opacity: 0.7;
+    border: 0.6px solid #d9d9d9;
   }
 
   .ant-form-item-explain > div {
-    color: #FFFFFF;
+    color:var(--main-white);
   }
 
   .ant-input-affix-wrapper:hover, .ant-form-item-has-error .ant-input-affix-wrapper:not([disabled]):hover {
@@ -91,16 +115,17 @@ border: 1px solid #707070;
   }
 
   .ant-btn-primary:focus {
-    color: #E8505B;
-    background-color: #FFFFFF;
-    border-color: #E8505B;
+    color: var( --main-color);
+    background-color: var(--main-white);
+    border-color: var( --main-color);
   }
 
 input:-webkit-autofill,
 input:-webkit-autofill:hover, 
 input:-webkit-autofill:focus, 
 input:-webkit-autofill:active  {
-    box-shadow: 0 0 0 30px #E8505B inset !important;
-    -webkit-text-fill-color: #FFFFFF !important;
-    caret-color: white;
+    box-shadow: 0 0 0 30px var( --main-color)
+ inset !important;
+    -webkit-text-fill-color: var(--main-white) !important;
+    caret-color: var(--main-white);
 }

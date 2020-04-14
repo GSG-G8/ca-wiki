@@ -81,3 +81,22 @@
   padding-right: 200px;
   padding-top: 15px;
 }
+
+.logout-btn {
+  color: var( --main-white);
+  background-color: var(--main-color);
+  border-color: var( --main-color);
+  height: 40px;
+  width: 100px;
+  margin-right: 0px;
+}
+
+.logout-btn:hover {
+  color: var( --main-white);
+}
+
+.logout-btn:focus {
+  color: var( --main-white);
+  background-color: var(--main-color);
+  border-color: var( --main-color);
+}

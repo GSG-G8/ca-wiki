@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { Form, Input, Button } from 'antd';
-import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import * as ROUTES from '../../constants/routes';
@@ -32,7 +31,7 @@ const LoginPage = ({ updateAuth, history }) => {
       <div className="login-left-side">
         <div className="login-logo">
           <img src={logo} alt="logo" />
-          <h1>Login</h1>
+          <h3>Login</h3>
           <p>Please sign in to continue</p>
           <div className="login-form" />
           <Form
@@ -52,10 +51,7 @@ const LoginPage = ({ updateAuth, history }) => {
                 },
               ]}
             >
-              <Input
-                prefix={<UserOutlined className="site-form-item-icon" />}
-                placeholder="Username"
-              />
+              <Input className="form-input" placeholder="Username" />
             </Form.Item>
             <Form.Item
               name="password"
@@ -67,7 +63,7 @@ const LoginPage = ({ updateAuth, history }) => {
               ]}
             >
               <Input
-                prefix={<LockOutlined className="site-form-item-icon" />}
+                className="form-input"
                 type="password"
                 placeholder="Password"
               />
@@ -87,7 +83,7 @@ const LoginPage = ({ updateAuth, history }) => {
         </div>
       </div>
       <div className="login-right-side">
-        <img src={loginImg} alt="login" />
+        <img className="right-side-img" src={loginImg} alt="login" />
       </div>
     </div>
   );
