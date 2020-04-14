@@ -11,6 +11,17 @@ class AdminCard extends Component {
   };
 
   async componentDidMount() {
+    this.getStudents();
+  }
+
+  componentDidUpdate(prevProps) {
+    const { projectId } = this.props;
+    if (projectId !== prevProps.projectId) {
+      this.getStudents();
+    }
+  }
+
+  async getStudents() {
     try {
       const { projectId } = this.props;
       if (projectId) {
@@ -55,10 +66,7 @@ class AdminCard extends Component {
           </div>
           <div>
             <h3>Name</h3>
-            <p>
-              {name}
-              {projectId}
-            </p>
+            <p>{name}</p>
           </div>
         </div>
         {description && (

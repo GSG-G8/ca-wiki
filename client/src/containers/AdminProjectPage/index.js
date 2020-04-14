@@ -69,7 +69,7 @@ class AdminProject extends Component {
               />
               <Pagination
                 className="pagination"
-                defaultCurrent={1}
+                defaultCurrent={0}
                 showQuickJumper
                 onChange={(page) => {
                   this.setState({
