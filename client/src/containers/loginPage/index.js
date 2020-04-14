@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Form, Input, Button } from 'antd';
+import { Form, Input, Button, notification } from 'antd';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import * as ROUTES from '../../constants/routes';
@@ -15,17 +15,45 @@ const LoginPage = ({ updateAuth, history }) => {
     const { push } = history;
     try {
       const {
-        data: { statusCode },
+        data: { statusCode, message },
       } = await axios.post('/api/v1/login', values);
       if (statusCode === 200) {
         updateAuth();
+        notification.success({
+          message,
+        });
         push(ROUTES.HOME_PAGE);
       }
     } catch (err) {
-      console.log('error', err);
+      const {
+        response: { status },
+      } = err;
+
+      if (status === 500) {
+        const {
+          response: { statusText },
+        } = err;
+        notification.error({
+          message: statusText,
+        });
+      } else if (status === 400) {
+        const {
+          response: {
+            data: { message },
+          },
+        } = err;
+        if (Array.isArray(message)) {
+          notification.error({
+            message: message[0],
+          });
+        } else {
+          notification.error({
+            message,
+          });
+        }
+      }
     }
   };
-
   return (
     <div className="login-container">
       <div className="login-left-side">
