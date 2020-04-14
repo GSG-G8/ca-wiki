@@ -10,7 +10,9 @@ const AddDataForm = ({ formType, apiLink, cohortId }) => {
   const onFinish = async (values) => {
     try {
       const sendValues = values;
-      sendValues.cohortId = cohortId;
+      if (formType !== 'cohort') {
+        sendValues.cohortId = cohortId;
+      }
       const response = await axios.post(apiLink, sendValues);
       const { message: resMessage } = response.data.data;
       message.success(resMessage);
@@ -136,6 +138,8 @@ const AddDataForm = ({ formType, apiLink, cohortId }) => {
   );
 };
 
+AddDataForm.defaultProps = { cohortId: undefined };
+
 AddDataForm.propTypes = {
   formType: PropTypes.oneOf(['cohort', 'student', 'project']).isRequired,
   apiLink: PropTypes.oneOf([
@@ -143,7 +147,7 @@ AddDataForm.propTypes = {
     '/api/v1/projects',
     '/api/v1/cohorts',
   ]).isRequired,
-  cohortId: PropTypes.number.isRequired,
+  cohortId: PropTypes.number,
 };
 
 export default AddDataForm;
