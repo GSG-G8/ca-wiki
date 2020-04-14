@@ -19,6 +19,10 @@ router.post('/login', login);
 
 router.use(protectedRoute);
 
+router.get('/is-auth', (req, res) => {
+  res.send({ statusCode: 200 });
+});
+
 router.route('/alumni/:studentId').put(putStudentData).delete(deleteStudent);
 router.post('/alumni', addStudentData);
 

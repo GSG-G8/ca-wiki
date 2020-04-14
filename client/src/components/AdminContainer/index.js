@@ -7,7 +7,12 @@ import './style.css';
 
 const { Header } = Layout;
 
-const AdminContainer = ({ children, buttonContent, buttonFunction }) => {
+const AdminContainer = ({
+  children,
+  buttonContent,
+  buttonFunction,
+  logout,
+}) => {
   return (
     <>
       <Layout>
@@ -49,7 +54,13 @@ const AdminContainer = ({ children, buttonContent, buttonFunction }) => {
                 </li>
               </ul>
               <div className="admin-side-btn">
-                <Button type="primary" danger>
+                <Button
+                  className="logout-btn"
+                  type="primary"
+                  onClick={() => {
+                    logout();
+                  }}
+                >
                   Logout
                 </Button>
               </div>
@@ -68,6 +79,7 @@ AdminContainer.propTypes = {
   buttonContent: PropTypes.string,
   buttonFunction: PropTypes.func.isRequired,
   children: PropTypes.string.isRequired,
+  logout: PropTypes.func.isRequired,
 };
 
 export default AdminContainer;
