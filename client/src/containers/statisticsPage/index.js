@@ -13,16 +13,16 @@ class Statistics extends Component {
     try {
       const res = await axios.get('/api/v1/stats');
       console.log('response', res);
-      const { data } = res.data;
-      console.log('data is', data);
-      this.setState({ data });
+      // const { result } = res.data;
+      // console.log('data is', result);
+      this.setState({ data: res.data });
     } catch (err) {
       console.log('There is no data');
     }
   }
 
   render() {
-    const { numberOfCohorts, numberOfProjects, numberOfStudent } = this.state;
+    const { data } = this.state;
     return (
       <div>
         <AdminContainer>
@@ -30,24 +30,24 @@ class Statistics extends Component {
             <h1>Control Panel Homepage</h1>
             <div className="titles">
               <h4>NumberOfCohorts</h4>
-              <p>{numberOfCohorts}</p>
+              <p>{cohortsCount}</p>
             </div>
-            <Progress percent={numberOfCohorts} size="small" status="active" />
+            <Progress percent={cohortsCount} size="small" status="active" />
             <div className="titles">
               <h4>NumberOfProjects</h4>
-              <p>{numberOfProjects}</p>
+              <p>{projectsCount}</p>
             </div>
             <Progress
-              percent={numberOfProjects / numberOfCohorts}
+              percent={projectsCount / cohortsCount}
               size="small"
               status="active"
             />
             <div className="titles">
               <h4>NumberOfStudents</h4>
-              <p>{numberOfStudent}</p>
+              <p>{studentsCount}</p>
             </div>
             <Progress
-              percent={numberOfStudent / numberOfCohorts}
+              percent={studentsCount / cohortsCount}
               size="small"
               status="active"
             />
