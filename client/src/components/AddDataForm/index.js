@@ -1,8 +1,8 @@
 import React from 'react';
-import './style.css';
-import { Form, Input, Button, message } from 'antd';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { Form, Input, Button, message } from 'antd';
+import './style.css';
 
 const axios = require('axios');
 
