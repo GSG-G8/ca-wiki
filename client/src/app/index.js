@@ -84,9 +84,11 @@ class App extends Component {
                   )}
                 />
                 <Route
-                  path={ROUTES.COHORT_PAGE}
+                  path={ROUTES.COHORT_PROJECTS_PAGE}
                   exact
-                  render={() => <AdminProject logout={this.logout} />}
+                  render={(props) => (
+                    <AdminProject {...props} logout={this.logout} />
+                  )}
                 />
               </>
             ) : (

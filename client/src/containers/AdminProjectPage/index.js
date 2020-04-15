@@ -85,10 +85,11 @@ class AdminProject extends Component {
 
   render() {
     const { data, total, startPage, endPage } = this.state;
+    const { logout } = this.props;
     const dataList = data.slice(startPage, endPage);
     return (
       <div className="App">
-        <AdminContainer buttonContent="Add Project">
+        <AdminContainer buttonContent="Add Project" logout={logout}>
           {undefined ? (
             <Empty />
           ) : (
@@ -132,6 +133,7 @@ class AdminProject extends Component {
 AdminProject.propTypes = {
   match: PropTypes.func.isRequired,
   location: PropTypes.func.isRequired,
+  logout: PropTypes.func.isRequired,
 };
 
 export default AdminProject;

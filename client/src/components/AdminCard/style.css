@@ -56,6 +56,11 @@
     border-color: var(--border-white);
 }
 
+.delete:focus {
+    border-color: var(--border-white);
+    color: #414D55;
+}
+
 .edit {
     margin-bottom: 10px;
     color: var(--main-color);
