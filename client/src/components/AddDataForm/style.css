@@ -40,8 +40,13 @@
   border-radius: 0px 8px 8px 0px;
 }
 
+.add-data-form .ant-form-item-explain > div {
+  color: var(--main-color)
+}
 .add-data-input {
   border: 0;
+  color: black;
+  background-color: var(--main-white);
 }
 
 .add-form-row .ant-col {
@@ -65,4 +70,13 @@ border: 0;
 
 .add-data-form .ant-form-item-has-error .ant-input:focus{
   box-shadow: 0 0 0 2px transparent;
+}
+
+.add-data-input:-webkit-autofill,
+.add-data-input:-webkit-autofill:hover, 
+.add-data-input:-webkit-autofill:focus, 
+.add-data-input:-webkit-autofill:active  {
+  box-shadow: 0 0 0 30px var( --main-white) inset !important;
+  -webkit-text-fill-color: var(--main-black) !important;
+  caret-color: var(--main-white);
 }
