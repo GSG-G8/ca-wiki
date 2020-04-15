@@ -58,7 +58,7 @@ const LoginPage = ({ updateAuth, history }) => {
     <div className="login-container">
       <div className="login-left-side">
         <div className="login-logo">
-          <img src={logo} alt="logo" />
+          <img src={logo} className="logo" alt="logo" />
           <h3>Login</h3>
           <p>Please sign in to continue</p>
           <div className="login-form" />
