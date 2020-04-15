@@ -35,6 +35,8 @@ const AddEditForm = ({ formType, addLink, editLink, cohortId, inputData }) => {
       if (err.response.status) {
         const { message: errMessage } = err.response.data.data;
         message.error(errMessage);
+      } else {
+        message.error('internal error');
       }
     }
   };

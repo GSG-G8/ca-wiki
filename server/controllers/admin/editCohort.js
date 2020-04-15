@@ -26,7 +26,7 @@ const editCohort = async (req, res, next) => {
     }
   } catch (err) {
     if (err.errors) {
-      res.status(400).json({ statusCode: 400, message: err.errors });
+      res.status(400).json({ statusCode: 400, data: { message: err.errors } });
     } else {
       next(err);
     }
