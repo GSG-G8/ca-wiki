@@ -10,12 +10,14 @@ import axios from 'axios';
 import * as ROUTES from '../constants/routes';
 import LoginPage from '../containers/loginPage';
 import AdminContainer from '../components/AdminContainer';
+import AddDataForm from '../components/AddDataForm';
 
 import './style.css';
 
 class App extends Component {
   state = {
     isAuth: false,
+    redirect: false,
   };
 
   async componentDidMount() {
@@ -33,6 +35,7 @@ class App extends Component {
     } catch (error) {
       this.setState({
         isAuth: false,
+        redirect: true,
       });
     }
   }
@@ -48,7 +51,7 @@ class App extends Component {
         data: { statusCode },
       } = await axios.get('/api/v1/logout');
       if (statusCode === 200) {
-        this.setState({ isAuth: false });
+        this.setState({ isAuth: false, redirect: false });
       } else {
         this.setState({ isAuth: true });
       }
@@ -58,7 +61,7 @@ class App extends Component {
   };
 
   render() {
-    const { isAuth } = this.state;
+    const { isAuth, redirect } = this.state;
 
     return (
       <Router>
@@ -84,10 +87,22 @@ class App extends Component {
                     <AdminContainer {...props} logout={this.logout} />
                   )}
                 />
+
+                <Route
+                  exact
+                  path={ROUTES.ADD_STUDENT}
+                  render={() => (
+                    <AddDataForm
+                      formType="student"
+                      apiLink="/api/v1/alumni"
+                      cohortId={1}
+                    />
+                  )}
+                />
               </>
-            ) : (
+            ) : redirect ? (
               <Route render={() => <Redirect to={ROUTES.LOGIN_PAGE} />} />
-            )}
+            ) : null}
           </Switch>
         </div>
       </Router>
