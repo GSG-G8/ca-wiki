@@ -1,0 +1,86 @@
+.add-data-form {
+  margin: 50px auto;
+  width: 1000px;
+  padding: 24px 30px 24px 30px;
+  box-shadow: var(--box-shadow);
+  border-radius: 10px;
+}
+
+.add-form-row .ant-form-item-label {
+  text-align: left;
+}
+
+.cohort-form {
+  margin: 0;
+  text-align: right;
+}
+
+.cohort-form button {
+  width: 108px;
+  height: 40px;
+  border: 0;
+}
+.cohort-form a {
+  display: inline-block;
+  padding: 9px 32.5px;
+  border: 0;
+}
+
+.cohort-form button {
+  background-color: var(--main-white);
+  color: var(--main-color);
+  border-radius: 8px 0px 0px 8px;
+  box-shadow: var(--box-shadow);
+  margin-right: 0;
+}
+
+.cohort-form a {
+  background-color: var(--border-white);
+  color: var(--content-blue-green);
+  border-radius: 0px 8px 8px 0px;
+}
+
+.add-data-form .ant-form-item-explain > div {
+  color: var(--main-color)
+}
+.add-data-input {
+  border: 0;
+  color: black;
+  background-color: var(--main-white);
+}
+
+.add-form-row .ant-col {
+  border-bottom: 1px solid var(--input-border);
+}
+
+.cohort-form .ant-col{
+border: 0;
+}
+
+.add-data-input:focus {
+    box-shadow: 0 0 0 2px transparent;
+    border-color: transparent;
+}
+
+.add-data-input:hover {
+  background-color: var(--main-white);
+}
+
+.add-data-form .ant-form-item-has-error .add-data-input {
+  box-shadow: 0 0 0 2px transparent;
+  background-color: var(--main-white);
+}
+
+.add-data-form .ant-form-item-has-error .ant-input:focus{
+  box-shadow: 0 0 0 2px transparent;
+}
+
+.add-data-input:-webkit-autofill,
+.add-data-input:-webkit-autofill:hover, 
+.add-data-input:-webkit-autofill:focus, 
+.add-data-input:-webkit-autofill:active  {
+  box-shadow: 0 0 0 30px var( --main-white) inset !important;
+  -webkit-text-fill-color: var(--main-black) !important;
+  caret-color: var(--main-white);
+  background-color: var(--main-white);
+}

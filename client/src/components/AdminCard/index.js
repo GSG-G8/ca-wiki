@@ -126,11 +126,13 @@ class AdminCard extends Component {
           </div>
         )}
         <div>
-          <Button onClick={() => editCard()} className="card-btn edit">
+          <Link to={editCard} className="card-btn edit">
             Edit
-          </Button>
+          </Link>
           <Button
-            onClick={() => deleteCard(projectId)}
+            onClick={() =>
+              projectId ? deleteCard(projectId) : deleteCard(cohortId, name)
+            }
             className="card-btn delete"
           >
             Delete
@@ -151,7 +153,7 @@ AdminCard.defaultProps = {
 
 AdminCard.propTypes = {
   imgUrl: PropTypes.string.isRequired,
-  name: PropTypes.func.isRequired,
+  name: PropTypes.string.isRequired,
   description: PropTypes.string,
   githbUrl: PropTypes.string.isRequired,
   websiteLink: PropTypes.string,

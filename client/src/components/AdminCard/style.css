@@ -48,7 +48,7 @@
     border-color: var(--border-white);
     color: #414D55;
     border-radius: 5px;
-    margin: 0 auto;
+    margin: 10px auto;
     box-shadow: var(--box-shadow);
 }
 
@@ -66,8 +66,9 @@
     color: var(--main-color);
 }
 
-.admin-card a, .admin-card p {
-    color: var(--content-grey);
+.edit {
+    color: var(--main-color);
+    padding: 4px 15px;
 }
 
 .ant-popover-inner-content {
