@@ -44,7 +44,7 @@
 
 .card-btn {
     display: block;
-    width: 90px;
+    width: 80px;
     border-color: var(--border-white);
     color: #414D55;
     border-radius: 5px;
@@ -57,7 +57,7 @@
 }
 
 .edit {
-    margin-bottom: 17px;
+    margin-bottom: 10px;
     color: var(--main-color);
 }
 
@@ -67,4 +67,13 @@
 
 .ant-popover-inner-content {
     width: 500px;
+}
+
+.description-btn, .description-btn:focus {
+    border: none;
+    outline:none
+}
+
+.description-btn:hover, .description-btn:focus {
+    color: var(--content-grey);
 }

@@ -84,7 +84,7 @@
 
 .pagination {
   position: absolute;
-  bottom: 3%;
+  bottom: 4%;
   left: 50%;
   transform: translate(-50%, -5%);
 }

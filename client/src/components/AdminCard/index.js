@@ -74,7 +74,7 @@ class AdminCard extends Component {
             <h3>Description</h3>
             {description.length > 40 ? (
               <Popover placement="bottom" content={description} trigger="click">
-                <Button>Click</Button>
+                <Button className="description-btn">Click</Button>
               </Popover>
             ) : (
               <p>{description}</p>
@@ -129,7 +129,7 @@ class AdminCard extends Component {
           <Button onClick={() => editCard()} className="card-btn edit">
             Edit
           </Button>
-          <Button onClick={() => deleteCard()} className="card-btn">
+          <Button onClick={() => deleteCard(projectId)} className="card-btn">
             Delete
           </Button>
         </div>
