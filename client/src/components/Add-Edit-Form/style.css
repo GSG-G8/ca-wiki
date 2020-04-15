@@ -62,11 +62,14 @@ border: 0;
     border-color: transparent;
 }
 
+.add-data-input:hover {
+  background-color: var(--main-white);
+}
 
 .add-data-form .ant-form-item-has-error .add-data-input {
   box-shadow: 0 0 0 2px transparent;
+  background-color: var(--main-white);
 }
-
 
 .add-data-form .ant-form-item-has-error .ant-input:focus{
   box-shadow: 0 0 0 2px transparent;
@@ -79,4 +82,5 @@ border: 0;
   box-shadow: 0 0 0 30px var( --main-white) inset !important;
   -webkit-text-fill-color: var(--main-black) !important;
   caret-color: var(--main-white);
+  background-color: var(--main-white);
 }
