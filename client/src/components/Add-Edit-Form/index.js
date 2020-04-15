@@ -6,16 +6,23 @@ import './style.css';
 
 const axios = require('axios');
 
-const AddDataForm = ({ formType, apiLink, cohortId }) => {
+const AddEditForm = ({ formType, addLink, editLink, cohortId, inputData }) => {
   const onFinish = async (values) => {
     try {
       const sendValues = values;
       if (formType !== 'cohort') {
         sendValues.cohortId = cohortId;
       }
-      const response = await axios.post(apiLink, sendValues);
-      const { message: resMessage } = response.data.data;
-      message.success(resMessage);
+
+      if (addLink) {
+        const response = await axios.post(addLink, sendValues);
+        const { message: resMessage } = response.data.data;
+        message.success(resMessage);
+      } else {
+        const response = await axios.put(editLink, sendValues);
+        const { message: resMessage } = response.data.data;
+        message.success(resMessage);
+      }
     } catch (err) {
       const { message: errMessage } = err.response.data.data;
       message.error(errMessage);
@@ -31,7 +38,7 @@ const AddDataForm = ({ formType, apiLink, cohortId }) => {
       labelCol={{ span: 3 }}
       wrapperCol={{ span: 21 }}
       name="basic"
-      initialValues={{ remember: true }}
+      initialValues={inputData}
       onFinish={onFinish}
       onFinishFailed={onFinishFailed}
     >
@@ -138,7 +145,7 @@ const AddDataForm = ({ formType, apiLink, cohortId }) => {
 
       <Form.Item className="cohort-form" wrapperCol={{ offset: 8, span: 16 }}>
         <Button type="primary" htmlType="submit">
-          Add
+          {addLink ? 'add' : 'submit'}
         </Button>
         <Link to="/admin/cohorts">Cancel</Link>
       </Form.Item>
@@ -146,16 +153,23 @@ const AddDataForm = ({ formType, apiLink, cohortId }) => {
   );
 };
 
-AddDataForm.defaultProps = { cohortId: undefined };
+AddEditForm.defaultProps = {
+  cohortId: undefined,
+  addLink: undefined,
+  editLink: undefined,
+  inputData: undefined,
+};
 
-AddDataForm.propTypes = {
+AddEditForm.propTypes = {
   formType: PropTypes.oneOf(['cohort', 'student', 'project']).isRequired,
-  apiLink: PropTypes.oneOf([
+  addLink: PropTypes.oneOf([
     '/api/v1/alumni',
     '/api/v1/projects',
     '/api/v1/cohorts',
-  ]).isRequired,
+  ]),
+  editLink: PropTypes.string,
   cohortId: PropTypes.number,
+  inputData: PropTypes.string,
 };
 
-export default AddDataForm;
+export default AddEditForm;
