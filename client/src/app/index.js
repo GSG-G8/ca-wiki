@@ -9,7 +9,6 @@ import axios from 'axios';
 
 import * as ROUTES from '../constants/routes';
 import LoginPage from '../containers/loginPage';
-import AdminContainer from '../components/AdminContainer';
 import Statistics from '../containers/statisticsPage';
 import './style.css';
 
@@ -69,7 +68,7 @@ class App extends Component {
               path={ROUTES.LOGIN_PAGE}
               render={(props) =>
                 isAuth ? (
-                  <Redirect path={ROUTES.HOME_PAGE} />
+                  <Redirect to={ROUTES.HOME_PAGE} />
                 ) : (
                   <LoginPage {...props} updateAuth={this.updateAuth} />
                 )
@@ -81,10 +80,9 @@ class App extends Component {
                   exact
                   path={ROUTES.HOME_PAGE}
                   render={(props) => (
-                    <AdminContainer {...props} logout={this.logout} />
+                    <Statistics {...props} logout={this.logout} />
                   )}
                 />
-                <Route path={ROUTES.HOME_PAGE} exact component={Statistics} />
               </>
             ) : (
               <Route render={() => <Redirect to={ROUTES.LOGIN_PAGE} />} />

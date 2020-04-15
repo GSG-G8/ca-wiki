@@ -1,31 +1,57 @@
 import React, { Component } from 'react';
-import { Progress } from 'antd';
+import { Progress, notification } from 'antd';
 import axios from 'axios';
 import AdminContainer from '../../components/AdminContainer';
 import './style.css';
 
 class Statistics extends Component {
   state = {
-    data: {
-      cohortsCount: '',
-      projectsCount: '',
-      studentsCount: '',
-    },
+    cohortsCount: '',
+    projectsCount: '',
+    studentsCount: '',
   };
 
   async componentDidMount() {
     try {
       const {
-        data: { data },
+        data: {
+          data: { cohortsCount, studentsCount, projectsCount },
+        },
       } = await axios.get('/api/v1/stats');
-      this.setState({ data });
+      this.setState({ cohortsCount, studentsCount, projectsCount });
     } catch (err) {
-      console.log('There is no data');
+      const {
+        response: { status },
+      } = err;
+
+      if (status === 500) {
+        const {
+          response: { statusText },
+        } = err;
+        notification.error({
+          message: statusText,
+        });
+      } else if (status === 400) {
+        const {
+          response: {
+            data: { message },
+          },
+        } = err;
+        if (Array.isArray(message)) {
+          notification.error({
+            message: message[0],
+          });
+        } else {
+          notification.error({
+            message,
+          });
+        }
+      }
     }
   }
 
   render() {
-    const { data } = this.state;
+    const { cohortsCount, studentsCount, projectsCount } = this.state;
     return (
       <div>
         <AdminContainer>
@@ -33,31 +59,19 @@ class Statistics extends Component {
             <h1>Control Panel Homepage</h1>
             <div className="titles">
               <h4>NumberOfCohorts</h4>
-              <p>{data.cohortsCount}</p>
+              <p>{cohortsCount}</p>
             </div>
-            <Progress
-              percent={data.cohortsCount}
-              size="small"
-              status="active"
-            />
+            <Progress percent={cohortsCount} size="small" showInfo={false} />
             <div className="titles">
               <h4>NumberOfProjects</h4>
-              <p>{data.projectsCount}</p>
+              <p>{projectsCount}</p>
             </div>
-            <Progress
-              percent={data.projectsCount / data.cohortsCount}
-              size="small"
-              status="active"
-            />
+            <Progress percent={projectsCount} size="small" showInfo={false} />
             <div className="titles">
               <h4>NumberOfStudents</h4>
-              <p>{data.studentsCount}</p>
+              <p>{studentsCount}</p>
             </div>
-            <Progress
-              percent={data.studentsCount / data.cohortsCount}
-              size="small"
-              status="active"
-            />
+            <Progress percent={studentsCount} size="small" showInfo={false} />
           </div>
         </AdminContainer>
       </div>
