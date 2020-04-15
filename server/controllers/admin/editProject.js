@@ -7,6 +7,7 @@ const editProject = async (req, res, next) => {
       { ...req.body, projectId: req.params.projectId },
       { abortEarly: false },
     );
+    req.body.projectId = req.params.projectId;
     await editProjectQuery(req.body);
     res.json({
       StatusCode: 200,
