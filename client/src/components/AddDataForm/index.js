@@ -27,6 +27,7 @@ const AddDataForm = ({ formType, apiLink, cohortId }) => {
   };
   return (
     <Form
+      className="add-data-form"
       labelCol={{ span: 3 }}
       wrapperCol={{ span: 21 }}
       name="basic"
@@ -35,6 +36,7 @@ const AddDataForm = ({ formType, apiLink, cohortId }) => {
       onFinishFailed={onFinishFailed}
     >
       <Form.Item
+        className="add-form-row"
         label="Name"
         name="name"
         rules={[
@@ -44,23 +46,25 @@ const AddDataForm = ({ formType, apiLink, cohortId }) => {
           },
         ]}
       >
-        <Input />
+        <Input className="add-data-input" />
       </Form.Item>
 
       {formType !== 'student' && (
         <Form.Item
+          className="add-form-row"
           label="Description"
           name="description"
           rules={[
             { required: true, message: 'Please input cohort description!' },
           ]}
         >
-          <Input />
+          <Input className="add-data-input" />
         </Form.Item>
       )}
 
       {formType === 'student' && (
         <Form.Item
+          className="add-form-row"
           label="Email"
           name="email"
           rules={[
@@ -71,33 +75,36 @@ const AddDataForm = ({ formType, apiLink, cohortId }) => {
             },
           ]}
         >
-          <Input />
+          <Input className="add-data-input" />
         </Form.Item>
       )}
 
       <Form.Item
+        className="add-form-row"
         label="Image URL"
         name="imgUrl"
         rules={[
           { required: true, type: 'url', message: 'Please input image url!' },
         ]}
       >
-        <Input />
+        <Input className="add-data-input" />
       </Form.Item>
 
       <Form.Item
+        className="add-form-row"
         label="Github Link"
         name="githubLink"
         rules={[
           { required: true, type: 'url', message: 'Please input github link!' },
         ]}
       >
-        <Input />
+        <Input className="add-data-input" />
       </Form.Item>
 
       {formType === 'project' && (
         <>
           <Form.Item
+            className="add-form-row"
             label="Website Link"
             name="websiteLink"
             rules={[
@@ -108,10 +115,11 @@ const AddDataForm = ({ formType, apiLink, cohortId }) => {
               },
             ]}
           >
-            <Input />
+            <Input className="add-data-input" />
           </Form.Item>
 
           <Form.Item
+            className="add-form-row"
             label="Project Type"
             name="projectType"
             rules={[
@@ -123,7 +131,7 @@ const AddDataForm = ({ formType, apiLink, cohortId }) => {
               },
             ]}
           >
-            <Input />
+            <Input className="add-data-input" />
           </Form.Item>
         </>
       )}

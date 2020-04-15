@@ -1,4 +1,4 @@
-.ant-form {
+.add-data-form {
   margin: 50px auto;
   width: 1000px;
   padding: 24px 30px 24px 30px;
@@ -6,7 +6,7 @@
   border-radius: 10px;
 }
 
-.ant-form-item-label {
+.add-form-row .ant-form-item-label {
   text-align: left;
 }
 
@@ -26,11 +26,12 @@
   border: 0;
 }
 
-.cohort-form button:first-child {
+.cohort-form button {
   background-color: var(--main-white);
   color: var(--main-color);
   border-radius: 8px 0px 0px 8px;
   box-shadow: var(--box-shadow);
+  margin-right: 0;
 }
 
 .cohort-form a {
@@ -39,11 +40,11 @@
   border-radius: 0px 8px 8px 0px;
 }
 
-.ant-input {
+.add-data-input {
   border: 0;
 }
 
-.ant-col {
+.add-form-row .ant-col {
   border-bottom: 1px solid var(--input-border);
 }
 
@@ -51,17 +52,17 @@
 border: 0;
 }
 
-.ant-input:focus {
+.add-data-input:focus {
     box-shadow: 0 0 0 2px transparent;
     border-color: transparent;
 }
 
 
-.ant-form-item-has-error .ant-input {
+.add-data-form .ant-form-item-has-error .add-data-input {
   box-shadow: 0 0 0 2px transparent;
 }
 
 
-.ant-form-item-has-error .ant-input:focus{
+.add-data-form .ant-form-item-has-error .ant-input:focus{
   box-shadow: 0 0 0 2px transparent;
 }
