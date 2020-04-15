@@ -9,23 +9,33 @@ const axios = require('axios');
 const AddEditForm = ({ formType, addLink, editLink, cohortId, inputData }) => {
   const onFinish = async (values) => {
     try {
-      const sendValues = values;
+      let sendValues = values;
       if (formType !== 'cohort') {
-        sendValues.cohortId = cohortId;
+        sendValues = { ...sendValues, cohortId };
       }
 
       if (addLink) {
         const response = await axios.post(addLink, sendValues);
-        const { message: resMessage } = response.data.data;
+        const {
+          data: {
+            data: { message: resMessage },
+          },
+        } = response;
         message.success(resMessage);
       } else {
         const response = await axios.put(editLink, sendValues);
-        const { message: resMessage } = response.data.data;
+        const {
+          data: {
+            data: { message: resMessage },
+          },
+        } = response;
         message.success(resMessage);
       }
     } catch (err) {
-      const { message: errMessage } = err.response.data.data;
-      message.error(errMessage);
+      if (err.response.status) {
+        const { message: errMessage } = err.response.data.data;
+        message.error(errMessage);
+      }
     }
   };
 
