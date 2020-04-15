@@ -12,6 +12,7 @@ import LoginPage from '../containers/loginPage';
 import AdminContainer from '../components/AdminContainer';
 
 import './style.css';
+import CohortPage from '../containers/CohortPage';
 
 class App extends Component {
   state = {
@@ -71,7 +72,7 @@ class App extends Component {
               path={ROUTES.LOGIN_PAGE}
               render={(props) =>
                 isAuth ? (
-                  <Redirect path={ROUTES.HOME_PAGE} />
+                  <Redirect to={ROUTES.HOME_PAGE} />
                 ) : (
                   <LoginPage {...props} updateAuth={this.updateAuth} />
                 )
@@ -85,6 +86,11 @@ class App extends Component {
                   render={(props) => (
                     <AdminContainer {...props} logout={this.logout} />
                   )}
+                />
+                <Route
+                  path={ROUTES.COHORT_PAGE}
+                  exact
+                  render={() => <CohortPage logout={this.logout} />}
                 />
               </>
             ) : redirect ? (

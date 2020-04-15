@@ -2,7 +2,6 @@
     display: grid;
     grid-template-columns: 15% 21% repeat(4, 12.6%) [last-col] 13.5%;
     box-shadow: var(--card-shadow);
-    padding: 10px 0;
 }
 
 .admin-card > div:last-of-type {
@@ -47,7 +46,7 @@
     border-color: var(--border-white);
     color: #414D55;
     border-radius: 5px;
-    margin: 0 auto;
+    margin: 10px auto;
     box-shadow: var(--box-shadow);
 }
 
@@ -55,11 +54,11 @@
     border-color: var(--border-white);
 }
 
-.edit {
-    margin-bottom: 17px;
-    color: var(--main-color);
+a, .admin-card p {
+    color: var(--content-grey);
 }
 
-.admin-card a, .admin-card p {
-    color: var(--content-grey);
+.edit {
+    color: var(--main-color);
+    padding: 4px 15px;
 }
