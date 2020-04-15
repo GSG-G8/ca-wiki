@@ -51,7 +51,7 @@ class App extends Component {
         data: { statusCode },
       } = await axios.get('/api/v1/logout');
       if (statusCode === 200) {
-        this.setState({ isAuth: false, redirect: false });
+        this.setState({ isAuth: false, redirect: true });
       } else {
         this.setState({ isAuth: true });
       }
