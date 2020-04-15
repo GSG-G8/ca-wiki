@@ -16,7 +16,7 @@ const login = async (req, res, next) => {
       if (match) {
         const token = sign({ id: userId }, process.env.SECRET_KEY);
         res.cookie('token', token);
-        res.json({ message: 'logged in successfully' });
+        res.json({ statusCode: 200, message: 'logged in successfully' });
       } else {
         res
           .status(400)
