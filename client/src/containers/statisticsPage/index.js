@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Progress, notification } from 'antd';
 import axios from 'axios';
+import PropTypes from 'prop-types';
+
 import AdminContainer from '../../components/AdminContainer';
 import './style.css';
 
@@ -31,30 +33,16 @@ class Statistics extends Component {
         notification.error({
           message: statusText,
         });
-      } else if (status === 400) {
-        const {
-          response: {
-            data: { message },
-          },
-        } = err;
-        if (Array.isArray(message)) {
-          notification.error({
-            message: message[0],
-          });
-        } else {
-          notification.error({
-            message,
-          });
-        }
       }
     }
   }
 
   render() {
     const { cohortsCount, studentsCount, projectsCount } = this.state;
+    const { logout } = this.props;
     return (
       <div>
-        <AdminContainer>
+        <AdminContainer logout={logout}>
           <div className="state">
             <h1>Control Panel Homepage</h1>
             <div className="titles">
@@ -78,5 +66,9 @@ class Statistics extends Component {
     );
   }
 }
+
+Statistics.propTypes = {
+  logout: PropTypes.func.isRequired,
+};
 
 export default Statistics;
