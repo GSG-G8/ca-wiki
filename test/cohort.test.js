@@ -269,11 +269,11 @@ describe('Put Cohort', () => {
       .expect('Content-Type', /json/)
       .end(async (err, res) => {
         if (err) return done(err);
-        const { message } = res.body;
+        const { message } = res.body.data;
         const { rows } = await connection.query(
           'SELECT * from cohort WHERE id = 1',
         );
-        expect(message).toBe('Changed Succefully');
+        expect(message).toBe('Cohort Changed Succefully');
         expect(rows).toHaveLength(1);
         expect(rows[0]).toEqual({
           id: 1,
