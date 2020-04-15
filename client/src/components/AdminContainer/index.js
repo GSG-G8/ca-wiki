@@ -17,7 +17,6 @@ const AdminContainer = ({ children, buttonContent, buttonRoute, logout }) => {
           </div>
           <div className="admin-header-btn">
             {buttonContent !== undefined && (
-              // <Button onClick={buttonRoute} type="primary" danger>
               <NavLink to={`${buttonRoute}`} className="Add-Link">
                 {buttonContent}
               </NavLink>
