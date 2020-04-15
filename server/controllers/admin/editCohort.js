@@ -19,7 +19,9 @@ const editCohort = async (req, res, next) => {
     } else {
       res.status(404).json({
         statusCode: 404,
-        message: "Sorry There's no cohort for this id to change",
+        data: {
+          message: "Sorry There's no cohort for this id to change",
+        },
       });
     }
   } catch (err) {

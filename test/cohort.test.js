@@ -296,7 +296,7 @@ describe('Put Cohort', () => {
       .expect('Content-Type', /json/)
       .end(async (err, res) => {
         if (err) return done(err);
-        const { message } = res.body;
+        const { message } = res.body.data;
         const { rows } = await connection.query(
           'SELECT * from cohort WHERE id = 4',
         );
