@@ -112,6 +112,19 @@ class App extends Component {
                     />
                   )}
                 />
+
+                <Route
+                  path={ROUTES.EDIT_COHORT}
+                  exact
+                  render={(props) => (
+                    <AddEditForm
+                      {...props}
+                      formType="cohort"
+                      editLink={`/api/v1/cohorts/${props.match.params.cohortId}`}
+                    />
+                  )}
+                />
+
                 <Route
                   path={ROUTES.ADD_STUDENT}
                   exact
@@ -123,6 +136,19 @@ class App extends Component {
                     />
                   )}
                 />
+
+                <Route
+                  path={ROUTES.EDIT_STUDENT}
+                  exact
+                  render={(props) => (
+                    <AddEditForm
+                      {...props}
+                      formType="student"
+                      editLink={`/api/v1/alumni/${props.match.params.studentId}`}
+                    />
+                  )}
+                />
+
                 <Route
                   path={ROUTES.ADD_PROJECT}
                   exact
@@ -131,6 +157,18 @@ class App extends Component {
                       {...props}
                       formType="project"
                       addLink="/api/v1/projects"
+                    />
+                  )}
+                />
+
+                <Route
+                  path={ROUTES.EDIT_PROJECT}
+                  exact
+                  render={(props) => (
+                    <AddEditForm
+                      {...props}
+                      formType="project"
+                      editLink={`/api/v1/projects/${props.match.params.projectId}`}
                     />
                   )}
                 />
