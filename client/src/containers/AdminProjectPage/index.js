@@ -99,8 +99,8 @@ class AdminProject extends Component {
           buttonRoute={`/admin/cohorts/${cohortId}/add-project`}
           logout={logout}
         >
-          {undefined ? (
-            <Empty />
+          {data.length === 0 ? (
+            <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} className="empty" />
           ) : (
             <>
               <List
