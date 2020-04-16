@@ -110,7 +110,18 @@ class App extends Component {
                       formType="cohort"
                       cohortId="1"
                       addLink="/api/v1/cohorts"
-                      logout={this.logout}
+                    />
+                  )}
+                />
+                <Route
+                  path={ROUTES.ADD_STUDENT}
+                  exact
+                  render={(props) => (
+                    <AddEditForm
+                      {...props}
+                      formType="student"
+                      cohortId="1"
+                      addLink="/api/v1/alumni"
                     />
                   )}
                 />
