@@ -21,19 +21,18 @@
 
 .login-logo {
   align-items: center;
-  margin-top: 190px;
+  margin-top: 180px;
 }
 
 .anticon svg {
   display: inline-block;
-  color: var(--main-white);
 }
 
 .login-logo h3 {
   font: bold 30px/30px var(--main-font);
   letter-spacing: 0px;
   color: var(--main-white);
-  margin: 40px 260px 10px 0px;
+  margin: 20px 260px 10px 0px;
 }
 
 .login-logo p {
@@ -44,8 +43,8 @@
 }
 
 .logo {
-  width: 260px;
-  height: 7vh;
+  width: 300px;
+  height: 11vh;
   margin-right: 100px;
 }
 
@@ -94,6 +93,11 @@
 #normal_login_password.ant-input ::placeholder {
   color: var(--main-white);
   opacity: 0.6;
+}
+
+.ant-modal-wrap {
+  position: fixed;
+  top: 10%; 
 }
 
 .ant-form-item-has-error .ant-input-affix-wrapper,
