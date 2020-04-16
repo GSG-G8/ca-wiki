@@ -89,7 +89,11 @@ class AdminProject extends Component {
     const dataList = data.slice(startPage, endPage);
     return (
       <div className="App">
-        <AdminContainer buttonContent="Add Project" logout={logout}>
+        <AdminContainer
+          buttonContent="Add Project"
+          buttonRoute="/admin/add-project"
+          logout={logout}
+        >
           {undefined ? (
             <Empty />
           ) : (
@@ -105,6 +109,7 @@ class AdminProject extends Component {
                       githbUrl={item.github_url}
                       websiteLink={item.website_link}
                       projectId={item.id}
+                      editCard={`/admin/projects/${item.id}/edit`}
                       deleteCard={this.deleteProject}
                     />
                   </List.Item>
