@@ -116,6 +116,22 @@ class AdminCard extends Component {
             </Link>
           </div>
         )}
+        {studentId && (
+          <div>
+            <h3>Community p</h3>
+            <Link to={`/admin/students/${studentId}/projects?type=internal`}>
+              View
+            </Link>
+          </div>
+        )}
+        {studentId && (
+          <div>
+            <h3>Clients p</h3>
+            <Link to={`/admin/students/${studentId}/projects?type=remotely`}>
+              View
+            </Link>
+          </div>
+        )}
         <div>
           <Link to={editCard} className="card-btn edit">
             Edit
