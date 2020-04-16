@@ -12,6 +12,7 @@ import LoginPage from '../containers/loginPage';
 import CohortPage from '../containers/CohortPage';
 import StudentPage from '../containers/StudentPage';
 import AdminContainer from '../components/AdminContainer';
+import AddEditForm from '../components/Add-Edit-Form';
 
 import './style.css';
 
@@ -98,6 +99,19 @@ class App extends Component {
                   exact
                   render={(props) => (
                     <StudentPage {...props} logout={this.logout} />
+                  )}
+                />
+                <Route
+                  path={ROUTES.ADD_COHORT}
+                  exact
+                  render={(props) => (
+                    <AddEditForm
+                      {...props}
+                      formType="cohort"
+                      cohortId="1"
+                      addLink="/api/v1/cohorts"
+                      logout={this.logout}
+                    />
                   )}
                 />
               </>
