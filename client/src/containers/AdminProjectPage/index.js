@@ -96,7 +96,7 @@ class AdminProject extends Component {
       <div className="App">
         <AdminContainer
           buttonContent="Add Project"
-          buttonRoute={`/admin/cohorts/${cohortId}/add-project`}
+          buttonRoute={`/admin/cohorts/${cohortId}/projects/add`}
           logout={logout}
         >
           {data.length === 0 ? (
@@ -114,7 +114,7 @@ class AdminProject extends Component {
                       githbUrl={item.github_url}
                       websiteLink={item.website_link}
                       projectId={item.id}
-                      editCard={`/admin/projects/${item.id}/edit`}
+                      editCard={`/admin/cohorts/${cohortId}/projects/${item.id}/edit`}
                       deleteCard={this.deleteProject}
                     />
                   </List.Item>

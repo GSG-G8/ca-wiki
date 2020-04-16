@@ -155,6 +155,7 @@ class App extends Component {
                       {...props}
                       formType="student"
                       editLink={`/api/v1/alumni/${props.match.params.studentId}`}
+                      cohortId={props.match.params.cohortId}
                     />
                   )}
                 />
@@ -180,6 +181,7 @@ class App extends Component {
                       {...props}
                       formType="project"
                       editLink={`/api/v1/projects/${props.match.params.projectId}`}
+                      cohortId={props.match.params.cohortId}
                     />
                   )}
                 />

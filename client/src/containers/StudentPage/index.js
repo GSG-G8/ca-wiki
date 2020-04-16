@@ -88,7 +88,7 @@ class Student extends Component {
       <div>
         <AdminContainer
           buttonContent="Add Student"
-          buttonRoute={`/admin/cohorts/${cohortId}/add-student`}
+          buttonRoute={`/admin/cohorts/${cohortId}/students/add`}
           logout={logout}
         >
           {data.length === 0 ? (
@@ -109,7 +109,7 @@ class Student extends Component {
                       githbUrl={item.github_link}
                       studentId={item.id}
                       cohortId={item.cohortId}
-                      editCard={`/admin/students/${item.id}/edit`}
+                      editCard={`/admin/cohorts/${cohortId}/students/${item.id}/edit`}
                       deleteCard={this.deleteStudent}
                     />
                   </List.Item>
