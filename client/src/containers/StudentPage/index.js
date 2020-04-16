@@ -76,6 +76,11 @@ class Student extends Component {
   };
 
   render() {
+    const {
+      match: {
+        params: { cohortId },
+      },
+    } = this.props;
     const { data, startPage, endPage, total } = this.state;
     const { logout } = this.props;
     const list = data.slice(startPage, endPage);
@@ -83,7 +88,7 @@ class Student extends Component {
       <div>
         <AdminContainer
           buttonContent="Add Student"
-          buttonRoute="/admin/add-student"
+          buttonRoute={`/admin/cohorts/${cohortId}/add-student`}
           logout={logout}
         >
           {data.length === 0 ? (

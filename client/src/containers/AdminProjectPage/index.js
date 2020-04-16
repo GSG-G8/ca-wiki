@@ -86,12 +86,17 @@ class AdminProject extends Component {
   render() {
     const { data, total, startPage, endPage } = this.state;
     const { logout } = this.props;
+    const {
+      match: {
+        params: { cohortId },
+      },
+    } = this.props;
     const dataList = data.slice(startPage, endPage);
     return (
       <div className="App">
         <AdminContainer
           buttonContent="Add Project"
-          buttonRoute="/admin/add-project"
+          buttonRoute={`/admin/cohorts/${cohortId}/add-project`}
           logout={logout}
         >
           {undefined ? (
@@ -136,6 +141,7 @@ class AdminProject extends Component {
 }
 
 AdminProject.propTypes = {
+  cohortId: PropTypes.number.isRequired,
   match: PropTypes.func.isRequired,
   location: PropTypes.func.isRequired,
   logout: PropTypes.func.isRequired,

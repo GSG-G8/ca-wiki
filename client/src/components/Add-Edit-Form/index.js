@@ -6,13 +6,14 @@ import './style.css';
 
 const axios = require('axios');
 
-const AddEditForm = ({ formType, addLink, editLink, inputData }) => {
+const AddEditForm = ({ formType, addLink, editLink, cohortId, inputData }) => {
   const onFinish = async (values) => {
     try {
       let sendValues = values;
       if (formType !== 'cohort') {
-        sendValues = { ...sendValues };
+        sendValues = { ...sendValues, cohortId };
       }
+
       if (addLink) {
         const response = await axios.post(addLink, sendValues);
         const {
@@ -154,22 +155,6 @@ const AddEditForm = ({ formType, addLink, editLink, inputData }) => {
         </>
       )}
 
-      {formType !== 'cohort' && (
-        <Form.Item
-          className="add-form-row"
-          label="Cohort Id"
-          name="cohortId"
-          rules={[
-            {
-              required: true,
-              message: 'Please input Cohort ID!',
-            },
-          ]}
-        >
-          <Input className="add-data-input" />
-        </Form.Item>
-      )}
-
       <Form.Item className="cohort-form" wrapperCol={{ offset: 8, span: 16 }}>
         <Button type="primary" htmlType="submit">
           {addLink ? 'add' : 'submit'}
@@ -181,6 +166,7 @@ const AddEditForm = ({ formType, addLink, editLink, inputData }) => {
 };
 
 AddEditForm.defaultProps = {
+  cohortId: undefined,
   addLink: undefined,
   editLink: undefined,
   inputData: undefined,
@@ -194,6 +180,7 @@ AddEditForm.propTypes = {
     '/api/v1/cohorts',
   ]),
   editLink: PropTypes.string,
+  cohortId: PropTypes.number,
   inputData: PropTypes.string,
 };
 

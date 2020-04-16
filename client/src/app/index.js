@@ -142,6 +142,7 @@ class App extends Component {
                       {...props}
                       formType="student"
                       addLink="/api/v1/alumni"
+                      cohortId={props.match.params.cohortId}
                     />
                   )}
                 />
@@ -166,6 +167,7 @@ class App extends Component {
                       {...props}
                       formType="project"
                       addLink="/api/v1/projects"
+                      cohortId={props.match.params.cohortId}
                     />
                   )}
                 />
