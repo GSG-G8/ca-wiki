@@ -83,7 +83,7 @@ class Student extends Component {
       <div>
         <AdminContainer
           buttonContent="Add Student"
-          buttonRoute="/admin/students/add"
+          buttonRoute="/admin/add-student"
           logout={logout}
         >
           {data.length === 0 ? (

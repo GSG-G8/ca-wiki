@@ -108,7 +108,6 @@ class App extends Component {
                     <AddEditForm
                       {...props}
                       formType="cohort"
-                      cohortId="1"
                       addLink="/api/v1/cohorts"
                     />
                   )}
@@ -120,8 +119,18 @@ class App extends Component {
                     <AddEditForm
                       {...props}
                       formType="student"
-                      cohortId="1"
                       addLink="/api/v1/alumni"
+                    />
+                  )}
+                />
+                <Route
+                  path={ROUTES.ADD_PROJECT}
+                  exact
+                  render={(props) => (
+                    <AddEditForm
+                      {...props}
+                      formType="project"
+                      addLink="/api/v1/projects"
                     />
                   )}
                 />
