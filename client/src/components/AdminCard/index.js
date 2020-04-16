@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import PropTypes from 'prop-types';
-import { Button, notification } from 'antd';
+import { Button, notification, Popover } from 'antd';
 import './style.css';
 
 class AdminCard extends Component {
@@ -11,6 +11,17 @@ class AdminCard extends Component {
   };
 
   async componentDidMount() {
+    this.getStudents();
+  }
+
+  componentDidUpdate(prevProps) {
+    const { projectId } = this.props;
+    if (projectId !== prevProps.projectId) {
+      this.getStudents();
+    }
+  }
+
+  async getStudents() {
     try {
       const { projectId } = this.props;
       if (projectId) {
@@ -61,7 +72,13 @@ class AdminCard extends Component {
         {description && (
           <div>
             <h3>Description</h3>
-            <p>{description}</p>
+            {description.length > 40 ? (
+              <Popover placement="bottom" content={description} trigger="click">
+                <Button className="description-btn">Click</Button>
+              </Popover>
+            ) : (
+              <p>{description}</p>
+            )}
           </div>
         )}
         <div>
@@ -109,10 +126,15 @@ class AdminCard extends Component {
           </div>
         )}
         <div>
-          <Button onClick={() => editCard()} className="card-btn edit">
+          <Link to={editCard} className="card-btn edit">
             Edit
-          </Button>
-          <Button onClick={() => deleteCard()} className="card-btn">
+          </Link>
+          <Button
+            onClick={() =>
+              projectId ? deleteCard(projectId) : deleteCard(cohortId, name)
+            }
+            className="card-btn delete"
+          >
             Delete
           </Button>
         </div>
@@ -131,7 +153,7 @@ AdminCard.defaultProps = {
 
 AdminCard.propTypes = {
   imgUrl: PropTypes.string.isRequired,
-  name: PropTypes.func.isRequired,
+  name: PropTypes.string.isRequired,
   description: PropTypes.string,
   githbUrl: PropTypes.string.isRequired,
   websiteLink: PropTypes.string,

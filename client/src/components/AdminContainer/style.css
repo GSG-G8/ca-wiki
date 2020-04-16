@@ -1,6 +1,6 @@
 .ant-layout-header {
   height: 15vh;
-  min-height: 119px;
+  min-height: 125px;
   background-color: var(--main-white);
   padding: 15px 130px 20px 50px;
   font-family: var(--main-font);
@@ -19,11 +19,6 @@
 .admin-header-btn {
   display: flex;
   justify-content: flex-end;
-}
-.admin-header-btn button {
-  width: 180px;
-  height: 50px;
-  font-size: 18px;
 }
 
 .admin-container {
@@ -78,10 +73,42 @@
 
 .admin-content {
   width: 80%;
+  position: relative;
   padding-right: 200px;
   padding-top: 15px;
 }
 
+.pagination {
+  position: absolute;
+  bottom: 4%;
+  left: 50%;
+  transform: translate(-50%, -5%);
+}
+
+.ant-pagination-item a {
+  color: var(--pagination-color);
+}
+
+.ant-pagination-item-active a {
+  color: var(--main-white);
+}
+
+.ant-pagination-item:hover {
+  background-color: var(--main-color);
+}
+
+.ant-pagination-item:hover a {
+  color: var(--main-white);
+}
+
+.ant-pagination-item-active:focus a {
+  color: var(--main-white);
+}
+
+.ant-list-split .ant-list-item {
+  border-bottom: none;
+  padding: 0;
+}
 .logout-btn {
   color: var( --main-white);
   background-color: var(--main-color);
@@ -99,4 +126,16 @@
   color: var( --main-white);
   background-color: var(--main-color);
   border-color: var( --main-color);
+}
+
+.Add-Link {
+  background-color: var(--main-color);
+  color: var(--main-white);
+  width: 180px;
+  height: 50px;
+  box-shadow: 0px 1px 8px #142E6E1A;
+  border-radius: 5px;
+  font-size: 18px;
+  opacity: 1;
+  line-height: 50px;
 }
