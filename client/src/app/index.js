@@ -9,10 +9,11 @@ import axios from 'axios';
 
 import * as ROUTES from '../constants/routes';
 import LoginPage from '../containers/loginPage';
+import CohortPage from '../containers/CohortPage';
+import StudentPage from '../containers/StudentPage';
 import AdminContainer from '../components/AdminContainer';
 
 import './style.css';
-import CohortPage from '../containers/CohortPage';
 
 class App extends Component {
   state = {
@@ -91,6 +92,13 @@ class App extends Component {
                   path={ROUTES.COHORT_PAGE}
                   exact
                   render={() => <CohortPage logout={this.logout} />}
+                />
+                <Route
+                  path={ROUTES.COHORT_STUDENTS_PAGE}
+                  exact
+                  render={(props) => (
+                    <StudentPage {...props} logout={this.logout} />
+                  )}
                 />
               </>
             ) : redirect ? (

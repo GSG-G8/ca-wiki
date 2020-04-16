@@ -39,11 +39,13 @@ class AdminCard extends Component {
       imgUrl,
       name,
       description,
+      email,
       githbUrl,
       student,
       websiteLink,
       projectId,
       cohortId,
+      studentId,
       editCard,
       deleteCard,
     } = this.props;
@@ -62,6 +64,12 @@ class AdminCard extends Component {
           <div>
             <h3>Description</h3>
             <p>{description}</p>
+          </div>
+        )}
+        {email && (
+          <div>
+            <h3>Email</h3>
+            <p>{email}</p>
           </div>
         )}
         <div>
@@ -113,7 +121,11 @@ class AdminCard extends Component {
             Edit
           </Link>
           <Button
-            onClick={() => deleteCard(cohortId, name)}
+            onClick={() =>
+              studentId
+                ? deleteCard(studentId, name)
+                : deleteCard(cohortId, name)
+            }
             className="card-btn"
           >
             Delete
@@ -130,17 +142,21 @@ AdminCard.defaultProps = {
   websiteLink: undefined,
   student: undefined,
   cohortId: undefined,
+  studentId: undefined,
+  email: undefined,
 };
 
 AdminCard.propTypes = {
   imgUrl: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
+  email: PropTypes.string,
   description: PropTypes.string,
   githbUrl: PropTypes.string.isRequired,
   websiteLink: PropTypes.string,
   student: PropTypes.number,
   projectId: PropTypes.number,
   cohortId: PropTypes.number,
+  studentId: PropTypes.number,
   editCard: PropTypes.func.isRequired,
   deleteCard: PropTypes.func.isRequired,
 };
