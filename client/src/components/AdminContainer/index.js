@@ -20,7 +20,6 @@ const AdminContainer = ({ children, buttonContent, buttonRoute, logout }) => {
               <NavLink to={`${buttonRoute}`} className="Add-Link">
                 {buttonContent}
               </NavLink>
-              // </Button>
             )}
           </div>
         </Header>
