@@ -1,6 +1,6 @@
 .admin-card {
     display: grid;
-    grid-template-columns: 15% 21% repeat(4, auto) [last-col] 13.5%;
+    grid-template-columns: auto auto auto auto auto;
     box-shadow: var(--card-shadow);
 }
 
@@ -12,6 +12,7 @@
 .admin-card > div {
     border-left: 1px dashed #C8C7C7;
     padding: 0 10px;
+    overflow: auto;
 }
 
 .admin-card > div:first-of-type {
