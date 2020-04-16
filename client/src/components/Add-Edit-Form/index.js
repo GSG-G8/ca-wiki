@@ -178,7 +178,11 @@ const AddEditForm = ({ formType, addLink, editLink, cohortId, inputData }) => {
           <Button type="primary" htmlType="submit">
             {addLink ? 'Add' : 'Edit'}
           </Button>
-          <Link to="/admin/cohorts">Cancel</Link>
+          {formType === 'cohort' && <Link to="/admin/cohorts">Cancel</Link>}
+          {formType === 'student' && (
+            <Link to={`/admin/cohorts/${cohortId}/students`}>Cancel</Link>
+          )}
+          {formType === 'project' && <Link to="/admin/cohorts">Cancel</Link>}
         </Form.Item>
       </Form>
     </AdminContainer>
