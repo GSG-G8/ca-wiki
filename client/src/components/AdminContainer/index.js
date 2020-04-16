@@ -40,7 +40,6 @@ const AdminContainer = ({ children, buttonContent, buttonRoute, logout }) => {
                 </li>
                 <li>
                   <NavLink
-                    exact
                     to="/admin/cohorts"
                     className="admin-menu-a"
                     activeClassName="admin-menu-active"
