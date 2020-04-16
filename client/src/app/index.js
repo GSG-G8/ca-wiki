@@ -6,7 +6,6 @@ import {
   Redirect,
 } from 'react-router-dom';
 import axios from 'axios';
-
 import * as ROUTES from '../constants/routes';
 import LoginPage from '../containers/loginPage';
 import CohortPage from '../containers/CohortPage';
@@ -14,6 +13,7 @@ import StudentPage from '../containers/StudentPage';
 import AdminContainer from '../components/AdminContainer';
 import AddEditForm from '../components/Add-Edit-Form';
 
+import AdminProject from '../containers/AdminProjectPage';
 import './style.css';
 
 class App extends Component {
@@ -101,6 +101,15 @@ class App extends Component {
                     <StudentPage {...props} logout={this.logout} />
                   )}
                 />
+
+                <Route
+                  path={ROUTES.COHORT_PROJECTS_PAGE}
+                  exact
+                  render={(props) => (
+                    <AdminProject {...props} logout={this.logout} />
+                  )}
+                />
+
                 <Route
                   path={ROUTES.ADD_COHORT}
                   exact

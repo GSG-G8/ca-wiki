@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import PropTypes from 'prop-types';
-import { Button, notification } from 'antd';
+import { Button, notification, Popover } from 'antd';
 import './style.css';
 
 class AdminCard extends Component {
@@ -11,6 +11,17 @@ class AdminCard extends Component {
   };
 
   async componentDidMount() {
+    this.getStudents();
+  }
+
+  componentDidUpdate(prevProps) {
+    const { projectId } = this.props;
+    if (projectId !== prevProps.projectId) {
+      this.getStudents();
+    }
+  }
+
+  async getStudents() {
     try {
       const { projectId } = this.props;
       if (projectId) {
@@ -63,7 +74,13 @@ class AdminCard extends Component {
         {description && (
           <div>
             <h3>Description</h3>
-            <p>{description}</p>
+            {description.length > 40 ? (
+              <Popover placement="bottom" content={description} trigger="click">
+                <Button className="description-btn">Click</Button>
+              </Popover>
+            ) : (
+              <p>{description}</p>
+            )}
           </div>
         )}
         {email && (
@@ -138,7 +155,9 @@ class AdminCard extends Component {
           </Link>
           <Button
             onClick={() =>
-              studentId
+              projectId
+                ? deleteCard(projectId)
+                : studentId
                 ? deleteCard(studentId, name)
                 : deleteCard(cohortId, name)
             }
