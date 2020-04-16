@@ -6,14 +6,15 @@ import {
   Redirect,
 } from 'react-router-dom';
 import axios from 'axios';
+
 import * as ROUTES from '../constants/routes';
 import LoginPage from '../containers/loginPage';
 import CohortPage from '../containers/CohortPage';
 import StudentPage from '../containers/StudentPage';
-import AdminContainer from '../components/AdminContainer';
 import AddEditForm from '../components/Add-Edit-Form';
-
+import Statistics from '../containers/statisticsPage';
 import AdminProject from '../containers/AdminProjectPage';
+
 import './style.css';
 
 class App extends Component {
@@ -86,7 +87,7 @@ class App extends Component {
                   exact
                   path={ROUTES.HOME_PAGE}
                   render={(props) => (
-                    <AdminContainer {...props} logout={this.logout} />
+                    <Statistics {...props} logout={this.logout} />
                   )}
                 />
                 <Route
