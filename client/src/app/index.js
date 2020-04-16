@@ -6,11 +6,10 @@ import {
   Redirect,
 } from 'react-router-dom';
 import axios from 'axios';
-
 import * as ROUTES from '../constants/routes';
 import LoginPage from '../containers/loginPage';
 import AdminContainer from '../components/AdminContainer';
-
+import AdminProject from '../containers/AdminProjectPage';
 import './style.css';
 import CohortPage from '../containers/CohortPage';
 
@@ -91,6 +90,13 @@ class App extends Component {
                   path={ROUTES.COHORT_PAGE}
                   exact
                   render={() => <CohortPage logout={this.logout} />}
+                />
+                <Route
+                  path={ROUTES.COHORT_PROJECTS_PAGE}
+                  exact
+                  render={(props) => (
+                    <AdminProject {...props} logout={this.logout} />
+                  )}
                 />
               </>
             ) : redirect ? (

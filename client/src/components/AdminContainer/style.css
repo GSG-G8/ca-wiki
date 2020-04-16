@@ -80,28 +80,34 @@
 
 .pagination {
   position: absolute;
-  left: 30%;
-  bottom: -10px;
-}
-.ant-modal-wrap {
-  margin-top: 80px;
-}
-.empty {
-  position: absolute;
-  top: 30%;
-  left: 40%;
+  bottom: 4%;
+  left: 50%;
+  transform: translate(-50%, -5%);
 }
 
-.Add-Link {
-  background-color: var(--main-color);
+.ant-pagination-item a {
+  color: var(--pagination-color);
+}
+
+.ant-pagination-item-active a {
   color: var(--main-white);
-  width: 180px;
-  height: 50px;
-  box-shadow: 0px 1px 8px #142E6E1A;
-  border-radius: 5px;
-  font-size: 18px;
-  opacity: 1;
-  line-height: 50px;
+}
+
+.ant-pagination-item:hover {
+  background-color: var(--main-color);
+}
+
+.ant-pagination-item:hover a {
+  color: var(--main-white);
+}
+
+.ant-pagination-item-active:focus a {
+  color: var(--main-white);
+}
+
+.ant-list-split .ant-list-item {
+  border-bottom: none;
+  padding: 0;
 }
 .logout-btn {
   color: var( --main-white);
@@ -120,4 +126,16 @@
   color: var( --main-white);
   background-color: var(--main-color);
   border-color: var( --main-color);
+}
+
+.Add-Link {
+  background-color: var(--main-color);
+  color: var(--main-white);
+  width: 180px;
+  height: 50px;
+  box-shadow: 0px 1px 8px #142E6E1A;
+  border-radius: 5px;
+  font-size: 18px;
+  opacity: 1;
+  line-height: 50px;
 }
