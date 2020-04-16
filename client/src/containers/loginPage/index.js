@@ -5,7 +5,7 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 import * as ROUTES from '../../constants/routes';
 
-import logo from '../../assets/images/login-logo.png';
+import logo from '../../assets/images/login-logo.jpeg';
 import loginImg from '../../assets/images/Group 369.svg';
 
 import './style.css';
