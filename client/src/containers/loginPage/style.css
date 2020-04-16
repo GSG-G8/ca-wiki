@@ -26,7 +26,6 @@
 
 .anticon svg {
   display: inline-block;
-  color: var(--main-white);
 }
 
 .login-logo h3 {
@@ -94,6 +93,11 @@
 #normal_login_password.ant-input ::placeholder {
   color: var(--main-white);
   opacity: 0.6;
+}
+
+.ant-modal-wrap {
+  position: fixed;
+  top: 10%; 
 }
 
 .ant-form-item-has-error .ant-input-affix-wrapper,

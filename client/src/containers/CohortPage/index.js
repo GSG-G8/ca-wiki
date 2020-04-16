@@ -90,7 +90,7 @@ class Cohort extends Component {
                 itemLayout="horizontal"
                 dataSource={list}
                 renderItem={(item) => (
-                  <List.Item>
+                  <List.Item className="admin-list-card">
                     <AdminCard
                       key={item.id}
                       name={item.name}
@@ -106,15 +106,16 @@ class Cohort extends Component {
                 )}
               />
               <Pagination
-                defaultCurrent={1}
-                total={total}
-                onChange={(pageNumber) => {
+                className="pagination"
+                defaultCurrent={0}
+                showQuickJumper
+                onChange={(page) => {
                   this.setState({
-                    startPage: pageNumber * 4 - 4,
-                    endPage: pageNumber * 4,
+                    startPage: page * 4 - 4,
+                    endPage: page * 4,
                   });
                 }}
-                className="pagination"
+                total={total}
               />
             </div>
           )}

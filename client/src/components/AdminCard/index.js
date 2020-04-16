@@ -72,7 +72,7 @@ class AdminCard extends Component {
           </div>
         </div>
         {description && (
-          <div>
+          <div className="description">
             <h3>Description</h3>
             {description.length > 40 ? (
               <Popover placement="bottom" content={description} trigger="click">
