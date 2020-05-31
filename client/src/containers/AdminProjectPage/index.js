@@ -86,12 +86,21 @@ class AdminProject extends Component {
   render() {
     const { data, total, startPage, endPage } = this.state;
     const { logout } = this.props;
+    const {
+      match: {
+        params: { cohortId },
+      },
+    } = this.props;
     const dataList = data.slice(startPage, endPage);
     return (
       <div className="App">
-        <AdminContainer buttonContent="Add Project" logout={logout}>
-          {undefined ? (
-            <Empty />
+        <AdminContainer
+          buttonContent="Add Project"
+          buttonRoute={`/admin/cohorts/${cohortId}/projects/add`}
+          logout={logout}
+        >
+          {data.length === 0 ? (
+            <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} className="empty" />
           ) : (
             <>
               <List
@@ -105,6 +114,7 @@ class AdminProject extends Component {
                       githbUrl={item.github_url}
                       websiteLink={item.website_link}
                       projectId={item.id}
+                      editCard={`/admin/cohorts/${cohortId}/projects/${item.id}/edit`}
                       deleteCard={this.deleteProject}
                     />
                   </List.Item>
@@ -131,6 +141,7 @@ class AdminProject extends Component {
 }
 
 AdminProject.propTypes = {
+  cohortId: PropTypes.number.isRequired,
   match: PropTypes.func.isRequired,
   location: PropTypes.func.isRequired,
   logout: PropTypes.func.isRequired,

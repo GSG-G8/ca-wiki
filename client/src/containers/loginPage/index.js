@@ -5,7 +5,7 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 import * as ROUTES from '../../constants/routes';
 
-import logo from '../../assets/images/login-logo.png';
+import logo from '../../assets/images/login-logo.jpeg';
 import loginImg from '../../assets/images/Group 369.svg';
 
 import './style.css';
@@ -71,6 +71,7 @@ const LoginPage = ({ updateAuth, history }) => {
             onFinish={onFinish}
           >
             <Form.Item
+              className="login-form-input"
               name="username"
               rules={[
                 {
@@ -82,6 +83,7 @@ const LoginPage = ({ updateAuth, history }) => {
               <Input className="form-input" placeholder="Username" />
             </Form.Item>
             <Form.Item
+              className="login-form-input"
               name="password"
               rules={[
                 {

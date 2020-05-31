@@ -20,7 +20,7 @@ describe('Alumni, Get all students', () => {
         if (err) return done(err);
         const { data } = res.body;
         expect(data[0].name).toBe('Alaa');
-        expect(data).toHaveLength(2);
+        expect(data).toHaveLength(11);
         done();
       });
   });
@@ -44,7 +44,7 @@ describe('Get student by id', () => {
 
   test('Route /alumni/8 status 200, json header ', (done) => {
     return request(app)
-      .get('/api/v1/alumni/8')
+      .get('/api/v1/alumni/18')
       .expect(200)
       .expect('Content-Type', /json/)
       .end((err, res) => {
@@ -158,9 +158,9 @@ describe('Put Student By Id', () => {
       });
   });
 
-  test('PUT Route /alumni/11 status 404, json header, put data ', (done) => {
+  test('PUT Route /alumni/13 status 404, json header, put data ', (done) => {
     request(app)
-      .put('/api/v1/alumni/11')
+      .put('/api/v1/alumni/13')
       .set('Cookie', token)
       .send(validData)
       .expect(404)
@@ -171,7 +171,7 @@ describe('Put Student By Id', () => {
           data: { message },
         } = res.body;
         const { rows } = await connection.query(
-          'SELECT * from student WHERE id = 11',
+          'SELECT * from student WHERE id = 13',
         );
         expect(rows).toHaveLength(0);
         expect(message).toBe('There is no student for this id');
@@ -239,9 +239,9 @@ describe('Delete specific student by ID', () => {
         done();
       });
   });
-  test('Route /alumni/10 status 404, data.message = Student does not exist ', (done) => {
+  test('Route /alumni/12 status 404, data.message = Student does not exist ', (done) => {
     return request(app)
-      .delete('/api/v1/alumni/10')
+      .delete('/api/v1/alumni/12')
       .set('Cookie', token)
       .expect(404)
       .expect('Content-Type', /json/)
