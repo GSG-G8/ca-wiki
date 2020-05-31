@@ -81,7 +81,6 @@ AdminContainer.propTypes = {
   buttonContent: PropTypes.string,
   buttonRoute: PropTypes.string,
   children: PropTypes.node.isRequired,
-  // logout: PropTypes.func.isRequired,
 };
 
 export default AdminContainer;
