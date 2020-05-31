@@ -26,9 +26,9 @@ describe('Get project by id', () => {
       });
   });
 
-  test('Route /projects/8 status 200, json header ', (done) => {
+  test('Route /projects/18 status 200, json header ', (done) => {
     return request(app)
-      .get('/api/v1/projects/8')
+      .get('/api/v1/projects/18')
       .expect(200)
       .expect('Content-Type', /json/)
       .end((err, res) => {
@@ -75,7 +75,7 @@ describe('Add Project', () => {
         const { message } = res.body.data;
         if (err) return done(err);
         const { rows } = await connection.query(
-          'SELECT * from project WHERE id = 8',
+          'SELECT * from project WHERE id = 16',
         );
         expect(rows[0].name).toBe('Mohmmedzw851@');
         expect(message).toBe('Project Added successfully');
@@ -127,9 +127,9 @@ describe('Delete Project By Id', () => {
       });
   });
 
-  test('Route /projects/10 status 404, data.message = Project does not exist ', (done) => {
+  test('Route /projects/18 status 404, data.message = Project does not exist ', (done) => {
     return request(app)
-      .delete('/api/v1/projects/10')
+      .delete('/api/v1/projects/18')
       .set('Cookie', token)
       .expect(404)
       .expect('Content-Type', /json/)
@@ -302,8 +302,8 @@ describe('Get stats', () => {
         if (err) return done(err);
         const { data } = res.body;
         expect(data.cohortsCount).toBe('2');
-        expect(data.projectsCount).toBe('7');
-        expect(data.studentsCount).toBe('2');
+        expect(data.projectsCount).toBe('15');
+        expect(data.studentsCount).toBe('11');
         done();
       });
   });
@@ -329,7 +329,7 @@ describe('Admin, Post Student', () => {
         const { message } = res.body.data;
         if (err) return done(err);
         const { rows } = await connection.query(
-          'SELECT * from student WHERE id = 3',
+          'SELECT * from student WHERE id = 12',
         );
         expect(rows[0].name).toBe('Rehab');
         expect(message).toBe('Student Added successfully');
