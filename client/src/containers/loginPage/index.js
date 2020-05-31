@@ -71,6 +71,7 @@ const LoginPage = ({ updateAuth, history }) => {
             onFinish={onFinish}
           >
             <Form.Item
+              className="login-form-input"
               name="username"
               rules={[
                 {
@@ -82,6 +83,7 @@ const LoginPage = ({ updateAuth, history }) => {
               <Input className="form-input" placeholder="Username" />
             </Form.Item>
             <Form.Item
+              className="login-form-input"
               name="password"
               rules={[
                 {
