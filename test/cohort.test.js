@@ -166,7 +166,7 @@ describe('Get Specific Cohort Projects', () => {
       .end((err, res) => {
         if (err) return done(err);
         const { data } = res.body;
-        expect(data).toHaveLength(2);
+        expect(data).toHaveLength(10);
         expect(data[0].name).toBe('ca-wiki');
         expect(data[0].project_type).toBe('Internal');
         done();
