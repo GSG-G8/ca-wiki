@@ -7,14 +7,7 @@ import AdminContainer from '../AdminContainer';
 
 const axios = require('axios');
 
-const AddEditForm = ({
-  formType,
-  addLink,
-  editLink,
-  cohortId,
-  inputData,
-  logout,
-}) => {
+const AddEditForm = ({ formType, addLink, editLink, cohortId, inputData }) => {
   const onFinish = async (values) => {
     try {
       let sendValues = values;
@@ -53,7 +46,7 @@ const AddEditForm = ({
     message.error('please enter correct data');
   };
   return (
-    <AdminContainer logout={logout}>
+    <AdminContainer>
       <Form
         className="add-data-form"
         labelCol={{ span: 3 }}
@@ -213,7 +206,6 @@ AddEditForm.propTypes = {
   editLink: PropTypes.string,
   cohortId: PropTypes.number,
   inputData: PropTypes.string,
-  logout: PropTypes.func.isRequired,
 };
 
 export default AddEditForm;
