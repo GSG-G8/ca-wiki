@@ -8,6 +8,7 @@ import {
 import axios from 'axios';
 
 import * as ROUTES from '../constants/routes';
+import LogoutContext from './LogoutContext';
 import LoginPage from '../containers/loginPage';
 import CohortPage from '../containers/CohortPage';
 import StudentPage from '../containers/StudentPage';
@@ -83,115 +84,107 @@ class App extends Component {
             />
             {isAuth ? (
               <>
-                <Route
-                  exact
-                  path={ROUTES.HOME_PAGE}
-                  render={(props) => (
-                    <Statistics {...props} logout={this.logout} />
-                  )}
-                />
-                <Route
-                  path={ROUTES.COHORT_PAGE}
-                  exact
-                  render={() => <CohortPage logout={this.logout} />}
-                />
-                <Route
-                  path={ROUTES.COHORT_STUDENTS_PAGE}
-                  exact
-                  render={(props) => (
-                    <StudentPage {...props} logout={this.logout} />
-                  )}
-                />
+                <LogoutContext.Provider value={{ logout: this.logout }}>
+                  <Route
+                    exact
+                    path={ROUTES.HOME_PAGE}
+                    render={(props) => <Statistics {...props} />}
+                  />
 
-                <Route
-                  path={ROUTES.COHORT_PROJECTS_PAGE}
-                  exact
-                  render={(props) => (
-                    <AdminProject {...props} logout={this.logout} />
-                  )}
-                />
+                  <Route
+                    path={ROUTES.COHORT_PAGE}
+                    exact
+                    render={() => <CohortPage />}
+                  />
 
-                <Route
-                  path={ROUTES.ADD_COHORT}
-                  exact
-                  render={(props) => (
-                    <AddEditForm
-                      {...props}
-                      logout={this.logout}
-                      formType="cohort"
-                      addLink="/api/v1/cohorts"
-                    />
-                  )}
-                />
+                  <Route
+                    path={ROUTES.COHORT_STUDENTS_PAGE}
+                    exact
+                    render={(props) => <StudentPage {...props} />}
+                  />
 
-                <Route
-                  path={ROUTES.EDIT_COHORT}
-                  exact
-                  render={(props) => (
-                    <AddEditForm
-                      {...props}
-                      logout={this.logout}
-                      formType="cohort"
-                      editLink={`/api/v1/cohorts/${props.match.params.cohortId}`}
-                    />
-                  )}
-                />
+                  <Route
+                    path={ROUTES.COHORT_PROJECTS_PAGE}
+                    exact
+                    render={(props) => <AdminProject {...props} />}
+                  />
 
-                <Route
-                  path={ROUTES.ADD_STUDENT}
-                  exact
-                  render={(props) => (
-                    <AddEditForm
-                      {...props}
-                      logout={this.logout}
-                      formType="student"
-                      addLink="/api/v1/alumni"
-                      cohortId={props.match.params.cohortId}
-                    />
-                  )}
-                />
+                  <Route
+                    path={ROUTES.ADD_COHORT}
+                    exact
+                    render={(props) => (
+                      <AddEditForm
+                        {...props}
+                        formType="cohort"
+                        addLink="/api/v1/cohorts"
+                      />
+                    )}
+                  />
 
-                <Route
-                  path={ROUTES.EDIT_STUDENT}
-                  exact
-                  render={(props) => (
-                    <AddEditForm
-                      {...props}
-                      logout={this.logout}
-                      formType="student"
-                      editLink={`/api/v1/alumni/${props.match.params.studentId}`}
-                      cohortId={props.match.params.cohortId}
-                    />
-                  )}
-                />
+                  <Route
+                    path={ROUTES.EDIT_COHORT}
+                    exact
+                    render={(props) => (
+                      <AddEditForm
+                        {...props}
+                        formType="cohort"
+                        editLink={`/api/v1/cohorts/${props.match.params.cohortId}`}
+                      />
+                    )}
+                  />
 
-                <Route
-                  path={ROUTES.ADD_PROJECT}
-                  exact
-                  render={(props) => (
-                    <AddEditForm
-                      {...props}
-                      logout={this.logout}
-                      formType="project"
-                      addLink="/api/v1/projects"
-                      cohortId={props.match.params.cohortId}
-                    />
-                  )}
-                />
+                  <Route
+                    path={ROUTES.ADD_STUDENT}
+                    exact
+                    render={(props) => (
+                      <AddEditForm
+                        {...props}
+                        formType="student"
+                        addLink="/api/v1/alumni"
+                        cohortId={props.match.params.cohortId}
+                      />
+                    )}
+                  />
 
-                <Route
-                  path={ROUTES.EDIT_PROJECT}
-                  exact
-                  render={(props) => (
-                    <AddEditForm
-                      {...props}
-                      logout={this.logout}
-                      formType="project"
-                      editLink={`/api/v1/projects/${props.match.params.projectId}`}
-                      cohortId={props.match.params.cohortId}
-                    />
-                  )}
-                />
+                  <Route
+                    path={ROUTES.EDIT_STUDENT}
+                    exact
+                    render={(props) => (
+                      <AddEditForm
+                        {...props}
+                        formType="student"
+                        editLink={`/api/v1/alumni/${props.match.params.studentId}`}
+                        cohortId={props.match.params.cohortId}
+                      />
+                    )}
+                  />
+
+                  <Route
+                    path={ROUTES.ADD_PROJECT}
+                    exact
+                    render={(props) => (
+                      <AddEditForm
+                        {...props}
+                        formType="project"
+                        addLink="/api/v1/projects"
+                        cohortId={props.match.params.cohortId}
+                      />
+                    )}
+                  />
+
+                  <Route
+                    path={ROUTES.EDIT_PROJECT}
+                    exact
+                    render={(props) => (
+                      <AddEditForm
+                        {...props}
+                        formType="project"
+                        editLink={`/api/v1/projects/${props.match.params.projectId}`}
+                        cohortId={props.match.params.cohortId}
+                      />
+                    )}
+                  />
+                </LogoutContext.Provider>
               </>
             ) : redirect ? (
               <Route render={() => <Redirect to={ROUTES.LOGIN_PAGE} />} />
