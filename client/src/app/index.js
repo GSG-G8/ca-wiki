@@ -117,6 +117,7 @@ class App extends Component {
                   render={(props) => (
                     <AddEditForm
                       {...props}
+                      logout={this.logout}
                       formType="cohort"
                       addLink="/api/v1/cohorts"
                     />
@@ -129,6 +130,7 @@ class App extends Component {
                   render={(props) => (
                     <AddEditForm
                       {...props}
+                      logout={this.logout}
                       formType="cohort"
                       editLink={`/api/v1/cohorts/${props.match.params.cohortId}`}
                     />
@@ -141,6 +143,7 @@ class App extends Component {
                   render={(props) => (
                     <AddEditForm
                       {...props}
+                      logout={this.logout}
                       formType="student"
                       addLink="/api/v1/alumni"
                       cohortId={props.match.params.cohortId}
@@ -154,6 +157,7 @@ class App extends Component {
                   render={(props) => (
                     <AddEditForm
                       {...props}
+                      logout={this.logout}
                       formType="student"
                       editLink={`/api/v1/alumni/${props.match.params.studentId}`}
                       cohortId={props.match.params.cohortId}
@@ -167,6 +171,7 @@ class App extends Component {
                   render={(props) => (
                     <AddEditForm
                       {...props}
+                      logout={this.logout}
                       formType="project"
                       addLink="/api/v1/projects"
                       cohortId={props.match.params.cohortId}
@@ -180,6 +185,7 @@ class App extends Component {
                   render={(props) => (
                     <AddEditForm
                       {...props}
+                      logout={this.logout}
                       formType="project"
                       editLink={`/api/v1/projects/${props.match.params.projectId}`}
                       cohortId={props.match.params.cohortId}
