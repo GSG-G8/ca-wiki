@@ -10,9 +10,9 @@ import * as ROUTES from '../constants/routes';
 import LoginPage from '../containers/loginPage';
 import Statistics from '../containers/statisticsPage';
 import AdminProject from '../containers/AdminProjectPage';
+import CohortPage from '../containers/CohortPage';
 import PageNotFound from '../containers/PageNotFound';
 import './style.css';
-import CohortPage from '../containers/CohortPage';
 
 class App extends Component {
   state = {
@@ -99,12 +99,12 @@ class App extends Component {
                     <AdminProject {...props} logout={this.logout} />
                   )}
                 />
+                <Route component={PageNotFound} />
               </>
             ) : redirect ? (
               <Route render={() => <Redirect to={ROUTES.LOGIN_PAGE} />} />
-            ) : (
-              <Route component={PageNotFound} />
-            )}
+            ) : null}
+            <Route component={PageNotFound} />
           </Switch>
         </div>
       </Router>
