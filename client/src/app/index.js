@@ -10,6 +10,7 @@ import * as ROUTES from '../constants/routes';
 import LoginPage from '../containers/loginPage';
 import Statistics from '../containers/statisticsPage';
 import AdminProject from '../containers/AdminProjectPage';
+import PageNotFound from '../containers/PageNotFound';
 import './style.css';
 import CohortPage from '../containers/CohortPage';
 
@@ -101,7 +102,9 @@ class App extends Component {
               </>
             ) : redirect ? (
               <Route render={() => <Redirect to={ROUTES.LOGIN_PAGE} />} />
-            ) : null}
+            ) : (
+              <Route component={PageNotFound} />
+            )}
           </Switch>
         </div>
       </Router>
