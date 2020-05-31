@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button } from 'antd';
-
+import { Link } from 'react-router-dom';
+import * as ROUTES from '../../constants/routes';
 import notFoundImg from '../../assets/images/notFoundImg.jpg';
 import './style.css';
 
@@ -14,7 +15,9 @@ const PageNotFound = () => {
           We are sorry, the page you requested could not be found.
           <br /> Please go back to the HomePage
         </p>
-        <Button>HomePage</Button>
+        <Link to={ROUTES.HOME_PAGE}>
+          <Button>HomePage</Button>
+        </Link>
       </div>
     </div>
   );
