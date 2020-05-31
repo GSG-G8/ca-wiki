@@ -28,20 +28,16 @@
   top: 50%;
   transform: translate(-50%, -50%);
   text-align: left;
-  /* margin-top: 180px; */
 }
 
 .logo {
   width: 300px;
   margin-left: -15px;
-  /* height: 11vh;
-  margin-right: 100px; */
 }
 
 .login-logo h3 {
   font: bold 30px var(--main-font);
   color: var(--main-white);
-  /* margin: 20px 260px 10px 0px; */
 }
 
 .login-logo p {
@@ -51,9 +47,6 @@
 }
 
 .login-form {
-  /* width: 40%;
-  height: 3vh;
-  margin: 5px 160px; */
   width: 273px;
 }
 
@@ -61,18 +54,6 @@
   margin-bottom: 20px;
 }
 
-/* .anticon svg {
-  display: inline-block;
-} */
-
-/* .ant-btn-primary {
-  color: var(--main-color);
-  background-color: var(--main-white);
-  border-color: var(--main-color);
-  height: 40px;
-  width: 120px;
-  margin-right: 200px;
-} */
 .login-form-button {
   color: var(--main-color);
   background-color: var(--main-white);
@@ -82,7 +63,7 @@
   margin-right: 200px;
   font-weight: 700;
 }
-/**/
+
 
 .ant-input-affix-wrapper {
   position: relative;

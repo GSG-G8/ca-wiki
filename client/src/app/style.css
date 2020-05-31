@@ -22,12 +22,10 @@ html {
   font-size: 1vw;
 }
 
-/**/
 body {
   font-family: var(--main-font);
   overflow: hidden;
 }
-/**/
 
 .App {
   text-align: center;
