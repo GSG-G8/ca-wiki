@@ -30,6 +30,9 @@
   text-align: left;
 }
 
+.anticon svg {
+  display: inline-block;
+}
 .logo {
   width: 300px;
   margin-left: -15px;
