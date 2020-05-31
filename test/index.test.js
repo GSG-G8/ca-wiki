@@ -342,7 +342,7 @@ describe('Admin Login and protected routes', () => {
   test('Route /login status 200, data.message = logged in successfully ', (done) => {
     return request(app)
       .post('/api/v1/login')
-      .send({ username: 'Muhammad', password: '123456' })
+      .send({ username: 'Muhammad', password: '12345678' })
       .expect(200)
       .expect('Content-Type', /json/)
       .end(async (err, res) => {
@@ -364,7 +364,7 @@ describe('Admin Login and protected routes', () => {
         if (err) return done(err);
         expect(message).toEqual([
           'username must be at least 5 characters',
-          'password must be at least 4 characters',
+          'password must be at least 8 characters',
         ]);
         done();
       });
@@ -373,7 +373,7 @@ describe('Admin Login and protected routes', () => {
   test("Route /login status 400, data.message = user doesn't exist", (done) => {
     return request(app)
       .post('/api/v1/login')
-      .send({ username: "Ala'a", password: '102030' })
+      .send({ username: "Ala'a", password: '10203040' })
       .expect(400)
       .expect('Content-Type', /json/)
       .end(async (err, res) => {
@@ -387,7 +387,7 @@ describe('Admin Login and protected routes', () => {
   test('Route /login status 400, data.message = Password is incorrect', (done) => {
     return request(app)
       .post('/api/v1/login')
-      .send({ username: 'Muhammad', password: '102030' })
+      .send({ username: 'Muhammad', password: '10203040' })
       .expect(400)
       .expect('Content-Type', /json/)
       .end(async (err, res) => {
