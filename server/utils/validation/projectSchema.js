@@ -6,9 +6,7 @@ const projectSchema = yup.object({
   imgUrl: yup.string().url().required(),
   githubLink: yup.string().url().required(),
   websiteLink: yup.string().url().required(),
-  projectType: yup
-    .mixed()
-    .oneOf(['internal', 'remotely', 'INTERNAL', 'REMOTELY']),
+  projectType: yup.mixed().oneOf(['internal', 'remotely']),
   cohortId: yup.number().integer().positive().required(),
   projectId: yup.number().integer().positive(),
 });

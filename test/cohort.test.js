@@ -226,7 +226,7 @@ describe('Get Specific Cohort Projects', () => {
         const { message } = res.body;
         expect(message).toEqual([
           'cohortId must be a `number` type, but the final value was: `NaN` (cast from the value `"G1"`).',
-          'projectType must be one of the following values: internal, remotely, INTERNAL, REMOTELY',
+          'projectType must be one of the following values: internal, remotely',
         ]);
         done();
       });
