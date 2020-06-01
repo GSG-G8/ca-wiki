@@ -85,16 +85,12 @@ class App extends Component {
             {isAuth ? (
               <>
                 <LogoutContext.Provider value={{ logout: this.logout }}>
-                  <Route
-                    exact
-                    path={ROUTES.HOME_PAGE}
-                    render={(props) => <Statistics {...props} />}
-                  />
+                  <Route exact path={ROUTES.HOME_PAGE} component={Statistics} />
 
                   <Route
                     path={ROUTES.COHORT_PAGE}
                     exact
-                    render={() => <CohortPage />}
+                    component={CohortPage}
                   />
 
                   <Route
