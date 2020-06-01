@@ -14,7 +14,7 @@ import StudentPage from '../containers/StudentPage';
 import AddEditForm from '../components/Add-Edit-Form';
 import Statistics from '../containers/statisticsPage';
 import AdminProject from '../containers/AdminProjectPage';
-import CommonComponent from '../components/CommonComponent';
+import CommonComponent from '../components/OverviewComponent';
 
 import './style.css';
 
