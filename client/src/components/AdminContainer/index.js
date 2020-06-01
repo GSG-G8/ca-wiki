@@ -54,9 +54,7 @@ const AdminContainer = ({ children, buttonContent, buttonRoute }) => {
                     <Button
                       className="logout-btn"
                       type="primary"
-                      onClick={() => {
-                        logout();
-                      }}
+                      onClick={logout}
                     >
                       Logout
                     </Button>
