@@ -16,13 +16,13 @@ class AddEditForm extends Component {
 
   async componentDidMount() {
     const {
+      history: { push },
       editLink,
       formType,
       match: {
         params: { cohortId, studentId, projectId },
       },
     } = this.props;
-
     try {
       if (editLink) {
         if (formType === 'cohort') {
@@ -80,7 +80,7 @@ class AddEditForm extends Component {
         }
       }
     } catch (err) {
-      console.log(err.message);
+      push('/not-found');
     }
   }
 
@@ -311,6 +311,9 @@ AddEditForm.propTypes = {
       projectId: PropTypes.string,
     }),
   }),
+  history: PropTypes.shape({
+    push: PropTypes.func,
+  }).isRequired,
 };
 
 export default AddEditForm;
