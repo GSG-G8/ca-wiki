@@ -53,7 +53,7 @@ const AdminContainer = ({ children, buttonContent, buttonRoute, logout }) => {
                   <Button
                     className="admin-back-btn"
                     type="primary"
-                    onClick={() => history.goBack()}
+                    onClick={history.goBack}
                   >
                     ❮ Back
                   </Button>
