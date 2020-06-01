@@ -96,12 +96,13 @@ class App extends Component {
                   <Route
                     path={ROUTES.COHORT_STUDENTS_PAGE}
                     exact
-                    render={(props) => <StudentPage {...props} />}
+                    component={StudentPage}
                   />
 
                   <Route
                     path={ROUTES.COHORT_PROJECTS_PAGE}
                     exact
+                    component={AdminProject}
                     render={(props) => <AdminProject {...props} />}
                   />
 
