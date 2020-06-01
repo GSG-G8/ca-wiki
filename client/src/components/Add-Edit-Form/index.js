@@ -12,6 +12,7 @@ class AddEditForm extends Component {
     myData: {},
     // eslint-disable-next-line react/destructuring-assignment
     addOrEdit: this.props.addLink,
+    projectType: '',
   };
 
   async componentDidMount() {
@@ -76,6 +77,7 @@ class AddEditForm extends Component {
               projectType,
             },
             addOrEdit: 'edit',
+            projectType,
           });
         }
       }
@@ -124,7 +126,7 @@ class AddEditForm extends Component {
   };
 
   render() {
-    const { myData, addOrEdit } = this.state;
+    const { myData, addOrEdit, projectType } = this.state;
     const { formType, cohortId, addLink } = this.props;
 
     return (
@@ -271,12 +273,17 @@ class AddEditForm extends Component {
               <Button type="primary" htmlType="submit">
                 {addLink ? 'Add' : 'Edit'}
               </Button>
+
               {formType === 'cohort' && <Link to="/admin/cohorts">Cancel</Link>}
               {formType === 'student' && (
                 <Link to={`/admin/cohorts/${cohortId}/students`}>Cancel</Link>
               )}
               {formType === 'project' && (
-                <Link to="/admin/cohorts">Cancel</Link>
+                <Link
+                  to={`/admin/cohorts/${cohortId}/projects?type=${projectType}`}
+                >
+                  Cancel
+                </Link>
               )}
             </Form.Item>
           </Form>
