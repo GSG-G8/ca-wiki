@@ -9,7 +9,7 @@ import AdminCard from '../../components/AdminCard';
 
 const { confirm } = Modal;
 
-class Cohort extends Component {
+class Student extends Component {
   state = {
     data: [],
     startPage: 0,
@@ -18,8 +18,13 @@ class Cohort extends Component {
   };
 
   async componentDidMount() {
+    const {
+      match: {
+        params: { cohortId },
+      },
+    } = this.props;
     try {
-      const res = await axios.get('/api/v1/cohorts');
+      const res = await axios.get(`/api/v1/cohorts/${cohortId}/alumni`);
       const { data } = res.data;
       this.setState({ data, total: data.length * 2.5 });
     } catch (err) {
@@ -30,20 +35,20 @@ class Cohort extends Component {
     }
   }
 
-  deleteCohort = (id, name) => {
+  deleteStudent = (id, name) => {
     confirm({
-      title: 'Are you sure you want to delete this cohort ?',
+      title: 'Are you sure you want to delete this Student ?',
       icon: <ExclamationCircleOutlined />,
-      content: `Cohort ID: ${id}, Name: ${name}`,
+      content: `Student ID: ${id}, Name: ${name}`,
       okText: 'Yes',
       okType: 'danger',
       cancelText: 'No',
       onOk: async () => {
         try {
-          const result = await axios.delete(`/api/v1/cohorts/${id}`);
+          const result = await axios.delete(`/api/v1/alumni/${id}`);
           const { data } = this.state;
           this.setState({
-            data: data.filter((cohort) => cohort.id !== id),
+            data: data.filter((student) => student.id !== id),
             total: data.length * 2.5 - 4,
           });
           const {
@@ -52,7 +57,7 @@ class Cohort extends Component {
             },
           } = result;
           notification.success({
-            message: 'Cohort deleted successfully',
+            message: 'Student deleted successfully',
             description: message,
           });
         } catch (err) {
@@ -71,14 +76,19 @@ class Cohort extends Component {
   };
 
   render() {
+    const {
+      match: {
+        params: { cohortId },
+      },
+    } = this.props;
     const { data, startPage, endPage, total } = this.state;
     const { logout } = this.props;
     const list = data.slice(startPage, endPage);
     return (
       <div>
         <AdminContainer
-          buttonContent="Add Cohort"
-          buttonRoute="/admin/cohorts/add"
+          buttonContent="Add Student"
+          buttonRoute={`/admin/cohorts/${cohortId}/students/add`}
           logout={logout}
         >
           {data.length === 0 ? (
@@ -90,32 +100,31 @@ class Cohort extends Component {
                 itemLayout="horizontal"
                 dataSource={list}
                 renderItem={(item) => (
-                  <List.Item className="admin-list-card">
+                  <List.Item>
                     <AdminCard
                       key={item.id}
                       name={item.name}
-                      description={item.description}
-                      githbUrl={item.github_link}
+                      email={item.email}
                       imgUrl={item.img_url}
-                      cohortId={item.id}
-                      student={item.id}
-                      editCard={`/admin/cohorts/${item.id}/edit`}
-                      deleteCard={this.deleteCohort}
+                      githbUrl={item.github_link}
+                      studentId={item.id}
+                      cohortId={item.cohortId}
+                      editCard={`/admin/cohorts/${cohortId}/students/${item.id}/edit`}
+                      deleteCard={this.deleteStudent}
                     />
                   </List.Item>
                 )}
               />
               <Pagination
-                className="pagination"
-                defaultCurrent={0}
-                showQuickJumper
-                onChange={(page) => {
+                defaultCurrent={1}
+                total={total}
+                onChange={(pageNumber) => {
                   this.setState({
-                    startPage: page * 4 - 4,
-                    endPage: page * 4,
+                    startPage: pageNumber * 4 - 4,
+                    endPage: pageNumber * 4,
                   });
                 }}
-                total={total}
+                className="pagination"
               />
             </div>
           )}
@@ -124,8 +133,18 @@ class Cohort extends Component {
     );
   }
 }
-Cohort.propTypes = {
-  logout: PropTypes.func.isRequired,
+
+Student.defaultProps = {
+  cohortId: undefined,
+  match: undefined,
+  params: undefined,
 };
 
-export default Cohort;
+Student.propTypes = {
+  logout: PropTypes.func.isRequired,
+  cohortId: PropTypes.number,
+  match: PropTypes.node,
+  params: PropTypes.node,
+};
+
+export default Student;

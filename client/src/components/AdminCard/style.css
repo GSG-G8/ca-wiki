@@ -4,6 +4,7 @@
     box-shadow: var(--card-shadow);
     padding: 8px 0;
     width: 100%;
+    height: 93px;
 }
 
 .admin-card > div:last-of-type {
@@ -48,7 +49,7 @@
     border-color: var(--border-white);
     color: #414D55;
     border-radius: 5px;
-    margin: 10px auto;
+    margin: 0px auto;
     box-shadow: var(--box-shadow);
 }
 
@@ -82,4 +83,8 @@
 
 .description-btn:hover, .description-btn:focus {
     color: var(--content-grey);
+}
+
+.description {
+    font-size: 12px;
 }
