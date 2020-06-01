@@ -9,5 +9,5 @@ export const EDIT_STUDENT = '/admin/cohorts/:cohortId/students/:studentId/edit';
 export const COHORT_STUDENTS_PAGE = '/admin/Cohorts/:cohortId/students';
 export const PROJECTS_PAGE = '/admin/projects';
 export const COHORT_PROJECTS_PAGE = '/admin/cohorts/:cohortId/projects';
-export const ADD_PROJECT = '/admin/cohorts/:cohortId/projects/add';
+export const ADD_PROJECT = '/admin/cohorts/:cohortId/projects/add/:projectType';
 export const EDIT_PROJECT = '/admin/cohorts/:cohortId/projects/:projectId/edit';

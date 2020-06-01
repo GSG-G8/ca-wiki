@@ -90,13 +90,17 @@ class AdminProject extends Component {
       match: {
         params: { cohortId },
       },
+      history: {
+        location: { search },
+      },
     } = this.props;
     const dataList = data.slice(startPage, endPage);
+    const projectType = search.split('=')[1];
     return (
       <div className="App">
         <AdminContainer
           buttonContent="Add Project"
-          buttonRoute={`/admin/cohorts/${cohortId}/projects/add`}
+          buttonRoute={`/admin/cohorts/${cohortId}/projects/add/${projectType}`}
           logout={logout}
         >
           {data.length === 0 ? (
@@ -145,6 +149,11 @@ AdminProject.propTypes = {
   match: PropTypes.func.isRequired,
   location: PropTypes.func.isRequired,
   logout: PropTypes.func.isRequired,
+  history: PropTypes.shape({
+    location: PropTypes.shape({
+      search: PropTypes.string,
+    }),
+  }).isRequired,
 };
 
 export default AdminProject;
