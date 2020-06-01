@@ -7,6 +7,16 @@ import AdminContainer from '../AdminContainer';
 
 const axios = require('axios');
 
+const redirectFunc = (push, formType, cohortId, projectType) => {
+  if (formType === 'cohort') {
+    push('/admin/cohorts');
+  } else if (formType === 'student') {
+    push(`/admin/cohorts/${cohortId}/students`);
+  } else {
+    push(`/admin/cohorts/${cohortId}/projects?type=${projectType}`);
+  }
+};
+
 class AddEditForm extends Component {
   state = {
     myData: {},
@@ -24,11 +34,11 @@ class AddEditForm extends Component {
         params: { cohortId, studentId, projectId },
       },
     } = this.props;
+
     try {
       if (editLink) {
         if (formType === 'cohort') {
           const fetchItems = await axios(`/api/v1/cohorts/${cohortId}`);
-
           const {
             data: {
               name,
@@ -44,7 +54,6 @@ class AddEditForm extends Component {
           });
         } else if (formType === 'student') {
           const fetchItems = await axios(`/api/v1/alumni/${studentId}`);
-
           const {
             data: { name, email, img_url: imgUrl, github_link: githubLink },
           } = fetchItems.data;
@@ -55,7 +64,6 @@ class AddEditForm extends Component {
           });
         } else {
           const fetchItems = await axios(`/api/v1/projects/${projectId}`);
-
           const {
             data: {
               name,
@@ -87,7 +95,14 @@ class AddEditForm extends Component {
   }
 
   onFinish = async (values) => {
-    const { formType, cohortId, addLink, editLink } = this.props;
+    const {
+      formType,
+      cohortId,
+      addLink,
+      editLink,
+      history: { push },
+    } = this.props;
+
     try {
       let sendValues = values;
       if (formType !== 'cohort') {
@@ -102,6 +117,7 @@ class AddEditForm extends Component {
           },
         } = response;
         message.success(resMessage);
+        redirectFunc(push, formType, cohortId, sendValues.projectType);
       } else {
         const response = await axios.put(editLink, sendValues);
         const {
@@ -110,6 +126,7 @@ class AddEditForm extends Component {
           },
         } = response;
         message.success(resMessage);
+        redirectFunc(push, formType, cohortId, sendValues.projectType);
       }
     } catch (err) {
       if (err.response.status) {
@@ -256,7 +273,7 @@ class AddEditForm extends Component {
                     {
                       required: true,
                       type: 'string',
-                      enum: ['internal', 'remotely'],
+                      enum: ['internal', 'remotely', 'INTERNAL', 'REMOTELY'],
                       message: 'Please input project type!',
                     },
                   ]}
