@@ -48,6 +48,7 @@
   display: flex;
   align-items: flex-end;
   justify-content: center;
+  flex-wrap: wrap;
   width: 100%;
   padding-bottom: 30px;
 }
@@ -108,7 +109,12 @@
   border-bottom: none;
   padding: 0;
 }
-.logout-btn {
+
+.admin-back-btn {
+  margin-top: 130px;
+}
+
+.logout-btn, .admin-back-btn {
   color: var( --main-white);
   background-color: var(--main-color);
   border-color: var( --main-color);
@@ -117,11 +123,11 @@
   margin-right: 0px;
 }
 
-.logout-btn:hover {
+.logout-btn:hover, .admin-back-btn:hover {
   color: var( --main-white);
 }
 
-.logout-btn:focus {
+.logout-btn:focus, .admin-back-btn:focus {
   color: var( --main-white);
   background-color: var(--main-color);
   border-color: var( --main-color);
