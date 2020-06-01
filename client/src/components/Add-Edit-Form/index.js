@@ -7,22 +7,12 @@ import AdminContainer from '../AdminContainer';
 
 const axios = require('axios');
 
-const redirectFunc = (push, formType, cohortId, projectType) => {
-  if (formType === 'cohort') {
-    push('/admin/cohorts');
-  } else if (formType === 'student') {
-    push(`/admin/cohorts/${cohortId}/students`);
-  } else {
-    push(`/admin/cohorts/${cohortId}/projects?type=${projectType}`);
-  }
-};
-
 class AddEditForm extends Component {
   state = {
     myData: {},
     // eslint-disable-next-line react/destructuring-assignment
     addOrEdit: this.props.addLink,
-    projectType: '',
+    typeOfProject: '',
   };
 
   async componentDidMount() {
@@ -30,63 +20,16 @@ class AddEditForm extends Component {
       history: { push },
       editLink,
       formType,
-      match: {
-        params: { cohortId, studentId, projectId },
-      },
     } = this.props;
 
     try {
       if (editLink) {
         if (formType === 'cohort') {
-          const fetchItems = await axios(`/api/v1/cohorts/${cohortId}`);
-          const {
-            data: {
-              name,
-              description,
-              img_url: imgUrl,
-              github_link: githubLink,
-            },
-          } = fetchItems.data;
-
-          this.setState({
-            myData: { name, description, imgUrl, githubLink },
-            addOrEdit: 'edit',
-          });
+          this.getCohort();
         } else if (formType === 'student') {
-          const fetchItems = await axios(`/api/v1/alumni/${studentId}`);
-          const {
-            data: { name, email, img_url: imgUrl, github_link: githubLink },
-          } = fetchItems.data;
-
-          this.setState({
-            myData: { name, imgUrl, githubLink, email },
-            addOrEdit: 'edit',
-          });
+          this.getStudents();
         } else {
-          const fetchItems = await axios(`/api/v1/projects/${projectId}`);
-          const {
-            data: {
-              name,
-              description,
-              img_url: imgUrl,
-              github_link: githubLink,
-              website_link: websiteLink,
-              project_type: projectType,
-            },
-          } = fetchItems.data;
-
-          this.setState({
-            myData: {
-              name,
-              description,
-              imgUrl,
-              githubLink,
-              websiteLink,
-              projectType,
-            },
-            addOrEdit: 'edit',
-            projectType,
-          });
+          this.getProject();
         }
       }
     } catch (err) {
@@ -94,14 +37,74 @@ class AddEditForm extends Component {
     }
   }
 
-  onFinish = async (values) => {
+  async getCohort() {
     const {
-      formType,
-      cohortId,
-      addLink,
-      editLink,
-      history: { push },
+      match: {
+        params: { cohortId },
+      },
     } = this.props;
+    const fetchItems = await axios(`/api/v1/cohorts/${cohortId}`);
+    const {
+      data: { name, description, img_url: imgUrl, github_link: githubLink },
+    } = fetchItems.data;
+
+    this.setState({
+      myData: { name, description, imgUrl, githubLink },
+      addOrEdit: 'edit',
+    });
+  }
+
+  async getStudents() {
+    const {
+      match: {
+        params: { studentId },
+      },
+    } = this.props;
+    const fetchItems = await axios(`/api/v1/alumni/${studentId}`);
+    const {
+      data: { name, email, img_url: imgUrl, github_link: githubLink },
+    } = fetchItems.data;
+
+    this.setState({
+      myData: { name, imgUrl, githubLink, email },
+      addOrEdit: 'edit',
+    });
+  }
+
+  async getProject() {
+    const {
+      match: {
+        params: { projectId },
+      },
+    } = this.props;
+    const fetchItems = await axios(`/api/v1/projects/${projectId}`);
+    const {
+      data: {
+        name,
+        description,
+        img_url: imgUrl,
+        github_link: githubLink,
+        website_link: websiteLink,
+        project_type: projectType,
+      },
+    } = fetchItems.data;
+
+    this.setState({
+      myData: {
+        name,
+        description,
+        imgUrl,
+        githubLink,
+        websiteLink,
+        projectType,
+      },
+      addOrEdit: 'edit',
+      typeOfProject: projectType,
+    });
+  }
+
+  onFinish = async (values) => {
+    const { formType, cohortId, addLink, editLink } = this.props;
 
     try {
       let sendValues = values;
@@ -110,6 +113,9 @@ class AddEditForm extends Component {
       }
 
       if (addLink) {
+        const projectTypeLower = sendValues.projectType;
+        sendValues.projectType = projectTypeLower.toLowerCase();
+
         const response = await axios.post(addLink, sendValues);
         const {
           data: {
@@ -117,7 +123,7 @@ class AddEditForm extends Component {
           },
         } = response;
         message.success(resMessage);
-        redirectFunc(push, formType, cohortId, sendValues.projectType);
+        this.redirectFunc(sendValues.projectType);
       } else {
         const response = await axios.put(editLink, sendValues);
         const {
@@ -126,7 +132,7 @@ class AddEditForm extends Component {
           },
         } = response;
         message.success(resMessage);
-        redirectFunc(push, formType, cohortId, sendValues.projectType);
+        this.redirectFunc(sendValues.projectType);
       }
     } catch (err) {
       if (err.response.status) {
@@ -142,9 +148,32 @@ class AddEditForm extends Component {
     message.error('please enter correct data');
   };
 
+  redirectFunc(projectType) {
+    const {
+      formType,
+      cohortId,
+      history: { push },
+    } = this.props;
+
+    if (formType === 'cohort') {
+      push('/admin/cohorts');
+    } else if (formType === 'student') {
+      push(`/admin/cohorts/${cohortId}/students`);
+    } else {
+      push(`/admin/cohorts/${cohortId}/projects?type=${projectType}`);
+    }
+  }
+
   render() {
-    const { myData, addOrEdit, projectType } = this.state;
-    const { formType, cohortId, addLink } = this.props;
+    const { myData, addOrEdit, typeOfProject } = this.state;
+    const {
+      formType,
+      cohortId,
+      addLink,
+      match: {
+        params: { projectType },
+      },
+    } = this.props;
 
     return (
       <AdminContainer>
@@ -297,7 +326,9 @@ class AddEditForm extends Component {
               )}
               {formType === 'project' && (
                 <Link
-                  to={`/admin/cohorts/${cohortId}/projects?type=${projectType}`}
+                  to={`/admin/cohorts/${cohortId}/projects?type=${
+                    projectType || typeOfProject
+                  }`}
                 >
                   Cancel
                 </Link>
@@ -333,6 +364,7 @@ AddEditForm.propTypes = {
       cohortId: PropTypes.string,
       studentId: PropTypes.string,
       projectId: PropTypes.string,
+      projectType: PropTypes.string,
     }),
   }),
   history: PropTypes.shape({
