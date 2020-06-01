@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Layout, Button } from 'antd';
 import logo from '../../assets/images/logo.png';
@@ -8,6 +8,8 @@ import './style.css';
 const { Header } = Layout;
 
 const AdminContainer = ({ children, buttonContent, buttonRoute, logout }) => {
+  const history = useHistory();
+  console.log('hhh', history);
   return (
     <>
       <Layout>
@@ -48,6 +50,16 @@ const AdminContainer = ({ children, buttonContent, buttonRoute, logout }) => {
                 </li>
               </ul>
               <div className="admin-side-btn">
+                {history.location.pathname !== '/admin' ? (
+                  <Button
+                    className="admin-back-btn"
+                    type="primary"
+                    onClick={() => history.goBack()}
+                  >
+                    ❮ Back
+                  </Button>
+                ) : null}
+
                 <Button
                   className="logout-btn"
                   type="primary"
