@@ -103,7 +103,6 @@ class App extends Component {
                     path={ROUTES.COHORT_PROJECTS_PAGE}
                     exact
                     component={AdminProject}
-                    render={(props) => <AdminProject {...props} />}
                   />
 
                   <Route
