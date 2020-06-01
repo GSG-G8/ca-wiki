@@ -272,7 +272,7 @@ describe('Get project by type', () => {
         if (err) return done(err);
         const { message } = res.body;
         expect(message).toEqual([
-          'projectType must be one of the following values: internal, remotely',
+          'projectType must be one of the following values: internal, remotely, INTERNAL, REMOTELY',
         ]);
         done();
       });
