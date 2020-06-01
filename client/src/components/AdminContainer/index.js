@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { Layout, Button } from 'antd';
 import logo from '../../assets/images/logo.png';
 import './style.css';
-import LogoutContext from '../../app/LogoutContext';
+import LogoutContext from '../../Contexts/LogoutContext';
 
 const { Header } = Layout;
 

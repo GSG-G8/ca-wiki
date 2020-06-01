@@ -8,7 +8,7 @@ import {
 import axios from 'axios';
 
 import * as ROUTES from '../constants/routes';
-import LogoutContext from './LogoutContext';
+import LogoutContext from '../Contexts/LogoutContext';
 import LoginPage from '../containers/loginPage';
 import CohortPage from '../containers/CohortPage';
 import StudentPage from '../containers/StudentPage';
