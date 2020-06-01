@@ -9,7 +9,6 @@ const { Header } = Layout;
 
 const AdminContainer = ({ children, buttonContent, buttonRoute, logout }) => {
   const history = useHistory();
-  console.log('hhh', history);
   return (
     <>
       <Layout>
