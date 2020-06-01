@@ -16,6 +16,7 @@ class AddEditForm extends Component {
 
   async componentDidMount() {
     const {
+      editLink,
       formType,
       match: {
         params: { cohortId, studentId, projectId },
@@ -23,56 +24,63 @@ class AddEditForm extends Component {
     } = this.props;
 
     try {
-      if (formType === 'cohort') {
-        const fetchItems = await axios(`/api/v1/cohorts/${cohortId}`);
+      if (editLink) {
+        if (formType === 'cohort') {
+          const fetchItems = await axios(`/api/v1/cohorts/${cohortId}`);
 
-        const {
-          data: { name, description, img_url: imgUrl, github_link: githubLink },
-        } = fetchItems.data;
+          const {
+            data: {
+              name,
+              description,
+              img_url: imgUrl,
+              github_link: githubLink,
+            },
+          } = fetchItems.data;
 
-        this.setState({
-          myData: { name, description, imgUrl, githubLink },
-          addOrEdit: 'edit',
-        });
-      } else if (formType === 'student') {
-        const fetchItems = await axios(`/api/v1/alumni/${studentId}`);
+          this.setState({
+            myData: { name, description, imgUrl, githubLink },
+            addOrEdit: 'edit',
+          });
+        } else if (formType === 'student') {
+          const fetchItems = await axios(`/api/v1/alumni/${studentId}`);
 
-        const {
-          data: { name, email, img_url: imgUrl, github_link: githubLink },
-        } = fetchItems.data;
+          const {
+            data: { name, email, img_url: imgUrl, github_link: githubLink },
+          } = fetchItems.data;
 
-        this.setState({
-          myData: { name, imgUrl, githubLink, email },
-          addOrEdit: 'edit',
-        });
-      } else {
-        const fetchItems = await axios(`/api/v1/projects/${projectId}`);
+          this.setState({
+            myData: { name, imgUrl, githubLink, email },
+            addOrEdit: 'edit',
+          });
+        } else {
+          const fetchItems = await axios(`/api/v1/projects/${projectId}`);
 
-        const {
-          data: {
-            name,
-            description,
-            img_url: imgUrl,
-            github_link: githubLink,
-            website_link: websiteLink,
-            project_type: projectType,
-          },
-        } = fetchItems.data;
+          const {
+            data: {
+              name,
+              description,
+              img_url: imgUrl,
+              github_link: githubLink,
+              website_link: websiteLink,
+              project_type: projectType,
+            },
+          } = fetchItems.data;
 
-        this.setState({
-          myData: {
-            name,
-            description,
-            imgUrl,
-            githubLink,
-            websiteLink,
-            projectType,
-          },
-          addOrEdit: 'edit',
-        });
+          this.setState({
+            myData: {
+              name,
+              description,
+              imgUrl,
+              githubLink,
+              websiteLink,
+              projectType,
+            },
+            addOrEdit: 'edit',
+          });
+        }
       }
     } catch (err) {
-      console.log(err);
+      console.log(err.message);
     }
   }
 
