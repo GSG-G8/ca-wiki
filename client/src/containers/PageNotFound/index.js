@@ -7,7 +7,7 @@ import './style.css';
 
 const PageNotFound = () => {
   return (
-    <div className="container">
+    <div className="not-found-container">
       <img src={notFoundImg} alt="notFound" />
       <div>
         <h1>Page Not Found</h1>
