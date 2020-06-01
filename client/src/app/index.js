@@ -14,6 +14,7 @@ import StudentPage from '../containers/StudentPage';
 import AddEditForm from '../components/Add-Edit-Form';
 import Statistics from '../containers/statisticsPage';
 import AdminProject from '../containers/AdminProjectPage';
+import CommonComponent from '../components/CommonComponent';
 
 import './style.css';
 
@@ -186,6 +187,7 @@ class App extends Component {
                     />
                   )}
                 />
+                <Route component={CommonComponent} />
               </>
             ) : redirect ? (
               <Route render={() => <Redirect to={ROUTES.LOGIN_PAGE} />} />

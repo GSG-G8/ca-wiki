@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
 import { Button } from 'antd';
+import HomeImage from '../../assets/images/Group 369.svg';
+
+import './style.css';
 
 class CommonComponent extends Component {
   render() {
     return (
-      <div>
-        <img src="" alt="" />
-        <div>
-          <h1>PALESTINE'S FIRST FULL-STACK CODE ACADEMY</h1>
+      <div className="container">
+        <div className="container-text">
+          <h1>PALESTINES FIRST</h1>
+          <h1> FULL-STACK CODE ACADEMY</h1>
           <p>
             The Code Academy Is Palestine’s First Full-Stack Coding Bootcamp
             With A Flagship Campus In Gaza And Second Campus Opening In The West
@@ -21,6 +24,9 @@ class CommonComponent extends Component {
             Companies Or Work As Freelance Developers.
           </p>
           <Button>JOIN THE CODE ACADEMY</Button>
+        </div>
+        <div className="container-photo">
+          <img src={HomeImage} alt="Home" />
         </div>
       </div>
     );
