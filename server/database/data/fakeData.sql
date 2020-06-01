@@ -1,4 +1,4 @@
-INSERT INTO admin (username , password) VALUES ('Muhammad','$2b$10$n99wQBmJs3ecMzRQSsGs2.ogSubljcshvD85TiYcl/ZO.63eRBpJW');
+INSERT INTO admin (username , password) VALUES ('Muhammad','$2b$10$DcDZvSOFT8wnvO3uA89LGOTqa9rSRiOuaj2f7RxssF9DNwXYaeFXK');
 
 INSERT INTO cohort (name , description , img_url , github_link) VALUES 
 ('G8','GazaSkyGeeks Code Academy, 8th Cohort','https://avatars0.githubusercontent.com/u/59821022?s=200&v=4','https://github.com/GSG-G8'),
@@ -6,7 +6,16 @@ INSERT INTO cohort (name , description , img_url , github_link) VALUES
 
 INSERT INTO student (name , email , img_url , github_link , cohort_id) VALUES
 ('Alaa','alaa@gmail.com','https://avatars2.githubusercontent.com/u/26024288?s=60&u=573706aef193cc5bcb8a28969cff88bf282bb6ef&v=4','https://github.com/AlaaSaadeddin',1),
-('Rana','rana@gmail.com','https://avatars1.githubusercontent.com/u/25321550?s=96&v=4','https://github.com/ranasobeid95',2);
+('Rana','rana@gmail.com','https://avatars1.githubusercontent.com/u/25321550?s=96&v=4','https://github.com/ranasobeid95',2),
+('rola','alaa1@gmail.com','https://avatars2.githubusercontent.com/u/26024288?s=60&u=573706aef193cc5bcb8a28969cff88bf282bb6ef&v=4','https://github.com/AlaaSaadeddin',1),
+('nada','alaa2@gmail.com','https://avatars2.githubusercontent.com/u/26024288?s=60&u=573706aef193cc5bcb8a28969cff88bf282bb6ef&v=4','https://github.com/AlaaSaadeddin',1),
+('noha','alaa3@gmail.com','https://avatars2.githubusercontent.com/u/26024288?s=60&u=573706aef193cc5bcb8a28969cff88bf282bb6ef&v=4','https://github.com/AlaaSaadeddin',1),
+('heba','alaa4@gmail.com','https://avatars2.githubusercontent.com/u/26024288?s=60&u=573706aef193cc5bcb8a28969cff88bf282bb6ef&v=4','https://github.com/AlaaSaadeddin',1),
+('samar','alaa5@gmail.com','https://avatars2.githubusercontent.com/u/26024288?s=60&u=573706aef193cc5bcb8a28969cff88bf282bb6ef&v=4','https://github.com/AlaaSaadeddin',1),
+('dalia','alaa6@gmail.com','https://avatars2.githubusercontent.com/u/26024288?s=60&u=573706aef193cc5bcb8a28969cff88bf282bb6ef&v=4','https://github.com/AlaaSaadeddin',1),
+('sama','alaa7@gmail.com','https://avatars2.githubusercontent.com/u/26024288?s=60&u=573706aef193cc5bcb8a28969cff88bf282bb6ef&v=4','https://github.com/AlaaSaadeddin',1),
+('amal','alaa8@gmail.com','https://avatars2.githubusercontent.com/u/26024288?s=60&u=573706aef193cc5bcb8a28969cff88bf282bb6ef&v=4','https://github.com/AlaaSaadeddin',1),
+('roba','alaa9@gmail.com','https://avatars2.githubusercontent.com/u/26024288?s=60&u=573706aef193cc5bcb8a28969cff88bf282bb6ef&v=4','https://github.com/AlaaSaadeddin',1);
 
 INSERT INTO project (name , description , img_url , github_link , website_link , project_type , cohort_id) VALUES 
 ('ca-wiki',
@@ -44,6 +53,47 @@ INSERT INTO project (name , description , img_url , github_link , website_link ,
 'An application to facilitate code academy application process for applicants and help them to complete their applications easily and on time, also help code academy team to track , filter and create applications.',
 'https://d2slcw3kip6qmk.cloudfront.net/marketing/blog/2017Q2/project-planning-header@2x.png',
 'https://github.com/GSG-G8/applicants-system',
-'https://github.com/GSG-G8/applicants-system','Internal',2);
+'https://github.com/GSG-G8/applicants-system','Internal',2),
+('ca-wiki',
+'Ca-wiki is a web application which allows clients to view all cohorts that have been enrolled in Code Academy. Clients can view all students who graduated from the academy so that they can view every student and his/her projects he/she participated in, his/her github page',
+'https://media.autopro.com.au/media/catalog/product/cache/3/image/750x750/9df78eab33525d08d6e5fb8d27136e95/m/n/mnpp.jpg',
+'https://github.com/GSG-G8/ca-wiki/tree/ed9f4cd9b5dc428f5420fe9a880a27e63f5f04d3',
+'https://github.com/GSG-G8/ca-wiki/blob/ed9f4cd9b5dc428f5420fe9a880a27e63f5f04d3/%5Blink%5D','Internal',1),
+('ca-wiki',
+'Ca-wiki is a web application which allows clients to view all cohorts that have been enrolled in Code Academy. Clients can view all students who graduated from the academy so that they can view every student and his/her projects he/she participated in, his/her github page',
+'https://media.autopro.com.au/media/catalog/product/cache/3/image/750x750/9df78eab33525d08d6e5fb8d27136e95/m/n/mnpp.jpg',
+'https://github.com/GSG-G8/ca-wiki/tree/ed9f4cd9b5dc428f5420fe9a880a27e63f5f04d3',
+'https://github.com/GSG-G8/ca-wiki/blob/ed9f4cd9b5dc428f5420fe9a880a27e63f5f04d3/%5Blink%5D','Internal',1),
+('ca-wiki',
+'Ca-wiki is a web application which allows clients to view all cohorts that have been enrolled in Code Academy. Clients can view all students who graduated from the academy so that they can view every student and his/her projects he/she participated in, his/her github page',
+'https://media.autopro.com.au/media/catalog/product/cache/3/image/750x750/9df78eab33525d08d6e5fb8d27136e95/m/n/mnpp.jpg',
+'https://github.com/GSG-G8/ca-wiki/tree/ed9f4cd9b5dc428f5420fe9a880a27e63f5f04d3',
+'https://github.com/GSG-G8/ca-wiki/blob/ed9f4cd9b5dc428f5420fe9a880a27e63f5f04d3/%5Blink%5D','Internal',1),
+('ca-wiki',
+'Ca-wiki is a web application which allows clients to view all cohorts that have been enrolled in Code Academy. Clients can view all students who graduated from the academy so that they can view every student and his/her projects he/she participated in, his/her github page',
+'https://media.autopro.com.au/media/catalog/product/cache/3/image/750x750/9df78eab33525d08d6e5fb8d27136e95/m/n/mnpp.jpg',
+'https://github.com/GSG-G8/ca-wiki/tree/ed9f4cd9b5dc428f5420fe9a880a27e63f5f04d3',
+'https://github.com/GSG-G8/ca-wiki/blob/ed9f4cd9b5dc428f5420fe9a880a27e63f5f04d3/%5Blink%5D','Internal',1),
+('ca-wiki',
+'Ca-wiki is a web application which allows clients to view all cohorts that have been enrolled in Code Academy. Clients can view all students who graduated from the academy so that they can view every student and his/her projects he/she participated in, his/her github page',
+'https://media.autopro.com.au/media/catalog/product/cache/3/image/750x750/9df78eab33525d08d6e5fb8d27136e95/m/n/mnpp.jpg',
+'https://github.com/GSG-G8/ca-wiki/tree/ed9f4cd9b5dc428f5420fe9a880a27e63f5f04d3',
+'https://github.com/GSG-G8/ca-wiki/blob/ed9f4cd9b5dc428f5420fe9a880a27e63f5f04d3/%5Blink%5D','Internal',1),
+('ca-wiki',
+'Ca-wiki is a web application which allows clients to view all cohorts that have been enrolled in Code Academy. Clients can view all students who graduated from the academy so that they can view every student and his/her projects he/she participated in, his/her github page',
+'https://media.autopro.com.au/media/catalog/product/cache/3/image/750x750/9df78eab33525d08d6e5fb8d27136e95/m/n/mnpp.jpg',
+'https://github.com/GSG-G8/ca-wiki/tree/ed9f4cd9b5dc428f5420fe9a880a27e63f5f04d3',
+'https://github.com/GSG-G8/ca-wiki/blob/ed9f4cd9b5dc428f5420fe9a880a27e63f5f04d3/%5Blink%5D','Internal',1),
+('ca-wiki',
+'Ca-wiki is a web application which allows clients to view all cohorts that have been enrolled in Code Academy. Clients can view all students who graduated from the academy so that they can view every student and his/her projects he/she participated in, his/her github page',
+'https://media.autopro.com.au/media/catalog/product/cache/3/image/750x750/9df78eab33525d08d6e5fb8d27136e95/m/n/mnpp.jpg',
+'https://github.com/GSG-G8/ca-wiki/tree/ed9f4cd9b5dc428f5420fe9a880a27e63f5f04d3',
+'https://github.com/GSG-G8/ca-wiki/blob/ed9f4cd9b5dc428f5420fe9a880a27e63f5f04d3/%5Blink%5D','Internal',1),
+('ca-wiki',
+'Ca-wiki is a web application which allows clients to view all cohorts that have been enrolled in Code Academy. Clients can view all students who graduated from the academy so that they can view every student and his/her projects he/she participated in, his/her github page',
+'https://media.autopro.com.au/media/catalog/product/cache/3/image/750x750/9df78eab33525d08d6e5fb8d27136e95/m/n/mnpp.jpg',
+'https://github.com/GSG-G8/ca-wiki/tree/ed9f4cd9b5dc428f5420fe9a880a27e63f5f04d3',
+'https://github.com/GSG-G8/ca-wiki/blob/ed9f4cd9b5dc428f5420fe9a880a27e63f5f04d3/%5Blink%5D','Internal',1);
 
-INSERT INTO student_project (student_id , project_id) VALUES (1 , 1) , (2 , 2);
+INSERT INTO student_project (student_id , project_id) VALUES (1 , 1) , (2 , 2), (3 , 3) 
+, (4 , 8), (5 , 9) , (6 , 10), (7 , 11) , (8 , 12), (9 , 13) , (10 , 14), (11 , 15);

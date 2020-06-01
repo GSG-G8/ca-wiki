@@ -50,11 +50,13 @@ class AdminCard extends Component {
       imgUrl,
       name,
       description,
+      email,
       githbUrl,
       student,
       websiteLink,
       projectId,
       cohortId,
+      studentId,
       editCard,
       deleteCard,
     } = this.props;
@@ -70,7 +72,7 @@ class AdminCard extends Component {
           </div>
         </div>
         {description && (
-          <div>
+          <div className="description">
             <h3>Description</h3>
             {description.length > 40 ? (
               <Popover placement="bottom" content={description} trigger="click">
@@ -79,6 +81,12 @@ class AdminCard extends Component {
             ) : (
               <p>{description}</p>
             )}
+          </div>
+        )}
+        {email && (
+          <div>
+            <h3>Email</h3>
+            <p>{email}</p>
           </div>
         )}
         <div>
@@ -131,9 +139,13 @@ class AdminCard extends Component {
           </Link>
           <Button
             onClick={() =>
-              projectId ? deleteCard(projectId) : deleteCard(cohortId, name)
+              projectId
+                ? deleteCard(projectId)
+                : studentId
+                ? deleteCard(studentId, name)
+                : deleteCard(cohortId, name)
             }
-            className="card-btn delete"
+            className="card-btn"
           >
             Delete
           </Button>
@@ -149,17 +161,21 @@ AdminCard.defaultProps = {
   websiteLink: undefined,
   student: undefined,
   cohortId: undefined,
+  studentId: undefined,
+  email: undefined,
 };
 
 AdminCard.propTypes = {
   imgUrl: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
+  email: PropTypes.string,
   description: PropTypes.string,
   githbUrl: PropTypes.string.isRequired,
   websiteLink: PropTypes.string,
   student: PropTypes.number,
   projectId: PropTypes.number,
   cohortId: PropTypes.number,
+  studentId: PropTypes.number,
   editCard: PropTypes.func.isRequired,
   deleteCard: PropTypes.func.isRequired,
 };
