@@ -18,7 +18,7 @@ class AddEditForm extends Component {
     const {
       formType,
       match: {
-        params: { cohortId },
+        params: { cohortId, studentId },
       },
     } = this.props;
 
@@ -32,6 +32,17 @@ class AddEditForm extends Component {
 
         this.setState({
           myData: { name, description, imgUrl, githubLink },
+          addOrEdit: 'edit',
+        });
+      } else if (formType === 'student') {
+        const fetchItems = await axios(`/api/v1/alumni/${studentId}`);
+
+        const {
+          data: { name, email, img_url: imgUrl, github_link: githubLink },
+        } = fetchItems.data;
+
+        this.setState({
+          myData: { name, imgUrl, githubLink, email },
           addOrEdit: 'edit',
         });
       }
