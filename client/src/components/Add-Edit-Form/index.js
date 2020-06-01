@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { Form, Input, Button, message } from 'antd';
+import { Form, Input, Button, message, Spin } from 'antd';
 import './style.css';
 import AdminContainer from '../AdminContainer';
 
@@ -281,7 +281,7 @@ class AddEditForm extends Component {
             </Form.Item>
           </Form>
         ) : (
-          <div>looooooooading</div>
+          <Spin size="large" />
         )}
       </AdminContainer>
     );
