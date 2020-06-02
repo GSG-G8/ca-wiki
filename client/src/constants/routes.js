@@ -1,5 +1,6 @@
-export const LOGIN_PAGE = '/login';
-export const HOME_PAGE = '/admin';
+export const LOGIN_PAGE = '/admin';
+export const HOME_PAGE = '/';
+export const STATISTICS_PAGE = '/admin/statistics';
 export const COHORT_PAGE = '/admin/cohorts';
 export const ADD_COHORT = '/admin/cohorts/add';
 export const EDIT_COHORT = '/admin/cohorts/:cohortId/edit';

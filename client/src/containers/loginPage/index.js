@@ -22,7 +22,7 @@ const LoginPage = ({ updateAuth, history }) => {
         notification.success({
           message,
         });
-        push(ROUTES.HOME_PAGE);
+        push(ROUTES.STATISTICS_PAGE);
       }
     } catch (err) {
       const {
