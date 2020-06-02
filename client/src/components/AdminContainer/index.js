@@ -4,10 +4,11 @@ import PropTypes from 'prop-types';
 import { Layout, Button } from 'antd';
 import logo from '../../assets/images/logo.png';
 import './style.css';
+import LogoutContext from '../../Contexts/LogoutContext';
 
 const { Header } = Layout;
 
-const AdminContainer = ({ children, buttonContent, buttonRoute, logout }) => {
+const AdminContainer = ({ children, buttonContent, buttonRoute }) => {
   const history = useHistory();
   const {
     location: { pathname },
@@ -63,15 +64,17 @@ const AdminContainer = ({ children, buttonContent, buttonRoute, logout }) => {
                   </Button>
                 ) : null}
 
-                <Button
-                  className="logout-btn"
-                  type="primary"
-                  onClick={() => {
-                    logout();
-                  }}
-                >
-                  Logout
-                </Button>
+                <LogoutContext.Consumer>
+                  {({ logout }) => (
+                    <Button
+                      className="logout-btn"
+                      type="primary"
+                      onClick={logout}
+                    >
+                      Logout
+                    </Button>
+                  )}
+                </LogoutContext.Consumer>
               </div>
             </div>
           </div>
@@ -91,7 +94,6 @@ AdminContainer.propTypes = {
   buttonContent: PropTypes.string,
   buttonRoute: PropTypes.string,
   children: PropTypes.node.isRequired,
-  logout: PropTypes.func.isRequired,
 };
 
 export default AdminContainer;

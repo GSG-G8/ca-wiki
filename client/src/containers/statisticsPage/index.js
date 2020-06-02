@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Progress, notification } from 'antd';
 import axios from 'axios';
-import PropTypes from 'prop-types';
 
 import AdminContainer from '../../components/AdminContainer';
 import Chart from '../../components/Charts';
@@ -40,10 +39,9 @@ class Statistics extends Component {
 
   render() {
     const { cohortsCount, studentsCount, projectsCount } = this.state;
-    const { logout } = this.props;
     return (
       <div>
-        <AdminContainer logout={logout}>
+        <AdminContainer>
           <div className="state-container">
             <Chart />
             <div className="state">
@@ -70,9 +68,5 @@ class Statistics extends Component {
     );
   }
 }
-
-Statistics.propTypes = {
-  logout: PropTypes.func.isRequired,
-};
 
 export default Statistics;
