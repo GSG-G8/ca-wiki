@@ -113,7 +113,7 @@ class AddEditForm extends Component {
       }
 
       if (addLink) {
-        const projectTypeLower = sendValues.projectType;
+        const projectTypeLower = sendValues.projectType || 'Not Require';
         sendValues.projectType = projectTypeLower.toLowerCase();
 
         const response = await axios.post(addLink, sendValues);
