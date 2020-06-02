@@ -9,6 +9,10 @@ const { Header } = Layout;
 
 const AdminContainer = ({ children, buttonContent, buttonRoute, logout }) => {
   const history = useHistory();
+  const {
+    location: { pathname },
+    goBack,
+  } = history;
   return (
     <>
       <Layout>
@@ -49,11 +53,11 @@ const AdminContainer = ({ children, buttonContent, buttonRoute, logout }) => {
                 </li>
               </ul>
               <div className="admin-side-btn">
-                {history.location.pathname !== '/admin' ? (
+                {pathname !== '/admin' ? (
                   <Button
                     className="admin-back-btn"
                     type="primary"
-                    onClick={history.goBack}
+                    onClick={goBack}
                   >
                     ❮ Back
                   </Button>
