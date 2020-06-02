@@ -27,6 +27,17 @@ class App extends Component {
   };
 
   async componentDidMount() {
+    this.authFun();
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const { isAuth } = this.state;
+    if (isAuth !== prevState.isAuth) {
+      this.authFun();
+    }
+  }
+
+  authFun = async () => {
     try {
       const {
         data: { statusCode },
@@ -44,7 +55,7 @@ class App extends Component {
         redirect: true,
       });
     }
-  }
+  };
 
   updateAuth = () => {
     const { isAuth } = this.state;
@@ -78,16 +89,24 @@ class App extends Component {
               path={ROUTES.LOGIN_PAGE}
               render={(props) =>
                 isAuth ? (
-                  <Redirect to={ROUTES.HOME_PAGE} />
+                  <Redirect to={ROUTES.STATISTICS_PAGE} />
                 ) : (
                   <LoginPage {...props} updateAuth={this.updateAuth} />
                 )
               }
             />
-            <Route exact path="/" render={() => <div>hello test</div>} />
+            <Route
+              exact
+              path={ROUTES.HOME_PAGE}
+              render={() => <div>hello test</div>}
+            />
             {isAuth ? (
               <LogoutContext.Provider value={{ logout: this.logout }}>
-                <Route exact path={ROUTES.HOME_PAGE} component={Statistics} />
+                <Route
+                  exact
+                  path={ROUTES.STATISTICS_PAGE}
+                  component={Statistics}
+                />
 
                 <Route path={ROUTES.COHORT_PAGE} exact component={CohortPage} />
 
