@@ -5,12 +5,12 @@
 }
 
 :root {
-  --main-color: #E8505B;
-  --main-white: #FFFFFF;
+  --main-color: #e8505b;
+  --main-white: #ffffff;
   --main-black: #000000;
-  --content-grey: #636D73;
-  --content-blue-green: #3A5A6E;
-  --border-white: #FAFBFD;
+  --content-grey: #636d73;
+  --content-blue-green: #3a5a6e;
+  --border-white: #fafbfd;
   --pagination-color: #343338;
   --main-font: 'Open Sans', sans-serif;
   --box-shadow: 0px 1px 8px #142e6e1a;

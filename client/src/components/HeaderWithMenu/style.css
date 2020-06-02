@@ -1,0 +1,103 @@
+.main-header {
+  display: flex;
+  padding: 35px 100px 0;
+  background-color: transparent;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  z-index: 1;
+}
+
+.header-left {
+  width: 50%;
+  text-align: left;
+}
+
+.header-left img {
+  width: 260px;
+}
+
+.header-right {
+  width: 50%;
+  text-align: right;
+}
+
+.anticon-search {
+  padding-right: 15px;
+}
+
+.anticon-close,
+.anticon-search,
+.anticon-menu {
+  font-size: 20px;
+}
+
+.menu {
+  background-color: var(--main-white);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 400px;
+  padding: 35px 100px 0;
+  z-index: 1;
+}
+
+.menu-header-left {
+  width: 50%;
+  text-align: right;
+}
+
+.menu-header-right {
+  width: 50%;
+  text-align: left;
+}
+
+.menu-header {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.menu-header img {
+  width: 260px;
+}
+
+.menu-list {
+  text-align: right;
+  padding: 0 40px 35px 0;
+  color: var(--main-black);
+  margin-top: -15px;
+  font-size: 18px;
+}
+
+.menu-list a {
+  display: block;
+}
+
+.menu-social {
+  margin-bottom: 25px;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: left;
+}
+
+.menu-social span {
+  padding-right: 23px;
+  color: var(--main-black);
+}
+
+.header-list {
+  color: var(--main-black);
+  margin-bottom: 13px;
+}
+
+.header-list:hover {
+  color: var(--main-black);
+}
+
+.header-list-active {
+  font-weight: bold;
+  color: var(--main-color);
+}

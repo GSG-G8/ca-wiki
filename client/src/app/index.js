@@ -16,6 +16,7 @@ import AddEditForm from '../components/Add-Edit-Form';
 import Statistics from '../containers/statisticsPage';
 import AdminProject from '../containers/AdminProjectPage';
 import PageNotFound from '../containers/PageNotFound';
+import UserContainer from '../components/UserContainer';
 
 import './style.css';
 
@@ -95,11 +96,7 @@ class App extends Component {
                 )
               }
             />
-            <Route
-              exact
-              path={ROUTES.HOME_PAGE}
-              render={() => <div>hello test</div>}
-            />
+            <Route exact path={ROUTES.HOME_PAGE} component={UserContainer} />
             {isAuth ? (
               <LogoutContext.Provider value={{ logout: this.logout }}>
                 <Route
