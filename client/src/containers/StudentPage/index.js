@@ -82,14 +82,12 @@ class Student extends Component {
       },
     } = this.props;
     const { data, startPage, endPage, total } = this.state;
-    const { logout } = this.props;
     const list = data.slice(startPage, endPage);
     return (
       <div>
         <AdminContainer
           buttonContent="Add Student"
           buttonRoute={`/admin/cohorts/${cohortId}/students/add`}
-          logout={logout}
         >
           {data.length === 0 ? (
             <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} className="empty" />
@@ -141,7 +139,6 @@ Student.defaultProps = {
 };
 
 Student.propTypes = {
-  logout: PropTypes.func.isRequired,
   cohortId: PropTypes.number,
   match: PropTypes.node,
   params: PropTypes.node,
