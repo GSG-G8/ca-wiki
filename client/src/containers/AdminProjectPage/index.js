@@ -85,7 +85,6 @@ class AdminProject extends Component {
 
   render() {
     const { data, total, startPage, endPage } = this.state;
-    const { logout } = this.props;
     const {
       match: {
         params: { cohortId },
@@ -101,7 +100,6 @@ class AdminProject extends Component {
         <AdminContainer
           buttonContent="Add Project"
           buttonRoute={`/admin/cohorts/${cohortId}/projects/add/${projectType}`}
-          logout={logout}
         >
           {data.length === 0 ? (
             <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} className="empty" />
@@ -148,7 +146,6 @@ AdminProject.propTypes = {
   cohortId: PropTypes.number.isRequired,
   match: PropTypes.func.isRequired,
   location: PropTypes.func.isRequired,
-  logout: PropTypes.func.isRequired,
   history: PropTypes.shape({
     location: PropTypes.shape({
       search: PropTypes.string,
