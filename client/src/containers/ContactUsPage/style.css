@@ -1,0 +1,40 @@
+.contact-container {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+}
+
+.img-container {
+    width: 50%;
+    background-color: var(--main-color);
+}
+
+.img-container img {
+  height: 100vh;
+  width: 516px;
+}
+
+.content-container {
+    width: 50%;
+}
+
+.content-container h4 {
+    font-weight: bold;
+    color: var(--main-color);
+}
+
+.icons-container {
+    display: flex;
+    justify-content: space-between;
+    width: 18%;
+}
+
+.info-container {
+    margin-top: 60px;
+    text-align: left;
+    margin-left: 80px;
+}
+
+.child-container {
+    margin-bottom: 40px;
+}
