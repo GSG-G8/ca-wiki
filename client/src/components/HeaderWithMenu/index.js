@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { SearchOutlined, MenuOutlined, CloseOutlined } from '@ant-design/icons';
 import './style.css';
 import logo from '../../assets/images/logo.png';
@@ -14,15 +15,19 @@ class HeaderWithMenu extends Component {
 
   render() {
     const { show } = this.state;
+    const { searchColor, menuColor, headerLogo } = this.props;
     return (
       <div>
         <div className="main-header">
           <div className="header-left">
-            <img src={logo} alt="Code Academy" />
+            <img src={headerLogo} alt="Code Academy" />
           </div>
           <div className="header-right">
-            <SearchOutlined />
-            <MenuOutlined onClick={this.reverseShow} />
+            <SearchOutlined style={{ color: searchColor }} />
+            <MenuOutlined
+              style={{ color: menuColor }}
+              onClick={this.reverseShow}
+            />
           </div>
           {show ? (
             <div>
@@ -95,4 +100,14 @@ class HeaderWithMenu extends Component {
   }
 }
 
+HeaderWithMenu.defaultProps = {
+  searchColor: 'black',
+  menuColor: 'black',
+};
+
+HeaderWithMenu.propTypes = {
+  searchColor: PropTypes.string,
+  menuColor: PropTypes.string,
+  headerLogo: PropTypes.string.isRequired,
+};
 export default HeaderWithMenu;
