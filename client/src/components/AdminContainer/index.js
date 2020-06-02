@@ -36,7 +36,7 @@ const AdminContainer = ({ children, buttonContent, buttonRoute }) => {
                 <li>
                   <NavLink
                     exact
-                    to="/admin"
+                    to="/admin/statistics"
                     className="admin-menu-a"
                     activeClassName="admin-menu-active"
                   >
