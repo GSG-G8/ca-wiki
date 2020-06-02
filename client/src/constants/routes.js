@@ -12,3 +12,5 @@ export const PROJECTS_PAGE = '/admin/projects';
 export const COHORT_PROJECTS_PAGE = '/admin/cohorts/:cohortId/projects';
 export const ADD_PROJECT = '/admin/cohorts/:cohortId/projects/add/:projectType';
 export const EDIT_PROJECT = '/admin/cohorts/:cohortId/projects/:projectId/edit';
+
+export const COHORTS_PAGE = '/Cohorts';

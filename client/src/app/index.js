@@ -10,8 +10,8 @@ import axios from 'axios';
 import * as ROUTES from '../constants/routes';
 import LogoutContext from '../Contexts/LogoutContext';
 import LoginPage from '../containers/loginPage';
-import CohortPage from '../containers/CohortPage';
-import StudentPage from '../containers/StudentPage';
+import AdminCohortPage from '../containers/AdminCohortPage';
+import AdminStudentPage from '../containers/AdminStudentPage';
 import AddEditForm from '../components/Add-Edit-Form';
 import Statistics from '../containers/statisticsPage';
 import AdminProject from '../containers/AdminProjectPage';
@@ -108,12 +108,16 @@ class App extends Component {
                   component={Statistics}
                 />
 
-                <Route path={ROUTES.COHORT_PAGE} exact component={CohortPage} />
+                <Route
+                  path={ROUTES.COHORT_PAGE}
+                  exact
+                  component={AdminCohortPage}
+                />
 
                 <Route
                   path={ROUTES.COHORT_STUDENTS_PAGE}
                   exact
-                  component={StudentPage}
+                  component={AdminStudentPage}
                 />
 
                 <Route
