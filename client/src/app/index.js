@@ -17,6 +17,8 @@ import Statistics from '../containers/statisticsPage';
 import AdminProject from '../containers/AdminProjectPage';
 import PageNotFound from '../containers/PageNotFound';
 
+import CohortsPage from '../containers/CohortsPage';
+
 import './style.css';
 
 class App extends Component {
@@ -84,6 +86,8 @@ class App extends Component {
       <Router>
         <div className="App">
           <Switch>
+            <Route path={ROUTES.COHORTS_PAGE} component={CohortsPage} />
+
             <Route
               exact
               path={ROUTES.LOGIN_PAGE}
@@ -209,6 +213,7 @@ class App extends Component {
                 <Route render={() => <Redirect to={ROUTES.LOGIN_PAGE} />} />
               )
             ) : null}
+
             <Route component={PageNotFound} />
           </Switch>
         </div>
