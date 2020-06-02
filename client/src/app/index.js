@@ -8,13 +8,13 @@ import {
 import axios from 'axios';
 
 import * as ROUTES from '../constants/routes';
+import LogoutContext from '../Contexts/LogoutContext';
 import LoginPage from '../containers/loginPage';
 import CohortPage from '../containers/CohortPage';
 import StudentPage from '../containers/StudentPage';
 import AddEditForm from '../components/Add-Edit-Form';
 import Statistics from '../containers/statisticsPage';
 import AdminProject from '../containers/AdminProjectPage';
-import CommonComponent from '../components/OverviewComponent';
 
 import './style.css';
 
@@ -83,33 +83,21 @@ class App extends Component {
               }
             />
             {isAuth ? (
-              <>
-                <Route
-                  exact
-                  path={ROUTES.HOME_PAGE}
-                  render={(props) => (
-                    <Statistics {...props} logout={this.logout} />
-                  )}
-                />
-                <Route
-                  path={ROUTES.COHORT_PAGE}
-                  exact
-                  render={() => <CohortPage logout={this.logout} />}
-                />
+              <LogoutContext.Provider value={{ logout: this.logout }}>
+                <Route exact path={ROUTES.HOME_PAGE} component={Statistics} />
+
+                <Route path={ROUTES.COHORT_PAGE} exact component={CohortPage} />
+
                 <Route
                   path={ROUTES.COHORT_STUDENTS_PAGE}
                   exact
-                  render={(props) => (
-                    <StudentPage {...props} logout={this.logout} />
-                  )}
+                  component={StudentPage}
                 />
 
                 <Route
                   path={ROUTES.COHORT_PROJECTS_PAGE}
                   exact
-                  render={(props) => (
-                    <AdminProject {...props} logout={this.logout} />
-                  )}
+                  component={AdminProject}
                 />
 
                 <Route
@@ -187,8 +175,7 @@ class App extends Component {
                     />
                   )}
                 />
-                <Route component={CommonComponent} />
-              </>
+              </LogoutContext.Provider>
             ) : redirect ? (
               <Route render={() => <Redirect to={ROUTES.LOGIN_PAGE} />} />
             ) : null}
