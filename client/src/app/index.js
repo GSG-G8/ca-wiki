@@ -22,6 +22,7 @@ class App extends Component {
   state = {
     isAuth: false,
     redirect: false,
+    isUser: true,
   };
 
   async componentDidMount() {
@@ -30,7 +31,7 @@ class App extends Component {
         data: { statusCode },
       } = await axios.get('/api/v1/is-auth');
       if (statusCode === 200) {
-        this.setState({ isAuth: true });
+        this.setState({ isAuth: true, isUser: false });
       } else {
         this.setState({
           isAuth: false,
@@ -55,7 +56,7 @@ class App extends Component {
         data: { statusCode },
       } = await axios.get('/api/v1/logout');
       if (statusCode === 200) {
-        this.setState({ isAuth: false, redirect: true });
+        this.setState({ isAuth: false, redirect: true, isUser: false });
       } else {
         this.setState({ isAuth: true });
       }
@@ -65,7 +66,7 @@ class App extends Component {
   };
 
   render() {
-    const { isAuth, redirect } = this.state;
+    const { isAuth, redirect, isUser } = this.state;
 
     return (
       <Router>
@@ -82,6 +83,7 @@ class App extends Component {
                 )
               }
             />
+            <Route exact path="/" render={() => <div>hello test</div>} />
             {isAuth ? (
               <>
                 <Route
@@ -189,7 +191,11 @@ class App extends Component {
                 <Route component={PageNotFound} />
               </>
             ) : redirect ? (
-              <Route render={() => <Redirect to={ROUTES.LOGIN_PAGE} />} />
+              isUser ? (
+                <Route component={PageNotFound} />
+              ) : (
+                <Route render={() => <Redirect to={ROUTES.LOGIN_PAGE} />} />
+              )
             ) : null}
             <Route component={PageNotFound} />
           </Switch>
