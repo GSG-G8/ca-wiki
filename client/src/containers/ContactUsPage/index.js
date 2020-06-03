@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faTwitter,
@@ -18,7 +19,7 @@ const ContactUS = () => {
             <h4>FOLLOW US</h4>
             <p>Gaza Sky Geeks</p>
             <div className="icons-container">
-              <a href="https://twitter.com/explore">
+              <a href="https://twitter.com/GazaSkyGeeks%22%3E">
                 <FontAwesomeIcon icon={faTwitter} color="#636D73" size="2x" />
               </a>
               <a href="https://instagram.com/gazaskygeeks?igshid=11vk0nc0h1fyc">
@@ -40,9 +41,27 @@ const ContactUS = () => {
           </div>
           <div className="child-container">
             <h4>Sections of the site</h4>
-            <p>Home - Search</p>
-            <p>Alumni - Community Projects</p>
-            <p>Customer projects</p>
+            <div className="section-container-1">
+              <Link to="/">
+                <p>Home </p>
+              </Link>
+              -
+              <Link to="/search">
+                <p>Search</p>
+              </Link>
+            </div>
+            <div className="section-container-2">
+              <Link to="/alumni">
+                <p>Alumni</p>
+              </Link>
+              -
+              <Link to="/com">
+                <p>Community Projects</p>
+              </Link>
+            </div>
+            <Link to="/customer">
+              <p className="text">Customer projects</p>
+            </Link>
           </div>
         </div>
       </div>

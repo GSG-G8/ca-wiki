@@ -29,6 +29,10 @@
     width: 18%;
 }
 
+.icons-container :hover {
+    color: #E8505B;
+}
+
 .info-container {
     margin-top: 60px;
     text-align: left;
@@ -37,4 +41,33 @@
 
 .child-container {
     margin-bottom: 40px;
+}
+
+.child-container p {
+    color: var(--content-grey);
+}
+
+.section-container-1 {
+    display: flex;
+    justify-content: space-between;
+    width: 130px;
+    color: var(--content-grey) ;
+}
+
+.section-container-1  p:hover {
+    color: #E8505B;
+}
+
+.section-container-2 {
+    display: flex;
+    justify-content: space-between;
+    width: 220px;
+}
+
+.section-container-2  p:hover {
+    color: #E8505B;
+}
+
+.child-container .text:hover {
+    color: #E8505B;
 }
