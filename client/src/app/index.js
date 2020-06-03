@@ -43,7 +43,7 @@ class App extends Component {
       const {
         location: { pathname, search },
       } = window;
-      ReactGa.initialize('UA-168097204-1');
+      ReactGa.initialize('UA-168533626-1');
       ReactGa.pageview(pathname + search);
       const {
         data: { statusCode },

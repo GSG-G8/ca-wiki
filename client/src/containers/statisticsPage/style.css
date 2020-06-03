@@ -15,7 +15,7 @@
     height: 420px;
 }
 
-.admin-chart .report-chart h1 {
+.admin-chart h1 {
     text-align: left;
     font: Bold 16px var(--main-font);
     letter-spacing: 0.08px;
@@ -24,7 +24,7 @@
     display: inline-block
 }
 
-.admin-chart .report-chart p {
+.admin-chart p {
     text-align: left;
     font: Bold 14px var(--main-font);
     letter-spacing: 0.08px;

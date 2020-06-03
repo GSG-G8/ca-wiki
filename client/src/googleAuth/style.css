@@ -20,3 +20,8 @@
 .ant-carousel .slick-dots-bottom {
   bottom: 0;
 }
+
+.ant-carousel .slick-slide img {
+  width: 25px;
+  height: 25px;
+}
