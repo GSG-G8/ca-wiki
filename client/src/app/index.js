@@ -105,16 +105,20 @@ class App extends Component {
                   component={Statistics}
                 />
 
-                <Route path={ROUTES.COHORT_PAGE} exact component={CohortPage} />
+                <Route
+                  path={ROUTES.ADMIN_COHORT_PAGE}
+                  exact
+                  component={CohortPage}
+                />
 
                 <Route
-                  path={ROUTES.COHORT_STUDENTS_PAGE}
+                  path={ROUTES.ADMIN_COHORT_STUDENTS_PAGE}
                   exact
                   component={StudentPage}
                 />
 
                 <Route
-                  path={ROUTES.COHORT_PROJECTS_PAGE}
+                  path={ROUTES.ADMIN_COHORT_PROJECTS_PAGE}
                   exact
                   component={AdminProject}
                 />

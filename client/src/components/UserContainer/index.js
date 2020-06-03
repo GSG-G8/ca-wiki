@@ -5,6 +5,8 @@ import { SearchOutlined, MenuOutlined, CloseOutlined } from '@ant-design/icons';
 import './style.css';
 import logo from '../../assets/images/logo.png';
 
+import * as ROUTES from '../constants/routes';
+
 class UserContainer extends Component {
   state = { show: false };
 
@@ -51,7 +53,7 @@ class UserContainer extends Component {
                 </div>
                 <div className="menu-list">
                   <NavLink
-                    to="/"
+                    to={ROUTES.HOME_PAGE}
                     exact
                     activeClassName="header-list-active"
                     className="header-list"
@@ -59,35 +61,35 @@ class UserContainer extends Component {
                     Home
                   </NavLink>
                   <NavLink
-                    to="/search"
+                    to={ROUTES.SEARCH_PAGE}
                     activeClassName="header-list-active"
                     className="header-list"
                   >
                     Search
                   </NavLink>
                   <NavLink
-                    to="/Cohort"
+                    to={ROUTES.COHORTS_PAGE}
                     activeClassName="header-list-active"
                     className="header-list"
                   >
                     Cohort
                   </NavLink>
                   <NavLink
-                    to="/Alumni"
+                    to={ROUTES.ALUMNI_PAGE}
                     activeClassName="header-list-active"
                     className="header-list"
                   >
                     Alumni
                   </NavLink>
                   <NavLink
-                    to="/internal-projects-overview"
+                    to={ROUTES.INTERNAL_PROJECTS}
                     activeClassName="header-list-active"
                     className="header-list"
                   >
                     Internal Projects
                   </NavLink>
                   <NavLink
-                    to="/clients-projects-overview"
+                    to={ROUTES.CLIENTS_PROJECTS}
                     activeClassName="header-list-active"
                     className="header-list"
                   >
@@ -96,17 +98,26 @@ class UserContainer extends Component {
                 </div>
                 <div className="menu-social">
                   <span>
-                    <a className="contact" href="https://gazaskygeeks.com/">
+                    <a
+                      className="contact"
+                      href="https://www.facebook.com/GazaSkyGeeks"
+                    >
                       FACEBOOK
                     </a>
                   </span>
                   <span>
-                    <a className="contact" href="https://gazaskygeeks.com/">
+                    <a
+                      className="contact"
+                      href="https://instagram.com/gazaskygeeks"
+                    >
                       INSTAGRAM
                     </a>
                   </span>
                   <span>
-                    <a className="contact" href="https://gazaskygeeks.com/">
+                    <a
+                      className="contact"
+                      href="https://twitter.com/GazaSkyGeeks"
+                    >
                       TWITTER
                     </a>
                   </span>
@@ -123,7 +134,7 @@ class UserContainer extends Component {
               <li>
                 <NavLink
                   exact
-                  to="/"
+                  to={ROUTES.HOME_PAGE}
                   className={rightNav}
                   activeClassName={rightNavActive}
                 >
@@ -135,7 +146,7 @@ class UserContainer extends Component {
               <li>
                 <NavLink
                   exact
-                  to="/internal-projects-overview"
+                  to={ROUTES.INTERNAL_PROJECTS}
                   className={rightNav}
                   activeClassName={rightNavActive}
                 >
@@ -147,7 +158,7 @@ class UserContainer extends Component {
               <li>
                 <NavLink
                   exact
-                  to="/clients-projects-overview"
+                  to={ROUTES.CLIENTS_PROJECTS}
                   className={rightNav}
                   activeClassName={rightNavActive}
                 >
@@ -159,7 +170,7 @@ class UserContainer extends Component {
               <li>
                 <NavLink
                   exact
-                  to="/cohort"
+                  to={ROUTES.COHORTS_PAGE}
                   className={rightNav}
                   activeClassName={rightNavActive}
                 >
@@ -171,7 +182,7 @@ class UserContainer extends Component {
               <li>
                 <NavLink
                   exact
-                  to="/follow-us"
+                  to={ROUTES.CONTACT_US_PAGE}
                   className={rightNav}
                   activeClassName={rightNavActive}
                 >
@@ -188,7 +199,7 @@ class UserContainer extends Component {
               <li>
                 <NavLink
                   exact
-                  to="/Cohorts/:cohortId/Projects"
+                  to={ROUTES.COHORT_PROJECTS_PAGE}
                   className={rightNav}
                   activeClassName={rightNavActive}
                 >
@@ -200,7 +211,7 @@ class UserContainer extends Component {
               <li>
                 <NavLink
                   exact
-                  to="/Cohorts/:cohortId/Projects"
+                  to={ROUTES.COHORT_PROJECTS_PAGE}
                   className={rightNav}
                   activeClassName={rightNavActive}
                 >
@@ -212,7 +223,7 @@ class UserContainer extends Component {
               <li>
                 <NavLink
                   exact
-                  to="/Cohorts/:cohortId/Alumni"
+                  to={ROUTES.COHORT_ALUMNI_PAGE}
                   className={rightNav}
                   activeClassName={rightNavActive}
                 >
