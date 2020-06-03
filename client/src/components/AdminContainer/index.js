@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Layout, Button } from 'antd';
 import logo from '../../assets/images/logo.png';
@@ -9,6 +9,11 @@ import LogoutContext from '../../Contexts/LogoutContext';
 const { Header } = Layout;
 
 const AdminContainer = ({ children, buttonContent, buttonRoute }) => {
+  const history = useHistory();
+  const {
+    location: { pathname },
+    goBack,
+  } = history;
   return (
     <>
       <Layout>
@@ -31,7 +36,7 @@ const AdminContainer = ({ children, buttonContent, buttonRoute }) => {
                 <li>
                   <NavLink
                     exact
-                    to="/admin"
+                    to="/admin/statistics"
                     className="admin-menu-a"
                     activeClassName="admin-menu-active"
                   >
@@ -49,6 +54,16 @@ const AdminContainer = ({ children, buttonContent, buttonRoute }) => {
                 </li>
               </ul>
               <div className="admin-side-btn">
+                {pathname !== '/admin/statistics' ? (
+                  <Button
+                    className="admin-back-btn"
+                    type="primary"
+                    onClick={goBack}
+                  >
+                    ❮ Back
+                  </Button>
+                ) : null}
+
                 <LogoutContext.Consumer>
                   {({ logout }) => (
                     <Button

@@ -16,6 +16,7 @@ import StudentPage from '../containers/StudentPage';
 import AddEditForm from '../components/Add-Edit-Form';
 import Statistics from '../containers/statisticsPage';
 import AdminProject from '../containers/AdminProjectPage';
+import PageNotFound from '../containers/PageNotFound';
 
 import './style.css';
 
@@ -23,9 +24,21 @@ class App extends Component {
   state = {
     isAuth: false,
     redirect: false,
+    isUser: true,
   };
 
   async componentDidMount() {
+    this.authFun();
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const { isAuth } = this.state;
+    if (isAuth !== prevState.isAuth) {
+      this.authFun();
+    }
+  }
+
+  authFun = async () => {
     try {
       const {
         location: { pathname, search },
@@ -36,7 +49,7 @@ class App extends Component {
         data: { statusCode },
       } = await axios.get('/api/v1/is-auth');
       if (statusCode === 200) {
-        this.setState({ isAuth: true });
+        this.setState({ isAuth: true, isUser: false });
       } else {
         this.setState({
           isAuth: false,
@@ -48,7 +61,7 @@ class App extends Component {
         redirect: true,
       });
     }
-  }
+  };
 
   updateAuth = () => {
     const { isAuth } = this.state;
@@ -61,7 +74,7 @@ class App extends Component {
         data: { statusCode },
       } = await axios.get('/api/v1/logout');
       if (statusCode === 200) {
-        this.setState({ isAuth: false, redirect: true });
+        this.setState({ isAuth: false, redirect: true, isUser: false });
       } else {
         this.setState({ isAuth: true });
       }
@@ -71,7 +84,7 @@ class App extends Component {
   };
 
   render() {
-    const { isAuth, redirect } = this.state;
+    const { isAuth, redirect, isUser } = this.state;
 
     return (
       <Router>
@@ -82,15 +95,24 @@ class App extends Component {
               path={ROUTES.LOGIN_PAGE}
               render={(props) =>
                 isAuth ? (
-                  <Redirect to={ROUTES.HOME_PAGE} />
+                  <Redirect to={ROUTES.STATISTICS_PAGE} />
                 ) : (
                   <LoginPage {...props} updateAuth={this.updateAuth} />
                 )
               }
             />
+            <Route
+              exact
+              path={ROUTES.HOME_PAGE}
+              render={() => <div>hello test</div>}
+            />
             {isAuth ? (
               <LogoutContext.Provider value={{ logout: this.logout }}>
-                <Route exact path={ROUTES.HOME_PAGE} component={Statistics} />
+                <Route
+                  exact
+                  path={ROUTES.STATISTICS_PAGE}
+                  component={Statistics}
+                />
 
                 <Route path={ROUTES.COHORT_PAGE} exact component={CohortPage} />
 
@@ -105,7 +127,6 @@ class App extends Component {
                   exact
                   component={AdminProject}
                 />
-
                 <Route
                   path={ROUTES.ADD_COHORT}
                   exact
@@ -181,10 +202,16 @@ class App extends Component {
                     />
                   )}
                 />
+                <Route component={PageNotFound} />
               </LogoutContext.Provider>
             ) : redirect ? (
-              <Route render={() => <Redirect to={ROUTES.LOGIN_PAGE} />} />
+              isUser ? (
+                <Route component={PageNotFound} />
+              ) : (
+                <Route render={() => <Redirect to={ROUTES.LOGIN_PAGE} />} />
+              )
             ) : null}
+            <Route component={PageNotFound} />
           </Switch>
         </div>
       </Router>
