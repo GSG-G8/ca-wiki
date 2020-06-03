@@ -68,3 +68,14 @@
 .child-container .text:hover {
     color: #E8505B;
 }
+
+.content-container .end-line {
+    border-bottom: 1px dashed #E8505B;
+    width: 550px;
+    margin-top: 70px;
+}
+
+.content-container .copy-right {
+    margin-top: 50px;
+    font-weight: bold;
+}

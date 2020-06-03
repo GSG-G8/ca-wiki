@@ -65,6 +65,10 @@ const ContactUS = () => {
             <p className="text">Customer projects</p>
           </Link>
         </div>
+        <div className="end-line" />
+        <div className="copy-right">
+          All rights reserved. Gaza Sky Geeks.Code Academy © 2020
+        </div>
       </div>
       <div className="img-container">
         <img src={contactPhoto} alt="contact" />
