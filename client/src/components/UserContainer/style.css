@@ -134,11 +134,11 @@
 }
 
 .right-nav {
-  color: var(--content-grey);
+  color: var(--content-blue-green);
 }
 
 .right-nav:hover {
-  color: var(--content-grey);
+  color: var(--content-blue-green);
   display: flex;
   padding-right: 49px;
 }
@@ -175,7 +175,7 @@
 }
 
 .right-nav-white {
-  color: var(--content-grey);
+  color: var(--content-blue-green);
 }
 
 .right-nav-active-white .line {
