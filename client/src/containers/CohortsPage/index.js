@@ -32,7 +32,7 @@ class Cohorts extends Component {
         {data.length === 0 ? (
           <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} className="empty" />
         ) : (
-          <div style={{ padding: 0, maxWidth: '100%', margin: '0' }}>
+          <div style={{ padding: '0 60px', margin: '0 20px' }}>
             <ItemsCarousel
               infiniteLoop={false}
               gutter={12}
@@ -41,10 +41,10 @@ class Cohorts extends Component {
               disableSwipe={false}
               alwaysShowChevrons={false}
               numberOfCards={5}
-              slidesToScroll={3}
-              outsideChevron={false}
+              slidesToScroll={1}
+              outsideChevron
               showSlither={false}
-              firstAndLastGutter
+              firstAndLastGutter={false}
               activeItemIndex={activeItemIndex}
               requestToChangeActive={(value) =>
                 this.setState({ activeItemIndex: value })
@@ -53,11 +53,11 @@ class Cohorts extends Component {
               leftChevron={'<'}
             >
               {data.map((x) => (
-                <Card hoverable className="cohorts_card">
+                <Card hoverable className="cohort_card">
                   <img
                     alt={x.name}
                     src={x.img_url}
-                    style={{ width: 120, height: 120 }}
+                    className="cohort_img"
                     key={x.id}
                   />
                   <h2>{x.name}</h2>
