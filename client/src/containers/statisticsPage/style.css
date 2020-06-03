@@ -15,7 +15,52 @@
     font: Bold 16px var(--main-font);
     letter-spacing: 0.08px;
     color: #101C36;
-    margin: 0 0 29px 29px;
+    margin-left: 29px;
+}
+
+.admin-chart p {
+    text-align: left;
+    font: Bold 14px var(--main-font);
+    letter-spacing: 0.08px;
+    color: #ffa63a;
+    margin-left: 29px;
+}
+
+.admin-chart .date-picker {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 0 29px 29px;
+}
+
+.admin-chart .date-picker > div {
+    text-align: left;
+    color: #101C36;
+}
+
+.admin-chart .date-picker input {
+    border: 1px solid #acacac;
+    padding: 4px 10px;
+    border-radius: 4px;
+    color: #6d6d6d;
+    width: 90%;
+}
+
+.admin-chart .date-picker input:focus {
+    outline: none;
+    border-color: #ffa63a;;
+}
+
+.admin-chart .react-datepicker-wrapper {
+    margin-top: 10px;
+}
+
+.admin-chart .line-chart {
+    padding-left: 11px;
+}
+
+.abcRioButtonBlue {
+    background-color: var(--main-color)!important;
+    margin: 44px auto;
 }
 
 .state {
