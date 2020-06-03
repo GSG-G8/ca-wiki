@@ -12,12 +12,11 @@ const OverviewComponent = ({
   buttonText,
   imageSource,
   btnLink,
-  isLeft,
   isRight,
 }) => {
   return (
     <div className="overview-container">
-      {isLeft ? (
+      {isRight ? (
         <div className="container-photo">
           <img src={imageSource} alt="Home" />
         </div>
@@ -30,18 +29,8 @@ const OverviewComponent = ({
           <Button type="button">{buttonText}</Button>
         </Link>
       </div>
-      {isRight ? (
-        <div className="container-photo">
-          <img src={imageSource} alt="Home" />
-        </div>
-      ) : null}
     </div>
   );
-};
-
-OverviewComponent.defaultProps = {
-  isLeft: undefined,
-  isRight: undefined,
 };
 
 OverviewComponent.propTypes = {
@@ -51,8 +40,7 @@ OverviewComponent.propTypes = {
   buttonText: PropTypes.string.isRequired,
   imageSource: PropTypes.string.isRequired,
   btnLink: PropTypes.string.isRequired,
-  isLeft: PropTypes.bool,
-  isRight: PropTypes.bool,
+  isRight: PropTypes.bool.isRequired,
 };
 
 export default OverviewComponent;
