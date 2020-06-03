@@ -107,8 +107,8 @@ const DayVisitsReport = (props) => {
   }, [startDate, endDate]);
 
   return (
-    <div className="admin-chart">
-      <h1>Number of Visitors ({`${title} per day)`}</h1>
+    <div className="report-chart">
+      <h1>{`${title} per day`}</h1>
       <p>{`Average - ${average} ${title}`}</p>
       <div className="date-picker">
         <CustomDatePicker

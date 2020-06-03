@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { notification } from 'antd';
+import { notification, Carousel } from 'antd';
 import { renderButton, checkSignedIn } from './authUtils';
 import DayVisitsReport from '../components/Charts/dayVisitsReport';
+import './style.css';
 
 function GoogleLogin() {
   const [isSignedIn, setIsSignedIn] = useState(false);
@@ -29,17 +30,25 @@ function GoogleLogin() {
   useEffect(() => {
     window.gapi.load('auth2', init);
   });
+
   return (
-    <>
+    <div className="admin-chart">
       {!isSignedIn ? (
-        <div className="admin-chart">
+        <>
           <h1>Sign in to request Google Analytics Report.</h1>
           <div id="signin-button" />
-        </div>
+        </>
       ) : (
-        <DayVisitsReport metric="ga:users" title="Users" />
+        <Carousel>
+          <div>
+            <DayVisitsReport metric="ga:users" title="Users" />
+          </div>
+          <div>
+            <DayVisitsReport metric="ga:sessions" title="Sessions" />
+          </div>
+        </Carousel>
       )}
-    </>
+    </div>
   );
 }
 

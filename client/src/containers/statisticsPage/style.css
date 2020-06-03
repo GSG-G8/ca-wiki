@@ -8,28 +8,36 @@
     border-radius: 5px;
     padding: 28px 30px;
     width: 60%;
+    text-align: left;
 }
 
-.admin-chart h1 {
+.admin-chart .report-chart {
+    height: 420px;
+}
+
+.admin-chart .report-chart h1 {
     text-align: left;
     font: Bold 16px var(--main-font);
     letter-spacing: 0.08px;
     color: #101C36;
     margin-left: 29px;
+    display: inline-block
 }
 
-.admin-chart p {
+.admin-chart .report-chart p {
     text-align: left;
     font: Bold 14px var(--main-font);
     letter-spacing: 0.08px;
     color: #ffa63a;
     margin-left: 29px;
+    display: inline-block;
 }
 
 .admin-chart .date-picker {
     display: flex;
     justify-content: space-between;
     padding: 0 0 29px 29px;
+    width: 95%;
 }
 
 .admin-chart .date-picker > div {
