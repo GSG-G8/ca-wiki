@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import axios from 'axios';
 import { notification, Modal, Empty, List, Pagination } from 'antd';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
@@ -72,14 +71,12 @@ class Cohort extends Component {
 
   render() {
     const { data, startPage, endPage, total } = this.state;
-    const { logout } = this.props;
     const list = data.slice(startPage, endPage);
     return (
       <div>
         <AdminContainer
           buttonContent="Add Cohort"
           buttonRoute="/admin/cohorts/add"
-          logout={logout}
         >
           {data.length === 0 ? (
             <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} className="empty" />
@@ -124,8 +121,5 @@ class Cohort extends Component {
     );
   }
 }
-Cohort.propTypes = {
-  logout: PropTypes.func.isRequired,
-};
 
 export default Cohort;
