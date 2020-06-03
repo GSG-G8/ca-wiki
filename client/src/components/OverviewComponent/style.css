@@ -13,18 +13,18 @@
     width: 50%;
 }
 
-.container-text h1 {
+.container-content h1 {
     font-weight: bold;
     color: var(--main-color) ;
     align-items: flex-start;
 }
 
-.container-text p {
+.container-content p {
     font-weight: bold;
     color: var(--content-gray);
 }
 
-.container-text .ant-btn {
+.container-content .ant-btn {
     height: 40px;
     width: 260px;
     background-color:var(--main-color);
