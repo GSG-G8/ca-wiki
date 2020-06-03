@@ -35,9 +35,9 @@ class Cohorts extends Component {
           <div style={{ padding: '0 60px', margin: '0 20px' }}>
             <ItemsCarousel
               infiniteLoop={false}
-              gutter={12}
+              gutter={0}
               activePosition="center"
-              chevronWidth={60}
+              chevronWidth={20}
               disableSwipe={false}
               alwaysShowChevrons={false}
               numberOfCards={5}
