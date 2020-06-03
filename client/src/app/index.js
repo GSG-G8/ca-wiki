@@ -6,6 +6,7 @@ import {
   Redirect,
 } from 'react-router-dom';
 import axios from 'axios';
+import ReactGa from 'react-ga';
 
 import * as ROUTES from '../constants/routes';
 import LogoutContext from '../Contexts/LogoutContext';
@@ -26,6 +27,11 @@ class App extends Component {
 
   async componentDidMount() {
     try {
+      const {
+        location: { pathname, search },
+      } = window;
+      ReactGa.initialize('UA-168097204-1');
+      ReactGa.pageview(pathname + search);
       const {
         data: { statusCode },
       } = await axios.get('/api/v1/is-auth');
