@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { SearchOutlined, MenuOutlined, CloseOutlined } from '@ant-design/icons';
 import './style.css';
@@ -96,19 +96,19 @@ class UserContainer extends Component {
                 </div>
                 <div className="menu-social">
                   <span>
-                    <Link className="contact" href="https://gazaskygeeks.com/">
+                    <a className="contact" href="https://gazaskygeeks.com/">
                       FACEBOOK
-                    </Link>
+                    </a>
                   </span>
                   <span>
-                    <Link className="contact" href="https://gazaskygeeks.com/">
+                    <a className="contact" href="https://gazaskygeeks.com/">
                       INSTAGRAM
-                    </Link>
+                    </a>
                   </span>
                   <span>
-                    <Link className="contact" href="https://gazaskygeeks.com/">
+                    <a className="contact" href="https://gazaskygeeks.com/">
                       TWITTER
-                    </Link>
+                    </a>
                   </span>
                 </div>
               </div>
