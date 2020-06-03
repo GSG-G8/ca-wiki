@@ -14,57 +14,54 @@
   width: 516px;
 }
 
-.content-container {
+.contact-container .content-container {
     width: 50%;
-}
-
-.content-container h4 {
-    font-weight: bold;
-    color: var(--main-color);
-}
-
-.icons-container {
-    display: flex;
-    justify-content: space-between;
-    width: 18%;
-}
-
-.icons-container :hover {
-    color: #E8505B;
-}
-
-.info-container {
     margin-top: 60px;
     text-align: left;
     margin-left: 80px;
 }
 
-.child-container {
+.contact-container .content-container h4 {
+    font-weight: bold;
+    color: var(--main-color);
+}
+
+.child-container .icons-container {
+    display: flex;
+    justify-content: space-between;
+    width: 18%;
+}
+
+.child-container .icons-container :hover {
+    color: #E8505B;
+}
+
+.content-container .child-container {
     margin-bottom: 40px;
 }
 
-.child-container p {
+.content-container .child-container p {
     color: var(--content-grey);
 }
 
-.section-container-1 {
+.child-container .section-container-1 {
     display: flex;
     justify-content: space-between;
     width: 130px;
     color: var(--content-grey) ;
 }
 
-.section-container-1  p:hover {
+.child-container .section-container-1  p:hover {
     color: #E8505B;
 }
 
-.section-container-2 {
+.child-container .section-container-2 {
     display: flex;
     justify-content: space-between;
     width: 220px;
 }
 
-.section-container-2  p:hover {
+.child-container .section-container-2  p:hover {
     color: #E8505B;
 }
 
