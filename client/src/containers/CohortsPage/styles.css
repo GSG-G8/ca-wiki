@@ -1,11 +1,44 @@
 .cohort_card {
     width: 200px;
-    height: 240px;
-    margin: 20px;
+    height: 230px;
     border-radius: 20px;
+    background: var(--main-white);
 }
 
-.cohort_img {
+.card_img {
     width: 100px;
     height: 100px;
+    margin-top: -10px;
+}
+
+.child_container {
+    margin-top: 180px;
+    margin-right: 60px;
+
+}
+
+.title_heading {
+    font: Bold 40px/48px 'Open Sans', sans-serif;
+    color: var(--main-black);
+    margin-bottom: 55px;
+}
+
+.card_heading {
+    font: Bold 20px/27px 'Open Sans', sans-serif;
+    color: var(--main-color);
+}
+
+.card_paragraph {
+    font: Bold 14px 'Open Sans', sans-serif;
+    color: var(--main-black);
+}
+
+.container {
+    background: var(--main-color);
+    width: 50vw;
+    height: 100vh;
+    z-index: -1;
+    position: absolute;
+    left: 0px;
+    top: 0px;
 }
