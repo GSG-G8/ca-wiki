@@ -5,9 +5,9 @@ import ItemsCarousel from 'react-items-carousel';
 import logo from '../../assets/images/logo.png';
 import UserContainer from '../../components/UserContainer';
 
-import './styles.css';
 import leftSvg from '../../assets/images/Group 2423.svg';
 import rightSvg from '../../assets/images/Group 2381.svg';
+import './styles.css';
 
 class Cohorts extends Component {
   state = {
@@ -44,7 +44,9 @@ class Cohorts extends Component {
           <img src={rightSvg} alt="background" className="rightSvg" />
         </div>
         <div className="child_container">
-          <h1 className="title_heading">Cohorts</h1>
+          <h1 className="title_heading">
+            <span className="title_span">Coh</span>orts
+          </h1>
           {data.length === 0 ? (
             <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} className="empty" />
           ) : (
