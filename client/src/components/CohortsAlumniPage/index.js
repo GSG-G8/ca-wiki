@@ -4,8 +4,8 @@ import axios from 'axios';
 import { notification, Card, Avatar, Skeleton } from 'antd';
 import ItemsCarousel from 'react-items-carousel';
 import whiteLogo from '../../assets/images/login-logo.jpeg';
-// import coloredLogo from '../../assets/images/logo.png';
-import UserContainer from '../../components/UserContainer';
+import coloredLogo from '../../assets/images/logo.png';
+import UserContainer from '../UserContainer';
 
 import leftSvg from '../../assets/images/Group 2423.svg';
 import rightSvg from '../../assets/images/Group 2381.svg';
@@ -13,7 +13,7 @@ import './styles.css';
 
 const { Meta } = Card;
 
-class Cohorts extends Component {
+class CohortsAlumni extends Component {
   state = {
     data: [],
     activeItemIndex: 0,
@@ -21,10 +21,15 @@ class Cohorts extends Component {
   };
 
   async componentDidMount() {
+    const { type } = this.props;
     try {
-      const cohortsDate = await axios.get('/api/v1/cohorts');
-      const { data } = cohortsDate.data;
-      this.setState({ data });
+      if (type === 'Cohorts') {
+        this.getCohorts();
+      } else if (type === 'Alumni') {
+        this.getAlumni();
+      } else {
+        this.getCohortAlumni();
+      }
       this.updateWindowDimensions();
       window.addEventListener('resize', this.updateWindowDimensions);
     } catch (err) {
@@ -35,12 +40,45 @@ class Cohorts extends Component {
     }
   }
 
+  componentDidUpdate(prevProps) {
+    const { type } = this.props;
+    if (type !== prevProps.type) {
+      if (type === 'Cohorts') {
+        this.getCohorts();
+      } else if (type === 'Alumni') {
+        this.getAlumni();
+      } else {
+        this.getCohortAlumni();
+      }
+    }
+  }
+
+  async getCohorts() {
+    const cohortsData = await axios.get('/api/v1/cohorts');
+    const { data } = cohortsData.data;
+    this.setState({ data });
+  }
+
+  async getAlumni() {
+    const alumniData = await axios.get('/api/v1/alumni');
+    const { data } = alumniData.data;
+    this.setState({ data });
+    // console.log(data)
+  }
+
+  async getCohortAlumni() {
+    const cohortsData = await axios.get('/api/v1/cohorts');
+    const { data } = cohortsData.data;
+    this.setState({ data });
+  }
+
   updateWindowDimensions = () => {
     this.setState({ width: window.innerWidth });
   };
 
   render() {
     const { data, activeItemIndex, width } = this.state;
+    const { type } = this.props;
     const slidesNum =
       width < 650
         ? 1
@@ -57,19 +95,31 @@ class Cohorts extends Component {
     return (
       <UserContainer
         rightPageColor="black"
-        headerLogo={whiteLogo}
+        headerLogo={type === 'Cohorts' ? whiteLogo : coloredLogo}
         isCohortPages={false}
       >
-        <div className="left">
-          <img src={leftSvg} alt="background" className="leftSvg" />
-        </div>
+        {type === 'Cohorts' ? (
+          <div className="left">
+            <img src={leftSvg} alt="background" className="leftSvg" />
+          </div>
+        ) : (
+          <div>
+            <img src={leftSvg} alt="background" className="leftSvg" />
+          </div>
+        )}
+
         <div className="right">
           <img src={rightSvg} alt="background" className="rightSvg" />
         </div>
         <div className="child_container">
-          <h1 className="title_heading">
-            <span className="title_span">Coh</span>orts
-          </h1>
+          {type === 'Cohorts' ? (
+            <h1 className="title_heading">
+              <span className="title_span">Coh</span>orts
+            </h1>
+          ) : (
+            <h1 className="title_heading">Alumni</h1>
+          )}
+
           <div style={{ padding: '0 80px', margin: '0 auto' }}>
             <ItemsCarousel
               infiniteLoop={false}
@@ -131,9 +181,10 @@ class Cohorts extends Component {
     );
   }
 }
-Cohorts.propTypes = {
+CohortsAlumni.propTypes = {
+  type: PropTypes.string.isRequired,
   history: PropTypes.shape({
     push: PropTypes.func,
   }).isRequired,
 };
-export default Cohorts;
+export default CohortsAlumni;

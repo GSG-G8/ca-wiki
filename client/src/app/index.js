@@ -18,7 +18,7 @@ import AdminProject from '../containers/AdminProjectPage';
 import PageNotFound from '../containers/PageNotFound';
 import ExamplePage from '../components/ExamplePage';
 
-import CohortsPage from '../containers/CohortsPage';
+import CohortsAlumniPage from '../components/CohortsAlumniPage';
 
 import './style.css';
 
@@ -90,17 +90,21 @@ class App extends Component {
             <Route
               exact
               path={ROUTES.COHORTS_PAGE}
-              render={(props) => <CohortsPage {...props} type="cohort" />}
+              render={(props) => (
+                <CohortsAlumniPage {...props} type="Cohorts" />
+              )}
             />
             <Route
               exact
               path={ROUTES.ALUMNI_PAGE}
-              render={(props) => <CohortsPage {...props} type="alumni" />}
+              render={(props) => <CohortsAlumniPage {...props} type="Alumni" />}
             />
             <Route
               exact
               path={ROUTES.COHORT_ALUMNI_PAGE}
-              render={(props) => <CohortsPage {...props} type="cohortAlumni" />}
+              render={(props) => (
+                <CohortsAlumniPage {...props} type="cohortAlumni" />
+              )}
             />
 
             <Route
