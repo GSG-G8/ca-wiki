@@ -33,7 +33,7 @@
 }
 
 .child-container .icons-container :hover {
-    color: #E8505B;
+    color: var(--main-color);
 }
 
 .content-container .child-container {
@@ -52,7 +52,7 @@
 }
 
 .child-container .section-container-1  p:hover {
-    color: #E8505B;
+    color: var(--main-color);
 }
 
 .child-container .section-container-2 {
@@ -62,16 +62,16 @@
 }
 
 .child-container .section-container-2  p:hover {
-    color: #E8505B;
+    color: var(--main-color);
 }
 
 .child-container .text:hover {
-    color: #E8505B;
+    color: var(--main-color);
 }
 
 .content-container .end-line {
-    border-bottom: 1px dashed #E8505B;
-    width: 550px;
+    border-bottom: 1px dashed var(--main-color);
+    width: 90%;
     margin-top: 70px;
 }
 
