@@ -25,3 +25,26 @@
   width: 25px;
   height: 25px;
 }
+
+.pages-table {
+  max-height: 234px;
+  overflow: auto;
+  margin-left: 18px;
+}
+
+.pages-table table {
+  width: 99%;
+  margin: 0 auto;
+  border-collapse: collapse;
+  color: #101C36;
+}
+
+.pages-table thead {
+  background-color: var(--main-color);
+  color: var(--main-white);
+}
+
+.pages-table td, .pages-table th {
+  padding: 6px 16px;
+  border: 1px solid #acacac;
+}

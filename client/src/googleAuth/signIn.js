@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { notification, Carousel } from 'antd';
 import { renderButton, checkSignedIn } from './authUtils';
 import DayVisitsReport from '../components/Charts/dayVisitsReport';
+import PageviewsReport from '../components/Charts/pageviewReport';
 import './style.css';
 
 function GoogleLogin() {
@@ -45,6 +46,9 @@ function GoogleLogin() {
           </div>
           <div>
             <DayVisitsReport metric="ga:sessions" title="Sessions" />
+          </div>
+          <div>
+            <PageviewsReport />
           </div>
         </Carousel>
       )}
