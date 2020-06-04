@@ -12,27 +12,36 @@ const OverviewComponent = ({
   buttonText,
   imageSource,
   btnLink,
-  isRight,
-  isLeft,
+  externalLink,
+  isRightImg,
+  isLeftImg,
+  isHomePage,
+  isDark,
 }) => {
   return (
     <div className="overview-container">
-      {isLeft && (
+      {isLeftImg && (
         <div className="container-photo">
-          <img src={imageSource} alt="Home" />
+          <img className="home-photo" src={imageSource} alt="Home" />
         </div>
       )}
       <div className="container-content">
-        <h1 className="firstTitle">{firstTitle}</h1>
-        <h1>{secondTitle}</h1>
+        <h1 className={isDark ? 'darkTitle' : 'redTitle'}>{firstTitle}</h1>
+        <h1 className="secondTitle">{secondTitle}</h1>
         <p>{content}</p>
-        <Link to={btnLink}>
-          <Button type="button">{buttonText}</Button>
-        </Link>
+        {isHomePage ? (
+          <a href={externalLink}>
+            <Button type="button">{buttonText}</Button>
+          </a>
+        ) : (
+          <Link to={btnLink}>
+            <Button type="button">{buttonText}</Button>
+          </Link>
+        )}
       </div>
-      {isRight && (
+      {isRightImg && (
         <div className="container-photo">
-          <img src={imageSource} alt="Home" />
+          <img className="home-photo" src={imageSource} alt="Home" />
         </div>
       )}
     </div>
@@ -46,8 +55,11 @@ OverviewComponent.propTypes = {
   buttonText: PropTypes.string.isRequired,
   imageSource: PropTypes.string.isRequired,
   btnLink: PropTypes.string.isRequired,
-  isRight: PropTypes.bool.isRequired,
-  isLeft: PropTypes.bool.isRequired,
+  externalLink: PropTypes.string.isRequired,
+  isRightImg: PropTypes.bool.isRequired,
+  isLeftImg: PropTypes.bool.isRequired,
+  isHomePage: PropTypes.bool.isRequired,
+  isDark: PropTypes.bool.isRequired,
 };
 
 export default OverviewComponent;

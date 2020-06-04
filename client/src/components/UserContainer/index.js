@@ -5,7 +5,7 @@ import { SearchOutlined, MenuOutlined, CloseOutlined } from '@ant-design/icons';
 import './style.css';
 import logo from '../../assets/images/logo.png';
 
-import * as ROUTES from '../constants/routes';
+import * as ROUTES from '../../constants/routes';
 
 class UserContainer extends Component {
   state = { show: false };
