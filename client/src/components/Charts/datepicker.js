@@ -6,14 +6,13 @@ import 'react-datepicker/dist/react-datepicker.css';
 
 const CustomDatePicker = (props) => {
   const { placeholder, date, handleDateChange } = props;
-  const newDate = new Date();
   return (
     <div>
       <div>{placeholder}</div>
       <DatePicker
         selected={date}
         onChange={handleDateChange}
-        maxDate={newDate}
+        maxDate={new Date()}
         dateFormat="MMM dd, yyyy"
         className="picker"
       />

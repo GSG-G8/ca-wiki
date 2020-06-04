@@ -17,6 +17,8 @@ import AddEditForm from '../components/Add-Edit-Form';
 import Statistics from '../containers/statisticsPage';
 import AdminProject from '../containers/AdminProjectPage';
 import PageNotFound from '../containers/PageNotFound';
+import ExamplePage from '../components/ExamplePage';
+import ContactUS from '../containers/ContactUsPage';
 
 import './style.css';
 
@@ -101,11 +103,8 @@ class App extends Component {
                 )
               }
             />
-            <Route
-              exact
-              path={ROUTES.HOME_PAGE}
-              render={() => <div>hello test</div>}
-            />
+            <Route exact path={ROUTES.HOME_PAGE} component={ExamplePage} />
+            <Route path={ROUTES.CONTACT_US_PAGE} exact component={ContactUS} />
             {isAuth ? (
               <LogoutContext.Provider value={{ logout: this.logout }}>
                 <Route
@@ -114,16 +113,20 @@ class App extends Component {
                   component={Statistics}
                 />
 
-                <Route path={ROUTES.COHORT_PAGE} exact component={CohortPage} />
+                <Route
+                  path={ROUTES.ADMIN_COHORT_PAGE}
+                  exact
+                  component={CohortPage}
+                />
 
                 <Route
-                  path={ROUTES.COHORT_STUDENTS_PAGE}
+                  path={ROUTES.ADMIN_COHORT_STUDENTS_PAGE}
                   exact
                   component={StudentPage}
                 />
 
                 <Route
-                  path={ROUTES.COHORT_PROJECTS_PAGE}
+                  path={ROUTES.ADMIN_COHORT_PROJECTS_PAGE}
                   exact
                   component={AdminProject}
                 />
@@ -202,6 +205,7 @@ class App extends Component {
                     />
                   )}
                 />
+
                 <Route component={PageNotFound} />
               </LogoutContext.Provider>
             ) : redirect ? (
