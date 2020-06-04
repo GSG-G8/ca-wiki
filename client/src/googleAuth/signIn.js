@@ -15,17 +15,19 @@ function GoogleLogin() {
     }
   };
 
-  const init = async () => {
-    const signedIn = await checkSignedIn();
-    try {
-      updateSignin(signedIn);
-    } catch (error) {
-      const { message } = error;
-      notification.error({
-        message: 'Error',
-        description: message,
+  const init = () => {
+    checkSignedIn()
+      .then((signedIn) => {
+        updateSignin(signedIn);
+        window.gapi.auth2.getAuthInstance().isSignedIn.listen(updateSignin);
+      })
+      .catch((error) => {
+        const { message } = error;
+        notification.error({
+          message: 'Error',
+          description: message,
+        });
       });
-    }
   };
 
   useEffect(() => {
