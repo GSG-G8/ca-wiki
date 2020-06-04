@@ -15,13 +15,16 @@ class Cohorts extends Component {
   state = {
     data: [],
     activeItemIndex: 0,
+    width: 0,
   };
 
   async componentDidMount() {
     try {
-      const cohortsDate = await axios.get('/api/v1/cohortss');
+      const cohortsDate = await axios.get('/api/v1/cohorts');
       const { data } = cohortsDate.data;
       this.setState({ data });
+      this.updateWindowDimensions();
+      window.addEventListener('resize', this.updateWindowDimensions);
     } catch (err) {
       notification.error({
         message: 'Internal Server Error',
@@ -30,9 +33,22 @@ class Cohorts extends Component {
     }
   }
 
-  render() {
-    const { data, activeItemIndex } = this.state;
+  updateWindowDimensions = () => {
+    this.setState({ width: window.innerWidth });
+  };
 
+  render() {
+    const { data, activeItemIndex, width } = this.state;
+    const slidesNum =
+      width < 650
+        ? 1
+        : width < 860
+        ? 2
+        : width < 1100
+        ? 3
+        : width < 1200
+        ? 4
+        : 5;
     return (
       <UserContainer
         rightPageColor="black"
@@ -57,7 +73,7 @@ class Cohorts extends Component {
               chevronWidth={60}
               disableSwipe={false}
               alwaysShowChevrons={false}
-              numberOfCards={5}
+              numberOfCards={slidesNum}
               slidesToScroll={1}
               outsideChevron
               showSlither={false}
@@ -87,6 +103,7 @@ class Cohorts extends Component {
                     hoverable
                     className="cohort_card"
                     style={{ overflow: 'auto' }}
+                    key={x.id}
                   >
                     <img
                       alt={x.name}

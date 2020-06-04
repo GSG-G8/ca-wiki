@@ -1,14 +1,8 @@
 .cohort_card {
-    width: 220px;
-    height: 240px;
+    width: 210px;
+    height: 230px;
     border-radius: 20px;
     background: var(--main-white);
-}
-
-.loading_card {
-    display: block;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .card_img {
