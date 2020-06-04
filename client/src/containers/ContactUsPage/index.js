@@ -66,11 +66,11 @@ const ContactUS = () => {
               </Link>
               -
               <Link to={ROUTES.INTERNAL_PROJECTS}>
-                <p>Community Projects</p>
+                <p>Internal Projects</p>
               </Link>
             </div>
             <Link to={ROUTES.CLIENTS_PROJECTS}>
-              <p className="text">Customer projects</p>
+              <p className="text">Client projects</p>
             </Link>
           </div>
           <div className="end-line" />
