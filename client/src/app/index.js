@@ -87,7 +87,21 @@ class App extends Component {
       <Router>
         <div className="App">
           <Switch>
-            <Route path={ROUTES.COHORTS_PAGE} component={CohortsPage} />
+            <Route
+              exact
+              path={ROUTES.COHORTS_PAGE}
+              render={(props) => <CohortsPage {...props} type="cohort" />}
+            />
+            <Route
+              exact
+              path={ROUTES.ALUMNI_PAGE}
+              render={(props) => <CohortsPage {...props} type="alumni" />}
+            />
+            <Route
+              exact
+              path={ROUTES.COHORT_ALUMNI_PAGE}
+              render={(props) => <CohortsPage {...props} type="cohortAlumni" />}
+            />
 
             <Route
               exact

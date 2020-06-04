@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import axios from 'axios';
 import { notification, Card, Avatar, Skeleton } from 'antd';
 import ItemsCarousel from 'react-items-carousel';
-import logo from '../../assets/images/login-logo.jpeg';
+import whiteLogo from '../../assets/images/login-logo.jpeg';
+// import coloredLogo from '../../assets/images/logo.png';
 import UserContainer from '../../components/UserContainer';
 
 import leftSvg from '../../assets/images/Group 2423.svg';
@@ -49,10 +51,13 @@ class Cohorts extends Component {
         : width < 1200
         ? 4
         : 5;
+    const {
+      history: { push },
+    } = this.props;
     return (
       <UserContainer
         rightPageColor="black"
-        headerLogo={logo}
+        headerLogo={whiteLogo}
         isCohortPages={false}
       >
         <div className="left">
@@ -103,6 +108,9 @@ class Cohorts extends Component {
                     hoverable
                     className="cohort_card"
                     style={{ overflow: 'auto' }}
+                    onClick={() => {
+                      push(`/cohorts/${x.id}`);
+                    }}
                     key={x.id}
                   >
                     <img
@@ -123,5 +131,9 @@ class Cohorts extends Component {
     );
   }
 }
-
+Cohorts.propTypes = {
+  history: PropTypes.shape({
+    push: PropTypes.func,
+  }).isRequired,
+};
 export default Cohorts;
