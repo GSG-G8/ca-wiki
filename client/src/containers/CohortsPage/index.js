@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { notification, Empty, Card } from 'antd';
+import { notification, Card, Avatar, Skeleton } from 'antd';
 import ItemsCarousel from 'react-items-carousel';
-import logo from '../../assets/images/logo.png';
+import logo from '../../assets/images/login-logo.jpeg';
 import UserContainer from '../../components/UserContainer';
 
 import leftSvg from '../../assets/images/Group 2423.svg';
 import rightSvg from '../../assets/images/Group 2381.svg';
 import './styles.css';
+
+const { Meta } = Card;
 
 class Cohorts extends Component {
   state = {
@@ -17,7 +19,7 @@ class Cohorts extends Component {
 
   async componentDidMount() {
     try {
-      const cohortsDate = await axios.get('/api/v1/cohorts');
+      const cohortsDate = await axios.get('/api/v1/cohortss');
       const { data } = cohortsDate.data;
       this.setState({ data });
     } catch (err) {
@@ -47,31 +49,45 @@ class Cohorts extends Component {
           <h1 className="title_heading">
             <span className="title_span">Coh</span>orts
           </h1>
-          {data.length === 0 ? (
-            <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} className="empty" />
-          ) : (
-            <div style={{ padding: '0 80px', margin: '0 auto' }}>
-              <ItemsCarousel
-                infiniteLoop={false}
-                gutter={12}
-                activePosition="center"
-                chevronWidth={60}
-                disableSwipe={false}
-                alwaysShowChevrons={false}
-                numberOfCards={5}
-                slidesToScroll={1}
-                outsideChevron
-                showSlither={false}
-                firstAndLastGutter={false}
-                activeItemIndex={activeItemIndex}
-                requestToChangeActive={(value) =>
-                  this.setState({ activeItemIndex: value })
-                }
-                rightChevron={'>'}
-                leftChevron={'<'}
-              >
-                {data.map((x) => (
-                  <Card hoverable className="cohort_card">
+          <div style={{ padding: '0 80px', margin: '0 auto' }}>
+            <ItemsCarousel
+              infiniteLoop={false}
+              gutter={12}
+              activePosition="center"
+              chevronWidth={60}
+              disableSwipe={false}
+              alwaysShowChevrons={false}
+              numberOfCards={5}
+              slidesToScroll={1}
+              outsideChevron
+              showSlither={false}
+              firstAndLastGutter={false}
+              activeItemIndex={activeItemIndex}
+              requestToChangeActive={(value) =>
+                this.setState({ activeItemIndex: value })
+              }
+              rightChevron={'>'}
+              leftChevron={'<'}
+            >
+              {data.length === 0 ? (
+                <Card className="loading_card">
+                  <Skeleton loading avatar active>
+                    <Meta
+                      avatar={
+                        <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
+                      }
+                      title="Card title"
+                      description="This is the description"
+                    />
+                  </Skeleton>
+                </Card>
+              ) : (
+                data.map((x) => (
+                  <Card
+                    hoverable
+                    className="cohort_card"
+                    style={{ overflow: 'auto' }}
+                  >
                     <img
                       alt={x.name}
                       src={x.img_url}
@@ -81,10 +97,10 @@ class Cohorts extends Component {
                     <h2 className="card_heading">{x.name}</h2>
                     <p className="card_paragraph">{x.description}</p>
                   </Card>
-                ))}
-              </ItemsCarousel>
-            </div>
-          )}
+                ))
+              )}
+            </ItemsCarousel>
+          </div>
         </div>
       </UserContainer>
     );
