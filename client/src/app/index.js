@@ -28,6 +28,11 @@ class App extends Component {
   };
 
   async componentDidMount() {
+    const {
+      location: { pathname, search },
+    } = window;
+    ReactGa.initialize('UA-168533626-1');
+    ReactGa.pageview(pathname + search);
     this.authFun();
   }
 
@@ -40,11 +45,6 @@ class App extends Component {
 
   authFun = async () => {
     try {
-      const {
-        location: { pathname, search },
-      } = window;
-      ReactGa.initialize('UA-168533626-1');
-      ReactGa.pageview(pathname + search);
       const {
         data: { statusCode },
       } = await axios.get('/api/v1/is-auth');
