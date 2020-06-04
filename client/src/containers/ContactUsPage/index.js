@@ -7,73 +7,82 @@ import {
   faFacebookSquare,
 } from '@fortawesome/free-brands-svg-icons';
 import contactPhoto from '../../assets/images/Group 3036.svg';
+import logo from '../../assets/images/logo.png';
+import * as ROUTES from '../../constants/routes';
+import UserContainer from '../../components/UserContainer';
 
 import './style.css';
 
 const ContactUS = () => {
   return (
-    <div className="contact-container">
-      <div className="content-container">
-        <div className="child-container">
-          <h4>FOLLOW US</h4>
-          <p>Gaza Sky Geeks</p>
-          <div className="icons-container">
-            <a href="https://twitter.com/GazaSkyGeeks%22%3E">
-              <FontAwesomeIcon icon={faTwitter} color="#636D73" size="2x" />
-            </a>
-            <a href="https://instagram.com/gazaskygeeks?igshid=11vk0nc0h1fyc">
-              <FontAwesomeIcon icon={faInstagram} color="#636D73" size="2x" />
-            </a>
-            <a href="https://www.facebook.com/GazaSkyGeeks/">
-              <FontAwesomeIcon
-                icon={faFacebookSquare}
-                color="#636D73"
-                size="2x"
-              />
-            </a>
+    <UserContainer
+      rightPageColor="white"
+      headerLogo={logo}
+      isCohortPages={false}
+    >
+      <div className="contact-container">
+        <div className="content-container">
+          <div className="child-container">
+            <h4>FOLLOW US</h4>
+            <p>Gaza Sky Geeks</p>
+            <div className="icons-container">
+              <a href="https://twitter.com/GazaSkyGeeks%22%3E">
+                <FontAwesomeIcon icon={faTwitter} color="#636D73" size="2x" />
+              </a>
+              <a href="https://instagram.com/gazaskygeeks?igshid=11vk0nc0h1fyc">
+                <FontAwesomeIcon icon={faInstagram} color="#636D73" size="2x" />
+              </a>
+              <a href="https://www.facebook.com/GazaSkyGeeks/">
+                <FontAwesomeIcon
+                  icon={faFacebookSquare}
+                  color="#636D73"
+                  size="2x"
+                />
+              </a>
+            </div>
+          </div>
+          <div className="child-container">
+            <h4>CONTACT US</h4>
+            <p>Phone: +970 8282 6331</p>
+            <p>
+              Email:
+              <a href="mailto:info@gazaskygeeks.com"> info@gazaskygeeks.com</a>
+            </p>
+          </div>
+          <div className="child-container">
+            <h4>Sections of the site</h4>
+            <div className="section-container-1">
+              <Link to={ROUTES.HOME_PAGE}>
+                <p>Home </p>
+              </Link>
+              -
+              <Link to="/search">
+                <p>Search</p>
+              </Link>
+            </div>
+            <div className="section-container-2">
+              <Link to={ROUTES.ALUMNI_PAGE}>
+                <p>Alumni</p>
+              </Link>
+              -
+              <Link to={ROUTES.INTERNAL_PROJECTS}>
+                <p>Community Projects</p>
+              </Link>
+            </div>
+            <Link to={ROUTES.CLIENTS_PROJECTS}>
+              <p className="text">Customer projects</p>
+            </Link>
+          </div>
+          <div className="end-line" />
+          <div className="copy-right">
+            All rights reserved. Gaza Sky Geeks.Code Academy © 2020
           </div>
         </div>
-        <div className="child-container">
-          <h4>CONTACT US</h4>
-          <p>Phone: +970 8282 6331</p>
-          <p>
-            Email:
-            <a href="mailto:info@gazaskygeeks.com"> info@gazaskygeeks.com</a>
-          </p>
-        </div>
-        <div className="child-container">
-          <h4>Sections of the site</h4>
-          <div className="section-container-1">
-            <Link to="/">
-              <p>Home </p>
-            </Link>
-            -
-            <Link to="/search">
-              <p>Search</p>
-            </Link>
-          </div>
-          <div className="section-container-2">
-            <Link to="/alumni">
-              <p>Alumni</p>
-            </Link>
-            -
-            <Link to="/com">
-              <p>Community Projects</p>
-            </Link>
-          </div>
-          <Link to="/customer">
-            <p className="text">Customer projects</p>
-          </Link>
-        </div>
-        <div className="end-line" />
-        <div className="copy-right">
-          All rights reserved. Gaza Sky Geeks.Code Academy © 2020
+        <div className="img-container">
+          <img src={contactPhoto} alt="contact" />
         </div>
       </div>
-      <div className="img-container">
-        <img src={contactPhoto} alt="contact" />
-      </div>
-    </div>
+    </UserContainer>
   );
 };
 
