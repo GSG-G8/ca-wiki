@@ -175,7 +175,7 @@ class UserContainer extends Component {
                   activeClassName={rightNavActive}
                 >
                   <div>Co</div>
-                  <div className="show-full-name">COHORT</div>
+                  <div className="show-full-name">COHORTS</div>
                   <div className="line" />
                 </NavLink>
               </li>

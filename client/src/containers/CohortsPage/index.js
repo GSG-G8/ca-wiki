@@ -7,6 +7,7 @@ import UserContainer from '../../components/UserContainer';
 
 import './styles.css';
 import leftSvg from '../../assets/images/Group 2423.svg';
+import rightSvg from '../../assets/images/Group 2381.svg';
 
 class Cohorts extends Component {
   state = {
@@ -36,16 +37,18 @@ class Cohorts extends Component {
         headerLogo={logo}
         isCohortPages={false}
       >
-        <div className="container">
-          {' '}
-          <img src={leftSvg} alt="background" />
+        <div className="left">
+          <img src={leftSvg} alt="background" className="leftSvg" />
+        </div>
+        <div className="right">
+          <img src={rightSvg} alt="background" className="rightSvg" />
         </div>
         <div className="child_container">
           <h1 className="title_heading">Cohorts</h1>
           {data.length === 0 ? (
             <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} className="empty" />
           ) : (
-            <div style={{ padding: '0 80px', margin: '0 auto'}}>
+            <div style={{ padding: '0 80px', margin: '0 auto' }}>
               <ItemsCarousel
                 infiniteLoop={false}
                 gutter={12}
