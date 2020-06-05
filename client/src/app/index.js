@@ -17,6 +17,7 @@ import Statistics from '../containers/statisticsPage';
 import AdminProject from '../containers/AdminProjectPage';
 import PageNotFound from '../containers/PageNotFound';
 import HomePage from '../containers/HomePage';
+import InternalProjectsOverview from '../containers/InternalProjectsOverview ';
 import ContactUS from '../containers/ContactUsPage';
 
 import './style.css';
@@ -98,6 +99,11 @@ class App extends Component {
               }
             />
             <Route exact path={ROUTES.HOME_PAGE} component={HomePage} />
+            <Route
+              exact
+              path={ROUTES.INTERNAL_PROJECTS}
+              component={InternalProjectsOverview}
+            />
             <Route path={ROUTES.CONTACT_US_PAGE} exact component={ContactUS} />
             {isAuth ? (
               <LogoutContext.Provider value={{ logout: this.logout }}>
