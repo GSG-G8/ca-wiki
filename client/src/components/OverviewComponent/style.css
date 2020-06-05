@@ -1,0 +1,52 @@
+.overview-container {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+}
+
+.overview-container .container-photo {
+    width: 50%;
+}
+
+.container-photo .home-photo {
+    height: 100vh;
+    width: 450px;
+}
+
+.overview-container .container-content{
+    width: 50%;
+    text-align: left;
+    margin-top: 150px;
+    margin-left: 80px;
+}
+
+.overview-container .container-content .redTitle {
+    font-weight: bold;
+    color: var(--main-color) ;
+}
+
+.overview-container .container-content .darkTitle {
+    font-weight: bold;
+    color: var(--content-blue-green) ;
+}
+
+.overview-container .container-content .secondTitle {
+    font-weight: bold;
+    color: var(--main-color) ;
+}
+
+.overview-container .container-content p {
+    font-weight: bold;
+    font-size: 12px;
+    color: var(--content-blue-green);
+    line-height: 2;
+    margin-top: 20px;
+}
+
+.overview-container .container-content .ant-btn {
+    height: 40px;
+    width: 260px;
+    background-color:var(--main-color);
+    color: var(--main-white);
+    margin-top: 20px;
+}
