@@ -17,7 +17,8 @@ import Statistics from '../containers/statisticsPage';
 import AdminProject from '../containers/AdminProjectPage';
 import PageNotFound from '../containers/PageNotFound';
 import HomePage from '../containers/HomePage';
-import InternalProjectsOverview from '../containers/InternalProjectsOverview ';
+import InternalProjectsOverview from '../containers/InternalProjectsOverview';
+import ClientsProjectsOverview from '../containers/ClientsProjectsOverview';
 import ContactUS from '../containers/ContactUsPage';
 
 import './style.css';
@@ -103,6 +104,11 @@ class App extends Component {
               exact
               path={ROUTES.INTERNAL_PROJECTS}
               component={InternalProjectsOverview}
+            />
+            <Route
+              exact
+              path={ROUTES.CLIENTS_PROJECTS}
+              component={ClientsProjectsOverview}
             />
             <Route path={ROUTES.CONTACT_US_PAGE} exact component={ContactUS} />
             {isAuth ? (
