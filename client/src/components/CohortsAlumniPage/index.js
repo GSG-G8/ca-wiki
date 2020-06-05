@@ -18,26 +18,21 @@ class CohortsAlumni extends Component {
     data: [],
     activeItemIndex: 0,
     width: 0,
+    isCohortPages: false,
+    cohortName: '',
   };
 
   async componentDidMount() {
     const { type } = this.props;
-    try {
-      if (type === 'Cohorts') {
-        this.getCohorts();
-      } else if (type === 'Alumni') {
-        this.getAlumni();
-      } else {
-        this.getCohortAlumni();
-      }
-      this.updateWindowDimensions();
-      window.addEventListener('resize', this.updateWindowDimensions);
-    } catch (err) {
-      notification.error({
-        message: 'Internal Server Error',
-        description: err.message,
-      });
+    if (type === 'Cohorts') {
+      this.getCohorts();
+    } else if (type === 'Alumni') {
+      this.getAlumni();
+    } else {
+      this.getCohortAlumni();
     }
+    this.updateWindowDimensions();
+    window.addEventListener('resize', this.updateWindowDimensions);
   }
 
   componentDidUpdate(prevProps) {
@@ -54,22 +49,64 @@ class CohortsAlumni extends Component {
   }
 
   async getCohorts() {
-    const cohortsData = await axios.get('/api/v1/cohorts');
-    const { data } = cohortsData.data;
-    this.setState({ data });
+    try {
+      const cohortsData = await axios.get('/api/v1/cohorts');
+      const { data } = cohortsData.data;
+      this.setState({ data, isCohortPages: false });
+    } catch (err) {
+      notification.error({
+        message: 'Internal Server Error',
+        description: err.message,
+      });
+    }
   }
 
   async getAlumni() {
-    const alumniData = await axios.get('/api/v1/alumni');
-    const { data } = alumniData.data;
-    this.setState({ data });
-    // console.log(data)
+    try {
+      const alumniData = await axios.get('/api/v1/alumni');
+      const { data } = alumniData.data;
+      this.setState({ data, isCohortPages: false });
+    } catch (err) {
+      notification.error({
+        message: 'Internal Server Error',
+        description: err.message,
+      });
+    }
   }
 
   async getCohortAlumni() {
-    const cohortsData = await axios.get('/api/v1/cohorts');
-    const { data } = cohortsData.data;
-    this.setState({ data });
+    try {
+      const {
+        match: {
+          params: { cohortId },
+        },
+      } = this.props;
+      const cohortsAlumniData = await axios.get(
+        `/api/v1/cohorts/${cohortId}/alumni`
+      );
+      const { data } = cohortsAlumniData.data;
+      this.getCohortName(Number(cohortId));
+      this.setState({ data, isCohortPages: true });
+    } catch (err) {
+      notification.error({
+        message: 'Internal Server Error',
+        description: err.message,
+      });
+    }
+  }
+
+  async getCohortName(cohortId) {
+    try {
+      const cohorts = await axios.get('/api/v1/cohorts');
+      const { data } = cohorts.data;
+      const cohortName = data.filter((x) => x.id === cohortId)[0].name;
+      this.setState({ cohortName });
+    } catch (err) {
+      notification.error({
+        message: "There's No Cohort with this Id",
+        description: 'Please insert correct Id',
+      });
+    }
   }
 
   updateWindowDimensions = () => {
@@ -77,7 +114,13 @@ class CohortsAlumni extends Component {
   };
 
   render() {
-    const { data, activeItemIndex, width } = this.state;
+    const {
+      data,
+      activeItemIndex,
+      width,
+      isCohortPages,
+      cohortName,
+    } = this.state;
     const { type } = this.props;
     const slidesNum =
       width < 650
@@ -96,7 +139,7 @@ class CohortsAlumni extends Component {
       <UserContainer
         rightPageColor="black"
         headerLogo={type === 'Cohorts' ? whiteLogo : coloredLogo}
-        isCohortPages={false}
+        isCohortPages={isCohortPages}
       >
         {type === 'Cohorts' ? (
           <div className="left">
@@ -116,8 +159,13 @@ class CohortsAlumni extends Component {
             <h1 className="title_heading">
               <span className="title_span">Coh</span>orts
             </h1>
-          ) : (
+          ) : type === 'Alumni' ? (
             <h1 className="title_heading">Alumni</h1>
+          ) : (
+            <>
+              <h1 className="title_heading">{cohortName}</h1>
+              <h2 className="cohort_alumni_heading">{cohortName} Alumni</h2>
+            </>
           )}
 
           <div style={{ padding: '0 80px', margin: '0 auto' }}>
@@ -159,7 +207,10 @@ class CohortsAlumni extends Component {
                     className="cohort_card"
                     style={{ overflow: 'auto' }}
                     onClick={() => {
-                      push(`/cohorts/${x.id}`);
+                      // eslint-disable-next-line no-unused-expressions
+                      type === 'Cohorts'
+                        ? push(`/cohorts/${x.id}`)
+                        : push(`/Cohorts/${x.cohort_id}/Alumni/${x.id}`);
                     }}
                     key={x.id}
                   >
@@ -170,7 +221,18 @@ class CohortsAlumni extends Component {
                       key={x.id}
                     />
                     <h2 className="card_heading">{x.name}</h2>
-                    <p className="card_paragraph">{x.description}</p>
+                    {type === 'Cohorts' ? (
+                      <p className="card_paragraph">{x.description}</p>
+                    ) : (
+                      <>
+                        <a href={x.github_link} className="github_anchor">
+                          Github Page
+                        </a>
+                        <a href={`mailto:${x.email}`} className="github_anchor">
+                          Email
+                        </a>
+                      </>
+                    )}
                   </Card>
                 ))
               )}
@@ -181,10 +243,21 @@ class CohortsAlumni extends Component {
     );
   }
 }
+
+CohortsAlumni.defaultProps = {
+  match: undefined,
+  history: undefined,
+};
+
 CohortsAlumni.propTypes = {
   type: PropTypes.string.isRequired,
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      cohortId: PropTypes.string,
+    }),
+  }),
   history: PropTypes.shape({
     push: PropTypes.func,
-  }).isRequired,
+  }),
 };
 export default CohortsAlumni;
