@@ -1,0 +1,81 @@
+.contact-container {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+}
+
+.img-container {
+    width: 50%;
+    background-color: var(--main-color);
+}
+
+.img-container img {
+  height: 110vh;
+  width: 380px;
+}
+
+.contact-container .content-container {
+    width: 50%;
+    margin-top: 120px;
+    text-align: left;
+    margin-left: 80px;
+}
+
+.contact-container .content-container h4 {
+    font-weight: bold;
+    color: var(--main-color);
+}
+
+.child-container .icons-container {
+    display: flex;
+    justify-content: space-between;
+    width: 18%;
+}
+
+.child-container .icons-container :hover {
+    color: var(--main-color);
+}
+
+.content-container .child-container {
+    margin-top: 30px;
+}
+
+.content-container .child-container p {
+    color: var(--content-grey);
+}
+
+.child-container .section-container-1 {
+    display: flex;
+    justify-content: space-between;
+    width: 130px;
+    color: var(--content-grey) ;
+}
+
+.child-container .section-container-1  p:hover {
+    color: var(--main-color);
+}
+
+.child-container .section-container-2 {
+    display: flex;
+    justify-content: space-between;
+    width: 184px;
+}
+
+.child-container .section-container-2  p:hover {
+    color: var(--main-color);
+}
+
+.child-container .text:hover {
+    color: var(--main-color);
+}
+
+.content-container .end-line {
+    border-bottom: 1px dashed var(--main-color);
+    width: 90%;
+    margin-top: 50px;
+}
+
+.content-container .copy-right {
+    font-weight: bold;
+    margin-top: 20px;
+}

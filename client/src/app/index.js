@@ -17,6 +17,7 @@ import Statistics from '../containers/statisticsPage';
 import AdminProject from '../containers/AdminProjectPage';
 import PageNotFound from '../containers/PageNotFound';
 import ExamplePage from '../components/ExamplePage';
+import ContactUS from '../containers/ContactUsPage';
 
 import CohortsAlumniPage from '../components/CohortsAlumniPage';
 
@@ -119,6 +120,7 @@ class App extends Component {
               }
             />
             <Route exact path={ROUTES.HOME_PAGE} component={ExamplePage} />
+            <Route path={ROUTES.CONTACT_US_PAGE} exact component={ContactUS} />
             {isAuth ? (
               <LogoutContext.Provider value={{ logout: this.logout }}>
                 <Route
@@ -219,6 +221,7 @@ class App extends Component {
                     />
                   )}
                 />
+
                 <Route component={PageNotFound} />
               </LogoutContext.Provider>
             ) : redirect ? (
