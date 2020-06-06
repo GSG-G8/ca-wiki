@@ -39,3 +39,35 @@ li {
 .admin-list-card {
   margin-bottom: 16px;
 }
+
+.pagination {
+  position: absolute;
+  bottom: 4%;
+  left: 50%;
+  transform: translate(-50%, -5%);
+}
+
+.ant-pagination-item a {
+  color: var(--pagination-color);
+}
+
+.ant-pagination-item-active a {
+  color: var(--main-white);
+}
+
+.ant-pagination-item:hover {
+  background-color: var(--main-color);
+}
+
+.ant-pagination-item:hover a {
+  color: var(--main-white);
+}
+
+.ant-pagination-item-active:focus a {
+  color: var(--main-white);
+}
+
+.ant-list-split .ant-list-item {
+  border-bottom: none;
+  padding: 0;
+}

@@ -39,11 +39,21 @@ class UserProject extends Component {
 
   render() {
     const { data, total, startPage, endPage } = this.state;
+    const {
+      history: {
+        location: { search },
+      },
+    } = this.props;
     const dataList = data.slice(startPage, endPage);
+    const projectType = search.split('=')[1];
     return (
-      <UserContainer headerLogo={logo}>
+      <UserContainer headerLogo={logo} isProjectsPage toolsTreeImg>
         <div className="projects-container">
-          <h1>Internal Projects Phase</h1>
+          {projectType === 'internal' ? (
+            <h1>Internal Projects Phase</h1>
+          ) : (
+            <h1>Remotely Projects Phase</h1>
+          )}
           {data.length === 0 ? (
             <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} className="empty" />
           ) : (
@@ -54,7 +64,6 @@ class UserProject extends Component {
                     className="project"
                     style={{
                       background: `url(${item.img_url}) center center / cover no-repeat`,
-                      backgroundSize: 'cover',
                     }}
                   >
                     <div className="project-name">

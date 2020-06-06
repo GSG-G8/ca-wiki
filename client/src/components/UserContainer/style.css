@@ -220,4 +220,16 @@
   display: none;
 }
 
+.tools-img {
+  position: absolute;
+  top: 188px;
+  right: 127px;
+  width: 95px;
+}
 
+.tree-img {
+  position: absolute;
+  bottom: 41px;
+  left: 53px;
+  width: 95px;
+}
