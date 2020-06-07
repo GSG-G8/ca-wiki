@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Pagination, Select, notification } from 'antd';
+import { Pagination, Select, notification, Empty } from 'antd';
 import './style.css';
 
 import UserContainer from '../../components/UserContainer';
@@ -14,15 +14,16 @@ class SearchPage extends Component {
     startPage: 0,
     endPage: 3,
     total: 5,
-    listCohortData: [],
     allCohortData: [],
+    listCohortData: [],
     displayCohortData: [],
     allStudentData: [],
     listStudentData: [],
+    displayStudent: [],
     allProjectData: [],
-    displayProject: [],
     listProjectData: [],
-    showCohorts: [],
+    displayProject: [],
+    showCohorts: true,
     showProjectSection: false,
   };
 
@@ -266,22 +267,25 @@ class SearchPage extends Component {
 
   render() {
     const {
-      listCohortData,
-      allCohortData,
-      displayCohortData,
-      allStudentData,
-      listStudentData,
-      allProjectData,
-      displayProject,
-      listProjectData,
-      pageNumber,
       startPage,
       endPage,
       total,
-      showProjectSection,
+      listCohortData,
+      displayCohortData,
+      listStudentData,
       displayStudent,
       showCohorts,
+      showProjectSection,
+      allCohortData,
+      displayProject,
+      listProjectData,
+      pageNumber,
     } = this.state;
+
+    const listCohorts = displayCohortData.slice(startPage, endPage);
+    const listStudents = displayStudent.slice(startPage, endPage);
+    const listProjects = displayProject.slice(startPage, endPage);
+
     return (
       <UserContainer
         rightPageColor="black"
@@ -290,15 +294,6 @@ class SearchPage extends Component {
       >
         <div className="search-page">
           <div className="search-form">
-            <div>{allCohortData[0].name}</div>
-            <div>{displayCohortData[0].name}</div>
-            <div>{allStudentData[0].name}</div>
-            <div>{allProjectData[0].name}</div>
-            <div>{displayProject[0].name}</div>
-            <div>{displayStudent[0].name}</div>
-            <div>{startPage}</div>
-            <div>{endPage}</div>
-            <div>{showCohorts}</div>
             <div className={showProjectSection ? 'hide' : 'show'}>
               <h3>Search Of Student</h3>
               <Select
@@ -401,21 +396,99 @@ class SearchPage extends Component {
                 ))}
               </Select>
             </div>
+          </div>
 
-            <Pagination
-              className="pagination"
-              defaultCurrent={1}
-              current={pageNumber}
-              showQuickJumper
-              onChange={(page) => {
-                this.setState({
-                  startPage: page * 3 - 3,
-                  endPage: page * 3,
-                  pageNumber: page,
-                });
-              }}
-              total={total}
-            />
+          <div className="display-cohort">
+            {total !== 0 ? (
+              <>
+                {!showProjectSection // 1- show Student Section
+                  ? showCohorts
+                    ? // A- show cohorts in student section
+                      listCohorts.map((e) => (
+                        <div className="cohort">
+                          <div className="cohort-img">
+                            <img src={e.img_url} alt={e.name} />
+                          </div>
+                          <div className="cohort-details">
+                            <h3 className="cohort-name">
+                              Cohort Name: {e.name}{' '}
+                            </h3>
+                            <h4> {e.description} </h4>
+                          </div>
+                          <a
+                            href={e.github_link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            Github Page
+                          </a>
+                        </div>
+                      ))
+                    : // B- show students in student section
+                      listStudents.map((e) => (
+                        <div className="student">
+                          <div className="student-img">
+                            <img src={e.img_url} alt={e.name} />
+                          </div>
+                          <div className="student-details">
+                            <h3 className="student-name">{e.name} </h3>
+                          </div>
+                          <h4>{this.getCohortNameFromId(e, allCohortData)}</h4>
+                          <h4>{e.email}</h4>
+                          <a
+                            href={e.github_link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            Github Page
+                          </a>
+                        </div>
+                      ))
+                  : // 2- show Project Section
+                    listProjects.map((e) => (
+                      <div className="project">
+                        <div className="project-img">
+                          <img src={e.img_url} alt={e.name} />
+                        </div>
+                        <div className="project-details">
+                          <h3 className="project-name">{e.name} </h3>
+                        </div>
+                        <h5>{e.project_type}</h5>
+                        <a
+                          href={e.website_link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          Website Page
+                        </a>
+                        <a
+                          href={e.github_link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          Github Page
+                        </a>
+                      </div>
+                    ))}
+
+                <Pagination
+                  className="pagination"
+                  defaultCurrent={1}
+                  current={pageNumber}
+                  showQuickJumper
+                  onChange={(page) => {
+                    this.setState({
+                      startPage: page * 3 - 3,
+                      endPage: page * 3,
+                      pageNumber: page,
+                    });
+                  }}
+                  total={total}
+                />
+              </>
+            ) : (
+              <Empty />
+            )}
           </div>
         </div>
       </UserContainer>
