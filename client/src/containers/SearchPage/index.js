@@ -218,6 +218,20 @@ class SearchPage extends Component {
     this.setState({ showProjectSection: true });
   };
 
+  getAllStudentOfLocation = (
+    fillterdCohort,
+    allStudentData,
+    studentForSpecificLocation
+  ) => {
+    fillterdCohort
+      .map((cohort) =>
+        allStudentData.filter((student) => student.cohort_id === cohort.id)
+      )
+      .forEach((arr) =>
+        arr.forEach((student) => studentForSpecificLocation.push(student))
+      );
+  };
+
   render() {
     const {
       listCohortData,
