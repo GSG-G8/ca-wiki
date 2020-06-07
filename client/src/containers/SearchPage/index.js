@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Pagination, Select } from 'antd';
+import { Pagination, Select, notification } from 'antd';
 import './style.css';
 
 import UserContainer from '../../components/UserContainer';
@@ -240,6 +240,28 @@ class SearchPage extends Component {
       return cohortFromId[0].name;
     }
     return null;
+  };
+
+  handleError = (err) => {
+    if (err.response.data.data) {
+      const {
+        StatusCode,
+        data: { message },
+      } = err.response.data;
+      notification.error({
+        message: StatusCode,
+        description: message,
+      });
+    } else {
+      const {
+        StatusCode,
+        data: { message },
+      } = err.response;
+      notification.error({
+        message: StatusCode,
+        description: message,
+      });
+    }
   };
 
   render() {
