@@ -161,6 +161,18 @@ class SearchPage extends Component {
     });
   };
 
+  projectType = (value) => {
+    const { allProjectData } = this.state;
+    if (value !== 'all') {
+      const fillterdProject = allProjectData.filter(
+        (e) => e.project_type.toLowerCase() === value
+      );
+      this.setProjectTypeState(fillterdProject);
+    } else {
+      this.setProjectTypeState(allProjectData);
+    }
+  };
+
   render() {
     const {
       listCohortData,
