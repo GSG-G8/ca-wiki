@@ -145,7 +145,6 @@ class CohortsAlumni extends Component {
         rightPageColor="black"
         headerLogo={type === 'Cohorts' ? whiteLogo : coloredLogo}
         isCohortPages={isCohortPages}
-        {...this.props}
       >
         {type === 'Cohorts' ? (
           <div className="left">

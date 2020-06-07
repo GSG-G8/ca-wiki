@@ -3,13 +3,12 @@ import './style.css';
 import UserContainer from '../UserContainer';
 import logo from '../../assets/images/logo.png';
 
-const ExamplePage = (props) => {
+const ExamplePage = () => {
   return (
     <UserContainer
       rightPageColor="black"
       headerLogo={logo}
       isCohortPages={false}
-      {...props}
     >
       <div style={{ paddingTop: '250px', fontWeight: 'bold' }}>
         here you can add page content as childern
