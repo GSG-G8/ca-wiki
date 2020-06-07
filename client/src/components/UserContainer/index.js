@@ -59,6 +59,7 @@ class UserContainer extends Component {
                     exact
                     activeClassName="header-list-active"
                     className="header-list"
+                    onClick={this.reverseShow}
                   >
                     Home
                   </NavLink>
@@ -66,6 +67,7 @@ class UserContainer extends Component {
                     to={ROUTES.SEARCH_PAGE}
                     activeClassName="header-list-active"
                     className="header-list"
+                    onClick={this.reverseShow}
                   >
                     Search
                   </NavLink>
@@ -73,6 +75,7 @@ class UserContainer extends Component {
                     to={ROUTES.COHORTS_PAGE}
                     activeClassName="header-list-active"
                     className="header-list"
+                    onClick={this.reverseShow}
                   >
                     Cohort
                   </NavLink>
@@ -80,6 +83,7 @@ class UserContainer extends Component {
                     to={ROUTES.ALUMNI_PAGE}
                     activeClassName="header-list-active"
                     className="header-list"
+                    onClick={this.reverseShow}
                   >
                     Alumni
                   </NavLink>
@@ -87,6 +91,7 @@ class UserContainer extends Component {
                     to={ROUTES.INTERNAL_PROJECTS}
                     activeClassName="header-list-active"
                     className="header-list"
+                    onClick={this.reverseShow}
                   >
                     Internal Projects
                   </NavLink>
@@ -94,6 +99,7 @@ class UserContainer extends Component {
                     to={ROUTES.CLIENTS_PROJECTS}
                     activeClassName="header-list-active"
                     className="header-list"
+                    onClick={this.reverseShow}
                   >
                     Remotely Project
                   </NavLink>
@@ -103,6 +109,9 @@ class UserContainer extends Component {
                     <a
                       className="contact"
                       href="https://www.facebook.com/GazaSkyGeeks"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={this.reverseShow}
                     >
                       FACEBOOK
                     </a>
@@ -111,6 +120,9 @@ class UserContainer extends Component {
                     <a
                       className="contact"
                       href="https://instagram.com/gazaskygeeks"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={this.reverseShow}
                     >
                       INSTAGRAM
                     </a>
@@ -119,6 +131,9 @@ class UserContainer extends Component {
                     <a
                       className="contact"
                       href="https://twitter.com/GazaSkyGeeks"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={this.reverseShow}
                     >
                       TWITTER
                     </a>

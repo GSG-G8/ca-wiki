@@ -51,7 +51,9 @@ class CohortsAlumni extends Component {
   async getCohorts() {
     try {
       const cohortsData = await axios.get('/api/v1/cohorts');
-      const { data } = cohortsData.data;
+      const {
+        data: { data },
+      } = cohortsData;
       this.setState({ data, isCohortPages: false });
     } catch (err) {
       notification.error({
@@ -64,7 +66,9 @@ class CohortsAlumni extends Component {
   async getAlumni() {
     try {
       const alumniData = await axios.get('/api/v1/alumni');
-      const { data } = alumniData.data;
+      const {
+        data: { data },
+      } = alumniData;
       this.setState({ data, isCohortPages: false });
     } catch (err) {
       notification.error({
@@ -84,7 +88,9 @@ class CohortsAlumni extends Component {
       const cohortsAlumniData = await axios.get(
         `/api/v1/cohorts/${cohortId}/alumni`
       );
-      const { data } = cohortsAlumniData.data;
+      const {
+        data: { data },
+      } = cohortsAlumniData;
       this.getCohortName(Number(cohortId));
       this.setState({ data, isCohortPages: true });
     } catch (err) {
@@ -98,7 +104,9 @@ class CohortsAlumni extends Component {
   async getCohortName(cohortId) {
     try {
       const cohorts = await axios.get('/api/v1/cohorts');
-      const { data } = cohorts.data;
+      const {
+        data: { data },
+      } = cohorts;
       const cohortName = data.filter((x) => x.id === cohortId)[0].name;
       this.setState({ cohortName });
     } catch (err) {
