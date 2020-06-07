@@ -163,11 +163,23 @@ class UserContainer extends Component {
               <li>
                 <NavLink
                   exact
+                  to={ROUTES.COHORTS_PAGE}
+                  className={rightNav}
+                  activeClassName={rightNavActive}
+                >
+                  <div>Co</div>
+                  <div className="show-full-name">COHORTS</div>
+                  <div className="line" />
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  exact
                   to={ROUTES.INTERNAL_PROJECTS}
                   className={rightNav}
                   activeClassName={rightNavActive}
                 >
-                  <div>Ip</div>
+                  <div>IP</div>
                   <div className="show-full-name">INTERNAL PROJECTS</div>
                   <div className="line" />
                 </NavLink>
@@ -179,20 +191,8 @@ class UserContainer extends Component {
                   className={rightNav}
                   activeClassName={rightNavActive}
                 >
-                  <div>Cp</div>
+                  <div>CP</div>
                   <div className="show-full-name">CLIENT PROJECTS</div>
-                  <div className="line" />
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  exact
-                  to={ROUTES.COHORTS_PAGE}
-                  className={rightNav}
-                  activeClassName={rightNavActive}
-                >
-                  <div>Co</div>
-                  <div className="show-full-name">COHORTS</div>
                   <div className="line" />
                 </NavLink>
               </li>
