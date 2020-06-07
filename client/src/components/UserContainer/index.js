@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { SearchOutlined, MenuOutlined, CloseOutlined } from '@ant-design/icons';
 import './style.css';
@@ -17,13 +17,7 @@ class UserContainer extends Component {
 
   render() {
     const { show } = this.state;
-    const {
-      rightPageColor,
-      headerLogo,
-      children,
-      isCohortPages,
-      history: { push },
-    } = this.props;
+    const { rightPageColor, headerLogo, children, isCohortPages } = this.props;
 
     const rightNavActive =
       rightPageColor === 'black'
@@ -37,14 +31,9 @@ class UserContainer extends Component {
       <div>
         <div className="main-header">
           <div className="header-left">
-            <a
-              href
-              onClick={() => {
-                push(ROUTES.HOME_PAGE);
-              }}
-            >
+            <Link to={ROUTES.HOME_PAGE}>
               <img src={headerLogo} alt="Code Academy" />
-            </a>
+            </Link>
           </div>
           <div className="header-right">
             <SearchOutlined style={{ color: rightPageColor }} />
@@ -258,7 +247,6 @@ class UserContainer extends Component {
 UserContainer.defaultProps = {
   rightPageColor: 'black',
   isCohortPages: false,
-  history: undefined,
 };
 
 UserContainer.propTypes = {
@@ -266,8 +254,5 @@ UserContainer.propTypes = {
   headerLogo: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
   isCohortPages: PropTypes.bool,
-  history: PropTypes.shape({
-    push: PropTypes.func,
-  }),
 };
 export default UserContainer;
