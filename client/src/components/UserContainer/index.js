@@ -17,7 +17,13 @@ class UserContainer extends Component {
 
   render() {
     const { show } = this.state;
-    const { rightPageColor, headerLogo, children, isCohortPages } = this.props;
+    const {
+      rightPageColor,
+      headerLogo,
+      children,
+      isCohortPages,
+      history: { push },
+    } = this.props;
 
     const rightNavActive =
       rightPageColor === 'black'
@@ -31,7 +37,14 @@ class UserContainer extends Component {
       <div>
         <div className="main-header">
           <div className="header-left">
-            <img src={headerLogo} alt="Code Academy" />
+            <a
+              href
+              onClick={() => {
+                push(ROUTES.HOME_PAGE);
+              }}
+            >
+              <img src={headerLogo} alt="Code Academy" />
+            </a>
           </div>
           <div className="header-right">
             <SearchOutlined style={{ color: rightPageColor }} />
@@ -245,6 +258,7 @@ class UserContainer extends Component {
 UserContainer.defaultProps = {
   rightPageColor: 'black',
   isCohortPages: false,
+  history: undefined,
 };
 
 UserContainer.propTypes = {
@@ -252,5 +266,8 @@ UserContainer.propTypes = {
   headerLogo: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
   isCohortPages: PropTypes.bool,
+  history: PropTypes.shape({
+    push: PropTypes.func,
+  }),
 };
 export default UserContainer;
