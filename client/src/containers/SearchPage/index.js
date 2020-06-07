@@ -22,6 +22,7 @@ class SearchPage extends Component {
     allProjectData: [],
     displayProject: [],
     listProjectData: [],
+    showCohorts: [],
     showProjectSection: false,
   };
 
@@ -80,6 +81,55 @@ class SearchPage extends Component {
     }
   }
 
+  cohortLocation = (value) => {
+    const { allCohortData, allStudentData, showProjectSection } = this.state;
+    if (value !== 'All') {
+      const fillterdCohort = allCohortData.filter(
+        (e) => e.name.split('')[0].toLowerCase() === value.toLowerCase()
+      );
+
+      const studentForSpecificLocation = [];
+
+      this.getAllStudentOfLocation(
+        fillterdCohort,
+        allStudentData,
+        studentForSpecificLocation
+      );
+
+      const filterCohortPagination = this.setPagination(fillterdCohort);
+
+      if (!showProjectSection) {
+        this.setState({
+          listCohortData: fillterdCohort,
+          displayCohortData: fillterdCohort,
+          listStudentData: studentForSpecificLocation,
+          displayStudent: [],
+          showCohorts: true,
+          ...filterCohortPagination,
+        });
+      }
+    } else if (!showProjectSection) {
+      const allCohortPagination = this.setPagination(allCohortData);
+      this.setState({
+        listCohortData: allCohortData,
+        displayCohortData: allCohortData,
+        listStudentData: allStudentData,
+        displayStudent: [],
+        showCohorts: true,
+        ...allCohortPagination,
+      });
+    }
+  };
+
+  setProjectTypeState = (newData) => {
+    const setPagination = this.setPagination(newData);
+    this.setState({
+      displayProject: newData,
+      listProjectData: newData,
+      ...setPagination,
+    });
+  };
+
   render() {
     const {
       listCohortData,
@@ -95,6 +145,8 @@ class SearchPage extends Component {
       endPage,
       total,
       showProjectSection,
+      displayStudent,
+      showCohorts,
     } = this.state;
     return (
       <UserContainer
@@ -109,8 +161,10 @@ class SearchPage extends Component {
             <div>{allStudentData[0].name}</div>
             <div>{allProjectData[0].name}</div>
             <div>{displayProject[0].name}</div>
+            <div>{displayStudent[0].name}</div>
             <div>{startPage}</div>
             <div>{endPage}</div>
+            <div>{showCohorts}</div>
             <div className={showProjectSection ? 'hide' : 'show'}>
               <h3>Search Of Student</h3>
               <Select
