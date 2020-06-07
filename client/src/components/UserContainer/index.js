@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import { SearchOutlined, MenuOutlined, CloseOutlined } from '@ant-design/icons';
 import './style.css';
 import logo from '../../assets/images/logo.png';
+import toolsImg from '../../assets/images/Group 2381.svg';
+import treeImg from '../../assets/images/Group 2423.svg';
 
 import * as ROUTES from '../../constants/routes';
 
@@ -17,7 +19,13 @@ class UserContainer extends Component {
 
   render() {
     const { show } = this.state;
-    const { rightPageColor, headerLogo, children, isCohortPages } = this.props;
+    const {
+      rightPageColor,
+      headerLogo,
+      children,
+      isCohortPages,
+      toolsTreeImg,
+    } = this.props;
 
     const rightNavActive =
       rightPageColor === 'black'
@@ -235,6 +243,12 @@ class UserContainer extends Component {
             </>
           ) : null}
         </ul>
+        {toolsTreeImg ? (
+          <>
+            <img className="tools-img" src={toolsImg} alt="tools" />
+            <img className="tree-img" src={treeImg} alt="tree" />
+          </>
+        ) : null}
 
         {children}
       </div>
@@ -245,6 +259,7 @@ class UserContainer extends Component {
 UserContainer.defaultProps = {
   rightPageColor: 'black',
   isCohortPages: false,
+  toolsTreeImg: false,
 };
 
 UserContainer.propTypes = {
@@ -252,5 +267,6 @@ UserContainer.propTypes = {
   headerLogo: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
   isCohortPages: PropTypes.bool,
+  toolsTreeImg: PropTypes.bool,
 };
 export default UserContainer;
