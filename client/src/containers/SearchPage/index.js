@@ -13,12 +13,17 @@ class SearchPage extends Component {
     displayCohortData: [],
     allStudentData: [],
     listStudentData: [],
+    allProjectData: [],
+    displayProject: [],
+    listProjectData: [],
   };
 
   async componentDidMount() {
     this.getCohortData();
 
     this.getAlumniData();
+
+    this.getProjectData();
   }
 
   async getCohortData() {
@@ -48,6 +53,26 @@ class SearchPage extends Component {
     }
   }
 
+  async getProjectData() {
+    try {
+      const getInternalProjects = await axios(`/api/v1/projects?type=internal`);
+      const { data: internalData } = getInternalProjects.data;
+
+      const getRemotelyProjects = await axios(`/api/v1/projects?type=remotely`);
+      const { data: remotelyData } = getRemotelyProjects.data;
+
+      const collectProjectData = [...internalData, ...remotelyData];
+
+      this.setState({
+        allProjectData: collectProjectData,
+        displayProject: collectProjectData,
+        listProjectData: collectProjectData,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   render() {
     const {
       listCohortData,
@@ -55,6 +80,9 @@ class SearchPage extends Component {
       displayCohortData,
       allStudentData,
       listStudentData,
+      allProjectData,
+      displayProject,
+      listProjectData,
     } = this.state;
     return (
       <UserContainer
@@ -69,6 +97,9 @@ class SearchPage extends Component {
             <div>{displayCohortData[0].name}</div>
             <div>{allStudentData[0].name}</div>
             <div>{listStudentData[0].name}</div>
+            <div>{allProjectData[0].name}</div>
+            <div>{displayProject[0].name}</div>
+            <div>{listProjectData[0].name}</div>
           </div>
         </div>
       </UserContainer>
