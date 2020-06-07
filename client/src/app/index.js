@@ -107,6 +107,15 @@ class App extends Component {
                 <CohortsAlumniPage {...props} type="cohortAlumni" />
               )}
             />
+            <Route
+              exact
+              path={ROUTES.SPECIFIC_COHORT_PAGE}
+              render={(props) => (
+                <Redirect
+                  to={`/Cohorts/${props.match.params.cohortId}/Projects`}
+                />
+              )}
+            />
 
             <Route
               exact
