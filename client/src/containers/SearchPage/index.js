@@ -1,30 +1,30 @@
 import React, { Component } from 'react';
-import { Pagination, Select, notification, Empty } from 'antd';
+import { Select, Pagination, Empty, notification } from 'antd';
 import './style.css';
-
 import UserContainer from '../../components/UserContainer';
 import logo from '../../assets/images/logo.png';
 
-const { Option } = Select;
 const axios = require('axios');
+
+const { Option } = Select;
 
 class SearchPage extends Component {
   state = {
-    pageNumber: 1,
-    startPage: 0,
-    endPage: 3,
-    total: 5,
-    allCohortData: [],
-    listCohortData: [],
-    displayCohortData: [],
-    allStudentData: [],
-    listStudentData: [],
-    displayStudent: [],
-    allProjectData: [],
-    listProjectData: [],
-    displayProject: [],
-    showCohorts: true,
-    showProjectSection: false,
+    pageNumber: 1, // this for current page number in pagination
+    startPage: 0, // this is first element in any page
+    endPage: 3, // this is last element in the same page
+    total: 5, // this is total number of cards avaliable
+    allCohortData: [], // this all data of all cohort
+    listCohortData: [], // this data will appear in cohort name input as a list
+    displayCohortData: [], // this data that will appear in the screen
+    allStudentData: [], // this all data of all students
+    listStudentData: [], // this data will appear in student name input as a list
+    displayStudent: [], // this data that will appear in the screen
+    allProjectData: [], // this all data of all projects
+    listProjectData: [], // this data will appear in project name input as a list
+    displayProject: [], // this data that will appear in the screen
+    showCohorts: true, // show or hide cohort
+    showProjectSection: false, // show or hide the fitst & the second section of search
   };
 
   async componentDidMount() {
@@ -40,6 +40,7 @@ class SearchPage extends Component {
       const getCohortData = await axios(`/api/v1/cohorts`);
       const { data } = getCohortData.data;
       this.setState({
+        total: data.length * 3.33,
         listCohortData: data,
         allCohortData: data,
         displayCohortData: data,
@@ -122,18 +123,23 @@ class SearchPage extends Component {
     }
   };
 
-  setProjectTypeState = (newData) => {
-    const setPagination = this.setPagination(newData);
-    this.setState({
-      displayProject: newData,
-      listProjectData: newData,
-      ...setPagination,
-    });
+  getAllStudentOfLocation = (
+    fillterdCohort,
+    allStudentData,
+    studentForSpecificLocation
+  ) => {
+    fillterdCohort
+      .map((cohort) =>
+        allStudentData.filter((student) => student.cohort_id === cohort.id)
+      )
+      .forEach((arr) =>
+        arr.forEach((student) => studentForSpecificLocation.push(student))
+      );
   };
 
   cohortName = (value) => {
     const { listCohortData, allStudentData, showProjectSection } = this.state;
-    const fillterdCohort = listCohortData.filter((e) => e.name === value);
+    const fillterdCohort = listCohortData.filter((e) => e.id === value);
     const fillterdStudent = allStudentData.filter(
       (e) => e.cohort_id === fillterdCohort[0].id
     );
@@ -152,7 +158,7 @@ class SearchPage extends Component {
 
   studentName = (value) => {
     const { allStudentData, showProjectSection } = this.state;
-    const studentSelected = allStudentData.filter((e) => e.name === value);
+    const studentSelected = allStudentData.filter((e) => e.id === value);
     if (!showProjectSection) {
       this.setState({ total: 1, pageNumber: 1 });
     }
@@ -160,6 +166,19 @@ class SearchPage extends Component {
       displayStudent: studentSelected,
       showCohorts: false,
     });
+  };
+
+  projectName = (value) => {
+    const { allProjectData, showProjectSection } = this.state;
+    const ProjectSelected = allProjectData.filter((e) => e.id === value);
+    if (showProjectSection) {
+      const projectPagination = this.setPagination();
+      this.setState({
+        displayProject: ProjectSelected,
+        showCohorts: true,
+        ...projectPagination,
+      });
+    }
   };
 
   projectType = (value) => {
@@ -174,63 +193,13 @@ class SearchPage extends Component {
     }
   };
 
-  projectName = (value) => {
-    const { allProjectData, showProjectSection } = this.state;
-    const ProjectSelected = allProjectData.filter((e) => e.name === value);
-    if (showProjectSection) {
-      const projectPagination = this.setPagination();
-      this.setState({
-        displayProject: ProjectSelected,
-        showCohorts: true,
-        ...projectPagination,
-      });
-    }
-  };
-
-  cohortInputOnFocus = () => {
-    const { allCohortData, showProjectSection } = this.state;
+  setProjectTypeState = (newData) => {
+    const setPagination = this.setPagination(newData);
     this.setState({
-      showProjectSection: false,
+      displayProject: newData,
+      listProjectData: newData,
+      ...setPagination,
     });
-    if (showProjectSection) {
-      const allCohortPagination = this.setPagination(allCohortData);
-      this.setState(allCohortPagination);
-    }
-  };
-
-  studentInputsOnFocus = () => {
-    this.setState({
-      showProjectSection: false,
-    });
-  };
-
-  projectTypeOnFocus = () => {
-    const { allProjectData, showProjectSection } = this.state;
-    this.setState({
-      showProjectSection: true,
-    });
-    if (!showProjectSection) {
-      const allProjectPagination = this.setPagination(allProjectData);
-      this.setState(allProjectPagination);
-    }
-  };
-
-  ProjectNameOnFocus = () => {
-    this.setState({ showProjectSection: true });
-  };
-
-  getAllStudentOfLocation = (
-    fillterdCohort,
-    allStudentData,
-    studentForSpecificLocation
-  ) => {
-    fillterdCohort
-      .map((cohort) =>
-        allStudentData.filter((student) => student.cohort_id === cohort.id)
-      )
-      .forEach((arr) =>
-        arr.forEach((student) => studentForSpecificLocation.push(student))
-      );
   };
 
   getCohortNameFromId = (student, cohortsData) => {
@@ -241,6 +210,15 @@ class SearchPage extends Component {
       return cohortFromId[0].name;
     }
     return null;
+  };
+
+  setPagination = (data) => {
+    return {
+      pageNumber: 1,
+      startPage: 0,
+      endPage: 3,
+      total: data ? data.length * 3.33 : 1,
+    };
   };
 
   handleError = (err) => {
@@ -265,6 +243,38 @@ class SearchPage extends Component {
     }
   };
 
+  studentInputsOnFocus = () => {
+    this.setState({
+      showProjectSection: false,
+    });
+  };
+
+  cohortInputOnFocus = () => {
+    const { allCohortData, showProjectSection } = this.state;
+    this.setState({
+      showProjectSection: false,
+    });
+    if (showProjectSection) {
+      const allCohortPagination = this.setPagination(allCohortData);
+      this.setState(allCohortPagination);
+    }
+  };
+
+  ProjectNameOnFocus = () => {
+    this.setState({ showProjectSection: true });
+  };
+
+  projectTypeOnFocus = () => {
+    const { allProjectData, showProjectSection } = this.state;
+    this.setState({
+      showProjectSection: true,
+    });
+    if (!showProjectSection) {
+      const allProjectPagination = this.setPagination(allProjectData);
+      this.setState(allProjectPagination);
+    }
+  };
+
   render() {
     const {
       startPage,
@@ -285,7 +295,6 @@ class SearchPage extends Component {
     const listCohorts = displayCohortData.slice(startPage, endPage);
     const listStudents = displayStudent.slice(startPage, endPage);
     const listProjects = displayProject.slice(startPage, endPage);
-
     return (
       <UserContainer
         rightPageColor="black"
