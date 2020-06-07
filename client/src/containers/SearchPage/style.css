@@ -10,11 +10,85 @@
 
 .search-form {
   width: 300px;
-  border: 1px solid var(--content-grey);
+  border: 1px solid #707070;
   box-shadow: var(--card-shadow);
   border-radius: 0px 0px 5px 5px;
   text-align: left;
   height: 400px;
+}
+
+.search-form h3 {
+  color: var(--content-grey);
+  margin: 15px 0;
+}
+
+.search-form h3:last-of-type {
+  display: inline-block;
+}
+
+.project-button {
+  color: var(--main-color);
+  margin-left: 39px;
+  border: none;
+  background-color: var(--main-white);
+}
+
+.project-button:hover {
+  cursor: pointer;
+}
+
+.project-button:focus {
+  outline-color: var(--main-white);
+}
+
+.search-form .ant-select {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.display-cohort {
+  margin-left: 45px;
+  width: 720px;
+}
+
+.cohort {
+  display: flex;
+  height: 120px;
+  box-shadow: 0px 0px 17px #AFAFAF29;
+  margin-bottom: 15px;
+  align-items: center;
+  border-radius: 5px;
+  border-right: 6px solid var(--main-color);
+  padding-right: 30px;
+}
+
+.cohort-img img {
+  width: 75px;
+  border-radius: 50%;
+}
+
+.cohort-img {
+  padding: 22px 30px;
+  flex: 0.5;
+}
+
+.cohort-name {
+  font-weight: bold;
+}
+
+.cohort-details {
+  padding: 22px 0;
+  flex: 1.5;
+}
+
+.cohort a {
+  width: 220px;
+  margin-left: 25px;
+  padding: 11px 0;
+  background-color: var(--main-color);
+  color: white;
+  box-shadow: 0px 3px 6px #AFAFAF29;
+  border-radius: 5px;
 }
 
 .show, .hide {
@@ -25,9 +99,89 @@
 .show {
   background-color: #fafafa;
   height: 50%;
-  border-right: 6px solid #E8505B;
+  border-right: 6px solid var(--main-color);
 }
 
 .search-form .hide .ant-select .ant-select-selector .ant-select-selection-item {
   color: #d9d9d9;
+}
+
+.student {
+  display: flex;
+  height: 120px;
+  box-shadow: 0px 0px 17px #AFAFAF29;
+  margin-bottom: 15px;
+  align-items: center;
+  border-radius: 5px;
+  border-right: 6px solid var(--main-color);
+  padding-right: 30px;
+}
+
+.student a {
+  width: 220px;
+  margin-left: 25px;
+  padding: 11px 0;
+  background-color: #E8505B;
+  color: white;
+  box-shadow: 0px 3px 6px #AFAFAF29;
+  border-radius: 5px;
+}
+
+.student-img img {
+  width: 75px;
+  border-radius: 50%;
+}
+
+.student-img {
+  padding: 22px 30px;
+  flex: 0.5;
+}
+
+.student-details {
+  padding: 22px 0;
+  flex: 1.5;
+}
+
+.student-name {
+  font-weight: bold;
+}
+
+.project {
+  display: flex;
+  height: 120px;
+  box-shadow: 0px 0px 17px #AFAFAF29;
+  margin-bottom: 15px;
+  align-items: center;
+  border-radius: 5px;
+  border-right: 6px solid #E8505B;
+  padding-right: 30px;
+}
+
+.project a {
+  width: 220px;
+  margin-left: 25px;
+  padding: 11px 0;
+  background-color: #E8505B;
+  color: white;
+  box-shadow: 0px 3px 6px #AFAFAF29;
+  border-radius: 5px;
+}
+
+.project-img img {
+  width: 75px;
+  border-radius: 50%;
+}
+
+.project-img {
+  padding: 22px 30px;
+  flex: 0.5;
+}
+
+.project-details {
+  padding: 22px 0;
+  flex: 1.5;
+}
+
+.project-name {
+  font-weight: bold;
 }
