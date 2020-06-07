@@ -130,6 +130,25 @@ class SearchPage extends Component {
     });
   };
 
+  cohortName = (value) => {
+    const { listCohortData, allStudentData, showProjectSection } = this.state;
+    const fillterdCohort = listCohortData.filter((e) => e.name === value);
+    const fillterdStudent = allStudentData.filter(
+      (e) => e.cohort_id === fillterdCohort[0].id
+    );
+
+    if (!showProjectSection) {
+      const filterStudentPagination = this.setPagination(fillterdStudent);
+      this.setState({
+        displayCohortData: fillterdCohort,
+        listStudentData: fillterdStudent,
+        displayStudent: fillterdStudent,
+        showCohorts: false,
+        ...filterStudentPagination,
+      });
+    }
+  };
+
   render() {
     const {
       listCohortData,
