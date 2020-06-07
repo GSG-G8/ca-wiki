@@ -140,13 +140,13 @@ class CohortsAlumni extends Component {
         : width < 1200
         ? 4
         : 5;
-    const redirectFunc = (x) => {
+    const redirectFunc = (cohort) => {
       const {
         history: { push },
       } = this.props;
       return type === 'Cohorts'
-        ? push(`/cohorts/${x.id}`)
-        : push(`/Cohorts/${x.cohort_id}/Alumni/${x.id}`);
+        ? push(`/cohorts/${cohort.id}`)
+        : push(`/Cohorts/${cohort.cohort_id}/Alumni/${cohort.id}`);
     };
     return (
       <UserContainer
@@ -214,29 +214,32 @@ class CohortsAlumni extends Component {
                   </Skeleton>
                 </Card>
               ) : (
-                data.map((x) => (
+                data.map((cohort) => (
                   <Card
                     hoverable
                     className="cohort_card"
                     style={{ overflow: 'auto' }}
-                    onClick={() => redirectFunc(x)}
-                    key={x.id}
+                    onClick={() => redirectFunc(cohort)}
+                    key={cohort.id}
                   >
                     <img
-                      alt={x.name}
-                      src={x.img_url}
+                      alt={cohort.name}
+                      src={cohort.img_url}
                       className="card_img"
-                      key={x.id}
+                      key={cohort.id}
                     />
-                    <h2 className="card_heading">{x.name}</h2>
+                    <h2 className="card_heading">{cohort.name}</h2>
                     {type === 'Cohorts' ? (
-                      <p className="card_paragraph">{x.description}</p>
+                      <p className="card_paragraph">{cohort.description}</p>
                     ) : (
                       <>
-                        <a href={x.github_link} className="github_anchor">
+                        <a href={cohort.github_link} className="github_anchor">
                           Github Page
                         </a>
-                        <a href={`mailto:${x.email}`} className="github_anchor">
+                        <a
+                          href={`mailto:${cohort.email}`}
+                          className="github_anchor"
+                        >
                           Email
                         </a>
                       </>
