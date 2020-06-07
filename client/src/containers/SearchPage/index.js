@@ -173,6 +173,19 @@ class SearchPage extends Component {
     }
   };
 
+  projectName = (value) => {
+    const { allProjectData, showProjectSection } = this.state;
+    const ProjectSelected = allProjectData.filter((e) => e.name === value);
+    if (showProjectSection) {
+      const projectPagination = this.setPagination();
+      this.setState({
+        displayProject: ProjectSelected,
+        showCohorts: true,
+        ...projectPagination,
+      });
+    }
+  };
+
   render() {
     const {
       listCohortData,
