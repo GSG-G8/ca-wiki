@@ -18,6 +18,7 @@ import AdminProject from '../containers/AdminProjectPage';
 import PageNotFound from '../containers/PageNotFound';
 import ExamplePage from '../components/ExamplePage';
 import ContactUS from '../containers/ContactUsPage';
+import SearchPage from '../containers/SearchPage';
 
 import './style.css';
 
@@ -98,6 +99,7 @@ class App extends Component {
               }
             />
             <Route exact path={ROUTES.HOME_PAGE} component={ExamplePage} />
+            <Route exact path={ROUTES.SEARCH_PAGE} component={SearchPage} />
             <Route path={ROUTES.CONTACT_US_PAGE} exact component={ContactUS} />
             {isAuth ? (
               <LogoutContext.Provider value={{ logout: this.logout }}>
