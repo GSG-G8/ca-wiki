@@ -26,8 +26,9 @@ class UserProject extends Component {
       const res = await axios.get(
         `/api/v1/cohorts/${cohortId}/projects${search}`
       );
-    //   const cohorts = await axios.get(`/api/v1/cohorts`)
-      const { data } = res.data;console.log('sss', data)
+      //   const cohorts = await axios.get(`/api/v1/cohorts`)
+      const { data } = res.data;
+      // console.log('sss', data)
       const total = Math.ceil(data.length / 6) * 10;
       this.setState({ data, total });
     } catch (err) {
@@ -46,9 +47,6 @@ class UserProject extends Component {
   render() {
     const { data, total, startPage, endPage } = this.state;
     const {
-      match: {
-        params: { cohortId },
-      },
       location: { search },
     } = this.props;
     const dataList = data.slice(startPage, endPage);
@@ -56,7 +54,7 @@ class UserProject extends Component {
     return (
       <UserContainer headerLogo={logo} isClientPage toolsTreeImg>
         <div className="projects-container">
-            {/* <h1>{</h1> */}
+          {/* <h1>{</h1> */}
           {projectType === 'internal' ? (
             <h1>Internal Projects Phase</h1>
           ) : (
