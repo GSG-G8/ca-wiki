@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Button } from 'antd';
-
 import './style.css';
 
 const OverviewComponent = ({
@@ -17,11 +16,12 @@ const OverviewComponent = ({
   isLeftImg,
   isHomePage,
   isDark,
+  isRed,
 }) => {
   return (
     <div className="overview-container">
       {isLeftImg && (
-        <div className="container-photo">
+        <div className={isRed ? 'redGround' : 'whiteGround'}>
           <img className="home-photo" src={imageSource} alt="Home" />
         </div>
       )}
@@ -40,7 +40,7 @@ const OverviewComponent = ({
         )}
       </div>
       {isRightImg && (
-        <div className="container-photo">
+        <div className={isRed ? 'redGround' : 'whiteGround'}>
           <img className="home-photo" src={imageSource} alt="Home" />
         </div>
       )}
@@ -60,6 +60,7 @@ OverviewComponent.propTypes = {
   isLeftImg: PropTypes.bool.isRequired,
   isHomePage: PropTypes.bool.isRequired,
   isDark: PropTypes.bool.isRequired,
+  isRed: PropTypes.bool.isRequired,
 };
 
 export default OverviewComponent;

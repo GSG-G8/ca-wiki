@@ -4,11 +4,16 @@
     height: 100vh;
 }
 
-.overview-container .container-photo {
+.overview-container .redGround {
+    width: 50%;
+    background-color: var(--main-color);
+}
+
+.overview-container .whiteGround {
     width: 50%;
 }
 
-.container-photo .home-photo {
+.overview-container .home-photo {
     height: 100vh;
     width: 450px;
 }
@@ -36,6 +41,7 @@
 }
 
 .overview-container .container-content p {
+    width:70%;
     font-weight: bold;
     font-size: 12px;
     color: var(--content-blue-green);
