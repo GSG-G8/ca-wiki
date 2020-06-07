@@ -17,6 +17,6 @@ export const COHORTS_PAGE = '/cohorts';
 export const ALUMNI_PAGE = '/alumni	';
 export const COHORT_PROJECTS_PAGE = '/Cohorts/:cohortId/Projects';
 export const COHORT_ALUMNI_PAGE = '/Cohorts/:cohortId/Alumni';
-export const SPECIFIC_PROJECT_PAGE = '/Cohorts/:cohortId/Projects/:project';
+export const SPECIFIC_PROJECT_PAGE = '/cohorts/:cohortId/Projects/:project';
 export const CONTACT_US_PAGE = '/contact-us';
 export const SEARCH_PAGE = '/search';

@@ -51,6 +51,9 @@ class UserProject extends Component {
   render() {
     const { data, total, startPage, endPage, cohortName } = this.state;
     const {
+      match: {
+        params: { cohortId },
+      },
       location: { search },
     } = this.props;
     const dataList = data.slice(startPage, endPage);
@@ -69,7 +72,7 @@ class UserProject extends Component {
           ) : (
             dataList.map((item) => (
               <>
-                <Link to="/projects?type=internal">
+                <Link to={`/cohorts/${cohortId}/Projects/${item.id}`}>
                   <div
                     className="project"
                     style={{
