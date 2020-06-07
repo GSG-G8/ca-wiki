@@ -132,9 +132,14 @@ class CohortsAlumni extends Component {
         : width < 1200
         ? 4
         : 5;
-    const {
-      history: { push },
-    } = this.props;
+    const redirectFunc = (x) => {
+      const {
+        history: { push },
+      } = this.props;
+      return type === 'Cohorts'
+        ? push(`/cohorts/${x.id}`)
+        : push(`/Cohorts/${x.cohort_id}/Alumni/${x.id}`);
+    };
     return (
       <UserContainer
         rightPageColor="black"
@@ -207,12 +212,7 @@ class CohortsAlumni extends Component {
                     hoverable
                     className="cohort_card"
                     style={{ overflow: 'auto' }}
-                    onClick={() => {
-                      // eslint-disable-next-line no-unused-expressions
-                      type === 'Cohorts'
-                        ? push(`/cohorts/${x.id}`)
-                        : push(`/Cohorts/${x.cohort_id}/Alumni/${x.id}`);
-                    }}
+                    onClick={() => redirectFunc(x)}
                     key={x.id}
                   >
                     <img
