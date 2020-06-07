@@ -214,6 +214,10 @@ class SearchPage extends Component {
     }
   };
 
+  ProjectNameOnFocus = () => {
+    this.setState({ showProjectSection: true });
+  };
+
   render() {
     const {
       listCohortData,
