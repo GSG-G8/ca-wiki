@@ -44,7 +44,7 @@ class SearchPage extends Component {
         displayCohortData: data,
       });
     } catch (err) {
-      console.log(err);
+      this.handleError(err);
     }
   }
 
@@ -57,7 +57,7 @@ class SearchPage extends Component {
         listStudentData: data,
       });
     } catch (err) {
-      console.log(err);
+      this.handleError(err);
     }
   }
 
@@ -77,7 +77,7 @@ class SearchPage extends Component {
         listProjectData: collectProjectData,
       });
     } catch (err) {
-      console.log(err);
+      this.handleError(err);
     }
   }
 
