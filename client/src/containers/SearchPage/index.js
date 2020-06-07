@@ -232,6 +232,16 @@ class SearchPage extends Component {
       );
   };
 
+  getCohortNameFromId = (student, cohortsData) => {
+    if (student.length !== 0) {
+      const cohortFromId = cohortsData.filter(
+        (e) => e.id === student.cohort_id
+      );
+      return cohortFromId[0].name;
+    }
+    return null;
+  };
+
   render() {
     const {
       listCohortData,
