@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Pagination } from 'antd';
 import './style.css';
 
 import UserContainer from '../../components/UserContainer';
@@ -8,6 +9,10 @@ const axios = require('axios');
 
 class SearchPage extends Component {
   state = {
+    pageNumber: 1,
+    startPage: 0,
+    endPage: 3,
+    total: 5,
     listCohortData: [],
     allCohortData: [],
     displayCohortData: [],
@@ -83,6 +88,10 @@ class SearchPage extends Component {
       allProjectData,
       displayProject,
       listProjectData,
+      pageNumber,
+      startPage,
+      endPage,
+      total,
     } = this.state;
     return (
       <UserContainer
@@ -100,6 +109,22 @@ class SearchPage extends Component {
             <div>{allProjectData[0].name}</div>
             <div>{displayProject[0].name}</div>
             <div>{listProjectData[0].name}</div>
+            <div>{startPage}</div>
+            <div>{endPage}</div>
+            <Pagination
+              className="pagination"
+              defaultCurrent={1}
+              current={pageNumber}
+              showQuickJumper
+              onChange={(page) => {
+                this.setState({
+                  startPage: page * 3 - 3,
+                  endPage: page * 3,
+                  pageNumber: page,
+                });
+              }}
+              total={total}
+            />
           </div>
         </div>
       </UserContainer>
