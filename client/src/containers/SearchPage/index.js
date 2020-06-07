@@ -186,6 +186,17 @@ class SearchPage extends Component {
     }
   };
 
+  cohortInputOnFocus = () => {
+    const { allCohortData, showProjectSection } = this.state;
+    this.setState({
+      showProjectSection: false,
+    });
+    if (showProjectSection) {
+      const allCohortPagination = this.setPagination(allCohortData);
+      this.setState(allCohortPagination);
+    }
+  };
+
   render() {
     const {
       listCohortData,
