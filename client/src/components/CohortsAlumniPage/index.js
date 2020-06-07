@@ -121,6 +121,16 @@ class CohortsAlumni extends Component {
     this.setState({ width: window.innerWidth });
   };
 
+  redirectFunc = (cohort) => {
+    const {
+      history: { push },
+    } = this.props;
+    const { type } = this.props;
+    return type === 'Cohorts'
+      ? push(`/cohorts/${cohort.id}`)
+      : push(`/Cohorts/${cohort.cohort_id}/Alumni/${cohort.id}`);
+  };
+
   render() {
     const {
       data,
@@ -140,14 +150,6 @@ class CohortsAlumni extends Component {
         : width < 1200
         ? 4
         : 5;
-    const redirectFunc = (cohort) => {
-      const {
-        history: { push },
-      } = this.props;
-      return type === 'Cohorts'
-        ? push(`/cohorts/${cohort.id}`)
-        : push(`/Cohorts/${cohort.cohort_id}/Alumni/${cohort.id}`);
-    };
     return (
       <UserContainer
         rightPageColor="black"
@@ -219,7 +221,7 @@ class CohortsAlumni extends Component {
                     hoverable
                     className="cohort_card"
                     style={{ overflow: 'auto' }}
-                    onClick={() => redirectFunc(cohort)}
+                    onClick={() => this.redirectFunc(cohort)}
                     key={cohort.id}
                   >
                     <img
