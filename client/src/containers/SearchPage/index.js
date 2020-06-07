@@ -203,6 +203,17 @@ class SearchPage extends Component {
     });
   };
 
+  projectTypeOnFocus = () => {
+    const { allProjectData, showProjectSection } = this.state;
+    this.setState({
+      showProjectSection: true,
+    });
+    if (!showProjectSection) {
+      const allProjectPagination = this.setPagination(allProjectData);
+      this.setState(allProjectPagination);
+    }
+  };
+
   render() {
     const {
       listCohortData,
