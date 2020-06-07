@@ -1,0 +1,18 @@
+.right-nav-list{
+  display: none;
+}
+
+.search-page {
+  display: flex;
+  margin-top: 120px;
+  margin-left: 150px;
+}
+
+.search-form {
+  width: 300px;
+  border: 1px solid var(--content-grey);
+  box-shadow: var(--card-shadow);
+  border-radius: 0px 0px 5px 5px;
+  text-align: left;
+  height: 400px;
+}
