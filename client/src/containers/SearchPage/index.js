@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { Pagination } from 'antd';
+import { Pagination, Select } from 'antd';
 import './style.css';
 
 import UserContainer from '../../components/UserContainer';
 import logo from '../../assets/images/logo.png';
 
+const { Option } = Select;
 const axios = require('axios');
 
 class SearchPage extends Component {
@@ -21,6 +22,7 @@ class SearchPage extends Component {
     allProjectData: [],
     displayProject: [],
     listProjectData: [],
+    showProjectSection: false,
   };
 
   async componentDidMount() {
@@ -92,6 +94,7 @@ class SearchPage extends Component {
       startPage,
       endPage,
       total,
+      showProjectSection,
     } = this.state;
     return (
       <UserContainer
@@ -101,16 +104,116 @@ class SearchPage extends Component {
       >
         <div className="search-page">
           <div className="search-form">
-            <div>{listCohortData[0].name}</div>
             <div>{allCohortData[0].name}</div>
             <div>{displayCohortData[0].name}</div>
             <div>{allStudentData[0].name}</div>
-            <div>{listStudentData[0].name}</div>
             <div>{allProjectData[0].name}</div>
             <div>{displayProject[0].name}</div>
-            <div>{listProjectData[0].name}</div>
             <div>{startPage}</div>
             <div>{endPage}</div>
+            <div className={showProjectSection ? 'hide' : 'show'}>
+              <h3>Search Of Student</h3>
+              <Select
+                showSearch
+                placeholder="location"
+                optionFilterProp="children"
+                value={!showProjectSection ? undefined : null}
+                onChange={this.cohortLocation}
+                onFocus={this.cohortInputOnFocus}
+                filterOption={(input, option) =>
+                  option.children.toLowerCase().indexOf(input.toLowerCase()) >=
+                  0
+                }
+              >
+                {showProjectSection ? (
+                  <span className="input-span">location</span>
+                ) : null}
+                <Option value="G">Gaza</Option>
+                <Option value="K">Khalel</Option>
+                <Option value="All">All</Option>
+              </Select>
+
+              <Select
+                showSearch
+                placeholder="Select a cohort"
+                optionFilterProp="children"
+                value={!showProjectSection ? undefined : null}
+                onChange={this.cohortName}
+                onFocus={this.studentInputsOnFocus}
+                filterOption={(input, option) =>
+                  option.children.toLowerCase().indexOf(input.toLowerCase()) >=
+                  0
+                }
+              >
+                {showProjectSection ? (
+                  <span className="input-span">Select a cohort</span>
+                ) : null}
+                {listCohortData.map((e) => (
+                  <Option value={e.id}>{e.name}</Option>
+                ))}
+              </Select>
+              <Select
+                showSearch
+                placeholder="Select a student"
+                value={!showProjectSection ? undefined : null}
+                optionFilterProp="children"
+                onChange={this.studentName}
+                onFocus={this.studentInputsOnFocus}
+                filterOption={(input, option) =>
+                  option.children.toLowerCase().indexOf(input.toLowerCase()) >=
+                  0
+                }
+              >
+                {showProjectSection ? (
+                  <span className="input-span">Select a student</span>
+                ) : null}
+                {listStudentData.map((e) => (
+                  <Option value={e.id}>{e.name}</Option>
+                ))}
+              </Select>
+            </div>
+            <div className={showProjectSection ? 'show' : 'hide'}>
+              <h3>Search Of Projects</h3>
+              <Select
+                showSearch
+                placeholder="Project Type"
+                optionFilterProp="children"
+                value={!showProjectSection ? null : undefined}
+                onChange={this.projectType}
+                onFocus={this.projectTypeOnFocus}
+                filterOption={(input, option) =>
+                  option.children.toLowerCase().indexOf(input.toLowerCase()) >=
+                  0
+                }
+              >
+                {!showProjectSection ? (
+                  <span className="input-span">Project Type</span>
+                ) : null}
+                <Option value="internal">Internal</Option>
+                <Option value="remotely">Reomtely</Option>
+                <Option value="all">All</Option>
+              </Select>
+              <Select
+                showSearch
+                placeholder="Select a project"
+                optionFilterProp="children"
+                value={!showProjectSection ? null : undefined}
+                onChange={this.projectName}
+                onFocus={this.ProjectNameOnFocus}
+                filterOption={(input, option) =>
+                  option.children.toLowerCase().indexOf(input.toLowerCase()) >=
+                  0
+                }
+              >
+                {!showProjectSection ? (
+                  <span className="input-span">Select a project</span>
+                ) : null}
+                {listProjectData.map((e) => (
+                  <Option value={e.id}>{e.name}</Option>
+                ))}
+              </Select>
+            </div>
+
             <Pagination
               className="pagination"
               defaultCurrent={1}
