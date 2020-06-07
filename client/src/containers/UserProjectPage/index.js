@@ -52,7 +52,7 @@ class UserProject extends Component {
           {projectType === 'internal' ? (
             <h1>Internal Projects Phase</h1>
           ) : (
-            <h1>Remotely Projects Phase</h1>
+            <h1>Clients Projects Phase</h1>
           )}
           {data.length === 0 ? (
             <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} className="empty" />
