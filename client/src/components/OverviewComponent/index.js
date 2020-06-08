@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Button } from 'antd';
-
 import './style.css';
 
 const OverviewComponent = ({
@@ -14,23 +13,25 @@ const OverviewComponent = ({
   btnLink,
   externalLink,
   isRightImg,
-  isLeftImg,
   isHomePage,
-  isDark,
+  titleIsDark,
+  backgroundIsRed,
 }) => {
   return (
     <div className="overview-container">
-      {isLeftImg && (
-        <div className="container-photo">
-          <img className="home-photo" src={imageSource} alt="Home" />
-        </div>
-      )}
+      <div
+        className={`${isRightImg ? 'right' : ''} ${
+          backgroundIsRed ? 'redGround' : 'whiteGround'
+        }`}
+      >
+        <img className="background-photo" src={imageSource} alt="Home" />
+      </div>
       <div className="container-content">
-        <h1 className={isDark ? 'darkTitle' : 'redTitle'}>{firstTitle}</h1>
+        <h1 className={titleIsDark ? 'darkTitle' : 'redTitle'}>{firstTitle}</h1>
         <h1 className="secondTitle">{secondTitle}</h1>
         <p>{content}</p>
         {isHomePage ? (
-          <a href={externalLink}>
+          <a href={externalLink} target="_blank" rel="noopener noreferrer">
             <Button type="button">{buttonText}</Button>
           </a>
         ) : (
@@ -39,11 +40,6 @@ const OverviewComponent = ({
           </Link>
         )}
       </div>
-      {isRightImg && (
-        <div className="container-photo">
-          <img className="home-photo" src={imageSource} alt="Home" />
-        </div>
-      )}
     </div>
   );
 };
@@ -57,9 +53,9 @@ OverviewComponent.propTypes = {
   btnLink: PropTypes.string.isRequired,
   externalLink: PropTypes.string.isRequired,
   isRightImg: PropTypes.bool.isRequired,
-  isLeftImg: PropTypes.bool.isRequired,
   isHomePage: PropTypes.bool.isRequired,
-  isDark: PropTypes.bool.isRequired,
+  titleIsDark: PropTypes.bool.isRequired,
+  backgroundIsRed: PropTypes.bool.isRequired,
 };
 
 export default OverviewComponent;

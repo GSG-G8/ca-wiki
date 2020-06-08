@@ -16,7 +16,9 @@ import AddEditForm from '../components/Add-Edit-Form';
 import Statistics from '../containers/statisticsPage';
 import AdminProject from '../containers/AdminProjectPage';
 import PageNotFound from '../containers/PageNotFound';
-import ExamplePage from '../components/ExamplePage';
+import HomePage from '../containers/HomePage';
+import InternalProjectsOverview from '../containers/InternalProjectsOverview';
+import ClientsProjectsOverview from '../containers/ClientsProjectsOverview';
 import ContactUS from '../containers/ContactUsPage';
 import UserProject from '../containers/UserProjectPage';
 
@@ -129,7 +131,17 @@ class App extends Component {
                 )
               }
             />
-            <Route exact path={ROUTES.HOME_PAGE} component={ExamplePage} />
+            <Route exact path={ROUTES.HOME_PAGE} component={HomePage} />
+            <Route
+              exact
+              path={ROUTES.INTERNAL_PROJECTS}
+              component={InternalProjectsOverview}
+            />
+            <Route
+              exact
+              path={ROUTES.CLIENTS_PROJECTS}
+              component={ClientsProjectsOverview}
+            />
             <Route path={ROUTES.CONTACT_US_PAGE} exact component={ContactUS} />
             <Route exact path={ROUTES.PROJECTS_PAGE} component={UserProject} />
             {isAuth ? (
