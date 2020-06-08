@@ -296,7 +296,7 @@ describe('Get student projects', () => {
       });
   });
 
-  test('Route /alumni/18 status 200, json header ', (done) => {
+  test('Route /alumni/18/projects status 200, json header ', (done) => {
     return request(app)
       .get('/api/v1/alumni/18/projects')
       .expect(200)
