@@ -13,8 +13,8 @@ const data = {
   imageSource: ClientsProjectsImg,
   btnLink: '/projects?type=remotely',
   isRightImg: true,
-  isDark: true,
-  isRed: true,
+  titleIsDark: true,
+  backgroundIsRed: true,
 };
 
 const ClientsProjectsOverview = () => {
@@ -26,8 +26,8 @@ const ClientsProjectsOverview = () => {
     imageSource,
     btnLink,
     isRightImg,
-    isDark,
-    isRed,
+    titleIsDark,
+    backgroundIsRed,
   } = data;
   return (
     <UserContainer
@@ -43,8 +43,8 @@ const ClientsProjectsOverview = () => {
         imageSource={imageSource}
         btnLink={btnLink}
         isRightImg={isRightImg}
-        isDark={isDark}
-        isRed={isRed}
+        titleIsDark={titleIsDark}
+        backgroundIsRed={backgroundIsRed}
       />
     </UserContainer>
   );
