@@ -300,6 +300,7 @@ class SearchPage extends Component {
         rightPageColor="black"
         headerLogo={logo}
         isCohortPages={false}
+        isProjectsPage
       >
         <div className="search-page">
           <div className="search-form">
