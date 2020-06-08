@@ -12,9 +12,8 @@ const data = {
   buttonText: 'See Community Projects Phase',
   imageSource: InternalProjectsImg,
   btnLink: '/projects?type=internal',
-  isLeftImg: true,
-  isDark: true,
-  isRed: true,
+  titleIsDark: true,
+  backgroundIsRed: true,
 };
 
 const InternalProjectsOverview = () => {
@@ -25,9 +24,8 @@ const InternalProjectsOverview = () => {
     buttonText,
     imageSource,
     btnLink,
-    isLeftImg,
-    isDark,
-    isRed,
+    titleIsDark,
+    backgroundIsRed,
   } = data;
   return (
     <UserContainer
@@ -42,9 +40,8 @@ const InternalProjectsOverview = () => {
         buttonText={buttonText}
         imageSource={imageSource}
         btnLink={btnLink}
-        isLeftImg={isLeftImg}
-        isDark={isDark}
-        isRed={isRed}
+        titleIsDark={titleIsDark}
+        backgroundIsRed={backgroundIsRed}
       />
     </UserContainer>
   );
