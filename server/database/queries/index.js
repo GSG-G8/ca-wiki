@@ -5,6 +5,7 @@ const {
   addStudent,
   getStudentByIdQuery,
   getSpecificAlumni,
+  getStudentProjectsQuery,
 } = require('./student');
 
 const {
@@ -47,4 +48,5 @@ module.exports = {
   getStatsQuery,
   loginQuery,
   studentProjectQuery,
+  getStudentProjectsQuery,
 };
