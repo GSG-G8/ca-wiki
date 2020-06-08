@@ -9,6 +9,7 @@ import './style.css';
 class ProjectDetails extends Component {
   state = {
     data: [],
+    cohortData: {},
   };
 
   async componentDidMount() {
@@ -20,7 +21,11 @@ class ProjectDetails extends Component {
       } = this.props;
       const res = await axios.get(`/api/v1/projects/${projectId}`);
       const { data } = res.data;
-      this.setState({ data });
+      const cohort = await axios.get(`/api/v1/cohorts/${data.cohort_id}`);
+      const {
+        data: { data: cohortData },
+      } = cohort;
+      this.setState({ data, cohortData });
     } catch (err) {
       const {
         response: {
@@ -35,7 +40,7 @@ class ProjectDetails extends Component {
   }
 
   render() {
-    const { data } = this.state;
+    const { data, cohortData } = this.state;
     const projectType = data.project_type;
     return (
       <UserContainer headerLogo={logo} isProjectsPage toolsTreeImg>
@@ -57,7 +62,24 @@ class ProjectDetails extends Component {
                   height: '200px',
                 }}
               />
-              <div className="project-desc" />
+              <div className="project-desc">
+                <h3>{data.name}</h3>
+                <p>{data.description}</p>
+                <h3>Project Information</h3>
+                <ul>
+                  <li>{cohortData.name}</li>
+                  <li>
+                    <a href={data.github_link} target="blank">
+                      Github Link
+                    </a>
+                  </li>
+                  <li>
+                    <a href={data.website_link} target="blank">
+                      Website Link
+                    </a>
+                  </li>
+                </ul>
+              </div>
             </div>
           )}
         </div>
