@@ -14,6 +14,7 @@ class Cohort extends Component {
     startPage: 0,
     endPage: 4,
     total: 5,
+    currentPage: 1,
   };
 
   async componentDidMount() {
@@ -70,7 +71,7 @@ class Cohort extends Component {
   };
 
   render() {
-    const { data, startPage, endPage, total } = this.state;
+    const { data, startPage, endPage, total, currentPage } = this.state;
     const list = data.slice(startPage, endPage);
     return (
       <div>
@@ -104,10 +105,12 @@ class Cohort extends Component {
               />
               <Pagination
                 className="pagination"
-                defaultCurrent={0}
+                current={currentPage}
+                defaultCurrent={1}
                 showQuickJumper
                 onChange={(page) => {
                   this.setState({
+                    currentPage: page,
                     startPage: page * 4 - 4,
                     endPage: page * 4,
                   });
