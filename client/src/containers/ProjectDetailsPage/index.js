@@ -70,8 +70,6 @@ class ProjectDetails extends Component {
 
   render() {
     const { data, cohortData, students } = this.state;
-    console.log('sss', cohortData);
-    console.log('hhh', data);
     const projectType = data.project_type;
     return (
       <UserContainer headerLogo={logo} isProjectsPage toolsTreeImg>
