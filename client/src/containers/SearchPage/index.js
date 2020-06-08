@@ -164,7 +164,7 @@ class SearchPage extends Component {
 
   cohortName = (value) => {
     const { listCohortData, allStudentData, showProjectSection } = this.state;
-    const fillterdCohort = listCohortData.filter((e) => e.id === value);
+    const fillterdCohort = listCohortData.filter((e) => e.name === value);
     const fillterdStudent = allStudentData.filter(
       (e) => e.cohort_id === fillterdCohort[0].id
     );
@@ -183,7 +183,7 @@ class SearchPage extends Component {
 
   studentName = (value) => {
     const { allStudentData, showProjectSection } = this.state;
-    const studentSelected = allStudentData.filter((e) => e.id === value);
+    const studentSelected = allStudentData.filter((e) => e.name === value);
     if (!showProjectSection) {
       this.setState({ total: 1, pageNumber: 1 });
     }
@@ -196,7 +196,7 @@ class SearchPage extends Component {
 
   projectName = (value) => {
     const { allProjectData, showProjectSection } = this.state;
-    const ProjectSelected = allProjectData.filter((e) => e.id === value);
+    const ProjectSelected = allProjectData.filter((e) => e.name === value);
     if (showProjectSection) {
       const projectPagination = this.setPagination();
       this.setState({
@@ -371,7 +371,7 @@ class SearchPage extends Component {
                   <span className="input-span">Select a cohort</span>
                 ) : null}
                 {listCohortData.map((e) => (
-                  <Option value={e.id}>{e.name}</Option>
+                  <Option value={e.name}>{e.name}</Option>
                 ))}
               </Select>
               <Select
@@ -390,7 +390,7 @@ class SearchPage extends Component {
                   <span className="input-span">Select a student</span>
                 ) : null}
                 {listStudentData.map((e) => (
-                  <Option value={e.id}>{e.name}</Option>
+                  <Option value={e.name}>{e.name}</Option>
                 ))}
               </Select>
             </div>
@@ -431,7 +431,7 @@ class SearchPage extends Component {
                   <span className="input-span">Select a project</span>
                 ) : null}
                 {listProjectData.map((e) => (
-                  <Option value={e.id}>{e.name}</Option>
+                  <Option value={e.name}>{e.name}</Option>
                 ))}
               </Select>
             </div>
