@@ -10,6 +10,7 @@ class ProjectDetails extends Component {
   state = {
     data: [],
     cohortData: {},
+    students: [],
   };
 
   async componentDidMount() {
@@ -26,6 +27,7 @@ class ProjectDetails extends Component {
         data: { data: cohortData },
       } = cohort;
       this.setState({ data, cohortData });
+      this.getStudents();
     } catch (err) {
       const {
         response: {
@@ -39,8 +41,37 @@ class ProjectDetails extends Component {
     }
   }
 
+  async getStudents() {
+    const {
+      match: {
+        params: { projectId },
+      },
+    } = this.props;
+    try {
+      if (projectId) {
+        const result = await axios.get(`/api/v1/projects/${projectId}/alumni`);
+        const {
+          data: { data: students },
+        } = result;
+        this.setState({ students });
+      }
+    } catch (err) {
+      const {
+        response: {
+          data: { message },
+        },
+      } = err;
+      notification.error({
+        message: 'Error 404',
+        description: message,
+      });
+    }
+  }
+
   render() {
-    const { data, cohortData } = this.state;
+    const { data, cohortData, students } = this.state;
+    console.log('sss', cohortData);
+    console.log('hhh', data);
     const projectType = data.project_type;
     return (
       <UserContainer headerLogo={logo} isProjectsPage toolsTreeImg>
@@ -77,6 +108,14 @@ class ProjectDetails extends Component {
                     <a href={data.website_link} target="blank">
                       Website Link
                     </a>
+                  </li>
+                  <li>
+                    Students
+                    <ol>
+                      {students.map((row) => (
+                        <li>{row}</li>
+                      ))}
+                    </ol>
                   </li>
                 </ul>
               </div>
