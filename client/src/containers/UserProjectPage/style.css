@@ -43,3 +43,19 @@
 a:nth-child(4) .project, a:nth-child(8) .project {
    width: 400px;
 }
+
+.project-page {
+   display: flex;
+   justify-content: space-around;
+   width: 800px;
+   margin-top: 150px;
+}
+
+.project-page-link img {
+   width: 90%;
+}
+
+.project-page-link h2 {
+   color: var(--main-color);
+   font-weight: bold;
+}
