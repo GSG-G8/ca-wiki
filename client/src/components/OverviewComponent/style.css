@@ -4,6 +4,10 @@
     height: 100vh;
 }
 
+.overview-container .right {
+    order: 1;
+}    
+
 .overview-container .redGround {
     width: 50%;
     background-color: var(--main-color);
@@ -13,7 +17,7 @@
     width: 50%;
 }
 
-.overview-container .home-photo {
+.overview-container .background-photo {
     height: 100vh;
     width: 450px;
 }
