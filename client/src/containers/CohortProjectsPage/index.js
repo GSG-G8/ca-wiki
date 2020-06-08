@@ -14,6 +14,7 @@ class UserProject extends Component {
     endPage: 6,
     total: 0,
     cohortName: '',
+    currentPage: 1,
   };
 
   async componentDidMount() {
@@ -49,7 +50,14 @@ class UserProject extends Component {
   }
 
   render() {
-    const { data, total, startPage, endPage, cohortName } = this.state;
+    const {
+      data,
+      total,
+      startPage,
+      endPage,
+      cohortName,
+      currentPage,
+    } = this.state;
     const {
       match: {
         params: { cohortId },
@@ -86,10 +94,12 @@ class UserProject extends Component {
                 </Link>
                 <Pagination
                   className="pagination"
-                  defaultCurrent={0}
+                  current={currentPage}
+                  defaultCurrent={1}
                   showQuickJumper
                   onChange={(page) => {
                     this.setState({
+                      currentPage: page,
                       startPage: page * 6 - 6,
                       endPage: page * 6,
                     });
