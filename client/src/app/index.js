@@ -18,6 +18,7 @@ import AdminProject from '../containers/AdminProjectPage';
 import PageNotFound from '../containers/PageNotFound';
 import ExamplePage from '../components/ExamplePage';
 import ContactUS from '../containers/ContactUsPage';
+import UserProject from '../containers/UserProjectPage';
 
 import CohortsAlumniPage from '../components/CohortsAlumniPage';
 
@@ -112,7 +113,7 @@ class App extends Component {
               path={ROUTES.SPECIFIC_COHORT_PAGE}
               render={(props) => (
                 <Redirect
-                  to={`/Cohorts/${props.match.params.cohortId}/Projects?type=remotly`}
+                  to={`/cohorts/${props.match.params.cohortId}/projects?type=remotly`}
                 />
               )}
             />
@@ -130,6 +131,7 @@ class App extends Component {
             />
             <Route exact path={ROUTES.HOME_PAGE} component={ExamplePage} />
             <Route path={ROUTES.CONTACT_US_PAGE} exact component={ContactUS} />
+            <Route exact path={ROUTES.PROJECTS_PAGE} component={UserProject} />
             {isAuth ? (
               <LogoutContext.Provider value={{ logout: this.logout }}>
                 <Route
