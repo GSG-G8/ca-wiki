@@ -11,6 +11,7 @@ const login = require('./login');
 const logout = require('./logout');
 const putStudentData = require('./putStudentData');
 const getStats = require('./stats');
+const AssignProjectStudent = require('./AssignProjectStudent');
 
 module.exports = {
   addCohort,
@@ -26,4 +27,5 @@ module.exports = {
   logout,
   putStudentData,
   getStats,
+  AssignProjectStudent,
 };
