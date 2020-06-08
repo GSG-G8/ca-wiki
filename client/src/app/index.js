@@ -113,7 +113,7 @@ class App extends Component {
               path={ROUTES.SPECIFIC_COHORT_PAGE}
               render={(props) => (
                 <Redirect
-                  to={`/Cohorts/${props.match.params.cohortId}/Projects?type=remotly`}
+                  to={`/cohorts/${props.match.params.cohortId}/projects?type=remotly`}
                 />
               )}
             />
