@@ -266,3 +266,59 @@ describe('Delete specific student by ID', () => {
       });
   });
 });
+
+describe('Get student projects', () => {
+  test('Route /alumni/1/projects status 200, json header, data ', (done) => {
+    return request(app)
+      .get('/api/v1/alumni/1/projects')
+      .expect(200)
+      .expect('Content-Type', /json/)
+      .end((err, res) => {
+        if (err) return done(err);
+        const { data } = res.body;
+        expect(data[0]).toEqual({
+          id: 1,
+          name: 'ca-wiki',
+          description:
+            'Ca-wiki is a web application which allows clients to view all cohorts that have been enrolled in Code Academy. Clients can view all students who graduated from the academy so that they can view every student and his/her projects he/she participated in, his/her github page',
+          github_link:
+            'https://github.com/GSG-G8/ca-wiki/tree/ed9f4cd9b5dc428f5420fe9a880a27e63f5f04d3',
+          website_link:
+            'https://github.com/GSG-G8/ca-wiki/blob/ed9f4cd9b5dc428f5420fe9a880a27e63f5f04d3/%5Blink%5D',
+          img_url:
+            'https://media.autopro.com.au/media/catalog/product/cache/3/image/750x750/9df78eab33525d08d6e5fb8d27136e95/m/n/mnpp.jpg',
+          project_type: 'Internal',
+          project_id: 1,
+          student_id: 1,
+          cohort_id: 1,
+        });
+        done();
+      });
+  });
+
+  test('Route /alumni/18 status 200, json header ', (done) => {
+    return request(app)
+      .get('/api/v1/alumni/18/projects')
+      .expect(200)
+      .expect('Content-Type', /json/)
+      .end((err, res) => {
+        if (err) return done(err);
+        const { message } = res.body;
+        expect(message).toBe('There is no projects for this student id');
+        done();
+      });
+  });
+
+  test('Route /alumni/Alaa/projects status 404, json header ', (done) => {
+    return request(app)
+      .get('/api/v1/alumni/Alaa/projects')
+      .expect(404)
+      .expect('Content-Type', /json/)
+      .end((err, res) => {
+        if (err) return done(err);
+        const { message } = res.body;
+        expect(message).toBe('Invalid id');
+        done();
+      });
+  });
+});

@@ -96,4 +96,4 @@ INSERT INTO project (name , description , img_url , github_link , website_link ,
 'https://github.com/GSG-G8/ca-wiki/blob/ed9f4cd9b5dc428f5420fe9a880a27e63f5f04d3/%5Blink%5D','Internal',1);
 
 INSERT INTO student_project (student_id , project_id) VALUES (1 , 1) , (2 , 2), (3 , 3) 
-, (4 , 8), (5 , 9) , (6 , 10), (7 , 11) , (8 , 12), (9 , 13) , (10 , 14), (11 , 15);
+, (4 , 8), (5 , 9) , (6 , 10), (7 , 11) , (8 , 12), (9 , 13) , (10 , 14), (11 , 15), (2,5), (2,6);
