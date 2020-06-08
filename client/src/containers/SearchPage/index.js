@@ -53,7 +53,9 @@ class SearchPage extends Component {
   async getstudentProjects(studentId) {
     try {
       const getCohortData = await axios(`/api/v1/alumni/${studentId}/projects`);
-      const { data } = getCohortData.data;
+      const {
+        data: { data },
+      } = getCohortData;
       this.setState({ studentProjectData: data });
     } catch (err) {
       this.handleError(err);
@@ -63,7 +65,9 @@ class SearchPage extends Component {
   async getCohortData() {
     try {
       const getCohortData = await axios(`/api/v1/cohorts`);
-      const { data } = getCohortData.data;
+      const {
+        data: { data },
+      } = getCohortData;
       this.setState({
         total: data.length * 3.33,
         listCohortData: data,
@@ -78,7 +82,9 @@ class SearchPage extends Component {
   async getAlumniData() {
     try {
       const getAlumniData = await axios(`/api/v1/alumni`);
-      const { data } = getAlumniData.data;
+      const {
+        data: { data },
+      } = getAlumniData;
       this.setState({
         allStudentData: data,
         listStudentData: data,
@@ -91,10 +97,14 @@ class SearchPage extends Component {
   async getProjectData() {
     try {
       const getInternalProjects = await axios(`/api/v1/projects?type=internal`);
-      const { data: internalData } = getInternalProjects.data;
+      const {
+        data: { data: internalData },
+      } = getInternalProjects;
 
       const getRemotelyProjects = await axios(`/api/v1/projects?type=remotely`);
-      const { data: remotelyData } = getRemotelyProjects.data;
+      const {
+        data: { data: remotelyData },
+      } = getRemotelyProjects;
 
       const collectProjectData = [...internalData, ...remotelyData];
 
@@ -370,8 +380,8 @@ class SearchPage extends Component {
                 {showProjectSection ? (
                   <span className="input-span">Select a cohort</span>
                 ) : null}
-                {listCohortData.map((e) => (
-                  <Option value={e.name}>{e.name}</Option>
+                {listCohortData.map((cohort) => (
+                  <Option value={cohort.name}>{cohort.name}</Option>
                 ))}
               </Select>
               <Select
@@ -389,8 +399,8 @@ class SearchPage extends Component {
                 {showProjectSection ? (
                   <span className="input-span">Select a student</span>
                 ) : null}
-                {listStudentData.map((e) => (
-                  <Option value={e.name}>{e.name}</Option>
+                {listStudentData.map((student) => (
+                  <Option value={student.name}>{student.name}</Option>
                 ))}
               </Select>
             </div>
@@ -430,8 +440,8 @@ class SearchPage extends Component {
                 {!showProjectSection ? (
                   <span className="input-span">Select a project</span>
                 ) : null}
-                {listProjectData.map((e) => (
-                  <Option value={e.name}>{e.name}</Option>
+                {listProjectData.map((project) => (
+                  <Option value={project.name}>{project.name}</Option>
                 ))}
               </Select>
             </div>
@@ -443,19 +453,19 @@ class SearchPage extends Component {
                 {!showProjectSection // 1- show Student Section
                   ? showCohorts
                     ? // A- show cohorts in student section
-                      listCohorts.map((e) => (
+                      listCohorts.map((cohort) => (
                         <div className="cohort">
                           <div className="cohort-img">
-                            <img src={e.img_url} alt={e.name} />
+                            <img src={cohort.img_url} alt={cohort.name} />
                           </div>
                           <div className="cohort-details">
                             <h3 className="cohort-name">
-                              Cohort Name: {e.name}{' '}
+                              Cohort Name: {cohort.name}{' '}
                             </h3>
-                            <h4> {e.description} </h4>
+                            <h4> {cohort.description} </h4>
                           </div>
                           <a
-                            href={e.github_link}
+                            href={cohort.github_link}
                             target="_blank"
                             rel="noopener noreferrer"
                           >
@@ -464,13 +474,13 @@ class SearchPage extends Component {
                         </div>
                       ))
                     : // B- show students in student section
-                      listStudents.map((e) => (
+                      listStudents.map((student) => (
                         <div className="student">
                           <div className="student-img">
-                            <img src={e.img_url} alt={e.name} />
+                            <img src={student.img_url} alt={student.name} />
                           </div>
                           <div className="student-details">
-                            <h3 className="student-name">{e.name} </h3>
+                            <h3 className="student-name">{student.name} </h3>
                           </div>
                           {studentProjectData.map((project) => (
                             <h5>
@@ -479,11 +489,11 @@ class SearchPage extends Component {
                           ))}
                           <h4>
                             Cohort Name
-                            {this.getCohortNameFromId(e, allCohortData)}
+                            {this.getCohortNameFromId(student, allCohortData)}
                           </h4>
-                          <h4>{e.email}</h4>
+                          <h4>{student.email}</h4>
                           <a
-                            href={e.github_link}
+                            href={student.github_link}
                             target="_blank"
                             rel="noopener noreferrer"
                           >
@@ -492,24 +502,24 @@ class SearchPage extends Component {
                         </div>
                       ))
                   : // 2- show Project Section
-                    listProjects.map((e) => (
+                    listProjects.map((project) => (
                       <div className="project">
                         <div className="project-img">
-                          <img src={e.img_url} alt={e.name} />
+                          <img src={project.img_url} alt={project.name} />
                         </div>
                         <div className="project-details">
-                          <h3 className="project-name">{e.name} </h3>
+                          <h3 className="project-name">{project.name} </h3>
                         </div>
-                        <h5>{e.project_type}</h5>
+                        <h5>{project.project_type}</h5>
                         <a
-                          href={e.website_link}
+                          href={project.website_link}
                           target="_blank"
                           rel="noopener noreferrer"
                         >
                           Website Page
                         </a>
                         <a
-                          href={e.github_link}
+                          href={project.github_link}
                           target="_blank"
                           rel="noopener noreferrer"
                         >
