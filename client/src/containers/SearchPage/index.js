@@ -295,12 +295,14 @@ class SearchPage extends Component {
     const listCohorts = displayCohortData.slice(startPage, endPage);
     const listStudents = displayStudent.slice(startPage, endPage);
     const listProjects = displayProject.slice(startPage, endPage);
+
     return (
       <UserContainer
         rightPageColor="black"
         headerLogo={logo}
         isCohortPages={false}
         isProjectsPage
+        isSearchPage
       >
         <div className="search-page">
           <div className="search-form">
