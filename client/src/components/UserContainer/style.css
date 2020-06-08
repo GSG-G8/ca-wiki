@@ -153,6 +153,7 @@
   width: 500px;
   text-align: right;
   color: var(--main-color);
+  z-index: 1;
 }
 
 .right-nav-active {
@@ -208,6 +209,7 @@
   width: 500px;
   text-align: right;
   color: var(--main-white);
+  z-index: 1;
 }
 
 
