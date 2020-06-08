@@ -321,3 +321,51 @@ describe('Get student projects', () => {
       });
   });
 });
+
+describe('Assign projects to student', () => {
+  test('Route /alumni/projects/assign status 200, json header, data.message = Project Assigned successfully ', (done) => {
+    const reqData = {
+      projectId: 1,
+      student1Id: 1,
+      student2Id: 2,
+      student3Id: 3,
+      student4Id: 4,
+    };
+    return request(app)
+      .post('/api/v1/alumni/projects/assign')
+      .set('Cookie', token)
+      .send(reqData)
+      .expect(201)
+      .expect('Content-Type', /json/)
+      .end(async (err, res) => {
+        const { message } = res.body.data;
+        if (err) return done(err);
+        expect(message).toBe('Project Assigned successfully');
+        done();
+      });
+  });
+
+  test('Route /alumni/projects/assign status 400, json header, data.message = array of errors ', (done) => {
+    const wrongData = {
+      projectId: 1,
+      student1Id: 1,
+      student2Id: 2,
+      student3Id: 3,
+      student4Id: 'Rana',
+    };
+    return request(app)
+      .post('/api/v1/alumni/projects/assign')
+      .set('Cookie', token)
+      .send(wrongData)
+      .expect(400)
+      .expect('Content-Type', /json/)
+      .end(async (err, res) => {
+        const { message } = res.body.data;
+        if (err) return done(err);
+        expect(message).toEqual([
+          'student4Id must be a `number` type, but the final value was: `NaN` (cast from the value `"Rana"`).',
+        ]);
+        done();
+      });
+  });
+});
