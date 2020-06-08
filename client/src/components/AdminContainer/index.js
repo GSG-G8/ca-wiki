@@ -54,7 +54,7 @@ const AdminContainer = ({ children, buttonContent, buttonRoute }) => {
                 </li>
               </ul>
               <div className="admin-side-btn">
-                {pathname !== '/admin' ? (
+                {pathname !== '/admin/statistics' ? (
                   <Button
                     className="admin-back-btn"
                     type="primary"

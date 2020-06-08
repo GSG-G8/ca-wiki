@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import axios from 'axios';
 import { notification, Modal, Empty, List, Pagination } from 'antd';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
@@ -9,22 +8,18 @@ import AdminCard from '../../components/AdminCard';
 
 const { confirm } = Modal;
 
-class Student extends Component {
+class Cohort extends Component {
   state = {
     data: [],
     startPage: 0,
     endPage: 4,
     total: 5,
+    currentPage: 1,
   };
 
   async componentDidMount() {
-    const {
-      match: {
-        params: { cohortId },
-      },
-    } = this.props;
     try {
-      const res = await axios.get(`/api/v1/cohorts/${cohortId}/alumni`);
+      const res = await axios.get('/api/v1/cohorts');
       const { data } = res.data;
       this.setState({ data, total: data.length * 2.5 });
     } catch (err) {
@@ -35,20 +30,20 @@ class Student extends Component {
     }
   }
 
-  deleteStudent = (id, name) => {
+  deleteCohort = (id, name) => {
     confirm({
-      title: 'Are you sure you want to delete this Student ?',
+      title: 'Are you sure you want to delete this cohort ?',
       icon: <ExclamationCircleOutlined />,
-      content: `Student ID: ${id}, Name: ${name}`,
+      content: `Cohort ID: ${id}, Name: ${name}`,
       okText: 'Yes',
       okType: 'danger',
       cancelText: 'No',
       onOk: async () => {
         try {
-          const result = await axios.delete(`/api/v1/alumni/${id}`);
+          const result = await axios.delete(`/api/v1/cohorts/${id}`);
           const { data } = this.state;
           this.setState({
-            data: data.filter((student) => student.id !== id),
+            data: data.filter((cohort) => cohort.id !== id),
             total: data.length * 2.5 - 4,
           });
           const {
@@ -57,7 +52,7 @@ class Student extends Component {
             },
           } = result;
           notification.success({
-            message: 'Student deleted successfully',
+            message: 'Cohort deleted successfully',
             description: message,
           });
         } catch (err) {
@@ -76,18 +71,13 @@ class Student extends Component {
   };
 
   render() {
-    const {
-      match: {
-        params: { cohortId },
-      },
-    } = this.props;
-    const { data, startPage, endPage, total } = this.state;
+    const { data, startPage, endPage, total, currentPage } = this.state;
     const list = data.slice(startPage, endPage);
     return (
       <div>
         <AdminContainer
-          buttonContent="Add Student"
-          buttonRoute={`/admin/cohorts/${cohortId}/students/add`}
+          buttonContent="Add Cohort"
+          buttonRoute="/admin/cohorts/add"
         >
           {data.length === 0 ? (
             <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} className="empty" />
@@ -98,31 +88,34 @@ class Student extends Component {
                 itemLayout="horizontal"
                 dataSource={list}
                 renderItem={(item) => (
-                  <List.Item>
+                  <List.Item className="admin-list-card">
                     <AdminCard
                       key={item.id}
                       name={item.name}
-                      email={item.email}
-                      imgUrl={item.img_url}
+                      description={item.description}
                       githbUrl={item.github_link}
-                      studentId={item.id}
-                      cohortId={item.cohortId}
-                      editCard={`/admin/cohorts/${cohortId}/students/${item.id}/edit`}
-                      deleteCard={this.deleteStudent}
+                      imgUrl={item.img_url}
+                      cohortId={item.id}
+                      student={item.id}
+                      editCard={`/admin/cohorts/${item.id}/edit`}
+                      deleteCard={this.deleteCohort}
                     />
                   </List.Item>
                 )}
               />
               <Pagination
+                className="pagination"
+                current={currentPage}
                 defaultCurrent={1}
-                total={total}
-                onChange={(pageNumber) => {
+                showQuickJumper
+                onChange={(page) => {
                   this.setState({
-                    startPage: pageNumber * 4 - 4,
-                    endPage: pageNumber * 4,
+                    currentPage: page,
+                    startPage: page * 4 - 4,
+                    endPage: page * 4,
                   });
                 }}
-                className="pagination"
+                total={total}
               />
             </div>
           )}
@@ -132,16 +125,4 @@ class Student extends Component {
   }
 }
 
-Student.defaultProps = {
-  cohortId: undefined,
-  match: undefined,
-  params: undefined,
-};
-
-Student.propTypes = {
-  cohortId: PropTypes.number,
-  match: PropTypes.node,
-  params: PropTypes.node,
-};
-
-export default Student;
+export default Cohort;

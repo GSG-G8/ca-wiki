@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { SearchOutlined, MenuOutlined, CloseOutlined } from '@ant-design/icons';
 import './style.css';
 import logo from '../../assets/images/logo.png';
+import toolsImg from '../../assets/images/Group 2381.svg';
+import treeImg from '../../assets/images/Group 2423.svg';
 
 import * as ROUTES from '../../constants/routes';
 
@@ -17,7 +19,14 @@ class UserContainer extends Component {
 
   render() {
     const { show } = this.state;
-    const { rightPageColor, headerLogo, children, isCohortPages } = this.props;
+    const {
+      rightPageColor,
+      headerLogo,
+      children,
+      isCohortPages,
+      isProjectsPage,
+      toolsTreeImg,
+    } = this.props;
 
     const rightNavActive =
       rightPageColor === 'black'
@@ -31,7 +40,9 @@ class UserContainer extends Component {
       <div>
         <div className="main-header">
           <div className="header-left">
-            <img src={headerLogo} alt="Code Academy" />
+            <Link to={ROUTES.HOME_PAGE}>
+              <img src={headerLogo} alt="Code Academy" />
+            </Link>
           </div>
           <div className="header-right">
             <SearchOutlined style={{ color: rightPageColor }} />
@@ -57,6 +68,7 @@ class UserContainer extends Component {
                     exact
                     activeClassName="header-list-active"
                     className="header-list"
+                    onClick={this.reverseShow}
                   >
                     Home
                   </NavLink>
@@ -64,6 +76,7 @@ class UserContainer extends Component {
                     to={ROUTES.SEARCH_PAGE}
                     activeClassName="header-list-active"
                     className="header-list"
+                    onClick={this.reverseShow}
                   >
                     Search
                   </NavLink>
@@ -71,6 +84,7 @@ class UserContainer extends Component {
                     to={ROUTES.COHORTS_PAGE}
                     activeClassName="header-list-active"
                     className="header-list"
+                    onClick={this.reverseShow}
                   >
                     Cohort
                   </NavLink>
@@ -78,6 +92,7 @@ class UserContainer extends Component {
                     to={ROUTES.ALUMNI_PAGE}
                     activeClassName="header-list-active"
                     className="header-list"
+                    onClick={this.reverseShow}
                   >
                     Alumni
                   </NavLink>
@@ -85,6 +100,7 @@ class UserContainer extends Component {
                     to={ROUTES.INTERNAL_PROJECTS}
                     activeClassName="header-list-active"
                     className="header-list"
+                    onClick={this.reverseShow}
                   >
                     Internal Projects
                   </NavLink>
@@ -92,6 +108,7 @@ class UserContainer extends Component {
                     to={ROUTES.CLIENTS_PROJECTS}
                     activeClassName="header-list-active"
                     className="header-list"
+                    onClick={this.reverseShow}
                   >
                     Remotely Project
                   </NavLink>
@@ -101,6 +118,9 @@ class UserContainer extends Component {
                     <a
                       className="contact"
                       href="https://www.facebook.com/GazaSkyGeeks"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={this.reverseShow}
                     >
                       FACEBOOK
                     </a>
@@ -109,6 +129,9 @@ class UserContainer extends Component {
                     <a
                       className="contact"
                       href="https://instagram.com/gazaskygeeks"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={this.reverseShow}
                     >
                       INSTAGRAM
                     </a>
@@ -117,6 +140,9 @@ class UserContainer extends Component {
                     <a
                       className="contact"
                       href="https://twitter.com/GazaSkyGeeks"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={this.reverseShow}
                     >
                       TWITTER
                     </a>
@@ -129,7 +155,7 @@ class UserContainer extends Component {
         </div>
 
         <ul className="right-nav-list">
-          {!isCohortPages ? (
+          {!isCohortPages && !isProjectsPage ? (
             <>
               <li>
                 <NavLink
@@ -146,11 +172,23 @@ class UserContainer extends Component {
               <li>
                 <NavLink
                   exact
+                  to={ROUTES.COHORTS_PAGE}
+                  className={rightNav}
+                  activeClassName={rightNavActive}
+                >
+                  <div>Co</div>
+                  <div className="show-full-name">COHORTS</div>
+                  <div className="line" />
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  exact
                   to={ROUTES.INTERNAL_PROJECTS}
                   className={rightNav}
                   activeClassName={rightNavActive}
                 >
-                  <div>Ip</div>
+                  <div>IP</div>
                   <div className="show-full-name">INTERNAL PROJECTS</div>
                   <div className="line" />
                 </NavLink>
@@ -162,20 +200,8 @@ class UserContainer extends Component {
                   className={rightNav}
                   activeClassName={rightNavActive}
                 >
-                  <div>Cp</div>
+                  <div>CP</div>
                   <div className="show-full-name">CLIENT PROJECTS</div>
-                  <div className="line" />
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  exact
-                  to={ROUTES.COHORTS_PAGE}
-                  className={rightNav}
-                  activeClassName={rightNavActive}
-                >
-                  <div>Co</div>
-                  <div className="show-full-name">COHORT</div>
                   <div className="line" />
                 </NavLink>
               </li>
@@ -235,6 +261,12 @@ class UserContainer extends Component {
             </>
           ) : null}
         </ul>
+        {toolsTreeImg ? (
+          <>
+            <img className="tools-img" src={toolsImg} alt="tools" />
+            <img className="tree-img" src={treeImg} alt="tree" />
+          </>
+        ) : null}
 
         {children}
       </div>
@@ -245,6 +277,8 @@ class UserContainer extends Component {
 UserContainer.defaultProps = {
   rightPageColor: 'black',
   isCohortPages: false,
+  isProjectsPage: false,
+  toolsTreeImg: false,
 };
 
 UserContainer.propTypes = {
@@ -252,5 +286,7 @@ UserContainer.propTypes = {
   headerLogo: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
   isCohortPages: PropTypes.bool,
+  isProjectsPage: PropTypes.bool,
+  toolsTreeImg: PropTypes.bool,
 };
 export default UserContainer;

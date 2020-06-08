@@ -10,15 +10,20 @@ import axios from 'axios';
 import * as ROUTES from '../constants/routes';
 import LogoutContext from '../Contexts/LogoutContext';
 import LoginPage from '../containers/loginPage';
-import CohortPage from '../containers/CohortPage';
-import StudentPage from '../containers/StudentPage';
+import AdminCohortPage from '../containers/AdminCohortPage';
+import AdminStudentPage from '../containers/AdminStudentPage';
 import AddEditForm from '../components/Add-Edit-Form';
 import Statistics from '../containers/statisticsPage';
 import AdminProject from '../containers/AdminProjectPage';
 import PageNotFound from '../containers/PageNotFound';
-import ExamplePage from '../components/ExamplePage';
+import HomePage from '../containers/HomePage';
+import InternalProjectsOverview from '../containers/InternalProjectsOverview';
+import ClientsProjectsOverview from '../containers/ClientsProjectsOverview';
 import ContactUS from '../containers/ContactUsPage';
 import ProjectDetail from '../containers/ProjectDetailsPage';
+import UserProject from '../containers/UserProjectPage';
+
+import CohortsAlumniPage from '../components/CohortsAlumniPage';
 
 import './style.css';
 
@@ -89,6 +94,35 @@ class App extends Component {
           <Switch>
             <Route
               exact
+              path={ROUTES.COHORTS_PAGE}
+              render={(props) => (
+                <CohortsAlumniPage {...props} type="Cohorts" />
+              )}
+            />
+            <Route
+              exact
+              path={ROUTES.ALUMNI_PAGE}
+              render={(props) => <CohortsAlumniPage {...props} type="Alumni" />}
+            />
+            <Route
+              exact
+              path={ROUTES.COHORT_ALUMNI_PAGE}
+              render={(props) => (
+                <CohortsAlumniPage {...props} type="cohortAlumni" />
+              )}
+            />
+            <Route
+              exact
+              path={ROUTES.SPECIFIC_COHORT_PAGE}
+              render={(props) => (
+                <Redirect
+                  to={`/cohorts/${props.match.params.cohortId}/projects?type=remotly`}
+                />
+              )}
+            />
+
+            <Route
+              exact
               path={ROUTES.LOGIN_PAGE}
               render={(props) =>
                 isAuth ? (
@@ -98,13 +132,24 @@ class App extends Component {
                 )
               }
             />
-            <Route exact path={ROUTES.HOME_PAGE} component={ExamplePage} />
+            <Route exact path={ROUTES.HOME_PAGE} component={HomePage} />
+            <Route
+              exact
+              path={ROUTES.INTERNAL_PROJECTS}
+              component={InternalProjectsOverview}
+            />
+            <Route
+              exact
+              path={ROUTES.CLIENTS_PROJECTS}
+              component={ClientsProjectsOverview}
+            />
             <Route path={ROUTES.CONTACT_US_PAGE} exact component={ContactUS} />
             <Route
               exact
               path={ROUTES.SPECIFIC_PROJECT_PAGE}
               component={ProjectDetail}
             />
+            <Route exact path={ROUTES.PROJECTS_PAGE} component={UserProject} />
             {isAuth ? (
               <LogoutContext.Provider value={{ logout: this.logout }}>
                 <Route
@@ -116,13 +161,13 @@ class App extends Component {
                 <Route
                   path={ROUTES.ADMIN_COHORT_PAGE}
                   exact
-                  component={CohortPage}
+                  component={AdminCohortPage}
                 />
 
                 <Route
                   path={ROUTES.ADMIN_COHORT_STUDENTS_PAGE}
                   exact
-                  component={StudentPage}
+                  component={AdminStudentPage}
                 />
 
                 <Route
@@ -215,6 +260,7 @@ class App extends Component {
                 <Route render={() => <Redirect to={ROUTES.LOGIN_PAGE} />} />
               )
             ) : null}
+
             <Route component={PageNotFound} />
           </Switch>
         </div>
