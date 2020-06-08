@@ -13,6 +13,7 @@ class UserProject extends Component {
     startPage: 0,
     endPage: 6,
     total: 0,
+    currentPage: 1,
   };
 
   async componentDidMount() {
@@ -38,7 +39,7 @@ class UserProject extends Component {
   }
 
   render() {
-    const { data, total, startPage, endPage } = this.state;
+    const { data, total, startPage, endPage, currentPage } = this.state;
     const {
       history: {
         location: { search },
@@ -73,10 +74,12 @@ class UserProject extends Component {
                 </Link>
                 <Pagination
                   className="pagination"
-                  defaultCurrent={0}
+                  current={currentPage}
+                  defaultCurrent={1}
                   showQuickJumper
                   onChange={(page) => {
                     this.setState({
+                      currentPage: page,
                       startPage: page * 6 - 6,
                       endPage: page * 6,
                     });
