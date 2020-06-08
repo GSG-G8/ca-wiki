@@ -24,6 +24,7 @@ class UserContainer extends Component {
       headerLogo,
       children,
       isCohortPages,
+      isProjectsPage,
       toolsTreeImg,
     } = this.props;
 
@@ -154,7 +155,7 @@ class UserContainer extends Component {
         </div>
 
         <ul className="right-nav-list">
-          {!isCohortPages ? (
+          {!isCohortPages && !isProjectsPage ? (
             <>
               <li>
                 <NavLink
@@ -276,6 +277,7 @@ class UserContainer extends Component {
 UserContainer.defaultProps = {
   rightPageColor: 'black',
   isCohortPages: false,
+  isProjectsPage: false,
   toolsTreeImg: false,
 };
 
@@ -284,6 +286,7 @@ UserContainer.propTypes = {
   headerLogo: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
   isCohortPages: PropTypes.bool,
+  isProjectsPage: PropTypes.bool,
   toolsTreeImg: PropTypes.bool,
 };
 export default UserContainer;
