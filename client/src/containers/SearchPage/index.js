@@ -25,14 +25,39 @@ class SearchPage extends Component {
     displayProject: [], // this data that will appear in the screen
     showCohorts: true, // show or hide cohort
     showProjectSection: false, // show or hide the fitst & the second section of search
+    studentId: null, // for this student id will get project data when we need it
+    studentProjectData: [], // this all project data for one student
   };
 
   async componentDidMount() {
+    const { studentId } = this.state;
+
     this.getCohortData();
 
     this.getAlumniData();
 
     this.getProjectData();
+
+    if (studentId) {
+      this.getstudentProjects(studentId);
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const { studentId } = this.state;
+    if (prevState.studentId !== studentId) {
+      this.getstudentProjects(studentId);
+    }
+  }
+
+  async getstudentProjects(studentId) {
+    try {
+      const getCohortData = await axios(`/api/v1/alumni/${studentId}/projects`);
+      const { data } = getCohortData.data;
+      this.setState({ studentProjectData: data });
+    } catch (err) {
+      this.handleError(err);
+    }
   }
 
   async getCohortData() {
@@ -165,6 +190,7 @@ class SearchPage extends Component {
     this.setState({
       displayStudent: studentSelected,
       showCohorts: false,
+      studentId: studentSelected[0].id,
     });
   };
 
@@ -290,6 +316,7 @@ class SearchPage extends Component {
       displayProject,
       listProjectData,
       pageNumber,
+      studentProjectData,
     } = this.state;
 
     const listCohorts = displayCohortData.slice(startPage, endPage);
@@ -445,7 +472,15 @@ class SearchPage extends Component {
                           <div className="student-details">
                             <h3 className="student-name">{e.name} </h3>
                           </div>
-                          <h4>{this.getCohortNameFromId(e, allCohortData)}</h4>
+                          {studentProjectData.map((project) => (
+                            <h5>
+                              {project.project_type} Project: {project.name}
+                            </h5>
+                          ))}
+                          <h4>
+                            Cohort Name
+                            {this.getCohortNameFromId(e, allCohortData)}
+                          </h4>
                           <h4>{e.email}</h4>
                           <a
                             href={e.github_link}
