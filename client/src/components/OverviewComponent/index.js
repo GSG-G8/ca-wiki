@@ -30,7 +30,7 @@ const OverviewComponent = ({
         <h1 className="secondTitle">{secondTitle}</h1>
         <p>{content}</p>
         {isHomePage ? (
-          <a href={externalLink}>
+          <a href={externalLink} target="_blank" rel="noopener noreferrer">
             <Button type="button">{buttonText}</Button>
           </a>
         ) : (
