@@ -286,7 +286,7 @@ describe('Get student projects', () => {
             'https://github.com/GSG-G8/ca-wiki/tree/ed9f4cd9b5dc428f5420fe9a880a27e63f5f04d3',
           website_link:
             'https://github.com/GSG-G8/ca-wiki/blob/ed9f4cd9b5dc428f5420fe9a880a27e63f5f04d3/%5Blink%5D',
-          project_type: 'Internal',
+          project_type: 'internal',
           cohort_id: 1,
           student_id: 1,
           project_id: 1,

@@ -19,23 +19,8 @@ class UserProject extends Component {
 
   async componentDidMount() {
     try {
-      const {
-        match: {
-          params: { cohortId },
-        },
-        location: { search },
-      } = this.props;
-      const res = await axios.get(
-        `/api/v1/cohorts/${cohortId}/projects${search}`
-      );
-      const { data } = res.data;
-      const cohorts = await axios.get('/api/v1/cohorts/');
-      const { data: allCohorts } = cohorts.data;
-      const cohortName = allCohorts.filter(
-        (cohort) => cohort.id === parseInt(cohortId, 10)
-      )[0].name;
-      const total = Math.ceil(data.length / 6) * 10;
-      this.setState({ data, total, cohortName });
+      this.getProjects();
+      this.getCohorts();
     } catch (err) {
       const {
         response: {
@@ -44,6 +29,70 @@ class UserProject extends Component {
       } = err;
       notification.error({
         message: 'Error',
+        description: message,
+      });
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    const {
+      location: { search },
+    } = this.props;
+    if (search !== prevProps.search) {
+      this.getProjects();
+    }
+  }
+
+  async getProjects() {
+    const {
+      match: {
+        params: { cohortId },
+      },
+      location: { search },
+    } = this.props;
+    try {
+      const res = await axios.get(
+        `/api/v1/cohorts/${cohortId}/projects${search}`
+      );
+      const { data } = res.data;
+      const total = Math.ceil(data.length / 6) * 10;
+      this.setState({ data, total });
+    } catch (err) {
+      const {
+        response: {
+          data: { message },
+        },
+      } = err;
+      notification.error({
+        message: 'Error 404',
+        description: message,
+      });
+    }
+  }
+
+  async getCohorts() {
+    const {
+      match: {
+        params: { cohortId },
+      },
+    } = this.props;
+    try {
+      if (cohortId) {
+        const results = await axios.get('/api/v1/cohorts');
+        const { data } = results.data;
+        const cohortName = data.filter(
+          (cohort) => cohort.id === parseInt(cohortId, 10)
+        )[0].name;
+        this.setState({ cohortName });
+      }
+    } catch (err) {
+      const {
+        response: {
+          data: { message },
+        },
+      } = err;
+      notification.error({
+        message: 'Error 404',
         description: message,
       });
     }
@@ -67,13 +116,18 @@ class UserProject extends Component {
     const dataList = data.slice(startPage, endPage);
     const projectType = search.split('=')[1];
     return (
-      <UserContainer headerLogo={logo} isCohortPages toolsTreeImg>
+      <UserContainer
+        headerLogo={logo}
+        isCohortPages
+        toolsTreeImg
+        cohortId={cohortId}
+      >
         <div className="projects-container">
           <h1>{cohortName}</h1>
           {projectType === 'internal' ? (
             <h2>Internal Projects Phase</h2>
           ) : (
-            <h2>Clients Projects Phase</h2>
+            <h2>Remotely Projects Phase</h2>
           )}
           {data.length === 0 ? (
             <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} className="empty" />
@@ -117,6 +171,7 @@ class UserProject extends Component {
 
 UserProject.propTypes = {
   match: PropTypes.func.isRequired,
+  search: PropTypes.string.isRequired,
   location: PropTypes.func.isRequired,
   history: PropTypes.shape({
     location: PropTypes.shape({
