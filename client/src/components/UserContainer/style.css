@@ -258,6 +258,13 @@
 }    
 
 
+/* @media screen and (max-width: 800px) {
+  .right-nav-list  {
+    margin-right: 15px;
+    font-size: 50px;
+    }
+}     */
+
 @media screen and (max-width: 700px) {
   .main-header {
     width: 100%;
@@ -285,6 +292,22 @@
 .right-nav-list {
   width: 30px;
   margin-right: 0;
+  }
+
+}
+
+@media screen and (max-width: 480px) {
+  .main-header {
+    width: 100%;
+  }
+
+  .main-header .header-left img {
+    width: 200px;
+  }
+
+.right-nav-list {
+  width: 30px;
+  margin-right: 20px;
   }
 
 }
