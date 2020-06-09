@@ -250,6 +250,14 @@
   }
 }
 
+@media screen and (max-width: 900px) {
+  .header-left img  {
+      width: 0;
+      height: 0;
+    }
+}    
+
+
 @media screen and (max-width: 700px) {
   .main-header {
     width: 100%;

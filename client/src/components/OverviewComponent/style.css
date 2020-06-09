@@ -81,7 +81,7 @@
       display: block;
     }
   
-    .overview-container .background-photo{
+    .overview-container .background-photo , .redGround {
       width: 0;
       height: 0;
     }
