@@ -70,11 +70,25 @@ class ProjectDetails extends Component {
 
   render() {
     const { data, cohortData, students } = this.state;
+    const {
+      match: {
+        params: { cohortId },
+      },
+    } = this.props;
     const projectType = data.project_type;
     return (
       <UserContainer headerLogo={logo} isProjectsPage toolsTreeImg>
         <div className="projects-container">
-          {projectType === 'internal' || projectType === 'Internal' ? (
+          {cohortId ? (
+            <>
+              <h1>{cohortData.name}</h1>
+              {projectType === 'internal' || projectType === 'Internal' ? (
+                <h2>Internal Projects Phase</h2>
+              ) : (
+                <h2>Clients Projects Phase</h2>
+              )}
+            </>
+          ) : projectType === 'internal' || projectType === 'Internal' ? (
             <h1>Internal Projects Phase</h1>
           ) : (
             <h1>Clients Projects Phase</h1>

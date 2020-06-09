@@ -1,3 +1,14 @@
+.projects-container h1 {
+    color: var(--main-color);
+    font: Bold 30px var(--main-font);
+    margin-bottom: 14px;
+}
+
+.projects-container h2 {
+    color: var(--main-color);
+    font: Bold 20px var(--main-font);
+}
+
 .projects-container {
     width: 67%!important;
 }
