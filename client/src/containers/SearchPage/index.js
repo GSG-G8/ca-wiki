@@ -56,7 +56,9 @@ class SearchPage extends Component {
       const {
         data: { data },
       } = getCohortData;
-      this.setState({ studentProjectData: data });
+      if (data) {
+        this.setState({ studentProjectData: data });
+      }
     } catch (err) {
       this.handleError(err);
     }
@@ -121,9 +123,16 @@ class SearchPage extends Component {
   cohortLocation = (value) => {
     const { allCohortData, allStudentData, showProjectSection } = this.state;
     if (value !== 'All') {
-      const fillterdCohort = allCohortData.filter(
-        (e) => e.name.split('')[0].toLowerCase() === value.toLowerCase()
-      );
+      const fillterdCohort = allCohortData.filter((e) => {
+        if (value === 'G') {
+          return (
+            e.name.split('')[0].toLowerCase() === value.toLowerCase() ||
+            'F' ||
+            'f'
+          );
+        }
+        return e.name.split('')[0].toLowerCase() === value.toLowerCase();
+      });
 
       const studentForSpecificLocation = [];
 
@@ -482,12 +491,17 @@ class SearchPage extends Component {
                           <div className="student-details">
                             <h3 className="student-name">{student.name} </h3>
                           </div>
-                          {displayStudent.length === 1 &&
-                            studentProjectData.map((project) => (
-                              <h5>
-                                {project.project_type} Project: {project.name}
-                              </h5>
-                            ))}
+                          {studentProjectData.length ? (
+                            <>
+                              {displayStudent.length === 1 &&
+                                studentProjectData.map((project) => (
+                                  <h5>
+                                    {project.project_type} Project:{' '}
+                                    {project.name}
+                                  </h5>
+                                ))}
+                            </>
+                          ) : null}
                           <h4>
                             Cohort Name
                             {this.getCohortNameFromId(student, allCohortData)}
