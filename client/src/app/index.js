@@ -152,6 +152,11 @@ class App extends Component {
             />
             <Route
               exact
+              path={ROUTES.SPECIFIC_PROJECT_PAGE}
+              component={ProjectDetail}
+            />
+            <Route
+              exact
               path={ROUTES.SPECIFIC_COHORT_PROJECT_PAGE}
               component={ProjectDetail}
             />
