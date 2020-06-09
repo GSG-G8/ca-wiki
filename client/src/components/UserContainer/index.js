@@ -260,7 +260,7 @@ class UserContainer extends Component {
               <li>
                 <NavLink
                   exact
-                  to={ROUTES.COHORT_ALUMNI_PAGE}
+                  to={`/cohorts/${cohortId}/alumni`}
                   className={rightNav}
                   activeClassName={rightNavActive}
                 >
@@ -290,7 +290,6 @@ UserContainer.defaultProps = {
   isCohortPages: false,
   isProjectsPage: false,
   toolsTreeImg: false,
-  cohortId: 0,
   isSearchPage: false,
 };
 
@@ -301,7 +300,7 @@ UserContainer.propTypes = {
   isCohortPages: PropTypes.bool,
   isProjectsPage: PropTypes.bool,
   toolsTreeImg: PropTypes.bool,
-  cohortId: PropTypes.number,
+  cohortId: PropTypes.number.isRequired,
   isSearchPage: PropTypes.bool,
 };
 export default UserContainer;
