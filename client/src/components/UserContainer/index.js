@@ -26,6 +26,7 @@ class UserContainer extends Component {
       isCohortPages,
       isProjectsPage,
       toolsTreeImg,
+      cohortId,
       isSearchPage,
     } = this.props;
 
@@ -115,7 +116,7 @@ class UserContainer extends Component {
                     Internal Projects
                   </NavLink>
                   <NavLink
-                    to={ROUTES.CLIENTS_PROJECTS}
+                    to={ROUTES.REMOTELY_PROJECTS}
                     activeClassName="header-list-active"
                     className="header-list"
                     onClick={this.reverseShow}
@@ -206,12 +207,12 @@ class UserContainer extends Component {
               <li>
                 <NavLink
                   exact
-                  to={ROUTES.CLIENTS_PROJECTS}
+                  to={ROUTES.REMOTELY_PROJECTS}
                   className={rightNav}
                   activeClassName={rightNavActive}
                 >
-                  <div>CP</div>
-                  <div className="show-full-name">CLIENT PROJECTS</div>
+                  <div>RP</div>
+                  <div className="show-full-name">REMOTELY PROJECTS</div>
                   <div className="line" />
                 </NavLink>
               </li>
@@ -235,7 +236,7 @@ class UserContainer extends Component {
               <li>
                 <NavLink
                   exact
-                  to={ROUTES.COHORT_PROJECTS_PAGE}
+                  to={`/cohorts/${cohortId}/projects?type=internal`}
                   className={rightNav}
                   activeClassName={rightNavActive}
                 >
@@ -247,19 +248,19 @@ class UserContainer extends Component {
               <li>
                 <NavLink
                   exact
-                  to={ROUTES.COHORT_PROJECTS_PAGE}
+                  to={`/cohorts/${cohortId}/projects?type=remotely`}
                   className={rightNav}
                   activeClassName={rightNavActive}
                 >
                   <div>Rp</div>
-                  <div className="show-full-name">CLIENT PROJECTS PHASE</div>
+                  <div className="show-full-name">REMOTELY PROJECTS PHASE</div>
                   <div className="line" />
                 </NavLink>
               </li>
               <li>
                 <NavLink
                   exact
-                  to={ROUTES.COHORT_ALUMNI_PAGE}
+                  to={`/cohorts/${cohortId}/alumni`}
                   className={rightNav}
                   activeClassName={rightNavActive}
                 >
@@ -299,6 +300,7 @@ UserContainer.propTypes = {
   isCohortPages: PropTypes.bool,
   isProjectsPage: PropTypes.bool,
   toolsTreeImg: PropTypes.bool,
+  cohortId: PropTypes.number.isRequired,
   isSearchPage: PropTypes.bool,
 };
 export default UserContainer;

@@ -18,8 +18,9 @@ import AdminProject from '../containers/AdminProjectPage';
 import PageNotFound from '../containers/PageNotFound';
 import HomePage from '../containers/HomePage';
 import InternalProjectsOverview from '../containers/InternalProjectsOverview';
-import ClientsProjectsOverview from '../containers/ClientsProjectsOverview';
+import RemotelyProjectsOverview from '../containers/RemotelyProjectsOverview';
 import ContactUS from '../containers/ContactUsPage';
+import CohortProjects from '../containers/CohortProjectsPage';
 import SearchPage from '../containers/SearchPage';
 import ProjectDetail from '../containers/ProjectDetailsPage';
 import UserProject from '../containers/UserProjectPage';
@@ -117,7 +118,7 @@ class App extends Component {
               path={ROUTES.SPECIFIC_COHORT_PAGE}
               render={(props) => (
                 <Redirect
-                  to={`/cohorts/${props.match.params.cohortId}/projects?type=remotly`}
+                  to={`/cohorts/${props.match.params.cohortId}/projects?type=internal`}
                 />
               )}
             />
@@ -142,10 +143,15 @@ class App extends Component {
             />
             <Route
               exact
-              path={ROUTES.CLIENTS_PROJECTS}
-              component={ClientsProjectsOverview}
+              path={ROUTES.REMOTELY_PROJECTS}
+              component={RemotelyProjectsOverview}
             />
             <Route path={ROUTES.CONTACT_US_PAGE} exact component={ContactUS} />
+            <Route
+              exact
+              path={ROUTES.COHORT_PROJECTS_PAGE}
+              component={CohortProjects}
+            />
             <Route
               exact
               path={ROUTES.SPECIFIC_PROJECT_PAGE}
