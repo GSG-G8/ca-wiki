@@ -7,6 +7,7 @@ const getAlumniCohort = require('./getAlumniCohort');
 const getAlumni = require('./getAlumni');
 const getStudentById = require('./getStudentById');
 const getCohortProjects = require('./getCohortProjects');
+const getStudentProjects = require('./getStudentProjects');
 const {
   addCohort,
   addProject,
@@ -20,6 +21,7 @@ const {
   logout,
   putStudentData,
   getStats,
+  AssignProjectStudent,
 } = require('./admin');
 
 module.exports = {
@@ -44,4 +46,6 @@ module.exports = {
   logout,
   putStudentData,
   getStats,
+  getStudentProjects,
+  AssignProjectStudent,
 };

@@ -13,6 +13,7 @@ const {
   logout,
   getStats,
   login,
+  AssignProjectStudent,
 } = require('../controllers');
 
 router.post('/login', login);
@@ -25,6 +26,7 @@ router.get('/is-auth', (req, res) => {
 
 router.route('/alumni/:studentId').put(putStudentData).delete(deleteStudent);
 router.post('/alumni', addStudentData);
+router.post('/alumni/projects/assign', AssignProjectStudent);
 
 router.route('/cohorts/:cohortId').put(editCohort).delete(deleteCohort);
 router.post('/cohorts', addCohort);

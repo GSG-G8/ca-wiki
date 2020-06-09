@@ -1,0 +1,89 @@
+.cohort_card {
+    width: 210px;
+    height: 230px;
+    border-radius: 20px;
+    background: var(--main-white);
+}
+
+.card_img {
+    width: 90px;
+    height: 90px;
+    margin-top: 20px;
+}
+
+.child_container {
+    margin-top: 180px;
+    margin-right: 60px;
+
+}
+
+.title_heading {
+    font: Bold 40px/48px var(--main-font);
+    color: var(--main-color);
+    margin: 0 0 55px 60px;
+}
+
+.title_span {
+    color: var(--main-white);
+}
+.cohort_alumni_heading {
+    font: Bold 25px/30px var(--main-font);
+    margin: -40px 0 40px 60px;
+    color: var(--main-color);
+}
+.card_heading {
+    font: Bold 20px/27px var(--main-font);
+    color: var(--main-color);
+    margin-top: 10px;
+}
+
+.card_paragraph {
+    font: Bold 14px var(--main-font);
+    color: var(--main-black);
+}
+
+.github_anchor {
+    display: block;
+    font: Bold 16px/27px var(--main-font);
+    color: var(--main-black);
+}
+
+.left {
+    background: var(--main-color);
+    width: 50vw;
+    height: 100vh;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    z-index: -1;
+}
+
+.right {
+    background: var(--main-white);
+    width: 50vw;
+    height: 100vh;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    z-index: -1;
+}
+
+.leftSvg {
+    position: absolute;
+    left: 0px;
+    bottom: 2%;
+    height: 20%;
+    width: 20%;
+}
+
+.rightSvg {
+    position: absolute;
+    right: 25%;
+    top: 20%;
+    height: 20%;
+    width: 20%;
+}
+
+.ant-card-body {
+    padding: 0px;
+}

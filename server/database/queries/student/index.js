@@ -4,6 +4,8 @@ const getSpecificAlumni = require('./getSpecificAlumni');
 const putStudent = require('./putStudent');
 const addStudent = require('./addStudent');
 const getStudentByIdQuery = require('./getStudentByIdQuery');
+const getStudentProjectsQuery = require('./getStudentProjects');
+const AssignProjectStudentQuery = require('./AssignProjectStudentQuery');
 
 module.exports = {
   getAlumniQuery,
@@ -12,4 +14,6 @@ module.exports = {
   getSpecificAlumni,
   putStudent,
   getStudentByIdQuery,
+  getStudentProjectsQuery,
+  AssignProjectStudentQuery,
 };

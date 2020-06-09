@@ -1,6 +1,6 @@
 .main-header {
   display: flex;
-  padding: 35px 100px 0;
+  padding: 35px 70px 0;
   background-color: transparent;
   position: absolute;
   top: 0;
@@ -24,7 +24,7 @@
   text-align: right;
 }
 
-.anticon-search {
+.anticon-search, .anticon-close {
   padding-right: 15px;
 }
 
@@ -153,6 +153,7 @@
   width: 500px;
   text-align: right;
   color: var(--main-color);
+  z-index: 1;
 }
 
 .right-nav-active {
@@ -208,6 +209,7 @@
   width: 500px;
   text-align: right;
   color: var(--main-white);
+  z-index: 1;
 }
 
 
@@ -220,4 +222,16 @@
   display: none;
 }
 
+.tools-img {
+  position: absolute;
+  top: 188px;
+  right: 127px;
+  width: 95px;
+}
 
+.tree-img {
+  position: absolute;
+  bottom: 41px;
+  left: 53px;
+  width: 95px;
+}
