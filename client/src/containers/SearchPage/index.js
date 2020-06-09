@@ -482,11 +482,12 @@ class SearchPage extends Component {
                           <div className="student-details">
                             <h3 className="student-name">{student.name} </h3>
                           </div>
-                          {studentProjectData.map((project) => (
-                            <h5>
-                              {project.project_type} Project: {project.name}
-                            </h5>
-                          ))}
+                          {displayStudent.length === 1 &&
+                            studentProjectData.map((project) => (
+                              <h5>
+                                {project.project_type} Project: {project.name}
+                              </h5>
+                            ))}
                           <h4>
                             Cohort Name
                             {this.getCohortNameFromId(student, allCohortData)}
