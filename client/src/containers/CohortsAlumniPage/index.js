@@ -5,7 +5,7 @@ import { notification, Card, Avatar, Skeleton } from 'antd';
 import ItemsCarousel from 'react-items-carousel';
 import whiteLogo from '../../assets/images/login-logo.jpeg';
 import coloredLogo from '../../assets/images/logo.png';
-import UserContainer from '../UserContainer';
+import UserContainer from '../../components/UserContainer';
 
 import leftSvg from '../../assets/images/Group 2423.svg';
 import rightSvg from '../../assets/images/Group 2381.svg';

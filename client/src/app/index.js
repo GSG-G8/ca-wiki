@@ -26,7 +26,7 @@ import SearchPage from '../containers/SearchPage';
 import ProjectDetail from '../containers/ProjectDetailsPage';
 import UserProject from '../containers/UserProjectPage';
 
-import CohortsAlumniPage from '../components/CohortsAlumniPage';
+import CohortsAlumniPage from '../containers/CohortsAlumniPage';
 
 import './style.css';
 
