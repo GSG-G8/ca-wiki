@@ -235,3 +235,48 @@
   left: 53px;
   width: 95px;
 }
+
+@media screen and (max-width: 1024px) {
+  .header-left img {
+      width: 300px;
+  }
+
+  .header-left {
+      width: 50%;
+  }
+  
+  .header-right{
+      width: 50%;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .main-header {
+    width: 100%;
+  }
+
+  .header-left img {
+    width: 200px;
+  }
+
+  .right-nav-list {
+  width: 50px;
+  }
+
+}
+
+@media screen and (max-width: 600px) {
+  .main-header {
+    width: 100%;
+  }
+
+  .header-left img {
+    width: 200px;
+  }
+
+.right-nav-list {
+  width: 30px;
+  margin-right: 0;
+  }
+
+}
