@@ -20,6 +20,7 @@ import HomePage from '../containers/HomePage';
 import InternalProjectsOverview from '../containers/InternalProjectsOverview';
 import ClientsProjectsOverview from '../containers/ClientsProjectsOverview';
 import ContactUS from '../containers/ContactUsPage';
+import SearchPage from '../containers/SearchPage';
 import ProjectDetail from '../containers/ProjectDetailsPage';
 import UserProject from '../containers/UserProjectPage';
 
@@ -132,6 +133,7 @@ class App extends Component {
                 )
               }
             />
+            <Route exact path={ROUTES.SEARCH_PAGE} component={SearchPage} />
             <Route exact path={ROUTES.HOME_PAGE} component={HomePage} />
             <Route
               exact
