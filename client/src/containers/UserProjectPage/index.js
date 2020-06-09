@@ -70,7 +70,7 @@ class UserProject extends Component {
                   <>
                     <Link to={`/projects/${item.id}`}>
                       <div
-                        className="project"
+                        className="projectItem"
                         style={{
                           background: `url(${item.img_url}) center center / cover no-repeat`,
                         }}

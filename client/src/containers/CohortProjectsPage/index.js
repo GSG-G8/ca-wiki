@@ -136,7 +136,7 @@ class UserProject extends Component {
               <>
                 <Link to={`/cohorts/${cohortId}/projects/${item.id}`}>
                   <div
-                    className="project"
+                    className="projectItem"
                     style={{
                       background: `url(${item.img_url}) center center / cover no-repeat`,
                     }}
