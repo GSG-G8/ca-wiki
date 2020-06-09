@@ -21,6 +21,7 @@ import InternalProjectsOverview from '../containers/InternalProjectsOverview';
 import ClientsProjectsOverview from '../containers/ClientsProjectsOverview';
 import ContactUS from '../containers/ContactUsPage';
 import CohortProjects from '../containers/CohortProjectsPage';
+import ProjectDetail from '../containers/ProjectDetailsPage';
 import UserProject from '../containers/UserProjectPage';
 
 import CohortsAlumniPage from '../components/CohortsAlumniPage';
@@ -148,6 +149,11 @@ class App extends Component {
               exact
               path={ROUTES.COHORT_PROJECTS_PAGE}
               component={CohortProjects}
+            />
+            <Route
+              exact
+              path={ROUTES.SPECIFIC_COHORT_PROJECT_PAGE}
+              component={ProjectDetail}
             />
             <Route exact path={ROUTES.PROJECTS_PAGE} component={UserProject} />
             {isAuth ? (

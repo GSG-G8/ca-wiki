@@ -4,6 +4,7 @@ const editCohortSchema = require('./editCohort');
 const projectSchema = require('./projectSchema');
 const studentSchema = require('./studentSchema');
 const loginSchema = require('./loginSchema');
+const studentProjectSchema = require('./studentProjectSchema');
 
 module.exports = {
   generalSchema,
@@ -12,4 +13,5 @@ module.exports = {
   editCohortSchema,
   studentSchema,
   loginSchema,
+  studentProjectSchema,
 };

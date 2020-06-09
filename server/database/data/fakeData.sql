@@ -7,7 +7,7 @@ INSERT INTO cohort (name , description , img_url , github_link) VALUES
 INSERT INTO student (name , email , img_url , github_link , cohort_id) VALUES
 ('Alaa','alaa@gmail.com','https://avatars2.githubusercontent.com/u/26024288?s=60&u=573706aef193cc5bcb8a28969cff88bf282bb6ef&v=4','https://github.com/AlaaSaadeddin',1),
 ('Rana','rana@gmail.com','https://avatars1.githubusercontent.com/u/25321550?s=96&v=4','https://github.com/ranasobeid95',2),
-('rola','alaa1@gmail.com','https://avatars2.githubusercontent.com/u/26024288?s=60&u=573706aef193cc5bcb8a28969cff88bf282bb6ef&v=4','https://github.com/AlaaSaadeddin',1),
+('rola Ahmed','alaa1@gmail.com','https://avatars2.githubusercontent.com/u/26024288?s=60&u=573706aef193cc5bcb8a28969cff88bf282bb6ef&v=4','https://github.com/AlaaSaadeddin',1),
 ('nada','alaa2@gmail.com','https://avatars2.githubusercontent.com/u/26024288?s=60&u=573706aef193cc5bcb8a28969cff88bf282bb6ef&v=4','https://github.com/AlaaSaadeddin',1),
 ('noha','alaa3@gmail.com','https://avatars2.githubusercontent.com/u/26024288?s=60&u=573706aef193cc5bcb8a28969cff88bf282bb6ef&v=4','https://github.com/AlaaSaadeddin',1),
 ('heba','alaa4@gmail.com','https://avatars2.githubusercontent.com/u/26024288?s=60&u=573706aef193cc5bcb8a28969cff88bf282bb6ef&v=4','https://github.com/AlaaSaadeddin',1),
@@ -15,7 +15,8 @@ INSERT INTO student (name , email , img_url , github_link , cohort_id) VALUES
 ('dalia','alaa6@gmail.com','https://avatars2.githubusercontent.com/u/26024288?s=60&u=573706aef193cc5bcb8a28969cff88bf282bb6ef&v=4','https://github.com/AlaaSaadeddin',1),
 ('sama','alaa7@gmail.com','https://avatars2.githubusercontent.com/u/26024288?s=60&u=573706aef193cc5bcb8a28969cff88bf282bb6ef&v=4','https://github.com/AlaaSaadeddin',1),
 ('amal','alaa8@gmail.com','https://avatars2.githubusercontent.com/u/26024288?s=60&u=573706aef193cc5bcb8a28969cff88bf282bb6ef&v=4','https://github.com/AlaaSaadeddin',1),
-('roba','alaa9@gmail.com','https://avatars2.githubusercontent.com/u/26024288?s=60&u=573706aef193cc5bcb8a28969cff88bf282bb6ef&v=4','https://github.com/AlaaSaadeddin',1);
+('roba','alaa9@gmail.com','https://avatars2.githubusercontent.com/u/26024288?s=60&u=573706aef193cc5bcb8a28969cff88bf282bb6ef&v=4','https://github.com/AlaaSaadeddin',1),
+('Galal Abed','galal@gmail.com','https://avatars2.githubusercontent.com/u/26024288?s=60&u=573706aef193cc5bcb8a28969cff88bf282bb6ef&v=4','https://github.com/AlaaSaadeddin',1);
 
 INSERT INTO project (name , description , img_url , github_link , website_link , project_type , cohort_id) VALUES 
 ('ca-wiki',
@@ -96,4 +97,4 @@ INSERT INTO project (name , description , img_url , github_link , website_link ,
 'https://github.com/GSG-G8/ca-wiki/blob/ed9f4cd9b5dc428f5420fe9a880a27e63f5f04d3/%5Blink%5D','Internal',1);
 
 INSERT INTO student_project (student_id , project_id) VALUES (1 , 1) , (2 , 2), (3 , 3) 
-, (4 , 8), (5 , 9) , (6 , 10), (7 , 11) , (8 , 12), (9 , 13) , (10 , 14), (11 , 15);
+, (4 , 8), (5 , 9) , (6 , 10), (7 , 11) , (8 , 12), (9 , 13) , (10 , 14), (11 , 15), (12, 3);

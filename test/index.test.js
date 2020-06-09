@@ -303,7 +303,7 @@ describe('Get stats', () => {
         const { data } = res.body;
         expect(data.cohortsCount).toBe('2');
         expect(data.projectsCount).toBe('15');
-        expect(data.studentsCount).toBe('11');
+        expect(data.studentsCount).toBe('12');
         done();
       });
   });
@@ -329,7 +329,7 @@ describe('Admin, Post Student', () => {
         const { message } = res.body.data;
         if (err) return done(err);
         const { rows } = await connection.query(
-          'SELECT * from student WHERE id = 12',
+          'SELECT * from student WHERE id = 13',
         );
         expect(rows[0].name).toBe('Rehab');
         expect(message).toBe('Student Added successfully');
