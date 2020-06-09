@@ -20,7 +20,7 @@ describe('Alumni, Get all students', () => {
         if (err) return done(err);
         const { data } = res.body;
         expect(data[0].name).toBe('Alaa');
-        expect(data).toHaveLength(11);
+        expect(data).toHaveLength(12);
         done();
       });
   });
@@ -239,9 +239,9 @@ describe('Delete specific student by ID', () => {
         done();
       });
   });
-  test('Route /alumni/12 status 404, data.message = Student does not exist ', (done) => {
+  test('Route /alumni/13 status 404, data.message = Student does not exist ', (done) => {
     return request(app)
-      .delete('/api/v1/alumni/12')
+      .delete('/api/v1/alumni/13')
       .set('Cookie', token)
       .expect(404)
       .expect('Content-Type', /json/)
@@ -317,6 +317,54 @@ describe('Get student projects', () => {
         if (err) return done(err);
         const { message } = res.body;
         expect(message).toBe('Invalid id');
+        done();
+      });
+  });
+});
+
+describe('Assign projects to student', () => {
+  test('Route /alumni/projects/assign status 200, json header, data.message = Project Assigned successfully ', (done) => {
+    const reqData = {
+      projectId: 1,
+      student1Id: 1,
+      student2Id: 2,
+      student3Id: 3,
+      student4Id: 4,
+    };
+    return request(app)
+      .post('/api/v1/alumni/projects/assign')
+      .set('Cookie', token)
+      .send(reqData)
+      .expect(201)
+      .expect('Content-Type', /json/)
+      .end(async (err, res) => {
+        const { message } = res.body.data;
+        if (err) return done(err);
+        expect(message).toBe('Project Assigned successfully');
+        done();
+      });
+  });
+
+  test('Route /alumni/projects/assign status 400, json header, data.message = array of errors ', (done) => {
+    const wrongData = {
+      projectId: 1,
+      student1Id: 1,
+      student2Id: 2,
+      student3Id: 3,
+      student4Id: 'Rana',
+    };
+    return request(app)
+      .post('/api/v1/alumni/projects/assign')
+      .set('Cookie', token)
+      .send(wrongData)
+      .expect(400)
+      .expect('Content-Type', /json/)
+      .end(async (err, res) => {
+        const { message } = res.body.data;
+        if (err) return done(err);
+        expect(message).toEqual([
+          'student4Id must be a `number` type, but the final value was: `NaN` (cast from the value `"Rana"`).',
+        ]);
         done();
       });
   });
