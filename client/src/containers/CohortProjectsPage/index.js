@@ -80,7 +80,7 @@ class UserProject extends Component {
           ) : (
             dataList.map((item) => (
               <>
-                <Link to={`/cohorts/${cohortId}/Projects/${item.id}`}>
+                <Link to={`/cohorts/${cohortId}/projects/${item.id}`}>
                   <div
                     className="project"
                     style={{
