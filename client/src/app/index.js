@@ -149,6 +149,11 @@ class App extends Component {
               path={ROUTES.SPECIFIC_PROJECT_PAGE}
               component={ProjectDetail}
             />
+            <Route
+              exact
+              path={ROUTES.SPECIFIC_COHORT_PROJECT_PAGE}
+              component={ProjectDetail}
+            />
             <Route exact path={ROUTES.PROJECTS_PAGE} component={UserProject} />
             {isAuth ? (
               <LogoutContext.Provider value={{ logout: this.logout }}>
