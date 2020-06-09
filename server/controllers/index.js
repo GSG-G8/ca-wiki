@@ -21,6 +21,7 @@ const {
   logout,
   putStudentData,
   getStats,
+  AssignProjectStudent,
 } = require('./admin');
 
 module.exports = {
@@ -46,4 +47,5 @@ module.exports = {
   putStudentData,
   getStats,
   getStudentProjects,
+  AssignProjectStudent,
 };

@@ -5,6 +5,7 @@ const {
   editCohortSchema,
   studentSchema,
   loginSchema,
+  studentProjectSchema,
 } = require('./validation');
 
 module.exports = {
@@ -14,4 +15,5 @@ module.exports = {
   editCohortSchema,
   studentSchema,
   loginSchema,
+  studentProjectSchema,
 };
