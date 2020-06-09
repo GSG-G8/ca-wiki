@@ -56,7 +56,9 @@ class SearchPage extends Component {
       const {
         data: { data },
       } = getCohortData;
-      this.setState({ studentProjectData: data });
+      if (data) {
+        this.setState({ studentProjectData: data });
+      }
     } catch (err) {
       this.handleError(err);
     }
