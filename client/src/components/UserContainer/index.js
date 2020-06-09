@@ -27,6 +27,7 @@ class UserContainer extends Component {
       isProjectsPage,
       toolsTreeImg,
       cohortId,
+      isSearchPage,
     } = this.props;
 
     const rightNavActive =
@@ -46,7 +47,16 @@ class UserContainer extends Component {
             </Link>
           </div>
           <div className="header-right">
-            <SearchOutlined style={{ color: rightPageColor }} />
+            {isSearchPage ? (
+              <Link to={ROUTES.HOME_PAGE}>
+                <CloseOutlined style={{ color: rightPageColor }} />
+              </Link>
+            ) : (
+              <Link to={ROUTES.SEARCH_PAGE}>
+                <SearchOutlined style={{ color: rightPageColor }} />
+              </Link>
+            )}
+
             <MenuOutlined
               style={{ color: rightPageColor }}
               onClick={this.reverseShow}
@@ -281,6 +291,7 @@ UserContainer.defaultProps = {
   isProjectsPage: false,
   toolsTreeImg: false,
   cohortId: 0,
+  isSearchPage: false,
 };
 
 UserContainer.propTypes = {
@@ -291,5 +302,6 @@ UserContainer.propTypes = {
   isProjectsPage: PropTypes.bool,
   toolsTreeImg: PropTypes.bool,
   cohortId: PropTypes.number,
+  isSearchPage: PropTypes.bool,
 };
 export default UserContainer;

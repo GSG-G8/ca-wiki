@@ -21,6 +21,7 @@ import InternalProjectsOverview from '../containers/InternalProjectsOverview';
 import RemotelyProjectsOverview from '../containers/RemotelyProjectsOverview';
 import ContactUS from '../containers/ContactUsPage';
 import CohortProjects from '../containers/CohortProjectsPage';
+import SearchPage from '../containers/SearchPage';
 import ProjectDetail from '../containers/ProjectDetailsPage';
 import UserProject from '../containers/UserProjectPage';
 
@@ -133,6 +134,7 @@ class App extends Component {
                 )
               }
             />
+            <Route exact path={ROUTES.SEARCH_PAGE} component={SearchPage} />
             <Route exact path={ROUTES.HOME_PAGE} component={HomePage} />
             <Route
               exact
