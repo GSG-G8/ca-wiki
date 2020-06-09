@@ -20,6 +20,7 @@ import HomePage from '../containers/HomePage';
 import InternalProjectsOverview from '../containers/InternalProjectsOverview';
 import ClientsProjectsOverview from '../containers/ClientsProjectsOverview';
 import ContactUS from '../containers/ContactUsPage';
+import ProjectDetail from '../containers/ProjectDetailsPage';
 import UserProject from '../containers/UserProjectPage';
 
 import CohortsAlumniPage from '../components/CohortsAlumniPage';
@@ -143,6 +144,16 @@ class App extends Component {
               component={ClientsProjectsOverview}
             />
             <Route path={ROUTES.CONTACT_US_PAGE} exact component={ContactUS} />
+            <Route
+              exact
+              path={ROUTES.SPECIFIC_PROJECT_PAGE}
+              component={ProjectDetail}
+            />
+            <Route
+              exact
+              path={ROUTES.SPECIFIC_COHORT_PROJECT_PAGE}
+              component={ProjectDetail}
+            />
             <Route exact path={ROUTES.PROJECTS_PAGE} component={UserProject} />
             {isAuth ? (
               <LogoutContext.Provider value={{ logout: this.logout }}>

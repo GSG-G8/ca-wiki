@@ -20,7 +20,7 @@ describe('Alumni, Get all students', () => {
         if (err) return done(err);
         const { data } = res.body;
         expect(data[0].name).toBe('Alaa');
-        expect(data).toHaveLength(11);
+        expect(data).toHaveLength(12);
         done();
       });
   });
@@ -239,9 +239,9 @@ describe('Delete specific student by ID', () => {
         done();
       });
   });
-  test('Route /alumni/12 status 404, data.message = Student does not exist ', (done) => {
+  test('Route /alumni/13 status 404, data.message = Student does not exist ', (done) => {
     return request(app)
-      .delete('/api/v1/alumni/12')
+      .delete('/api/v1/alumni/13')
       .set('Cookie', token)
       .expect(404)
       .expect('Content-Type', /json/)
