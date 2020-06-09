@@ -6,6 +6,7 @@ import {
   Redirect,
 } from 'react-router-dom';
 import axios from 'axios';
+import ReactGa from 'react-ga';
 
 import * as ROUTES from '../constants/routes';
 import LogoutContext from '../Contexts/LogoutContext';
@@ -37,6 +38,11 @@ class App extends Component {
   };
 
   async componentDidMount() {
+    const {
+      location: { pathname, search },
+    } = window;
+    ReactGa.initialize('UA-168533626-1');
+    ReactGa.pageview(pathname + search);
     this.authFun();
   }
 
