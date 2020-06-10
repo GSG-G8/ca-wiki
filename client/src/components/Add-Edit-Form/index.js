@@ -1,18 +1,22 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { Form, Input, Button, message, Spin } from 'antd';
+import { Form, Input, Button, message, Spin, Select } from 'antd';
 import './style.css';
 import AdminContainer from '../AdminContainer';
 
+const { Option } = Select;
 const axios = require('axios');
 
 class AddEditForm extends Component {
   state = {
     myData: {},
+    studentInCohort: [],
+    selectOption: [],
     // eslint-disable-next-line react/destructuring-assignment
     addOrEdit: this.props.addLink,
     typeOfProject: '',
+    oldStudent: [],
   };
 
   async componentDidMount() {
@@ -31,6 +35,18 @@ class AddEditForm extends Component {
         } else {
           this.getProject();
         }
+      }
+      if (formType === 'project') {
+        const {
+          match: {
+            params: { cohortId },
+          },
+        } = this.props;
+        const studentInCohort = await axios(
+          `/api/v1/cohorts/${cohortId}/alumni`
+        );
+        const { data } = studentInCohort.data;
+        this.setState({ studentInCohort: data });
       }
     } catch (err) {
       push('/not-found');
@@ -80,14 +96,24 @@ class AddEditForm extends Component {
     const fetchItems = await axios(`/api/v1/projects/${projectId}`);
     const {
       data: {
-        name,
-        description,
-        img_url: imgUrl,
-        github_link: githubLink,
-        website_link: websiteLink,
-        project_type: projectType,
+        data: {
+          name,
+          description,
+          img_url: imgUrl,
+          github_link: githubLink,
+          website_link: websiteLink,
+          project_type: projectType,
+        },
       },
-    } = fetchItems.data;
+    } = fetchItems;
+
+    const getStudentsForProject = await axios.get(
+      `/api/v1/projects/${projectId}/alumni`
+    );
+
+    const {
+      data: { data: selectOption },
+    } = getStudentsForProject;
 
     this.setState({
       myData: {
@@ -100,12 +126,22 @@ class AddEditForm extends Component {
       },
       addOrEdit: 'edit',
       typeOfProject: projectType,
+      selectOption,
+      oldStudent: selectOption,
     });
   }
 
   onFinish = async (values) => {
-    const { formType, cohortId, addLink, editLink } = this.props;
-
+    const {
+      formType,
+      cohortId,
+      addLink,
+      editLink,
+      match: {
+        params: { projectId },
+      },
+    } = this.props;
+    const { selectOption, oldStudent, studentInCohort } = this.state;
     try {
       let sendValues = values;
       if (formType !== 'cohort') {
@@ -119,33 +155,134 @@ class AddEditForm extends Component {
         const response = await axios.post(addLink, sendValues);
         const {
           data: {
-            data: { message: resMessage },
+            data: { message: resMessage, projectId: resProjectId },
           },
         } = response;
-        message.success(resMessage);
+        const newStudentsId = this.getStudentIdFromName(
+          selectOption,
+          studentInCohort
+        );
+
+        if (newStudentsId.length !== 0) {
+          const studentsName = this.studentFucntion(newStudentsId);
+          const responseProjects = await axios.post(
+            '/api/v1/alumni/projects/assign',
+            { projectId: resProjectId, ...studentsName }
+          );
+          const {
+            data: {
+              data: { message: assignStudentMessage },
+            },
+          } = responseProjects;
+          message.success(assignStudentMessage);
+        }
+        message.success(
+          `${resMessage}, you can add student for this project any time`
+        );
         this.redirectFunc(sendValues.projectType);
       } else {
+        const projectTypeLower = sendValues.projectType || 'Not Require';
+        sendValues.projectType = projectTypeLower.toLowerCase();
+
+        const deletedStudent = oldStudent.filter(
+          (selectName) => !selectOption.includes(selectName)
+        );
+        const newStudent = selectOption.filter(
+          (selectName) => !oldStudent.includes(selectName)
+        );
+
+        const deleteStudentsId = this.getStudentIdFromName(
+          deletedStudent,
+          studentInCohort
+        );
+
+        const newStudentsId = this.getStudentIdFromName(
+          newStudent,
+          studentInCohort
+        );
+
         const response = await axios.put(editLink, sendValues);
         const {
           data: {
             data: { message: resMessage },
           },
         } = response;
+
+        if (deleteStudentsId.length !== 0) {
+          const deleteStudentProject = await axios.put(
+            '/api/v1/alumni/projects/assign',
+            {
+              projectId,
+              deletedStudent: deleteStudentsId,
+            }
+          );
+          const {
+            data: {
+              data: { message: deleteStudentProjectMessage },
+            },
+          } = deleteStudentProject;
+          message.success(deleteStudentProjectMessage);
+        }
+
+        if (newStudentsId.length !== 0) {
+          const sendStudentsId = this.studentFucntion(newStudentsId);
+          const addStudentProject = await axios.post(
+            '/api/v1/alumni/projects/assign',
+            {
+              projectId,
+              ...sendStudentsId,
+            }
+          );
+          const {
+            data: {
+              data: { message: addStudentProjectMessage },
+            },
+          } = addStudentProject;
+          message.success(addStudentProjectMessage);
+        }
+
         message.success(resMessage);
         this.redirectFunc(sendValues.projectType);
       }
     } catch (err) {
       if (err.response.status) {
         const { message: errMessage } = err.response.data.data;
-        message.error(errMessage);
+        if (errMessage[0] !== 'student1Id is a required field') {
+          message.error(errMessage);
+        }
+        this.redirectFunc(values.projectType);
       } else {
         message.error('internal error');
       }
     }
   };
 
+  getStudentIdFromName = (studentNameArray, allStudentData) => {
+    const studentId = studentNameArray.map((studentName) => {
+      const filer = allStudentData.filter(
+        (student) => student.name === studentName
+      );
+      return filer[0].id;
+    });
+    return studentId;
+  };
+
+  studentFucntion = (selectOption) => {
+    const studentName = {};
+    selectOption.map((studentId, index) => {
+      const sendStudentId = `student${index + 1}Id`;
+      studentName[sendStudentId] = studentId;
+      return null;
+    });
+    return studentName;
+  };
+
   onFinishFailed = () => {
     message.error('please enter correct data');
+  };
+
+  handleStudentChange = (value) => {
+    this.setState({ selectOption: value });
   };
 
   redirectFunc(projectType) {
@@ -165,7 +302,13 @@ class AddEditForm extends Component {
   }
 
   render() {
-    const { myData, addOrEdit, typeOfProject } = this.state;
+    const {
+      myData,
+      addOrEdit,
+      typeOfProject,
+      studentInCohort,
+      selectOption,
+    } = this.state;
     const {
       formType,
       cohortId,
@@ -293,6 +436,22 @@ class AddEditForm extends Component {
                 >
                   <Input className="add-data-input" />
                 </Form.Item>
+                <div className="add-form-select">
+                  <span className="select-lable"> &nbsp; Select Student:</span>
+                  <Select
+                    mode="tags"
+                    style={{ width: '100%' }}
+                    placeholder=""
+                    title="Add Students For This Project"
+                    onChange={this.handleStudentChange}
+                    defaultValue={selectOption}
+                    showArrow
+                  >
+                    {studentInCohort.map((student) => (
+                      <Option key={student.name}>{student.name}</Option>
+                    ))}
+                  </Select>
+                </div>
 
                 <Form.Item
                   className="add-form-row"
