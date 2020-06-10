@@ -81,8 +81,8 @@ const ContactUS = () => {
                 <p>Internal Projects</p>
               </Link>
             </div>
-            <Link to={ROUTES.CLIENTS_PROJECTS}>
-              <p className="text">Client projects</p>
+            <Link to={ROUTES.REMOTELY_PROJECTS}>
+              <p className="text">REMOTELY projects</p>
             </Link>
           </div>
           <div className="end-line" />

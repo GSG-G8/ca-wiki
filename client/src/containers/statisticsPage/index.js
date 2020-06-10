@@ -3,7 +3,7 @@ import { Progress, notification } from 'antd';
 import axios from 'axios';
 
 import AdminContainer from '../../components/AdminContainer';
-import Chart from '../../components/Charts';
+import GoogleLogin from '../../googleAuth/signIn';
 import './style.css';
 
 class Statistics extends Component {
@@ -43,7 +43,7 @@ class Statistics extends Component {
       <div>
         <AdminContainer>
           <div className="state-container">
-            <Chart />
+            <GoogleLogin />
             <div className="state">
               <h1>Control Panel Homepage</h1>
               <div className="titles">

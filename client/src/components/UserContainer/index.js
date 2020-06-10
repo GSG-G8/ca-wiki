@@ -26,6 +26,8 @@ class UserContainer extends Component {
       isCohortPages,
       isProjectsPage,
       toolsTreeImg,
+      cohortId,
+      isSearchPage,
     } = this.props;
 
     const rightNavActive =
@@ -45,7 +47,16 @@ class UserContainer extends Component {
             </Link>
           </div>
           <div className="header-right">
-            <SearchOutlined style={{ color: rightPageColor }} />
+            {isSearchPage ? (
+              <Link to={ROUTES.HOME_PAGE}>
+                <CloseOutlined style={{ color: rightPageColor }} />
+              </Link>
+            ) : (
+              <Link to={ROUTES.SEARCH_PAGE}>
+                <SearchOutlined style={{ color: rightPageColor }} />
+              </Link>
+            )}
+
             <MenuOutlined
               style={{ color: rightPageColor }}
               onClick={this.reverseShow}
@@ -97,18 +108,34 @@ class UserContainer extends Component {
                     Alumni
                   </NavLink>
                   <NavLink
-                    to={ROUTES.INTERNAL_PROJECTS}
+                    exact
+                    to="/projects?type=internal"
                     activeClassName="header-list-active"
                     className="header-list"
                     onClick={this.reverseShow}
+                    isActive={(match, location) => {
+                      if (!location) {
+                        return false;
+                      }
+                      const { search } = location;
+                      return search === '?type=internal';
+                    }}
                   >
                     Internal Projects
                   </NavLink>
                   <NavLink
-                    to={ROUTES.CLIENTS_PROJECTS}
+                    exact
+                    to="/projects?type=remotely"
                     activeClassName="header-list-active"
                     className="header-list"
                     onClick={this.reverseShow}
+                    isActive={(match, location) => {
+                      if (!location) {
+                        return false;
+                      }
+                      const { search } = location;
+                      return search === '?type=remotely';
+                    }}
                   >
                     Remotely Project
                   </NavLink>
@@ -196,12 +223,12 @@ class UserContainer extends Component {
               <li>
                 <NavLink
                   exact
-                  to={ROUTES.CLIENTS_PROJECTS}
+                  to={ROUTES.REMOTELY_PROJECTS}
                   className={rightNav}
                   activeClassName={rightNavActive}
                 >
-                  <div>CP</div>
-                  <div className="show-full-name">CLIENT PROJECTS</div>
+                  <div>RP</div>
+                  <div className="show-full-name">REMOTELY PROJECTS</div>
                   <div className="line" />
                 </NavLink>
               </li>
@@ -225,9 +252,16 @@ class UserContainer extends Component {
               <li>
                 <NavLink
                   exact
-                  to={ROUTES.COHORT_PROJECTS_PAGE}
+                  to={`/cohorts/${cohortId}/projects?type=internal`}
                   className={rightNav}
                   activeClassName={rightNavActive}
+                  isActive={(match, location) => {
+                    if (!location) {
+                      return false;
+                    }
+                    const { search } = location;
+                    return search === '?type=internal';
+                  }}
                 >
                   <div>Ip</div>
                   <div className="show-full-name">INTERNAL PROJECTS PHASE</div>
@@ -237,19 +271,26 @@ class UserContainer extends Component {
               <li>
                 <NavLink
                   exact
-                  to={ROUTES.COHORT_PROJECTS_PAGE}
+                  to={`/cohorts/${cohortId}/projects?type=remotely`}
                   className={rightNav}
                   activeClassName={rightNavActive}
+                  isActive={(match, location) => {
+                    if (!location) {
+                      return false;
+                    }
+                    const { search } = location;
+                    return search === '?type=remotely';
+                  }}
                 >
                   <div>Rp</div>
-                  <div className="show-full-name">CLIENT PROJECTS PHASE</div>
+                  <div className="show-full-name">REMOTELY PROJECTS PHASE</div>
                   <div className="line" />
                 </NavLink>
               </li>
               <li>
                 <NavLink
                   exact
-                  to={ROUTES.COHORT_ALUMNI_PAGE}
+                  to={`/cohorts/${cohortId}/alumni`}
                   className={rightNav}
                   activeClassName={rightNavActive}
                 >
@@ -279,6 +320,7 @@ UserContainer.defaultProps = {
   isCohortPages: false,
   isProjectsPage: false,
   toolsTreeImg: false,
+  isSearchPage: false,
 };
 
 UserContainer.propTypes = {
@@ -288,5 +330,7 @@ UserContainer.propTypes = {
   isCohortPages: PropTypes.bool,
   isProjectsPage: PropTypes.bool,
   toolsTreeImg: PropTypes.bool,
+  cohortId: PropTypes.number.isRequired,
+  isSearchPage: PropTypes.bool,
 };
 export default UserContainer;

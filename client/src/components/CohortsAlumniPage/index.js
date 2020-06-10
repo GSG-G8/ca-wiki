@@ -20,6 +20,7 @@ class CohortsAlumni extends Component {
     width: 0,
     isCohortPages: false,
     cohortName: '',
+    cohortId: 1,
   };
 
   async componentDidMount() {
@@ -92,6 +93,7 @@ class CohortsAlumni extends Component {
         data: { data },
       } = cohortsAlumniData;
       this.getCohortName(Number(cohortId));
+      this.setState({ data, isCohortPages: true, cohortId });
       this.setState({ data, isCohortPages: true });
     } catch (err) {
       notification.error({
@@ -138,6 +140,7 @@ class CohortsAlumni extends Component {
       width,
       isCohortPages,
       cohortName,
+      cohortId,
     } = this.state;
     const { type } = this.props;
     const slidesNum =
@@ -155,6 +158,7 @@ class CohortsAlumni extends Component {
         rightPageColor="black"
         headerLogo={type === 'Cohorts' ? whiteLogo : coloredLogo}
         isCohortPages={isCohortPages}
+        cohortId={isCohortPages ? cohortId : null}
       >
         {type === 'Cohorts' ? (
           <div className="left">
