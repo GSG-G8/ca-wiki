@@ -119,7 +119,7 @@ class AdminCard extends Component {
         )}
         {cohortId && (
           <div>
-            <h3>Community p</h3>
+            <h3>INTERNAL p</h3>
             <Link to={`/admin/cohorts/${cohortId}/projects?type=internal`}>
               View
             </Link>
@@ -127,7 +127,7 @@ class AdminCard extends Component {
         )}
         {cohortId && (
           <div>
-            <h3>Clients p</h3>
+            <h3>REMOTELY p</h3>
             <Link to={`/admin/cohorts/${cohortId}/projects?type=remotely`}>
               View
             </Link>

@@ -82,16 +82,16 @@ class ProjectDetails extends Component {
           {cohortId ? (
             <>
               <h1>{cohortData.name}</h1>
-              {projectType === 'internal' || projectType === 'Internal' ? (
+              {projectType === 'internal' ? (
                 <h2>Internal Projects Phase</h2>
               ) : (
-                <h2>Clients Projects Phase</h2>
+                <h2>Remotely Projects Phase</h2>
               )}
             </>
-          ) : projectType === 'internal' || projectType === 'Internal' ? (
+          ) : projectType === 'internal' ? (
             <h1>Internal Projects Phase</h1>
           ) : (
-            <h1>Clients Projects Phase</h1>
+            <h1>Remotely Projects Phase</h1>
           )}
           {data.length === 0 ? (
             <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} className="empty" />

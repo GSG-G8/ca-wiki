@@ -6,6 +6,7 @@ import {
   Redirect,
 } from 'react-router-dom';
 import axios from 'axios';
+import ReactGa from 'react-ga';
 
 import * as ROUTES from '../constants/routes';
 import LogoutContext from '../Contexts/LogoutContext';
@@ -18,8 +19,10 @@ import AdminProject from '../containers/AdminProjectPage';
 import PageNotFound from '../containers/PageNotFound';
 import HomePage from '../containers/HomePage';
 import InternalProjectsOverview from '../containers/InternalProjectsOverview';
-import ClientsProjectsOverview from '../containers/ClientsProjectsOverview';
+import RemotelyProjectsOverview from '../containers/RemotelyProjectsOverview';
 import ContactUS from '../containers/ContactUsPage';
+import CohortProjects from '../containers/CohortProjectsPage';
+import SearchPage from '../containers/SearchPage';
 import ProjectDetail from '../containers/ProjectDetailsPage';
 import UserProject from '../containers/UserProjectPage';
 
@@ -35,6 +38,11 @@ class App extends Component {
   };
 
   async componentDidMount() {
+    const {
+      location: { pathname, search },
+    } = window;
+    ReactGa.initialize('UA-168533626-1');
+    ReactGa.pageview(pathname + search);
     this.authFun();
   }
 
@@ -116,7 +124,7 @@ class App extends Component {
               path={ROUTES.SPECIFIC_COHORT_PAGE}
               render={(props) => (
                 <Redirect
-                  to={`/cohorts/${props.match.params.cohortId}/projects?type=remotly`}
+                  to={`/cohorts/${props.match.params.cohortId}/projects?type=internal`}
                 />
               )}
             />
@@ -132,6 +140,7 @@ class App extends Component {
                 )
               }
             />
+            <Route exact path={ROUTES.SEARCH_PAGE} component={SearchPage} />
             <Route exact path={ROUTES.HOME_PAGE} component={HomePage} />
             <Route
               exact
@@ -140,10 +149,15 @@ class App extends Component {
             />
             <Route
               exact
-              path={ROUTES.CLIENTS_PROJECTS}
-              component={ClientsProjectsOverview}
+              path={ROUTES.REMOTELY_PROJECTS}
+              component={RemotelyProjectsOverview}
             />
             <Route path={ROUTES.CONTACT_US_PAGE} exact component={ContactUS} />
+            <Route
+              exact
+              path={ROUTES.COHORT_PROJECTS_PAGE}
+              component={CohortProjects}
+            />
             <Route
               exact
               path={ROUTES.SPECIFIC_PROJECT_PAGE}
