@@ -75,27 +75,31 @@ class AlumnusDetails extends Component {
                 <h3>
                   <a href={`mailto:${studentData.email}`}>Email</a>
                 </h3>
-                <h3>Projects</h3>
-                <div className="alumni_projects">
-                  {studentProjects.map((project) => (
-                    <div key={project.id}>
-                      <h4>Project Name: {project.name}</h4>
-                      <ul>
-                        <li>
-                          <a href={project.github_link} target="blank">
-                            Github Link
-                          </a>
-                        </li>
-                        <li>
-                          <a href={project.website_link} target="blank">
-                            Website Link
-                          </a>
-                        </li>
-                        <li>Project Type: {project.project_type}</li>
-                      </ul>
+                {studentProjects ? (
+                  <>
+                    <h3>Projects</h3>
+                    <div className="alumni_projects">
+                      {studentProjects.map((project) => (
+                        <div key={project.id}>
+                          <h4>Project Name: {project.name}</h4>
+                          <ul>
+                            <li>
+                              <a href={project.github_link} target="blank">
+                                Github Link
+                              </a>
+                            </li>
+                            <li>
+                              <a href={project.website_link} target="blank">
+                                Website Link
+                              </a>
+                            </li>
+                            <li>Project Type: {project.project_type}</li>
+                          </ul>
+                        </div>
+                      ))}
                     </div>
-                  ))}
-                </div>
+                  </>
+                ) : null}
               </div>
             </div>
           )}
