@@ -130,7 +130,7 @@ class CohortsAlumni extends Component {
     const { type } = this.props;
     return type === 'Cohorts'
       ? push(`/cohorts/${cohort.id}`)
-      : push(`/cohorts/${cohort.cohort_id}/alumni/${cohort.id}`);
+      : push(`/alumni/${cohort.id}`);
   };
 
   render() {
