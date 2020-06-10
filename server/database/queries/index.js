@@ -7,6 +7,7 @@ const {
   getSpecificAlumni,
   getStudentProjectsQuery,
   AssignProjectStudentQuery,
+  deleteAssignProjectStudentQuery,
 } = require('./student');
 
 const {
@@ -51,4 +52,5 @@ module.exports = {
   studentProjectQuery,
   getStudentProjectsQuery,
   AssignProjectStudentQuery,
+  deleteAssignProjectStudentQuery,
 };
