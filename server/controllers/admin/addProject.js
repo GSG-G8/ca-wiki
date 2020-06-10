@@ -4,10 +4,12 @@ const { projectSchema } = require('../../utils');
 const addProject = async (req, res, next) => {
   try {
     await projectSchema.validate(req.body, { abortEarly: false });
-    await addProjectQuery(req.body);
+    const addProjectToData = await addProjectQuery(req.body);
+    const projectId = addProjectToData.rows[0].id;
+
     res.status(201).json({
       StatusCode: 201,
-      data: { message: 'Project Added successfully' },
+      data: { message: 'Project Added successfully', projectId },
     });
   } catch (err) {
     if (err.errors) {
