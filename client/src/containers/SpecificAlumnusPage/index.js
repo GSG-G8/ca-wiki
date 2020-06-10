@@ -6,7 +6,7 @@ import logo from '../../assets/images/logo.png';
 import UserContainer from '../../components/UserContainer';
 import './style.css';
 
-class ProjectDetails extends Component {
+class AlumnusDetails extends Component {
   state = {
     studentData: [],
     studentProjects: [],
@@ -20,8 +20,10 @@ class ProjectDetails extends Component {
           params: { alumniId },
         },
       } = this.props;
-      const res = await axios.get(`/api/v1/alumni/${alumniId}`);
-      const { data: studentData } = res.data;
+      const alumni = await axios.get(`/api/v1/alumni/${alumniId}`);
+      const {
+        data: { data: studentData },
+      } = alumni;
       const { cohort_id: cohortId } = studentData;
       const projects = await axios.get(`/api/v1/alumni/${alumniId}/projects`);
       const {
@@ -103,14 +105,8 @@ class ProjectDetails extends Component {
   }
 }
 
-ProjectDetails.propTypes = {
+AlumnusDetails.propTypes = {
   match: PropTypes.func.isRequired,
-  history: PropTypes.shape({
-    push: PropTypes.func,
-    location: PropTypes.shape({
-      search: PropTypes.string,
-    }),
-  }).isRequired,
 };
 
-export default ProjectDetails;
+export default AlumnusDetails;
