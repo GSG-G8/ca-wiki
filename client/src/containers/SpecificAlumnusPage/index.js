@@ -35,14 +35,9 @@ class AlumnusDetails extends Component {
       } = cohort;
       this.setState({ studentData, studentProjects, cohortData });
     } catch (err) {
-      const {
-        response: {
-          data: { message },
-        },
-      } = err;
       notification.error({
         message: 'Error',
-        description: message,
+        description: err.message,
       });
     }
   }
