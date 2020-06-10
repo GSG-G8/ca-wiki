@@ -84,3 +84,35 @@ border: 0;
   caret-color: var(--main-white);
   background-color: var(--main-white);
 }
+
+
+.add-form-select > .ant-select-show-search.ant-select-multiple .ant-select-selector {
+  border: none;
+  border-bottom: 1px solid var(--input-border);
+  margin: 0;
+  padding: 0;
+  color: rgba(0, 0, 0, 0.65);
+  font-size: 14px;
+    font-variant: tabular-nums;
+    line-height: 1.5715;
+  margin-bottom: 24px;
+    vertical-align: top;
+}
+
+
+.add-form-select > .ant-select-show-search.ant-select-multiple  > .ant-select-arrow {
+  top: 10%;
+}
+
+.add-form-select{
+  display: flex;
+}
+
+.add-form-select .select-lable {
+  color: rgba(0, 0, 0, 0.85);
+  display: inline-block;
+  text-align: left;
+  width: 140px;
+  margin-bottom: 24px;
+  border-bottom: 1px solid var(--input-border);
+}
