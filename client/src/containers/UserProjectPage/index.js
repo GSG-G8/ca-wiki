@@ -31,14 +31,9 @@ class UserProject extends Component {
       const {
         history: { push },
       } = this.props;
-      const {
-        response: {
-          data: { message },
-        },
-      } = err;
       notification.error({
         message: 'Error',
-        description: message,
+        description: err.message,
       });
       push('/projects');
     }
