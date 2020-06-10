@@ -169,6 +169,7 @@ class App extends Component {
               component={ProjectDetail}
             />
             <Route exact path={ROUTES.PROJECTS_PAGE} component={UserProject} />
+            <Route to={ROUTES.ERROR404} component={PageNotFound} />
             {isAuth ? (
               <LogoutContext.Provider value={{ logout: this.logout }}>
                 <Switch>
@@ -177,7 +178,6 @@ class App extends Component {
                     path={ROUTES.STATISTICS_PAGE}
                     component={Statistics}
                   />
-                  <Route to={ROUTES.ERROR404} component={PageNotFound} />
                   <Route
                     path={ROUTES.ADMIN_COHORT_PAGE}
                     exact
@@ -271,12 +271,15 @@ class App extends Component {
                     )}
                   />
 
-                  <Route render={() => <Redirect to={ROUTES.ERROR404} />} />
+                  <Route
+                    path="*"
+                    render={() => <Redirect to={ROUTES.ERROR404} />}
+                  />
                 </Switch>
               </LogoutContext.Provider>
             ) : redirect ? (
               isUser ? (
-                <Route component={PageNotFound} />
+                <Route render={() => <Redirect to={ROUTES.ERROR404} />} />
               ) : (
                 <Route render={() => <Redirect to={ROUTES.LOGIN_PAGE} />} />
               )
