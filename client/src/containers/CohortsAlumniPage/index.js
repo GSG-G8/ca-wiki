@@ -5,7 +5,7 @@ import { notification, Card, Avatar, Skeleton } from 'antd';
 import ItemsCarousel from 'react-items-carousel';
 import whiteLogo from '../../assets/images/login-logo.jpeg';
 import coloredLogo from '../../assets/images/logo.png';
-import UserContainer from '../UserContainer';
+import UserContainer from '../../components/UserContainer';
 
 import leftSvg from '../../assets/images/Group 2423.svg';
 import rightSvg from '../../assets/images/Group 2381.svg';
@@ -130,7 +130,7 @@ class CohortsAlumni extends Component {
     const { type } = this.props;
     return type === 'Cohorts'
       ? push(`/cohorts/${cohort.id}`)
-      : push(`/cohorts/${cohort.cohort_id}/alumni/${cohort.id}`);
+      : push(`/alumni/${cohort.id}`);
   };
 
   render() {

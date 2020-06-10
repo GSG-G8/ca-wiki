@@ -25,8 +25,9 @@ import CohortProjects from '../containers/CohortProjectsPage';
 import SearchPage from '../containers/SearchPage';
 import ProjectDetail from '../containers/ProjectDetailsPage';
 import UserProject from '../containers/UserProjectPage';
+import AlumnusPage from '../containers/SpecificAlumnusPage';
 
-import CohortsAlumniPage from '../components/CohortsAlumniPage';
+import CohortsAlumniPage from '../containers/CohortsAlumniPage';
 
 import './style.css';
 
@@ -127,6 +128,12 @@ class App extends Component {
                   to={`/cohorts/${props.match.params.cohortId}/projects?type=internal`}
                 />
               )}
+            />
+
+            <Route
+              exact
+              path={ROUTES.SPECIFIC_ALUMNUS_PAGE}
+              component={AlumnusPage}
             />
 
             <Route

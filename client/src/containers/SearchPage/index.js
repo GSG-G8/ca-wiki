@@ -203,8 +203,9 @@ class SearchPage extends Component {
   studentName = (value) => {
     const { allStudentData, showProjectSection } = this.state;
     const studentSelected = allStudentData.filter((e) => e.name === value);
+    const filterStudentPagination = this.setPagination(studentSelected);
     if (!showProjectSection) {
-      this.setState({ total: 1, pageNumber: 1 });
+      this.setState({ ...filterStudentPagination });
     }
     this.setState({
       displayStudent: studentSelected,
