@@ -23,3 +23,4 @@ export const SPECIFIC_COHORT_PROJECT_PAGE =
   '/cohorts/:cohortId/projects/:projectId';
 export const CONTACT_US_PAGE = '/contact-us';
 export const SEARCH_PAGE = '/search';
+export const ERROR404 = '/error404';
