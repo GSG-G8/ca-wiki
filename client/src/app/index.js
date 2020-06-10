@@ -171,106 +171,108 @@ class App extends Component {
             <Route exact path={ROUTES.PROJECTS_PAGE} component={UserProject} />
             {isAuth ? (
               <LogoutContext.Provider value={{ logout: this.logout }}>
-                <Route
-                  exact
-                  path={ROUTES.STATISTICS_PAGE}
-                  component={Statistics}
-                />
+                <Switch>
+                  <Route
+                    exact
+                    path={ROUTES.STATISTICS_PAGE}
+                    component={Statistics}
+                  />
+                  <Route to={ROUTES.ERROR404} component={PageNotFound} />
+                  <Route
+                    path={ROUTES.ADMIN_COHORT_PAGE}
+                    exact
+                    component={AdminCohortPage}
+                  />
 
-                <Route
-                  path={ROUTES.ADMIN_COHORT_PAGE}
-                  exact
-                  component={AdminCohortPage}
-                />
+                  <Route
+                    path={ROUTES.ADMIN_COHORT_STUDENTS_PAGE}
+                    exact
+                    component={AdminStudentPage}
+                  />
 
-                <Route
-                  path={ROUTES.ADMIN_COHORT_STUDENTS_PAGE}
-                  exact
-                  component={AdminStudentPage}
-                />
+                  <Route
+                    path={ROUTES.ADMIN_COHORT_PROJECTS_PAGE}
+                    exact
+                    component={AdminProject}
+                  />
+                  <Route
+                    path={ROUTES.ADD_COHORT}
+                    exact
+                    render={(props) => (
+                      <AddEditForm
+                        {...props}
+                        formType="cohort"
+                        addLink="/api/v1/cohorts"
+                      />
+                    )}
+                  />
 
-                <Route
-                  path={ROUTES.ADMIN_COHORT_PROJECTS_PAGE}
-                  exact
-                  component={AdminProject}
-                />
-                <Route
-                  path={ROUTES.ADD_COHORT}
-                  exact
-                  render={(props) => (
-                    <AddEditForm
-                      {...props}
-                      formType="cohort"
-                      addLink="/api/v1/cohorts"
-                    />
-                  )}
-                />
+                  <Route
+                    path={ROUTES.EDIT_COHORT}
+                    exact
+                    render={(props) => (
+                      <AddEditForm
+                        {...props}
+                        formType="cohort"
+                        editLink={`/api/v1/cohorts/${props.match.params.cohortId}`}
+                      />
+                    )}
+                  />
 
-                <Route
-                  path={ROUTES.EDIT_COHORT}
-                  exact
-                  render={(props) => (
-                    <AddEditForm
-                      {...props}
-                      formType="cohort"
-                      editLink={`/api/v1/cohorts/${props.match.params.cohortId}`}
-                    />
-                  )}
-                />
+                  <Route
+                    path={ROUTES.ADD_STUDENT}
+                    exact
+                    render={(props) => (
+                      <AddEditForm
+                        {...props}
+                        formType="student"
+                        addLink="/api/v1/alumni"
+                        cohortId={props.match.params.cohortId}
+                      />
+                    )}
+                  />
 
-                <Route
-                  path={ROUTES.ADD_STUDENT}
-                  exact
-                  render={(props) => (
-                    <AddEditForm
-                      {...props}
-                      formType="student"
-                      addLink="/api/v1/alumni"
-                      cohortId={props.match.params.cohortId}
-                    />
-                  )}
-                />
+                  <Route
+                    path={ROUTES.EDIT_STUDENT}
+                    exact
+                    render={(props) => (
+                      <AddEditForm
+                        {...props}
+                        formType="student"
+                        editLink={`/api/v1/alumni/${props.match.params.studentId}`}
+                        cohortId={props.match.params.cohortId}
+                      />
+                    )}
+                  />
 
-                <Route
-                  path={ROUTES.EDIT_STUDENT}
-                  exact
-                  render={(props) => (
-                    <AddEditForm
-                      {...props}
-                      formType="student"
-                      editLink={`/api/v1/alumni/${props.match.params.studentId}`}
-                      cohortId={props.match.params.cohortId}
-                    />
-                  )}
-                />
+                  <Route
+                    path={ROUTES.ADD_PROJECT}
+                    exact
+                    render={(props) => (
+                      <AddEditForm
+                        {...props}
+                        formType="project"
+                        addLink="/api/v1/projects"
+                        cohortId={props.match.params.cohortId}
+                      />
+                    )}
+                  />
 
-                <Route
-                  path={ROUTES.ADD_PROJECT}
-                  exact
-                  render={(props) => (
-                    <AddEditForm
-                      {...props}
-                      formType="project"
-                      addLink="/api/v1/projects"
-                      cohortId={props.match.params.cohortId}
-                    />
-                  )}
-                />
+                  <Route
+                    path={ROUTES.EDIT_PROJECT}
+                    exact
+                    render={(props) => (
+                      <AddEditForm
+                        {...props}
+                        formType="project"
+                        editLink={`/api/v1/projects/${props.match.params.projectId}`}
+                        cohortId={props.match.params.cohortId}
+                      />
+                    )}
+                  />
 
-                <Route
-                  path={ROUTES.EDIT_PROJECT}
-                  exact
-                  render={(props) => (
-                    <AddEditForm
-                      {...props}
-                      formType="project"
-                      editLink={`/api/v1/projects/${props.match.params.projectId}`}
-                      cohortId={props.match.params.cohortId}
-                    />
-                  )}
-                />
-
-                <Route component={PageNotFound} />
+                  <Route render={() => <Redirect to={ROUTES.ERROR404} />} />
+                </Switch>
               </LogoutContext.Provider>
             ) : redirect ? (
               isUser ? (
@@ -280,7 +282,7 @@ class App extends Component {
               )
             ) : null}
 
-            <Route component={PageNotFound} />
+            <Route path="*" render={() => <Redirect to={ROUTES.ERROR404} />} />
           </Switch>
         </div>
       </Router>
