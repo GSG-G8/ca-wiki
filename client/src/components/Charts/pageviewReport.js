@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import { addDays } from 'date-fns';
 import { notification } from 'antd';
 import CustomDatePicker from './datepicker';
 import queryReport from './queryReport';
+import getSecrets from '../../googleAuth/getSecrets';
 
 const PageviewsReport = () => {
   const [reportData, setReportData] = useState([]);
@@ -32,11 +32,7 @@ const PageviewsReport = () => {
   };
 
   useEffect(async () => {
-    const {
-      data: {
-        data: { REACT_APP_VIEW_ID },
-      },
-    } = await axios.get('/api/v1/secrets');
+    const { REACT_APP_VIEW_ID } = await getSecrets();
     const request = {
       viewID: REACT_APP_VIEW_ID,
       startDate,

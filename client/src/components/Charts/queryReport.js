@@ -1,13 +1,9 @@
 import { format } from 'date-fns';
-import axios from 'axios';
+import getSecrets from '../../googleAuth/getSecrets';
 
 const queryReport = async (props) => {
   const { startDate, endDate, metrics, dimensions, orderBy, filter } = props;
-  const {
-    data: {
-      data: { REACT_APP_VIEW_ID },
-    },
-  } = await axios.get('/api/v1/secrets');
+  const { REACT_APP_VIEW_ID } = await getSecrets();
   const requestDimensions = (dimension) => {
     const result = [];
     dimension.forEach((item) => {

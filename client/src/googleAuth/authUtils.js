@@ -1,11 +1,9 @@
-import axios from 'axios';
+import getSecrets from './getSecrets';
 
 const initAuth = async () => {
-  const {
-    data: { data },
-  } = await axios.get('/api/v1/secrets');
+  const { REACT_APP_CLIENT_ID } = await getSecrets();
   return window.gapi.auth2.init({
-    client_id: data.REACT_APP_CLIENT_ID,
+    client_id: REACT_APP_CLIENT_ID,
     scope: 'https://www.googleapis.com/auth/analytics.readonly',
   });
 };
