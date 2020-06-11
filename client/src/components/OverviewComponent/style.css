@@ -4,7 +4,7 @@
     height: 100vh;
 }
 
-.overview-container .rightPart {
+.overview-container .right-part {
     order: 1;
 }    
 
@@ -25,8 +25,8 @@
 .overview-container .container-content {
     width: 50%;
     text-align: left;
-    margin-top: 150px;
-    margin-left: 5.7rem;
+    margin-top: 135px;
+    margin-left: 5rem;
 }
 
 .overview-container .container-content .redTitle, 
@@ -53,7 +53,7 @@
     font-weight: bold;
     font-size: 14px;
     color: var(--content-blue-green);
-    line-height: 2;
+    line-height: 1.9;
     margin-top: 20px;
 }
 
@@ -72,7 +72,7 @@
 }
 
 @media screen and (min-width: 901px) {
-    .rightPart {
+    .right-part {
         background: var(--main-white);
         width: 50vw;
         height: 100vh;
@@ -81,11 +81,21 @@
         top: 0px;
         z-index: -1;
     }
+
+    .overview-container .container-content p {
+        width: 80%;
+    }
 }
 
 @media screen and (max-width: 900px) {
-    .overview-container .redGround {
-        
+    .overview-container .left-part {
+        width: 65%!important;
+        border-radius: 0 0 259px 0;
+        box-shadow: 1px 1px 12px #3A5A6E;
+    } 
+
+    .overview-container .right-part {
+        background-color: var(--main-white);
     }
 
     .overview-container {
@@ -101,7 +111,7 @@
         width: 100%;
         height: 39vh;
         text-align: left;
-        padding-left: 5rem
+        padding-left: 5rem;
     } 
 
     .overview-container .img-side .background-photo {

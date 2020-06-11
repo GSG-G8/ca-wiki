@@ -1,5 +1,6 @@
 .main-header {
   display: flex;
+  align-items: center;
   padding: 2.5rem 5rem 0;
   background-color: transparent;
   position: absolute;
@@ -239,6 +240,20 @@
 @media screen and (min-width: 769px) and (max-width: 1024px) {
   .header-left img, .menu-header img {
     width: 216px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .header-right span {
+    color: black!important;
+  }
+
+  .right-nav-active-white, .right-nav-white:hover .show-full-name {
+    color: var(--main-color);
+  }
+
+  .right-nav-white .line {
+    background-color: var(--main-color);
   }
 }
 

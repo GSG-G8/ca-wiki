@@ -11,14 +11,14 @@
 
 .img-container img {
   height: 110vh;
-  width: 380px;
+  width: 32rem;
 }
 
 .contact-container .content-container {
     width: 50%;
     margin-top: 120px;
     text-align: left;
-    margin-left: 80px;
+    margin-left: 5rem;
 }
 
 .contact-container .content-container h4 {
@@ -36,19 +36,23 @@
     color: var(--main-color);
 }
 
+.child-container .icons-container svg {
+    color: var(--content-blue-green);
+}
+
 .content-container .child-container {
-    margin-top: 30px;
+    margin-top: 3rem;
 }
 
 .content-container .child-container p {
-    color: var(--content-grey);
+    color: var(--content-blue-green);
 }
 
 .child-container .section-container-1 {
     display: flex;
     justify-content: space-between;
     width: 130px;
-    color: var(--content-grey) ;
+    color: var(--content-blue-green) ;
 }
 
 .child-container .section-container-1  p:hover {
@@ -69,13 +73,142 @@
     color: var(--main-color);
 }
 
+.content-container .rights {
+    position: absolute;
+    bottom: 1.66rem;
+    width: 90%;
+}
+
 .content-container .end-line {
     border-bottom: 1px dashed var(--main-color);
     width: 90%;
-    margin-top: 50px;
 }
 
 .content-container .copy-right {
     font-weight: bold;
+    color: var(--content-blue-green) ;
+    font-size: 12px;
     margin-top: 20px;
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    .child-container .icons-container {
+        width: 24%;
+    }
+}
+
+@media screen and (min-width: 769px) and (max-width: 900px) {
+    .img-container {
+        background-color: var(--main-white);
+    }
+}
+
+@media screen and (min-width: 769px) {
+    .contact-container .img-container {
+        width: 50vw;
+        height: 100vh;
+        position: absolute; 
+        right: 0px;
+        top: 0px;
+        z-index: -1;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .contact-container {
+        display: block;
+    }
+
+    .contact-container .content-container {
+        width: 89%;
+        margin-top: 20px;
+    }
+
+    .contact-container .content-container .content-parent {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        width: 100%;
+    }
+
+    .contact-container .content-container .content-parent .child-container {
+        width: 200px;
+    }
+
+    .child-container .icons-container {
+        width: 56%;
+    }
+
+    .contact-container .img-container {
+        width: 100%;
+        height: 39vh;
+        padding-left: 5rem;
+        background-color: var(--main-white);
+    }
+
+    .contact-container .img-container img {
+        height: 67%;
+        width: 32rem;
+        margin-top: 10rem;
+    }
+
+    .content-container .rights {
+        position: absolute;
+        bottom: 25px;
+        width: 100%;
+    }
+}
+
+@media screen and (min-width: 488px) and (max-width: 677px) {
+    .contact-container .content-container .content-parent {
+        width: 92%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .contact-container .img-container {
+        height: 33vh;
+    } 
+
+    .contact-container .img-container img {
+        height: 69%;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .contact-container .img-container {
+        height: 25vh;
+        text-align: left;
+    } 
+
+    .contact-container .img-container img {
+        height: 86%;
+    }
+
+    .contact-container .content-container {
+        margin-top: 10px;
+    }
+
+    .content-container .child-container {
+        margin-top: 20px;
+    }
+}
+
+@media screen and (max-width: 360px) {
+    .content-container .child-container {
+        font-size: 12px;
+    }
+
+    .content-container .rights {
+        position: absolute;
+        bottom: 1px;
+        width: 100%;
+    }
+
+    .content-container .copy-right {
+        font-weight: bold;
+        color: var(--content-blue-green);
+        font-size: 10px;
+        margin-top: 9px;
+    }
 }
