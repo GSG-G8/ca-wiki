@@ -98,7 +98,7 @@ class ProjectDetails extends Component {
           ) : (
             <div className="project-details">
               <div
-                className="project-img"
+                className="project-image"
                 style={{
                   background: `url(${data.img_url}) center center / cover no-repeat`,
                 }}
