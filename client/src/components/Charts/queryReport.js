@@ -1,8 +1,9 @@
 import { format } from 'date-fns';
+import getSecrets from '../../googleAuth/getSecrets';
 
-const queryReport = (props) => {
+const queryReport = async (props) => {
   const { startDate, endDate, metrics, dimensions, orderBy, filter } = props;
-
+  const { REACT_APP_VIEW_ID } = await getSecrets();
   const requestDimensions = (dimension) => {
     const result = [];
     dimension.forEach((item) => {
@@ -19,7 +20,7 @@ const queryReport = (props) => {
     body: {
       reportRequests: [
         {
-          viewId: process.env.REACT_APP_VIEW_ID,
+          viewId: REACT_APP_VIEW_ID,
           filtersExpression: filter,
           dateRanges: [
             {

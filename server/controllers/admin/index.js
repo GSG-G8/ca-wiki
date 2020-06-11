@@ -13,6 +13,7 @@ const putStudentData = require('./putStudentData');
 const getStats = require('./stats');
 const AssignProjectStudent = require('./AssignProjectStudent');
 const deleteAssignProjectStudent = require('./deleteAssignProjectStudent');
+const getSecret = require('./getSecret');
 
 module.exports = {
   addCohort,
@@ -30,4 +31,5 @@ module.exports = {
   getStats,
   AssignProjectStudent,
   deleteAssignProjectStudent,
+  getSecret,
 };
