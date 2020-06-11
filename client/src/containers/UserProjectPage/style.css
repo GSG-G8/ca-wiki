@@ -1,18 +1,19 @@
 .projects-container {
    margin: 0 auto;
    margin-top: 90px;
-   width: 63%;
+   width: 67%;
+   height: 87vh;
 }
 
 .projects-container h1 {
    color: var(--main-color);
-   font: Bold 30px var(--main-font);
-   margin-bottom: 27px;
+    font: Bold 2em var(--main-font);
+    margin-bottom: 1rem;
 }
 
 .projects-container .projectItem {
-   width: 200px;
-   height: 185px;
+   width: 15rem;
+   height: 14rem;
    display: inline-block;
    margin: 6px 9px;
    border-radius: 5px;
@@ -41,7 +42,7 @@
 }
 
 a:nth-child(4) .projectItem, a:nth-child(8) .projectItem {
-   width: 400px;
+   width: 30rem;
 }
 
 .project-page {
@@ -58,4 +59,77 @@ a:nth-child(4) .projectItem, a:nth-child(8) .projectItem {
 .project-page-link h2 {
    color: var(--main-color);
    font-weight: bold;
+}
+
+/* Media Query */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+   .projects-container {
+      width: 74%;
+   }
+
+   .projects-container h1 {
+      font-size: 1.6em;
+   }
+
+   .projects-container h1 {
+      font-size: 1.6em;
+   }
+}
+
+@media screen and (min-width: 901px) and (max-width: 1024px) {
+   .projects-container .projectItem {
+      width: 18rem;
+      height: 15rem;
+   }
+
+   a:nth-child(4) .projectItem, a:nth-child(8) .projectItem {
+      width: 32rem;
+   }
+}
+
+@media screen and (min-width: 769px) and (max-width: 900px) {
+   .projects-container .projectItem {
+      width: 18rem;
+      height: 15rem;
+   }
+
+   a:nth-child(4) .projectItem, a:nth-child(8) .projectItem {
+      width: 32rem;
+   }
+}
+
+@media screen and (max-width: 768px) {
+   .projects-container h1 {
+      text-align: left;
+   }
+}
+
+@media screen and (min-width: 601px) and (max-width: 768px) {
+   .projects-container h1 {
+      font-size: 1.4em;
+   }
+}
+
+@media screen and (min-width: 481px) and (max-width: 600px) {
+   .projects-container {
+      width: 90%;
+      margin-top: 60px;
+   }
+
+   .projects-container h1 {
+      font-size: 1.3em;
+      margin-bottom: 2rem;
+   }
+}
+
+@media screen and (max-width: 480px) {
+   .projects-container {
+      width: 95%;
+      margin-top: 60px;
+   }
+
+   .projects-container h1 {
+      font-size: 1.2em;
+      margin-bottom: 2rem;
+   }
 }
