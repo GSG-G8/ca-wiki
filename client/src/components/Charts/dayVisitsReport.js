@@ -98,7 +98,11 @@ const DayVisitsReport = (props) => {
     queryReport(request)
       .then((resp) => displayResults(resp))
       .catch((error) => {
-        const { message } = error;
+        const {
+          result: {
+            error: { message },
+          },
+        } = error;
         notification.error({
           message: 'Error',
           description: message,

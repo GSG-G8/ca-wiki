@@ -18,8 +18,10 @@ export const ALUMNI_PAGE = '/alumni';
 export const SPECIFIC_COHORT_PAGE = '/cohorts/:cohortId';
 export const COHORT_PROJECTS_PAGE = '/cohorts/:cohortId/projects';
 export const COHORT_ALUMNI_PAGE = '/cohorts/:cohortId/alumni';
+export const SPECIFIC_ALUMNUS_PAGE = '/alumni/:alumniId';
 export const SPECIFIC_PROJECT_PAGE = '/projects/:projectId';
 export const SPECIFIC_COHORT_PROJECT_PAGE =
   '/cohorts/:cohortId/projects/:projectId';
 export const CONTACT_US_PAGE = '/contact-us';
 export const SEARCH_PAGE = '/search';
+export const ERROR404 = '/error404';

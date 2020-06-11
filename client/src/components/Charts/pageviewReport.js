@@ -3,6 +3,7 @@ import { addDays } from 'date-fns';
 import { notification } from 'antd';
 import CustomDatePicker from './datepicker';
 import queryReport from './queryReport';
+import getSecrets from '../../googleAuth/getSecrets';
 
 const PageviewsReport = () => {
   const [reportData, setReportData] = useState([]);
@@ -30,9 +31,10 @@ const PageviewsReport = () => {
     setReportData(newReportData);
   };
 
-  useEffect(() => {
+  useEffect(async () => {
+    const { REACT_APP_VIEW_ID } = await getSecrets();
     const request = {
-      viewID: process.env.REACT_APP_VIEW_ID,
+      viewID: REACT_APP_VIEW_ID,
       startDate,
       endDate,
       metrics: 'ga:pageviews',

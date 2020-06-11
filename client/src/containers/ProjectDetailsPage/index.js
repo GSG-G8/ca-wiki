@@ -29,14 +29,9 @@ class ProjectDetails extends Component {
       this.setState({ data, cohortData });
       this.getStudents();
     } catch (err) {
-      const {
-        response: {
-          data: { message },
-        },
-      } = err;
       notification.error({
         message: 'Error',
-        description: message,
+        description: err.message,
       });
     }
   }
@@ -56,14 +51,9 @@ class ProjectDetails extends Component {
         this.setState({ students });
       }
     } catch (err) {
-      const {
-        response: {
-          data: { message },
-        },
-      } = err;
       notification.error({
         message: 'Error 404',
-        description: message,
+        description: err.message,
       });
     }
   }
