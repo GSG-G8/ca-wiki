@@ -15,6 +15,7 @@ const {
   login,
   AssignProjectStudent,
   deleteAssignProjectStudent,
+  getSecret,
 } = require('../controllers');
 
 router.post('/login', login);
@@ -37,6 +38,7 @@ router.route('/projects/:projectId').put(editProject).delete(deleteProjectData);
 router.post('/projects', addProject);
 
 router.get('/stats', getStats);
+router.get('/secrets', getSecret);
 router.get('/logout', logout);
 
 module.exports = router;

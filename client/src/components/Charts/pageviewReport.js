@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import { addDays } from 'date-fns';
 import { notification } from 'antd';
 import CustomDatePicker from './datepicker';
@@ -30,9 +31,14 @@ const PageviewsReport = () => {
     setReportData(newReportData);
   };
 
-  useEffect(() => {
+  useEffect(async () => {
+    const {
+      data: {
+        data: { REACT_APP_VIEW_ID },
+      },
+    } = await axios.get('/api/v1/secrets');
     const request = {
-      viewID: process.env.REACT_APP_VIEW_ID,
+      viewID: REACT_APP_VIEW_ID,
       startDate,
       endDate,
       metrics: 'ga:pageviews',

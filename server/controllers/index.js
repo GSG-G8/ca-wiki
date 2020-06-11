@@ -23,6 +23,7 @@ const {
   getStats,
   AssignProjectStudent,
   deleteAssignProjectStudent,
+  getSecret,
 } = require('./admin');
 
 module.exports = {
@@ -50,4 +51,5 @@ module.exports = {
   getStudentProjects,
   AssignProjectStudent,
   deleteAssignProjectStudent,
+  getSecret,
 };
