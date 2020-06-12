@@ -336,6 +336,10 @@
     width: 44%;
     height: 28%;
   }
+
+  .contact {
+    font-size: 12px;
+  }
 }
 
 @media screen and (max-width: 320px) {
