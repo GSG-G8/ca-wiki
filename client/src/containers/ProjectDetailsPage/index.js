@@ -68,7 +68,7 @@ class ProjectDetails extends Component {
     const projectType = data.project_type;
     return (
       <UserContainer headerLogo={logo} isProjectsPage toolsTreeImg>
-        <div className="projects-container">
+        <div className="project-detail-container">
           {cohortId ? (
             <>
               <h1>{cohortData.name}</h1>
