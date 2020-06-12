@@ -11,7 +11,6 @@ a:nth-child(5) .projectItem, a:nth-child(9) .projectItem {
    .project-detail-container .primary-title {
       font-size: 1.4em;
   }
-
 }
 
 @media screen and (max-width: 768px) {

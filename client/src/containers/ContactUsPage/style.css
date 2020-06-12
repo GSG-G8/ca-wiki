@@ -76,12 +76,12 @@
 .content-container .rights {
     position: absolute;
     bottom: 1.66rem;
-    width: 90%;
+    width: 50%;
 }
 
 .content-container .end-line {
     border-bottom: 1px dashed var(--main-color);
-    width: 90%;
+    width: 80%;
 }
 
 .content-container .copy-right {
