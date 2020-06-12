@@ -55,7 +55,7 @@
 
 .admin-chart .date-picker input:focus {
     outline: none;
-    border-color: #ffa63a;;
+    border-color: #ffa63a;
 }
 
 .admin-chart .react-datepicker-wrapper {

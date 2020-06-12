@@ -5,6 +5,10 @@
     background: var(--main-white);
 }
 
+.ant-card-hoverable:hover {
+    box-shadow: inset 5px 5px 12px 3px #f0f0f0;
+}
+
 .card_img {
     width: 90px;
     height: 90px;
@@ -12,14 +16,14 @@
 }
 
 .child_container {
-    margin-top: 180px;
+    margin-top: 135px;
     margin-right: 60px;
 
 }
 
 .title_heading {
-    font: Bold 40px/48px var(--main-font);
     color: var(--main-color);
+    font: Bold 30px var(--main-font);
     margin: 0 0 55px 60px;
 }
 
@@ -39,7 +43,7 @@
 
 .card_paragraph {
     font: Bold 14px var(--main-font);
-    color: var(--main-black);
+    color: var(--content-blue-green);
 }
 
 .github_anchor {
@@ -86,4 +90,15 @@
 
 .ant-card-body {
     padding: 0px;
+}
+
+.carousel {
+    padding: 0 80px;
+    margin: 0 auto;
+}
+
+@media screen and (max-width: 900px) {
+    .carousel {
+        padding: 0 43px;
+    }
 }

@@ -1,95 +1,11 @@
-.projects-container h1 {
-    color: var(--main-color);
-    font: Bold 30px var(--main-font);
-    margin-bottom: 14px;
-}
-
-.projects-container h2 {
-    color: var(--content-blue-green);
-    font: Bold 20px var(--main-font);
-}
-
-.projects-container {
-    width: 67%!important;
-}
-
-.alumni-details {
-    display: flex;
-    justify-content: space-between;
-}
-
-.alumni-details .alumni-img {
-    width: 35%;
-    border-radius: 5px;
-}
-
-.alumni-details .alumni-desc {
-    width: 60%;
-    text-align: left;
-    padding: 5px;
-}
-
-.alumni-details .alumni-desc h3 {
-    color: var(--main-color);
-    font: bold 18px var(--main-font);
-}
-
-.alumni-details .alumni-desc h4 {
-    color: var(--content-blue-green);
-    font: bold 14px var(--main-font);
-}
-
-.alumni-details .alumni-desc p {
-    color: var(--content-blue-green);
-    font: bold 14px var(--main-font);
-    line-height: 28px;
-    margin-bottom: 28px;
-}
-
-.alumni-details .alumni-desc ul, .alumni-details .alumni-desc ul li a {
-    color: var(--content-blue-green);
-}
-
-.alumni-details .alumni-desc ul li {
-    margin-bottom: 10px;
-    font: bold 14px var(--main-font);
-}
-
-.alumni-details .alumni-desc ul > li:before {
-    content: '*';
-    margin: 0 0.5em;
-}
-
-.alumni-details .alumni-desc ul li ol {
-    list-style-type: decimal;
-    margin-left: 50px;
-    display: inline-grid;
-}
-
-.alumni-details .alumni-desc ul li ol li {
-    list-style-position: inside;
-}
-
 .alumni_projects {
     display: flex;
     justify-content: space-between;
+    margin-top: 4rem;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 455px) {
     .alumni_projects {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-    }
-
-    .alumni-details {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-    }
-
-    .alumni-details .alumni-img {
-        width: 35%;
-        border-radius: 5px;
+        display: block;
     }
   }
