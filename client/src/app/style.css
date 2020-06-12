@@ -45,7 +45,6 @@ li {
   bottom: 4%;
   left: 50%;
   transform: translate(-50%, -5%);
-  width: 60%;
 }
 
 .ant-pagination-item a {
@@ -74,8 +73,9 @@ li {
 }
 
 @media screen and (max-width: 480px) {
-  .pagination {
-    display: flex;
-    justify-content: space-between;
+  .ant-pagination-item, .ant-pagination-prev, .ant-pagination-next {
+    min-width: 28px;
+    height: 28px;
+    line-height: 26px;
   }
 }
