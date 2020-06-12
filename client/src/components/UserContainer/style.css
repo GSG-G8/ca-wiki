@@ -124,7 +124,7 @@
   right: 0;
   width: 5rem;
   background-color: transparent;
-  font-size: 2em;
+  font-size: 1.7em;
   font-weight: bold;
   text-align: left;
 }
@@ -335,5 +335,15 @@
   .project-details .project-image {
     width: 44%;
     height: 28%;
+  }
+
+  .contact {
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .header-left img, .menu-header img {
+    width: 156px;
   }
 }
