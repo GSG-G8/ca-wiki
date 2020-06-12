@@ -284,6 +284,10 @@
   .header-left img, .menu-header img {
     width: 173px;
   }
+
+  .main-header {
+    padding-top: 8rem;
+  }
 }
 
 @media screen and (max-width: 600px) {
@@ -320,7 +324,7 @@
 
   .right-nav-list {
     font-size: 0.9em;
-    top: 7%;
+    top: 11%;
     right: 10px;
   }
 
