@@ -1,9 +1,22 @@
-.projects-container h2 {
-    color: var(--main-color);
-    font: Bold 1.4em var(--main-font);
+.project-detail-container {
+    margin: 0 auto;
+    margin-top: 90px;
+    width: 70%;
+    height: 87vh;
 }
 
-.projects-container .project-detail {
+.project-detail-container h1 {
+    color: var(--main-color);
+    font: Bold 2em var(--main-font);
+    margin-bottom: 2rem;
+}
+
+.project-detail-container h2 {
+    color: var(--main-color);
+    font: Bold 1.5em var(--main-font);
+}
+
+.project-detail-container .project-detail {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
@@ -14,7 +27,7 @@
 .project-detail .project-image {
     width: 35%;
     border-radius: 5px;
-    height: 70%;
+    height: 65%;
 }
 
 .project-detail .project-desc {
@@ -61,15 +74,36 @@
 
 /* Media Query */
 @media screen and (min-width: 769px) and (max-width: 1024px) {
+    .project-detail-container {
+        width: 87%;
+    }
+
+    .project-detail-container h1 {
+        font-size: 1.6em;
+    }
+
+    .project-detail-container h2 {
+        font-size: 1.4em;
+    }
+
+
     .project-detail .project-image  {
         height: 58%;
     }
 }
 
 @media screen and (max-width: 768px) {
-    .projects-container .project-detail {
+    .project-detail-container {
+        margin-top: 70px;
+    }
+
+    .project-detail-container .project-detail {
         display: block;
         padding: 0;
+    }
+
+    .project-detail-container h1, .project-detail-container h2 {
+        text-align: left;
     }
 
     .project-detail .project-desc {
@@ -88,6 +122,15 @@
         height: 40%;
     }
 
+    .project-detail-container h1 {
+        font-size: 1.4em;
+        margin-bottom: 1rem;
+    }
+
+    .project-detail-container h2 {
+        font-size: 1.2em;
+    }
+
     .project-detail .project-desc h3 {
         font-size: 1.1em;
     }
@@ -104,6 +147,18 @@
 }
   
 @media screen and (min-width: 481px) and (max-width: 600px) {
+    .project-detail-container {
+        width: 90%;
+    } 
+
+    .project-detail-container h1 {
+        font-size: 1.3em;
+    } 
+
+    .project-detail-container h2 {
+        font-size: 1.2em;
+    } 
+
     .project-detail .project-image {
         width: 41%;
         height: 35%;
@@ -111,12 +166,20 @@
 }
 
 @media screen and (max-width: 480px) {
+    .project-detail-container {
+        width: 94%;
+    }
+
+    .project-detail-container h1, .project-detail-container h2 {
+        font-size: 1em;
+    }
+
     .project-detail .project-image {
         width: 50%;
         height: 30%;
     }
 
-    .projects-container .project-detail {
+    .project-detail-container .project-detail {
         margin-top: 4rem;
     }
 }

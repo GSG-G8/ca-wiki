@@ -46,7 +46,7 @@ class AlumnusDetails extends Component {
     const { studentData, studentProjects, cohortData } = this.state;
     return (
       <UserContainer headerLogo={logo} isProjectsPage toolsTreeImg>
-        <div className="projects-container">
+        <div className="project-detail-container">
           <h1>ALUMNI</h1>
           <h2>Welcome to {studentData.name} page</h2>
           {studentData.length === 0 ? (
