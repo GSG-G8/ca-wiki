@@ -114,7 +114,7 @@ class AdminProject extends Component {
                       imgUrl={item.img_url}
                       name={item.name}
                       description={item.description}
-                      githbUrl={item.github_url}
+                      githbUrl={item.github_link}
                       websiteLink={item.website_link}
                       projectId={item.id}
                       editCard={`/admin/cohorts/${cohortId}/projects/${item.id}/edit`}
