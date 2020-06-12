@@ -38,7 +38,7 @@ class UserProject extends Component {
     const {
       location: { search },
     } = this.props;
-    if (search !== prevProps.search) {
+    if (search !== prevProps.location.search) {
       this.getProjects();
     }
   }
