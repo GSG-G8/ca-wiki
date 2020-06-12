@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 import { notification, Card, Avatar, Skeleton } from 'antd';
 import ItemsCarousel from 'react-items-carousel';
+import { FaArrowAltCircleRight, FaArrowAltCircleLeft } from 'react-icons/fa';
 import whiteLogo from '../../assets/images/login-logo.jpeg';
 import coloredLogo from '../../assets/images/logo.png';
 import UserContainer from '../../components/UserContainer';
@@ -161,17 +162,17 @@ class CohortsAlumni extends Component {
       >
         {type === 'Cohorts' ? <div className="left" /> : null}
 
-        <div className="child_container">
+        <div className="child-container">
           {type === 'Cohorts' ? (
-            <h1 className="title_heading">
-              <span className="title_span">Coh</span>orts
+            <h1 className="title-heading">
+              <span className="title-span">Coh</span>orts
             </h1>
           ) : type === 'Alumni' ? (
-            <h1 className="title_heading">Alumni</h1>
+            <h1 className="title-heading">Alumni</h1>
           ) : (
             <>
-              <h1 className="title_heading">{cohortName}</h1>
-              <h2 className="cohort_alumni_heading">{cohortName} Alumni</h2>
+              <h1 className="title-heading">{cohortName}</h1>
+              <h2 className="cohort-alumni-heading">{cohortName} Alumni</h2>
             </>
           )}
 
@@ -192,11 +193,11 @@ class CohortsAlumni extends Component {
               requestToChangeActive={(value) =>
                 this.setState({ activeItemIndex: value })
               }
-              rightChevron={'>'}
-              leftChevron={'<'}
+              rightChevron={<FaArrowAltCircleRight className="slider-arrow" />}
+              leftChevron={<FaArrowAltCircleLeft className="slider-arrow" />}
             >
               {data.length === 0 ? (
-                <Card className="loading_card">
+                <Card className="loading-card">
                   <Skeleton loading avatar active>
                     <Meta
                       avatar={
@@ -211,28 +212,29 @@ class CohortsAlumni extends Component {
                 data.map((cohort) => (
                   <Card
                     hoverable
-                    className="cohort_card"
+                    className="cohort-card"
                     style={{ overflow: 'auto' }}
                     onClick={() => this.redirectFunc(cohort)}
                     key={cohort.id}
                   >
-                    <img
-                      alt={cohort.name}
-                      src={cohort.img_url}
-                      className="card_img"
+                    <div
+                      style={{
+                        background: `url(${cohort.img_url}) center center / cover no-repeat`,
+                      }}
+                      className="card-img"
                       key={cohort.id}
                     />
-                    <h2 className="card_heading">{cohort.name}</h2>
+                    <h2 className="card-heading">{cohort.name}</h2>
                     {type === 'Cohorts' ? (
-                      <p className="card_paragraph">{cohort.description}</p>
+                      <p className="card-paragraph">{cohort.description}</p>
                     ) : (
                       <>
-                        <a href={cohort.github_link} className="github_anchor">
+                        <a href={cohort.github_link} className="github-anchor">
                           Github Page
                         </a>
                         <a
                           href={`mailto:${cohort.email}`}
-                          className="github_anchor"
+                          className="github-anchor"
                         >
                           Email
                         </a>
