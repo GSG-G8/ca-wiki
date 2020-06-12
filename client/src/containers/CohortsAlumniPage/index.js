@@ -172,7 +172,7 @@ class CohortsAlumni extends Component {
           ) : (
             <>
               <h1 className="title-heading">{cohortName}</h1>
-              <h2 className="cohort-alumni-heading">{cohortName} Alumni</h2>
+              <h2 className="cohort-alumni-heading">Alumni</h2>
             </>
           )}
 
