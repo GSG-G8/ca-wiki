@@ -8,7 +8,7 @@
 .projects-container h1 {
    color: var(--main-color);
     font: Bold 2em var(--main-font);
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
 }
 
 .projects-container .projectItem {
@@ -102,6 +102,15 @@ a:nth-child(4) .projectItem, a:nth-child(8) .projectItem {
    .projects-container h1 {
       text-align: left;
    }
+
+   .projects-container .projectItem {
+      width: 19rem;
+      height: 18rem;
+   }
+
+   a:nth-child(4) .projectItem, a:nth-child(8) .projectItem {
+      width: 38rem;
+   }
 }
 
 @media screen and (min-width: 601px) and (max-width: 768px) {
@@ -131,5 +140,27 @@ a:nth-child(4) .projectItem, a:nth-child(8) .projectItem {
    .projects-container h1 {
       font-size: 1.2em;
       margin-bottom: 2rem;
+   }
+
+   .projects-container .projectItem {
+      width: 33rem;
+      height: 32rem;
+      margin-bottom: 4rem;
+   }
+
+   a:nth-child(4) .projectItem, a:nth-child(8) .projectItem {
+      width: 49rem;
+   }
+}
+
+@media screen and (max-width: 375px) {
+   .projects-container .projectItem {
+      width: 26rem;
+      height: 28rem;
+      margin-bottom: 6rem;
+   }
+
+   a:nth-child(4) .projectItem, a:nth-child(8) .projectItem {
+      width: 43rem;
    }
 }

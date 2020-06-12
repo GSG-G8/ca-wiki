@@ -45,6 +45,7 @@ li {
   bottom: 4%;
   left: 50%;
   transform: translate(-50%, -5%);
+  width: 60%;
 }
 
 .ant-pagination-item a {
@@ -70,4 +71,11 @@ li {
 .ant-list-split .ant-list-item {
   border-bottom: none;
   padding: 0;
+}
+
+@media screen and (max-width: 480px) {
+  .pagination {
+    display: flex;
+    justify-content: space-between;
+  }
 }

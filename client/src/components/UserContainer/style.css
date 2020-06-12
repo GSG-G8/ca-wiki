@@ -225,16 +225,27 @@
 
 .tools-img {
   position: absolute;
-  top: 13.4rem;
+  top: 8rem;
   right: 6.8rem;
   width: 6.7rem;
 }
 
 .tree-img {
   position: absolute;
-  bottom: 2.9rem;
+  bottom: 2rem;
   left: 3.78rem;
-  width: 6.7rem;
+  width: 6rem;
+}
+
+@media screen and (max-width: 1024px) {
+  .right-nav-list {
+    font-size: 1em;
+    top: 36%;
+  }
+
+  .right-nav-list li {
+    margin-bottom: 1rem;
+  }
 }
 
 @media screen and (min-width: 769px) and (max-width: 1024px) {
@@ -305,6 +316,16 @@
   .menu-social {
     margin-top: 7rem;
     padding-right: 3.5rem;
+  }
+
+  .right-nav-list {
+    font-size: 0.9em;
+    top: 7%;
+    right: 10px;
+  }
+
+  .right-nav-active .line {
+    width: 152%;
   }
 
   .project-details .project-image {

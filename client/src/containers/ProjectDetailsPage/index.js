@@ -86,7 +86,7 @@ class ProjectDetails extends Component {
           {data.length === 0 ? (
             <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} className="empty" />
           ) : (
-            <div className="project-details">
+            <div className="project-detail">
               <div
                 className="project-image"
                 style={{

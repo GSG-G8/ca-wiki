@@ -7,8 +7,6 @@ import whiteLogo from '../../assets/images/login-logo.jpeg';
 import coloredLogo from '../../assets/images/logo.png';
 import UserContainer from '../../components/UserContainer';
 
-import leftSvg from '../../assets/images/Group 2423.svg';
-import rightSvg from '../../assets/images/Group 2381.svg';
 import './styles.css';
 
 const { Meta } = Card;
@@ -158,21 +156,11 @@ class CohortsAlumni extends Component {
         rightPageColor="black"
         headerLogo={type === 'Cohorts' ? whiteLogo : coloredLogo}
         isCohortPages={isCohortPages}
+        toolsTreeImg
         cohortId={isCohortPages ? cohortId : null}
       >
-        {type === 'Cohorts' ? (
-          <div className="left">
-            <img src={leftSvg} alt="background" className="leftSvg" />
-          </div>
-        ) : (
-          <div>
-            <img src={leftSvg} alt="background" className="leftSvg" />
-          </div>
-        )}
+        {type === 'Cohorts' ? <div className="left" /> : null}
 
-        <div className="right">
-          <img src={rightSvg} alt="background" className="rightSvg" />
-        </div>
         <div className="child_container">
           {type === 'Cohorts' ? (
             <h1 className="title_heading">
@@ -187,7 +175,7 @@ class CohortsAlumni extends Component {
             </>
           )}
 
-          <div style={{ padding: '0 80px', margin: '0 auto' }}>
+          <div className="carousel">
             <ItemsCarousel
               infiniteLoop={false}
               gutter={12}
