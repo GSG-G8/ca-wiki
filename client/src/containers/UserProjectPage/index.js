@@ -17,6 +17,19 @@ class UserProject extends Component {
   };
 
   async componentDidMount() {
+    this.getData();
+  }
+
+  componentDidUpdate(prevProps) {
+    const {
+      location: { search },
+    } = this.props;
+    if (search !== prevProps.location.search) {
+      this.getData();
+    }
+  }
+
+  async getData() {
     try {
       const {
         location: { search },
@@ -25,7 +38,13 @@ class UserProject extends Component {
         const res = await axios.get(`/api/v1/projects${search}`);
         const { data } = res.data;
         const total = Math.ceil(data.length / 6) * 10;
-        this.setState({ data, total });
+        this.setState({
+          data,
+          total,
+          currentPage: 1,
+          startPage: 0,
+          endPage: 6,
+        });
       }
     } catch (err) {
       const {
