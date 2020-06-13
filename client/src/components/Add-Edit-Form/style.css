@@ -2,7 +2,6 @@
   padding: 1em 2rem;
   text-align: left;
   height: 98%;
-  width: 90%;
   border-radius: 10px;
   background: linear-gradient(140deg, var(--main-color) 46%, var(--main-white) 47%);
   position: relative;
@@ -33,6 +32,7 @@
 
 .add-form-row .ant-form-item-label {
   text-align: left;
+  min-width: 125px;
 }
 
 .cohort-form {
@@ -124,20 +124,73 @@ border: 0;
     vertical-align: top;
 }
 
-
-.add-form-select > .ant-select-show-search.ant-select-multiple  > .ant-select-arrow {
-  top: 10%;
+.project-form .ant-form-item {
+  margin-bottom: 12px;
 }
 
 .add-form-select{
   display: flex;
+  height: 29px;
+  margin-bottom: 12px;
 }
+
+.add-form-select .select-lable {
+  min-width: 125px;
+}
+
+.project-form .ant-select {
+  position: relative;
+}
+
+.project-form .ant-select-arrow {
+  position: absolute;
+  top: 13px;
+}
+
+
 
 .add-form-select .select-lable {
   color: rgba(0, 0, 0, 0.85);
   display: inline-block;
   text-align: left;
   width: 140px;
-  margin-bottom: 24px;
   border-bottom: 1px solid var(--input-border);
+}
+
+.form-container ::-webkit-scrollbar {
+  width: 12px;
+  background-color: var(--main-white);
+}
+
+.form-container ::-webkit-scrollbar-thumb {
+  background: var(--main-color); 
+  border-radius: 5px;
+}
+
+@media (max-width: 578px) {
+  .add-form-row .ant-col {
+    border-bottom: 0;
+  }
+  .add-form-row .ant-form-item-control {
+    border: 1px solid var(--input-border);
+  }
+  .add-form-select{
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+  }
+  .add-form-select .select-lable{
+    border-bottom: 0;
+    width: 100%;
+    padding-bottom: 9px;
+  }
+  .add-form-select .ant-select{
+    width: 100%;
+  }
+  .add-form-select > .ant-select-show-search.ant-select-multiple .ant-select-selector {
+    border-bottom: 0;
+    border: 1px solid var(--input-border);
+  }
+  .cohort-form .ant-col{
+    margin: 15px 0 0;
+  }
 }

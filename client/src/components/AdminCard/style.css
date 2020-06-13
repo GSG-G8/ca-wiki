@@ -88,7 +88,7 @@
 }
 
 .description-btn:hover, .description-btn:focus {
-    color: var(--content-grey);
+    color: var(--main-color);
 }
 
 .description {
@@ -144,12 +144,6 @@
 }
 
 @media screen and (max-width: 762px) {
-    .admin-content {
-        overflow: auto;
-        height: 52vh;
-        margin-top: 10rem;
-    }
-
     .admin-card {
         display: block;
         height: 328px;

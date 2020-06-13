@@ -324,7 +324,9 @@ class AddEditForm extends Component {
         {addOrEdit ? (
           <div className="form-container">
             <Form
-              className="add-data-form"
+              className={`add-data-form ${
+                formType === 'project' ? 'project-form' : ''
+              }`}
               labelCol={{ span: 3 }}
               wrapperCol={{ span: 21 }}
               name="basic"
