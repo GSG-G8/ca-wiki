@@ -110,10 +110,10 @@ This will create the tables in your database.
 
 Environment variables are one of the ways we keep our product safe. If you want to access our app locally you will need to add your own.
 
-First create a [.env](https://github.com/dwyl/env2#create-a-env-file) file and add the following variables:
+First create a [.env](https://www.npmjs.com/package/dotenv) file and add the following variables:
 
 ```
-DATABASE_URL
+DB_URL
 SECRET_KEY
 ```
 
