@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { notification, Empty } from 'antd';
+import { notification, Empty, Spin } from 'antd';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import logo from '../../assets/images/logo.png';
@@ -11,6 +11,7 @@ class AlumnusDetails extends Component {
     studentData: [],
     studentProjects: [],
     cohortData: [],
+    loading: true,
   };
 
   async componentDidMount() {
@@ -33,7 +34,12 @@ class AlumnusDetails extends Component {
       const {
         data: { data: cohortData },
       } = cohort;
-      this.setState({ studentData, studentProjects, cohortData });
+      this.setState({
+        studentData,
+        studentProjects,
+        cohortData,
+        loading: false,
+      });
     } catch (err) {
       notification.error({
         message: 'Error',
@@ -43,13 +49,15 @@ class AlumnusDetails extends Component {
   }
 
   render() {
-    const { studentData, studentProjects, cohortData } = this.state;
+    const { studentData, studentProjects, cohortData, loading } = this.state;
     return (
       <UserContainer headerLogo={logo} isProjectsPage toolsTreeImg>
         <div className="projects-container">
           <h1>ALUMNI</h1>
           <h2>Welcome to {studentData.name} page</h2>
-          {studentData.length === 0 ? (
+          {loading && studentData.length === 0 ? (
+            <Spin size="large" />
+          ) : !loading && studentData.length === 0 ? (
             <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} className="empty" />
           ) : (
             <div className="alumni-details">

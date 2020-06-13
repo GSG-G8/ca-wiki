@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { notification, Modal, Empty, List, Pagination } from 'antd';
+import { notification, Modal, Empty, List, Pagination, Spin } from 'antd';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 
 import AdminContainer from '../../components/AdminContainer';
@@ -15,13 +15,14 @@ class Cohort extends Component {
     endPage: 4,
     total: 5,
     currentPage: 1,
+    loading: true,
   };
 
   async componentDidMount() {
     try {
       const res = await axios.get('/api/v1/cohorts');
       const { data } = res.data;
-      this.setState({ data, total: data.length * 2.5 });
+      this.setState({ data, total: data.length * 2.5, loading: false });
     } catch (err) {
       notification.error({
         message: 'Internal Server Error',
@@ -71,7 +72,14 @@ class Cohort extends Component {
   };
 
   render() {
-    const { data, startPage, endPage, total, currentPage } = this.state;
+    const {
+      data,
+      startPage,
+      endPage,
+      total,
+      currentPage,
+      loading,
+    } = this.state;
     const list = data.slice(startPage, endPage);
     return (
       <div>
@@ -79,7 +87,9 @@ class Cohort extends Component {
           buttonContent="Add Cohort"
           buttonRoute="/admin/cohorts/add"
         >
-          {data.length === 0 ? (
+          {loading && data.length === 0 ? (
+            <Spin size="large" />
+          ) : !loading && data.length === 0 ? (
             <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} className="empty" />
           ) : (
             <div>

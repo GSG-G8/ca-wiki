@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import { notification, Modal, Empty, List, Pagination } from 'antd';
+import { notification, Modal, Empty, List, Pagination, Spin } from 'antd';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 
 import AdminContainer from '../../components/AdminContainer';
@@ -16,6 +16,7 @@ class Student extends Component {
     endPage: 4,
     total: 5,
     currentPage: 1,
+    loading: true,
   };
 
   async componentDidMount() {
@@ -27,7 +28,7 @@ class Student extends Component {
     try {
       const res = await axios.get(`/api/v1/cohorts/${cohortId}/alumni`);
       const { data } = res.data;
-      this.setState({ data, total: data.length * 2.5 });
+      this.setState({ data, total: data.length * 2.5, loading: false });
     } catch (err) {
       notification.error({
         message: 'Internal Server Error',
@@ -82,7 +83,14 @@ class Student extends Component {
         params: { cohortId },
       },
     } = this.props;
-    const { data, startPage, endPage, total, currentPage } = this.state;
+    const {
+      data,
+      startPage,
+      endPage,
+      total,
+      currentPage,
+      loading,
+    } = this.state;
     const list = data.slice(startPage, endPage);
     return (
       <div>
@@ -90,7 +98,9 @@ class Student extends Component {
           buttonContent="Add Student"
           buttonRoute={`/admin/cohorts/${cohortId}/students/add`}
         >
-          {data.length === 0 ? (
+          {loading && data.length === 0 ? (
+            <Spin size="large" />
+          ) : !loading && data.length === 0 ? (
             <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} className="empty" />
           ) : (
             <div>

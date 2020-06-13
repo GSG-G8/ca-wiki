@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Pagination, notification, Empty } from 'antd';
+import { Pagination, notification, Empty, Spin } from 'antd';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import PropTypes from 'prop-types';
@@ -15,6 +15,7 @@ class UserProject extends Component {
     total: 0,
     cohortName: '',
     currentPage: 1,
+    loading: true,
   };
 
   async componentDidMount() {
@@ -83,7 +84,7 @@ class UserProject extends Component {
         const cohortName = data.filter(
           (cohort) => cohort.id === parseInt(cohortId, 10)
         )[0].name;
-        this.setState({ cohortName });
+        this.setState({ cohortName, loading: false });
       }
     } catch (err) {
       const {
@@ -106,6 +107,7 @@ class UserProject extends Component {
       endPage,
       cohortName,
       currentPage,
+      loading,
     } = this.state;
     const {
       match: {
@@ -129,7 +131,9 @@ class UserProject extends Component {
           ) : (
             <h2>Remotely Projects Phase</h2>
           )}
-          {data.length === 0 ? (
+          {loading && data.length === 0 ? (
+            <Spin size="large" />
+          ) : !loading && data.length === 0 ? (
             <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} className="empty" />
           ) : (
             dataList.map((item) => (
