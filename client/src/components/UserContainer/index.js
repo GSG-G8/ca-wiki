@@ -93,6 +93,7 @@ class UserContainer extends Component {
                   </NavLink>
                   <NavLink
                     to={ROUTES.COHORTS_PAGE}
+                    exact
                     activeClassName="header-list-active"
                     className="header-list"
                     onClick={this.reverseShow}

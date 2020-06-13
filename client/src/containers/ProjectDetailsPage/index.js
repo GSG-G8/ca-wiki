@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { notification, Empty } from 'antd';
 import axios from 'axios';
 import PropTypes from 'prop-types';
@@ -44,11 +45,23 @@ class ProjectDetails extends Component {
     } = this.props;
     try {
       if (projectId) {
-        const result = await axios.get(`/api/v1/projects/${projectId}/alumni`);
+        const allStudentsData = await axios.get(`/api/v1/alumni`);
         const {
-          data: { data: students },
-        } = result;
-        this.setState({ students });
+          data: { data: allStudents },
+        } = allStudentsData;
+
+        const studentsNameForProject = await axios.get(
+          `/api/v1/projects/${projectId}/alumni`
+        );
+        const {
+          data: { data: studentsName },
+        } = studentsNameForProject;
+
+        const selectedStudentsData = allStudents.filter((student) =>
+          studentsName.includes(student.name)
+        );
+
+        this.setState({ students: selectedStudentsData });
       }
     } catch (err) {
       notification.error({
@@ -112,8 +125,15 @@ class ProjectDetails extends Component {
                   <li>
                     Students
                     <ol>
-                      {students.map((row) => (
-                        <li>{row}</li>
+                      {students.map((student) => (
+                        <li>
+                          <Link
+                            to={`/alumni/${student.id}`}
+                            title={`${student.name} Details `}
+                          >
+                            {student.name}
+                          </Link>
+                        </li>
                       ))}
                     </ol>
                   </li>
