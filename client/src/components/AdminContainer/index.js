@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink, useHistory, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Layout, Button } from 'antd';
@@ -11,11 +11,37 @@ import * as ROUTES from '../../constants/routes';
 const { Header } = Layout;
 
 const AdminContainer = ({ children, buttonContent, buttonRoute }) => {
+  const [prevPath, setPrevPath] = useState();
   const history = useHistory();
   const {
     location: { pathname },
     goBack,
+    push,
   } = history;
+
+  useEffect(() => {
+    setPrevPath(pathname);
+  }, []);
+
+  const checkGoBack = () => {
+    if (
+      prevPath.includes('add/remotely') ||
+      prevPath.includes('add/internal') ||
+      prevPath.includes('edit')
+    ) {
+      goBack();
+    } else if (
+      prevPath.includes('students') ||
+      prevPath.includes('add') ||
+      prevPath.includes('projects')
+    ) {
+      push(ROUTES.ADMIN_COHORT_PAGE);
+    } else if (prevPath.includes('cohorts')) {
+      push(ROUTES.STATISTICS_PAGE);
+    } else {
+      goBack();
+    }
+  };
   return (
     <>
       <Layout>
@@ -62,7 +88,7 @@ const AdminContainer = ({ children, buttonContent, buttonRoute }) => {
                   <Button
                     className="admin-back-btn"
                     type="primary"
-                    onClick={goBack}
+                    onClick={checkGoBack}
                   >
                     ❮ Back
                   </Button>
