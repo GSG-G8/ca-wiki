@@ -66,7 +66,7 @@ class AdminCard extends Component {
           <div className="img-card">
             <img src={imgUrl} alt="card" />
           </div>
-          <div>
+          <div className="name">
             <h3>Name</h3>
             <p>{name}</p>
           </div>
@@ -110,10 +110,10 @@ class AdminCard extends Component {
           </div>
         )}
         {projectId && (
-          <div>
+          <div className="students">
             <h3>Student</h3>
             {students.map((row) => (
-              <p>{row}</p>
+              <p>{row} - </p>
             ))}
           </div>
         )}
@@ -133,7 +133,7 @@ class AdminCard extends Component {
             </Link>
           </div>
         )}
-        <div>
+        <div className="card-btns">
           <Link to={editCard} className="card-btn edit">
             Edit
           </Link>
