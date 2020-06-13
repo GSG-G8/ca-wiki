@@ -100,7 +100,8 @@ pgcli postgres://[username]:[password]@localhost:5432/[database]
 Next, run SQL build file in your database:
 
 ```
-\i server/database/data/build.sql
+\i [file-local-path]/ca-wiki/server/database/data/build.sql 
+\i [file-local-path]/ca-wiki/server/database/data/fakeData.sql
 ```
 
 This will create the tables in your database.
@@ -109,33 +110,42 @@ This will create the tables in your database.
 
 Environment variables are one of the ways we keep our product safe. If you want to access our app locally you will need to add your own.
 
-First create a [config.env](https://github.com/dwyl/env2#create-a-env-file) file and add the following variables:
+First create a [.env](https://www.npmjs.com/package/dotenv) file and add the following variables:
 
 ```
-DATABASE_URL
+DB_URL
 SECRET_KEY
 ```
 
 ### Running the project
 
-1. To run the server, Open your terminal and run:
+1. Install all dependencies
+
+```
+npm run project-setup
+```
+
+2. To run the server, Open your terminal and run:
 
 ```
 npm run dev
 ```
 
-2. To run the React Development server, Open another terminal and run:
+3. To run the React Development server, Open another terminal and run:
 
 ```
-cd client
+cd client 
 npm start
 ```
 
-3. To run the tests:
+4. To  run the whole app you need to run both servers
+
+5. To run the tests:
 
 ```
 npm test
 ```
+
 
 ## Data-Base Schema
 
