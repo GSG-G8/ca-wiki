@@ -37,7 +37,7 @@ const AdminContainer = ({ children, buttonContent, buttonRoute }) => {
     ) {
       push(ROUTES.ADMIN_COHORT_PAGE);
     } else if (prevPath.includes('cohorts')) {
-      push('/admin/statistics');
+      push(ROUTES.STATISTICS_PAGE);
     } else {
       goBack();
     }
