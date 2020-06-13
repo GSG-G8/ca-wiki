@@ -92,20 +92,25 @@ class AdminCard extends Component {
         )}
         <div>
           <h3>Github link</h3>
-          <a href={githbUrl} target="blank">
+          <a className="admin-card-links" href={githbUrl} target="blank">
             Click
           </a>
         </div>
         {student && (
           <div>
             <h3>Student</h3>
-            <Link to={`/admin/cohorts/${student}/students`}>View</Link>
+            <Link
+              className="admin-card-links"
+              to={`/admin/cohorts/${student}/students`}
+            >
+              View
+            </Link>
           </div>
         )}
         {websiteLink && (
           <div>
             <h3>Website</h3>
-            <a href={websiteLink} target="blank">
+            <a className="admin-card-links" href={websiteLink} target="blank">
               View
             </a>
           </div>
@@ -123,7 +128,10 @@ class AdminCard extends Component {
         {cohortId && (
           <div>
             <h3>INTERNAL p</h3>
-            <Link to={`/admin/cohorts/${cohortId}/projects?type=internal`}>
+            <Link
+              className="admin-card-links"
+              to={`/admin/cohorts/${cohortId}/projects?type=internal`}
+            >
               View
             </Link>
           </div>
@@ -131,7 +139,10 @@ class AdminCard extends Component {
         {cohortId && (
           <div>
             <h3>REMOTELY p</h3>
-            <Link to={`/admin/cohorts/${cohortId}/projects?type=remotely`}>
+            <Link
+              className="admin-card-links"
+              to={`/admin/cohorts/${cohortId}/projects?type=remotely`}
+            >
               View
             </Link>
           </div>
