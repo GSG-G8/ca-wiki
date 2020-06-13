@@ -55,7 +55,7 @@ class CohortsAlumni extends Component {
       const {
         data: { data },
       } = cohortsData;
-      this.setState({ data, isCohortPages: false });
+      this.setState({ data, isCohortPages: false, activeItemIndex: 0 });
     } catch (err) {
       notification.error({
         message: 'Internal Server Error',
@@ -70,7 +70,7 @@ class CohortsAlumni extends Component {
       const {
         data: { data },
       } = alumniData;
-      this.setState({ data, isCohortPages: false });
+      this.setState({ data, isCohortPages: false, activeItemIndex: 0 });
     } catch (err) {
       notification.error({
         message: 'Internal Server Error',
@@ -93,8 +93,12 @@ class CohortsAlumni extends Component {
         data: { data },
       } = cohortsAlumniData;
       this.getCohortName(Number(cohortId));
-      this.setState({ data, isCohortPages: true, cohortId });
-      this.setState({ data, isCohortPages: true });
+      this.setState({
+        data,
+        isCohortPages: true,
+        cohortId,
+        activeItemIndex: 0,
+      });
     } catch (err) {
       notification.error({
         message: 'Internal Server Error',
