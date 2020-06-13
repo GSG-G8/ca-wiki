@@ -9,7 +9,7 @@
 
 .admin-card .students p {
     margin-bottom: 0;
-    font-size: 10px;
+    font-size: 12px;
     display: inline-block;
 }
 
@@ -18,7 +18,7 @@
     justify-content: space-between;
 }
 
-.name-img-card {
+.name-img-card .name {
     width: 70%;
 }
 
@@ -111,15 +111,20 @@
 
 .admin-cohort-page .students h3 {
     width: 100%;
-    margin-bottom: -2px;
+    height: 22px;
 }
 .admin-cohort-page .students p {
     width: 50%;
     text-align: left;
+    height: 19px;
+}
+
+.admin-cohort-student {
+    grid-template-columns: 27% 37% 16.6% [last-col] 19.5%;
 }
 
 
-@media screen and (min-width: 762px) and (max-width: 1104px) {
+@media screen and (min-width: 763px) and (max-width: 1104px) {
     .admin-card h3, .admin-card .name-img-card .name, .admin-card a, .card-btn {
         font-size: 12px;
     }
@@ -137,7 +142,8 @@
 @media screen and (max-width: 762px) {
     .admin-content {
         overflow: auto;
-        height: 67vh;
+        height: 52vh;
+        margin-top: 10rem;
     }
 
     .admin-card {
@@ -151,6 +157,20 @@
         grid-template-columns: 30% 65%;
         text-align: left;
         margin-bottom: 10px;
+    }
+
+    .description-btn {
+        text-align: left;
+        padding-left: 0;
+    }
+
+    .name-img-card {
+        justify-content: flex-start;
+    }
+
+    .admin-cohort-page .students {
+        display: grid;
+        grid-template-columns: 30% 30% 30%;
     }
 
     .card-btn {

@@ -1,6 +1,7 @@
 .ant-layout-header {
   height: 15vh;
   min-height: 125px;
+  line-height: normal;
   background-color: var(--main-white);
   padding: 1.5rem 3rem 2rem 2rem;
   font-family: var(--main-font);
@@ -122,7 +123,7 @@
   }
 
   .admin-container-side {
-    width: 87%;
+    width: 84%;
     position: absolute;
     top: 58px;
     left: -37px;
@@ -173,6 +174,12 @@
   }
 }
 
+@media screen and (max-width: 762px) {
+  .admin-container-side {
+    top: 67px;
+  }
+}
+
 @media screen and (min-width: 762px) and (max-width: 1104px) {
   .Add-Link {
       width: 116px;
@@ -211,17 +218,18 @@
   .admin-container-side {
     top: 67px;
     height: 7%;
-    width: 100%;
+    width: 90%;
   }
 }
 
 @media screen and (max-width: 480px) {
   .Add-Link {
-    width: 71px;
-    height: 31px;
+    width: 76px;
+    height: 28px;
     font-size: 12px;
-    line-height: 31px;
-  }
+    line-height: 27px;
+    margin-right: 8px;
+}
 
   .admin-container-side {
     width: 113%;
@@ -229,18 +237,27 @@
 
   .logout-btn, .admin-back-btn {
     font-size: 12px;
-    height: 24px;
-    line-height: 14px;
+    height: 26px;
+    line-height: 8px;
     width: 61px;
-    margin-right: 2px;
+    margin-right: 8px;
   }
 
   .admin-menu li {
     display: inline-block;
     margin-bottom: 0;
     margin-left: 5px;
+    margin-right: 5px;
     font-size: 12px;
-}
+  }
+
+  .admin-side {
+    margin-left: 49px;
+  }
+
+  .admin-container-side {
+    height: 7%;
+  }
 }
 
 @media screen and (max-width: 320px) {
