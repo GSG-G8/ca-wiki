@@ -47,7 +47,7 @@
 }
 
 .card-heading {
-    font: Bold 20px var(--main-font);
+    font: Bold 14px var(--main-font);
     color: var(--main-color);
     margin-top: 10px;
 }
@@ -59,7 +59,7 @@
 
 .github-anchor {
     display: block;
-    font: Bold 14px var(--main-font);
+    font: Bold 12px var(--main-font);
     color: var(--content-blue-green);
     margin-bottom: 4px;
 }
