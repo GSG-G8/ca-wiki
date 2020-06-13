@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
-import { notification, Empty, List, Pagination, Modal } from 'antd';
+import { notification, Empty, List, Pagination, Modal, Spin } from 'antd';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 import AdminCard from '../../components/AdminCard';
 import AdminContainer from '../../components/AdminContainer';
@@ -15,6 +15,7 @@ class AdminProject extends Component {
     endPage: 4,
     total: 0,
     currentPage: 1,
+    loading: true,
   };
 
   async componentDidMount() {
@@ -32,7 +33,7 @@ class AdminProject extends Component {
       );
       const { data } = res.data;
       const total = data.length * 2.5;
-      this.setState({ data, total });
+      this.setState({ data, total, loading: false });
     } catch (err) {
       const {
         response: {
@@ -85,7 +86,14 @@ class AdminProject extends Component {
   };
 
   render() {
-    const { data, total, startPage, endPage, currentPage } = this.state;
+    const {
+      data,
+      total,
+      startPage,
+      endPage,
+      currentPage,
+      loading,
+    } = this.state;
     const {
       match: {
         params: { cohortId },
@@ -102,7 +110,9 @@ class AdminProject extends Component {
           buttonContent="Add Project"
           buttonRoute={`/admin/cohorts/${cohortId}/projects/add/${projectType}`}
         >
-          {data.length === 0 ? (
+          {loading && data.length === 0 ? (
+            <Spin size="large" />
+          ) : !loading && data.length === 0 ? (
             <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} className="empty" />
           ) : (
             <>
