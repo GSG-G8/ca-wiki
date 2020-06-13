@@ -95,6 +95,30 @@
     font-size: 12px;
 }
 
+.admin-cohort-page {
+    display: grid;
+    grid-template-columns: 15% 21% repeat(2, 12.6%) 25.3% [last-col] 13.5%;
+    box-shadow: var(--card-shadow);
+    padding: 8px 0;
+    width: 100%;
+    height: 97px;
+}
+
+.admin-cohort-page .students {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.admin-cohort-page .students h3 {
+    width: 100%;
+    margin-bottom: -2px;
+}
+.admin-cohort-page .students p {
+    width: 50%;
+    text-align: left;
+}
+
+
 @media screen and (min-width: 762px) and (max-width: 1104px) {
     .admin-card h3, .admin-card .name-img-card .name, .admin-card a, .card-btn {
         font-size: 12px;

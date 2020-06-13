@@ -59,9 +59,10 @@ class AdminCard extends Component {
       studentId,
       editCard,
       deleteCard,
+      type,
     } = this.props;
     return (
-      <div className="admin-card">
+      <div className={`admin-card ${type || ''}`}>
         <div className="name-img-card">
           <div className="img-card">
             <img src={imgUrl} alt="card" />
@@ -112,8 +113,10 @@ class AdminCard extends Component {
         {projectId && (
           <div className="students">
             <h3>Student</h3>
-            {students.map((row) => (
-              <p>{row} - </p>
+            {students.map((studentName, index) => (
+              <p style={studentName.length > 18 ? { fontSize: '9px' } : null}>
+                {`${index + 1}-${studentName}`}{' '}
+              </p>
             ))}
           </div>
         )}
@@ -163,6 +166,7 @@ AdminCard.defaultProps = {
   cohortId: undefined,
   studentId: undefined,
   email: undefined,
+  type: undefined,
 };
 
 AdminCard.propTypes = {
@@ -178,6 +182,7 @@ AdminCard.propTypes = {
   studentId: PropTypes.number,
   editCard: PropTypes.func.isRequired,
   deleteCard: PropTypes.func.isRequired,
+  type: PropTypes.string,
 };
 
 export default AdminCard;

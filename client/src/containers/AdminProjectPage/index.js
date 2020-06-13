@@ -119,6 +119,7 @@ class AdminProject extends Component {
                       projectId={item.id}
                       editCard={`/admin/cohorts/${cohortId}/projects/${item.id}/edit`}
                       deleteCard={this.deleteProject}
+                      type="admin-cohort-page"
                     />
                   </List.Item>
                 )}
