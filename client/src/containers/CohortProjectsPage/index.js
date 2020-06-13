@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import logo from '../../assets/images/logo.png';
 import UserContainer from '../../components/UserContainer';
 import './style.css';
+import '../UserProjectPage/style.css';
 
 class UserProject extends Component {
   state = {
@@ -127,9 +128,9 @@ class UserProject extends Component {
         <div className="projects-container">
           <h1>{cohortName}</h1>
           {projectType === 'internal' ? (
-            <h2>Internal Projects Phase</h2>
+            <h2 className="primary-title">Internal Projects Phase</h2>
           ) : (
-            <h2>Remotely Projects Phase</h2>
+            <h2 className="primary-title">Remotely Projects Phase</h2>
           )}
           {loading && data.length === 0 ? (
             <Spin size="large" />

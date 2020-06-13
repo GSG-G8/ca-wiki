@@ -81,7 +81,7 @@ class ProjectDetails extends Component {
     const projectType = data.project_type;
     return (
       <UserContainer headerLogo={logo} isProjectsPage toolsTreeImg>
-        <div className="projects-container">
+        <div className="project-detail-container">
           {cohortId ? (
             <>
               <h1>{cohortData.name}</h1>
@@ -99,9 +99,9 @@ class ProjectDetails extends Component {
           {data.length === 0 ? (
             <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} className="empty" />
           ) : (
-            <div className="project-details">
+            <div className="project-detail">
               <div
-                className="project-img"
+                className="project-image"
                 style={{
                   background: `url(${data.img_url}) center center / cover no-repeat`,
                 }}

@@ -71,3 +71,15 @@ li {
   border-bottom: none;
   padding: 0;
 }
+
+@media screen and (max-width: 480px) {
+  .pagination {
+    width: 70%;
+  }
+  
+  .ant-pagination-item, .ant-pagination-prev, .ant-pagination-next {
+    min-width: 28px;
+    height: 28px;
+    line-height: 26px;
+  }
+}

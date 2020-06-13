@@ -20,8 +20,8 @@ const OverviewComponent = ({
   return (
     <div className="overview-container">
       <div
-        className={`${isRightImg ? 'right' : ''} ${
-          backgroundIsRed ? 'redGround' : 'whiteGround'
+        className={`${isRightImg ? 'right-part' : 'left-part'} ${
+          backgroundIsRed ? 'redGround img-side' : 'whiteGround img-side'
         }`}
       >
         <img className="background-photo" src={imageSource} alt="Home" />

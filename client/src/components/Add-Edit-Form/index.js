@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Form, Input, Button, message, Spin, Select } from 'antd';
+import toolsImg from '../../assets/images/Group 2381.svg';
 import './style.css';
 import AdminContainer from '../AdminContainer';
 
@@ -321,182 +322,193 @@ class AddEditForm extends Component {
     return (
       <AdminContainer>
         {addOrEdit ? (
-          <Form
-            className="add-data-form"
-            labelCol={{ span: 3 }}
-            wrapperCol={{ span: 21 }}
-            name="basic"
-            initialValues={myData}
-            onFinish={this.onFinish}
-            onFinishFailed={this.onFinishFailed}
-          >
-            {formType === 'cohort' && addLink ? (
-              <h1>Add Cohort</h1>
-            ) : formType === 'cohort' ? (
-              <h1>Edit Cohort</h1>
-            ) : formType === 'student' && addLink ? (
-              <h1>Add Student</h1>
-            ) : formType === 'student' ? (
-              <h1>Edit Student</h1>
-            ) : formType === 'project' && addLink ? (
-              <h1>Add Project</h1>
-            ) : (
-              <h1>Edit Project</h1>
-            )}
-            <Form.Item
-              className="add-form-row"
-              label="Name"
-              name="name"
-              rules={[
-                {
-                  required: true,
-                  message: 'Please input cohort name!',
-                },
-              ]}
+          <div className="form-container">
+            <Form
+              className={`add-data-form ${
+                formType === 'project' ? 'project-form' : ''
+              }`}
+              labelCol={{ span: 3 }}
+              wrapperCol={{ span: 21 }}
+              name="basic"
+              initialValues={myData}
+              onFinish={this.onFinish}
+              onFinishFailed={this.onFinishFailed}
             >
-              <Input className="add-data-input" />
-            </Form.Item>
-
-            {formType !== 'student' && (
+              {formType === 'cohort' && addLink ? (
+                <h1>Add Cohort</h1>
+              ) : formType === 'cohort' ? (
+                <h1>Edit Cohort</h1>
+              ) : formType === 'student' && addLink ? (
+                <h1>Add Student</h1>
+              ) : formType === 'student' ? (
+                <h1>Edit Student</h1>
+              ) : formType === 'project' && addLink ? (
+                <h1>Add Project</h1>
+              ) : (
+                <h1>Edit Project</h1>
+              )}
               <Form.Item
                 className="add-form-row"
-                label="Description"
-                name="description"
+                label="Name"
+                name="name"
                 rules={[
                   {
                     required: true,
-                    message: 'Please input cohort description!',
+                    message: 'Please input cohort name!',
                   },
                 ]}
               >
                 <Input className="add-data-input" />
               </Form.Item>
-            )}
 
-            {formType === 'student' && (
-              <Form.Item
-                className="add-form-row"
-                label="Email"
-                name="email"
-                rules={[
-                  {
-                    required: true,
-                    type: 'email',
-                    message: 'Please input student email!',
-                  },
-                ]}
-              >
-                <Input className="add-data-input" />
-              </Form.Item>
-            )}
-
-            <Form.Item
-              className="add-form-row"
-              label="Image URL"
-              name="imgUrl"
-              rules={[
-                {
-                  required: true,
-                  type: 'url',
-                  message: 'Please input image url!',
-                },
-              ]}
-            >
-              <Input className="add-data-input" />
-            </Form.Item>
-
-            <Form.Item
-              className="add-form-row"
-              label="Github Link"
-              name="githubLink"
-              rules={[
-                {
-                  required: true,
-                  type: 'url',
-                  message: 'Please input github link!',
-                },
-              ]}
-            >
-              <Input className="add-data-input" />
-            </Form.Item>
-
-            {formType === 'project' && (
-              <>
+              {formType !== 'student' && (
                 <Form.Item
                   className="add-form-row"
-                  label="Website Link"
-                  name="websiteLink"
+                  label="Description"
+                  name="description"
                   rules={[
                     {
                       required: true,
-                      type: 'url',
-                      message: 'Please input website link!',
+                      message: 'Please input cohort description!',
                     },
                   ]}
                 >
                   <Input className="add-data-input" />
                 </Form.Item>
-                <div className="add-form-select">
-                  <span className="select-lable"> &nbsp; Select Student:</span>
-                  <Select
-                    mode="tags"
-                    style={{ width: '100%' }}
-                    placeholder=""
-                    title="Add Students For This Project"
-                    onChange={this.handleStudentChange}
-                    defaultValue={selectOption}
-                    showArrow
-                  >
-                    {studentInCohort.map((student) => (
-                      <Option key={student.name}>{student.name}</Option>
-                    ))}
-                  </Select>
-                </div>
+              )}
 
-                <Form.Item
-                  className="add-form-row"
-                  label="Project Type"
-                  name="projectType"
-                  rules={[
-                    {
-                      required: true,
-                      type: 'string',
-                      enum: ['internal', 'remotely', 'INTERNAL', 'REMOTELY'],
-                      message: 'Please input project type!',
-                    },
-                  ]}
-                >
-                  <Input className="add-data-input" />
-                </Form.Item>
-              </>
-            )}
-
-            <Form.Item
-              className="cohort-form"
-              wrapperCol={{ offset: 8, span: 16 }}
-            >
-              <Button type="primary" htmlType="submit">
-                {addLink ? 'Add' : 'Edit'}
-              </Button>
-
-              {formType === 'cohort' && <Link to="/admin/cohorts">Cancel</Link>}
               {formType === 'student' && (
-                <Link to={`/admin/cohorts/${cohortId}/students`}>Cancel</Link>
-              )}
-              {formType === 'project' && (
-                <Link
-                  to={`/admin/cohorts/${cohortId}/projects?type=${
-                    projectType || typeOfProject
-                  }`}
+                <Form.Item
+                  className="add-form-row"
+                  label="Email"
+                  name="email"
+                  rules={[
+                    {
+                      required: true,
+                      type: 'email',
+                      message: 'Please input student email!',
+                    },
+                  ]}
                 >
-                  Cancel
-                </Link>
+                  <Input className="add-data-input" />
+                </Form.Item>
               )}
-            </Form.Item>
-          </Form>
+
+              <Form.Item
+                className="add-form-row"
+                label="Image URL"
+                name="imgUrl"
+                rules={[
+                  {
+                    required: true,
+                    type: 'url',
+                    message: 'Please input image url!',
+                  },
+                ]}
+              >
+                <Input className="add-data-input" />
+              </Form.Item>
+
+              <Form.Item
+                className="add-form-row"
+                label="Github Link"
+                name="githubLink"
+                rules={[
+                  {
+                    required: true,
+                    type: 'url',
+                    message: 'Please input github link!',
+                  },
+                ]}
+              >
+                <Input className="add-data-input" />
+              </Form.Item>
+
+              {formType === 'project' && (
+                <>
+                  <Form.Item
+                    className="add-form-row"
+                    label="Website Link"
+                    name="websiteLink"
+                    rules={[
+                      {
+                        required: true,
+                        type: 'url',
+                        message: 'Please input website link!',
+                      },
+                    ]}
+                  >
+                    <Input className="add-data-input" />
+                  </Form.Item>
+                  <div className="add-form-select">
+                    <span className="select-lable">
+                      {' '}
+                      &nbsp; Select Student:
+                    </span>
+                    <Select
+                      mode="tags"
+                      style={{ width: '100%' }}
+                      placeholder=""
+                      title="Add Students For This Project"
+                      onChange={this.handleStudentChange}
+                      defaultValue={selectOption}
+                      showArrow
+                    >
+                      {studentInCohort.map((student) => (
+                        <Option key={student.name}>{student.name}</Option>
+                      ))}
+                    </Select>
+                  </div>
+
+                  <Form.Item
+                    className="add-form-row"
+                    label="Project Type"
+                    name="projectType"
+                    rules={[
+                      {
+                        required: true,
+                        type: 'string',
+                        enum: ['internal', 'remotely', 'INTERNAL', 'REMOTELY'],
+                        message: 'Please input project type!',
+                      },
+                    ]}
+                  >
+                    <Input className="add-data-input" />
+                  </Form.Item>
+                </>
+              )}
+
+              <Form.Item
+                className="cohort-form"
+                wrapperCol={{ offset: 8, span: 16 }}
+              >
+                <Button type="primary" htmlType="submit">
+                  {addLink ? 'Add' : 'Edit'}
+                </Button>
+
+                {formType === 'cohort' && (
+                  <Link to="/admin/cohorts">Cancel</Link>
+                )}
+                {formType === 'student' && (
+                  <Link to={`/admin/cohorts/${cohortId}/students`}>Cancel</Link>
+                )}
+                {formType === 'project' && (
+                  <Link
+                    to={`/admin/cohorts/${cohortId}/projects?type=${
+                      projectType || typeOfProject
+                    }`}
+                  >
+                    Cancel
+                  </Link>
+                )}
+              </Form.Item>
+            </Form>
+          </div>
         ) : (
           <Spin size="large" />
         )}
+
+        <img className="tools-img" src={toolsImg} alt="tools" />
       </AdminContainer>
     );
   }

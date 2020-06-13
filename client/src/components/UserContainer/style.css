@@ -1,12 +1,13 @@
 .main-header {
   display: flex;
-  padding: 35px 70px 0;
+  align-items: center;
+  padding: 2.5rem 5rem 0;
   background-color: transparent;
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  height: 80px;
+  height: 5.7rem;
   z-index: 1;
 }
 
@@ -25,13 +26,13 @@
 }
 
 .anticon-search, .anticon-close {
-  padding-right: 15px;
+  padding-right: 1rem;
 }
 
 .anticon-close,
 .anticon-search,
 .anticon-menu {
-  font-size: 20px;
+  font-size: 1.4em;
 }
 
 .menu {
@@ -40,8 +41,8 @@
   top: 0;
   left: 0;
   width: 100%;
-  min-height: 400px;
-  padding: 35px 100px 0;
+  min-height: 28.6rem;
+  padding: 2.5rem 5rem 0;
   z-index: 1;
 }
 
@@ -61,15 +62,15 @@
 }
 
 .menu-header img {
-  width: 260px;
+  width: 260px
 }
 
 .menu-list {
   text-align: right;
-  padding: 0 40px 35px 0;
+  padding: 1rem 2.8rem 2.5rem 0;
   color: var(--main-black);
-  margin-top: -15px;
-  font-size: 18px;
+  margin-top: -1rem;
+  font-size: 1.28em;
 }
 
 .menu-list a {
@@ -77,14 +78,14 @@
 }
 
 .menu-social {
-  margin-bottom: 25px;
-  font-size: 18px;
+  margin-bottom: 1.8rem;
+  font-size: 1.28em;
   font-weight: bold;
   text-align: left;
 }
 
 .menu-social span {
-  padding-right: 23px;
+  padding-right: 1.64rem
 }
 
 .contact {
@@ -93,7 +94,7 @@
 
 .header-list {
   color: var(--main-black);
-  margin-bottom: 13px;
+  margin-bottom: 0.9rem
 }
 
 .header-list:hover {
@@ -121,16 +122,16 @@
   position: absolute;
   top: 32%;
   right: 0;
-  width: 70px;
+  width: 5rem;
   background-color: transparent;
-  font-size: 30px;
+  font-size: 1.7em;
   font-weight: bold;
   text-align: left;
 }
 
 .right-nav-list li {
   position: relative;
-  margin-bottom: 4px;
+  margin-bottom: 0.28rem;
 }
 
 .right-nav {
@@ -140,7 +141,7 @@
 .right-nav:hover {
   color: var(--content-blue-green);
   display: flex;
-  padding-right: 49px;
+  padding-right: 3.5rem;
 }
 
 .right-nav:hover :first-child {
@@ -149,8 +150,8 @@
 
 .right-nav:hover .show-full-name {
   display: block;
-  margin-left: -400px;
-  width: 500px;
+  margin-left: -28.57rem;
+  width: 35.7rem;
   text-align: right;
   color: var(--main-color);
   z-index: 1;
@@ -163,7 +164,7 @@
 .right-nav-active:hover {
   color: var(--main-color);
   display: flex;
-  padding-right: 49px;
+  padding-right: 3.5rem;
 }
 
 .right-nav-active .line,
@@ -194,7 +195,7 @@
 .right-nav-white:hover {
   color: var(--content-grey);
   display: flex;
-  padding-right: 49px;
+  padding-right: 3.5rem;
 }
 
 
@@ -205,8 +206,8 @@
 
 .right-nav-white:hover .show-full-name {
   display: block;
-  margin-left: -400px;
-  width: 500px;
+  margin-left: -28.57rem;
+  width: 35.7rem;
   text-align: right;
   color: var(--main-white);
   z-index: 1;
@@ -224,14 +225,125 @@
 
 .tools-img {
   position: absolute;
-  top: 188px;
-  right: 127px;
-  width: 95px;
+  top: 3rem;
+  right: 6.8rem;
+  width: 6.7rem;
 }
 
 .tree-img {
   position: absolute;
-  bottom: 41px;
-  left: 53px;
-  width: 95px;
+  bottom: 2rem;
+  left: 3.78rem;
+  width: 6rem;
+}
+
+@media screen and (max-width: 1024px) {
+  .right-nav-list {
+    font-size: 1.5em;
+    top: 36%;
+  }
+
+  .right-nav-list li {
+    margin-bottom: 1rem;
+  }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .header-left img, .menu-header img {
+    width: 216px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .header-right span {
+    color: black!important;
+  }
+
+  .right-nav-active-white, .right-nav-white:hover .show-full-name {
+    color: var(--main-color);
+  }
+
+  .right-nav-white .line {
+    background-color: var(--main-color);
+  }
+}
+
+@media screen and (min-width: 481px) and (max-width: 768px) {
+  .menu-list, .menu-social {
+    font-size: 1.1em;
+  }
+}
+
+@media screen and (min-width: 601px) and (max-width: 768px) {
+  .header-left img, .menu-header img {
+    width: 204px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .header-left img, .menu-header img {
+    width: 173px;
+  }
+
+  .main-header {
+    padding-top: 8rem;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .tools-img, .tree-img {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .menu {
+    min-height: 73rem;
+  }
+
+  .main-header {
+    padding-left: 1rem;
+  }
+
+  .header-list {
+    margin-bottom: 2rem;
+  }
+
+  .menu-list {
+    padding-top: 5rem;
+  }
+
+  .menu-list, .menu-social {
+    font-size: 1em;
+  }
+
+  .menu-social {
+    margin-top: 7rem;
+    padding-right: 3.5rem;
+  }
+
+  .right-nav-list {
+    font-size: 0.9em;
+    top: 11%;
+    right: 10px;
+  }
+
+  .right-nav-active .line {
+    width: 152%;
+  }
+
+  .project-details .project-image {
+    width: 44%;
+    height: 28%;
+  }
+
+  .contact {
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .header-left img, .menu-header img {
+    width: 156px;
+  }
 }

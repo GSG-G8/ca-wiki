@@ -59,14 +59,15 @@ class AdminCard extends Component {
       studentId,
       editCard,
       deleteCard,
+      type,
     } = this.props;
     return (
-      <div className="admin-card">
+      <div className={`admin-card ${type || ''}`}>
         <div className="name-img-card">
           <div className="img-card">
             <img src={imgUrl} alt="card" />
           </div>
-          <div>
+          <div className="name">
             <h3>Name</h3>
             <p>{name}</p>
           </div>
@@ -91,36 +92,46 @@ class AdminCard extends Component {
         )}
         <div>
           <h3>Github link</h3>
-          <a href={githbUrl} target="blank">
+          <a className="admin-card-links" href={githbUrl} target="blank">
             Click
           </a>
         </div>
         {student && (
           <div>
             <h3>Student</h3>
-            <Link to={`/admin/cohorts/${student}/students`}>View</Link>
+            <Link
+              className="admin-card-links"
+              to={`/admin/cohorts/${student}/students`}
+            >
+              View
+            </Link>
           </div>
         )}
         {websiteLink && (
           <div>
             <h3>Website</h3>
-            <a href={websiteLink} target="blank">
+            <a className="admin-card-links" href={websiteLink} target="blank">
               View
             </a>
           </div>
         )}
         {projectId && (
-          <div>
+          <div className="students">
             <h3>Student</h3>
-            {students.map((row) => (
-              <p>{row}</p>
+            {students.map((studentName, index) => (
+              <p style={studentName.length > 18 ? { fontSize: '9px' } : null}>
+                {`${index + 1}-${studentName}`}{' '}
+              </p>
             ))}
           </div>
         )}
         {cohortId && (
           <div>
             <h3>INTERNAL p</h3>
-            <Link to={`/admin/cohorts/${cohortId}/projects?type=internal`}>
+            <Link
+              className="admin-card-links"
+              to={`/admin/cohorts/${cohortId}/projects?type=internal`}
+            >
               View
             </Link>
           </div>
@@ -128,12 +139,15 @@ class AdminCard extends Component {
         {cohortId && (
           <div>
             <h3>REMOTELY p</h3>
-            <Link to={`/admin/cohorts/${cohortId}/projects?type=remotely`}>
+            <Link
+              className="admin-card-links"
+              to={`/admin/cohorts/${cohortId}/projects?type=remotely`}
+            >
               View
             </Link>
           </div>
         )}
-        <div>
+        <div className="card-btns">
           <Link to={editCard} className="card-btn edit">
             Edit
           </Link>
@@ -163,6 +177,7 @@ AdminCard.defaultProps = {
   cohortId: undefined,
   studentId: undefined,
   email: undefined,
+  type: undefined,
 };
 
 AdminCard.propTypes = {
@@ -178,6 +193,7 @@ AdminCard.propTypes = {
   studentId: PropTypes.number,
   editCard: PropTypes.func.isRequired,
   deleteCard: PropTypes.func.isRequired,
+  type: PropTypes.string,
 };
 
 export default AdminCard;

@@ -52,7 +52,7 @@ class AlumnusDetails extends Component {
     const { studentData, studentProjects, cohortData, loading } = this.state;
     return (
       <UserContainer headerLogo={logo} isProjectsPage toolsTreeImg>
-        <div className="projects-container">
+        <div className="project-detail-container">
           <h1>ALUMNI</h1>
           <h2>Welcome to {studentData.name} page</h2>
           {loading && studentData.length === 0 ? (
@@ -60,32 +60,38 @@ class AlumnusDetails extends Component {
           ) : !loading && studentData.length === 0 ? (
             <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} className="empty" />
           ) : (
-            <div className="alumni-details">
+            <div className="project-detail">
               <div
-                className="alumni-img"
+                className="project-image"
                 style={{
                   background: `url(${studentData.img_url}) center center / cover no-repeat`,
                 }}
               />
-              <div className="alumni-desc">
-                <h3>{studentData.name}</h3>
-                <h3>{cohortData.name}</h3>
-                <h3>
-                  <a href={studentData.github_link} target="blank">
-                    Github Link
-                  </a>
-                </h3>
-                <h3>
-                  <a href={`mailto:${studentData.email}`}>Email</a>
-                </h3>
+              <div className="project-desc">
+                <ul>
+                  <li>{studentData.name}</li>
+                  <li>{cohortData.name}</li>
+                  <li>
+                    <a href={studentData.github_link} target="blank">
+                      Github Link
+                    </a>
+                  </li>
+                  <li>
+                    <a href={`mailto:${studentData.email}`}>Email</a>
+                  </li>
+                </ul>
                 {studentProjects ? (
                   <>
-                    <h3>Projects</h3>
                     <div className="alumni_projects">
                       {studentProjects.map((project) => (
                         <div key={project.id}>
-                          <h4>Project Name: {project.name}</h4>
+                          <h3>
+                            {project.project_type[0].toUpperCase() +
+                              project.project_type.slice(1)}{' '}
+                            Project:
+                          </h3>
                           <ul>
+                            <li>Project Name: {project.name}</li>
                             <li>
                               <a href={project.github_link} target="blank">
                                 Github Link
@@ -96,7 +102,6 @@ class AlumnusDetails extends Component {
                                 Website Link
                               </a>
                             </li>
-                            <li>Project Type: {project.project_type}</li>
                           </ul>
                         </div>
                       ))}

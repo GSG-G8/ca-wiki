@@ -109,7 +109,7 @@ class Student extends Component {
                 itemLayout="horizontal"
                 dataSource={list}
                 renderItem={(item) => (
-                  <List.Item>
+                  <List.Item className="admin-list-card">
                     <AdminCard
                       key={item.id}
                       name={item.name}
@@ -120,6 +120,7 @@ class Student extends Component {
                       cohortId={item.cohortId}
                       editCard={`/admin/cohorts/${cohortId}/students/${item.id}/edit`}
                       deleteCard={this.deleteStudent}
+                      type="admin-cohort-student"
                     />
                   </List.Item>
                 )}

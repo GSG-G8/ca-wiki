@@ -118,8 +118,8 @@ class UserContainer extends Component {
                       if (!location) {
                         return false;
                       }
-                      const { search } = location;
-                      return search === '?type=internal';
+                      const { pathname, search } = location;
+                      return pathname + search === '/projects?type=internal';
                     }}
                   >
                     Internal Projects
@@ -134,8 +134,8 @@ class UserContainer extends Component {
                       if (!location) {
                         return false;
                       }
-                      const { search } = location;
-                      return search === '?type=remotely';
+                      const { pathname, search } = location;
+                      return pathname + search === '/projects?type=remotely';
                     }}
                   >
                     Remotely Project

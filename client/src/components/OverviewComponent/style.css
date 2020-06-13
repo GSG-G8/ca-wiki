@@ -4,7 +4,7 @@
     height: 100vh;
 }
 
-.overview-container .right {
+.overview-container .right-part {
     order: 1;
 }    
 
@@ -19,37 +19,41 @@
 
 .overview-container .background-photo {
     height: 100vh;
-    width: 450px;
+    width: 32rem;
 }
 
-.overview-container .container-content{
+.overview-container .container-content {
     width: 50%;
     text-align: left;
-    margin-top: 150px;
-    margin-left: 80px;
+    margin-top: 135px;
+    margin-left: 5rem;
+}
+
+.overview-container .container-content .redTitle, 
+.overview-container .container-content .darkTitle, 
+.overview-container .container-content .secondTitle {
+    font-weight: bold;
+    font-size: 2.1rem;
 }
 
 .overview-container .container-content .redTitle {
-    font-weight: bold;
     color: var(--main-color) ;
 }
 
 .overview-container .container-content .darkTitle {
-    font-weight: bold;
     color: var(--content-blue-green) ;
 }
 
 .overview-container .container-content .secondTitle {
-    font-weight: bold;
     color: var(--main-color) ;
 }
 
 .overview-container .container-content p {
-    width:70%;
+    width:90%;
     font-weight: bold;
-    font-size: 12px;
+    font-size: 14px;
     color: var(--content-blue-green);
-    line-height: 2;
+    line-height: 1.9;
     margin-top: 20px;
 }
 
@@ -59,4 +63,119 @@
     background-color:var(--main-color);
     color: var(--main-white);
     margin-top: 20px;
+}
+
+@media screen and (max-width: 1024px) {
+    .overview-container .container-content {
+        margin-top: 100px;
+    }
+}
+
+@media screen and (min-width: 901px) {
+    .right-part {
+        background: var(--main-white);
+        width: 50vw;
+        height: 100vh;
+        position: absolute; 
+        right: 0px;
+        top: 0px;
+        z-index: -1;
+    }
+
+    .overview-container .container-content p {
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .overview-container .left-part {
+        width: 65%!important;
+        border-radius: 0 0 259px 0;
+        box-shadow: 1px 1px 12px #3A5A6E;
+    } 
+
+    .overview-container .right-part {
+        background-color: var(--main-white);
+    }
+
+    .overview-container {
+        display: block;
+    }
+
+    .overview-container .whiteGround, .overview-container .container-content {
+        width: 89%;
+    }
+
+    
+    .overview-container .img-side {
+        width: 100%;
+        height: 39vh;
+        text-align: left;
+        padding-left: 5rem;
+    } 
+
+    .overview-container .img-side .background-photo {
+        height: 67%;
+        width: 32rem;
+        margin-top: 10rem;
+    }
+    
+    .overview-container .container-content, .overview-container .container-content p {
+        margin-top: 20px;
+    }
+
+    .overview-container .container-content .ant-btn {
+        margin-top: 14px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .overview-container .container-content, .overview-container .container-content p {
+        font-size: 12px;
+    }
+
+    .overview-container .container-content .redTitle, 
+    .overview-container .container-content .darkTitle, 
+    .overview-container .container-content .secondTitle {
+        font-size: 2.5rem;
+    }
+
+    .overview-container .container-content, .overview-container .container-content p {
+        margin-top: 10px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .overview-container .img-side {
+        height: 33vh;
+    } 
+
+    .overview-container .img-side .background-photo {
+        height: 69%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .overview-container .img-side {
+        height: 26vh;
+    } 
+
+    .overview-container .container-content .redTitle, 
+    .overview-container .container-content .darkTitle, 
+    .overview-container .container-content .secondTitle {
+        font-size: 3.5rem;
+    }
+
+    .overview-container .container-content .ant-btn {
+        width: 185px;
+        height: 34px;
+        margin-top: 2px;
+        font-size: 12px;
+    }
+}
+
+@media screen and (max-width: 360px) {
+    .overview-container .container-content p {
+        line-height: 1.5;
+    }
 }
