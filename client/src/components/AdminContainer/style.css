@@ -18,6 +18,9 @@
 .admin-header-btn {
   display: flex;
   justify-content: flex-end;
+  position: relative;
+  bottom: 15px;
+  right: 52px;
 }
 
 .admin-container {

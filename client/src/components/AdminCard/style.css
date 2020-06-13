@@ -118,6 +118,10 @@
     text-align: left;
 }
 
+.admin-card-links {
+    color: var(--content-grey);
+}
+
 
 @media screen and (min-width: 762px) and (max-width: 1104px) {
     .admin-card h3, .admin-card .name-img-card .name, .admin-card a, .card-btn {
