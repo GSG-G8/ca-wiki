@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Select, Pagination, Empty, notification } from 'antd';
+import { Select, Pagination, Empty, notification, Spin } from 'antd';
 import { FaGraduationCap } from 'react-icons/fa';
 import { AiFillMail } from 'react-icons/ai';
 import './style.css';
@@ -31,6 +31,7 @@ class SearchPage extends Component {
     showProjectSection: false, // show or hide the fitst & the second section of search
     studentId: null, // for this student id will get project data when we need it
     studentProjectData: [], // this all project data for one student
+    loading: true,
   };
 
   async componentDidMount() {
@@ -79,6 +80,7 @@ class SearchPage extends Component {
         listCohortData: data,
         allCohortData: data,
         displayCohortData: data,
+        loading: false,
       });
     } catch (err) {
       this.handleError(err);
@@ -342,6 +344,7 @@ class SearchPage extends Component {
       listProjectData,
       pageNumber,
       studentProjectData,
+      loading,
     } = this.state;
 
     const listCohorts = displayCohortData.slice(startPage, endPage);
@@ -467,35 +470,140 @@ class SearchPage extends Component {
               studentProjectData.length ? 'one-student' : ''
             } ${'display-cohort'}`}
           >
-            {total !== 0 ? (
-              <>
-                {!showProjectSection // 1- show Student Section
-                  ? showCohorts
-                    ? // A- show cohorts in student section
-                      listCohorts.map((cohort) => (
-                        <div className="cohort">
+            {!loading ? (
+              total !== 0 ? (
+                <>
+                  {!showProjectSection // 1- show Student Section
+                    ? showCohorts
+                      ? // A- show cohorts in student section
+                        listCohorts.map((cohort) => (
+                          <div className="cohort">
+                            <div className="cohort-img">
+                              <img
+                                src={cohort.img_url}
+                                alt={cohort.name}
+                                title={cohort.name}
+                              />
+                            </div>
+                            <div className="cohort-details">
+                              <h3 className="cohort-name">
+                                Cohort Name:{' '}
+                                <Link
+                                  to={`/cohorts/${cohort.id}/projects?type=internal`}
+                                  title={`${cohort.name} Details `}
+                                >
+                                  {cohort.name}
+                                </Link>
+                              </h3>
+                              <h4> {cohort.description} </h4>
+                            </div>
+                            <div className="cohort-link">
+                              <a
+                                href={cohort.github_link}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                Github Page
+                              </a>
+                            </div>
+                          </div>
+                        ))
+                      : // B- show students in student section
+                        listStudents.map((student) => (
+                          <div
+                            className={`${
+                              studentProjectData.length ? 'one-student' : ''
+                            } ${'cohort'}`}
+                          >
+                            <div className="cohort-img">
+                              <img src={student.img_url} alt={student.name} />
+                            </div>
+                            <div className="cohort-details student-details">
+                              <h3 className="student-name">
+                                <Link
+                                  to={`/alumni/${student.id}`}
+                                  title={`${student.name} Details `}
+                                >
+                                  {student.name}
+                                </Link>
+                              </h3>
+                              <div className="student-cohort-name">
+                                <FaGraduationCap /> &nbsp;
+                                <h4>
+                                  <Link
+                                    to={`/cohorts/${student.cohort_id}/projects?type=internal`}
+                                    title={`${this.getCohortNameFromId(
+                                      student,
+                                      allCohortData
+                                    )} Details `}
+                                  >
+                                    {this.getCohortNameFromId(
+                                      student,
+                                      allCohortData
+                                    )}
+                                  </Link>
+                                </h4>
+                              </div>
+                              <div className="student-email">
+                                <AiFillMail /> &nbsp; <h4>{student.email}</h4>
+                              </div>
+                              {studentProjectData.length ? (
+                                <div className="student-projects">
+                                  <h3>Projects:</h3>
+                                  {displayStudent.length === 1 &&
+                                    studentProjectData.map((project, index) => (
+                                      <h4>
+                                        {`${index + 1}-${project.project_type}`}{' '}
+                                        Project: &nbsp;
+                                        <Link
+                                          to={`/cohorts/${studentProjectData.cohort_id}/projects/${studentProjectData.project_id}`}
+                                          title={`${project.name} Page `}
+                                        >
+                                          {project.name}
+                                        </Link>
+                                      </h4>
+                                    ))}
+                                </div>
+                              ) : null}
+                            </div>
+                            <div className="cohort-link">
+                              <a
+                                href={student.github_link}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="cohort-link"
+                              >
+                                Github Page
+                              </a>
+                            </div>
+                          </div>
+                        ))
+                    : // 2- show Project Section
+                      listProjects.map((project) => (
+                        <div className="cohort search-project">
                           <div className="cohort-img">
-                            <img
-                              src={cohort.img_url}
-                              alt={cohort.name}
-                              title={cohort.name}
-                            />
+                            <img src={project.img_url} alt={project.name} />
                           </div>
                           <div className="cohort-details">
-                            <h3 className="cohort-name">
-                              Cohort Name:{' '}
-                              <Link
-                                to={`/cohorts/${cohort.id}/projects?type=internal`}
-                                title={`${cohort.name} Details `}
-                              >
-                                {cohort.name}
-                              </Link>
-                            </h3>
-                            <h4> {cohort.description} </h4>
+                            <Link
+                              to={`/cohorts/${project.cohort_id}/projects/${project.id}`}
+                              title={`${project.name} Page `}
+                            >
+                              {project.name}
+                            </Link>
+                            <h3 className="cohort-name">{project.name} </h3>
+                            <h4>{project.project_type}</h4>
                           </div>
-                          <div className="cohort-link">
+                          <div className="cohort-link small-font">
                             <a
-                              href={cohort.github_link}
+                              href={project.website_link}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              Website Page
+                            </a>
+                            <a
+                              href={project.github_link}
                               target="_blank"
                               rel="noopener noreferrer"
                             >
@@ -503,129 +611,28 @@ class SearchPage extends Component {
                             </a>
                           </div>
                         </div>
-                      ))
-                    : // B- show students in student section
-                      listStudents.map((student) => (
-                        <div
-                          className={`${
-                            studentProjectData.length ? 'one-student' : ''
-                          } ${'cohort'}`}
-                        >
-                          <div className="cohort-img">
-                            <img src={student.img_url} alt={student.name} />
-                          </div>
-                          <div className="cohort-details student-details">
-                            <h3 className="student-name">
-                              <Link
-                                to={`/alumni/${student.id}`}
-                                title={`${student.name} Details `}
-                              >
-                                {student.name}
-                              </Link>
-                            </h3>
-                            <div className="student-cohort-name">
-                              <FaGraduationCap /> &nbsp;
-                              <h4>
-                                <Link
-                                  to={`/cohorts/${student.cohort_id}/projects?type=internal`}
-                                  title={`${this.getCohortNameFromId(
-                                    student,
-                                    allCohortData
-                                  )} Details `}
-                                >
-                                  {this.getCohortNameFromId(
-                                    student,
-                                    allCohortData
-                                  )}
-                                </Link>
-                              </h4>
-                            </div>
-                            <div className="student-email">
-                              <AiFillMail /> &nbsp; <h4>{student.email}</h4>
-                            </div>
-                            {studentProjectData.length ? (
-                              <div className="student-projects">
-                                <h3>Projects:</h3>
-                                {displayStudent.length === 1 &&
-                                  studentProjectData.map((project, index) => (
-                                    <h4>
-                                      {`${index + 1}-${project.project_type}`}{' '}
-                                      Project: &nbsp;
-                                      <Link
-                                        to={`/cohorts/${studentProjectData.cohort_id}/projects/${studentProjectData.project_id}`}
-                                        title={`${project.name} Page `}
-                                      >
-                                        {project.name}
-                                      </Link>
-                                    </h4>
-                                  ))}
-                              </div>
-                            ) : null}
-                          </div>
-                          <div className="cohort-link">
-                            <a
-                              href={student.github_link}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="cohort-link"
-                            >
-                              Github Page
-                            </a>
-                          </div>
-                        </div>
-                      ))
-                  : // 2- show Project Section
-                    listProjects.map((project) => (
-                      <div className="cohort search-project">
-                        <div className="cohort-img">
-                          <img src={project.img_url} alt={project.name} />
-                        </div>
-                        <div className="cohort-details">
-                          <Link
-                            to={`/cohorts/${project.cohort_id}/projects/${project.id}`}
-                            title={`${project.name} Page `}
-                          >
-                            {project.name}
-                          </Link>
-                          <h3 className="cohort-name">{project.name} </h3>
-                          <h4>{project.project_type}</h4>
-                        </div>
-                        <div className="cohort-link small-font">
-                          <a
-                            href={project.website_link}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            Website Page
-                          </a>
-                          <a
-                            href={project.github_link}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            Github Page
-                          </a>
-                        </div>
-                      </div>
-                    ))}
+                      ))}
 
-                <Pagination
-                  className="pagination"
-                  defaultCurrent={1}
-                  current={pageNumber}
-                  showQuickJumper
-                  onChange={(page) => {
-                    this.setState({
-                      startPage: page * 3 - 3,
-                      endPage: page * 3,
-                      pageNumber: page,
-                    });
-                  }}
-                  total={total}
-                />
-              </>
+                  <Pagination
+                    className="pagination"
+                    defaultCurrent={1}
+                    current={pageNumber}
+                    showQuickJumper
+                    onChange={(page) => {
+                      this.setState({
+                        startPage: page * 3 - 3,
+                        endPage: page * 3,
+                        pageNumber: page,
+                      });
+                    }}
+                    total={total}
+                  />
+                </>
+              ) : (
+                <Empty />
+              )
             ) : (
-              <Empty />
+              <Spin size="large" />
             )}
           </div>
           <img src={leftSvg} alt="background" className="search-svg" />
