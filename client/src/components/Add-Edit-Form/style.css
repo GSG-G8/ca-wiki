@@ -1,9 +1,34 @@
+.form-container {
+  padding: 1em 2rem;
+  text-align: left;
+  height: 98%;
+  width: 90%;
+  border-radius: 10px;
+  background: linear-gradient(140deg, var(--main-color) 46%, var(--main-white) 47%);
+  position: relative;
+}
+
 .add-data-form {
-  margin: 50px auto;
-  width: 1000px;
+  position: absolute;
+  overflow-y: auto;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  height: 85%;
   padding: 24px 30px 24px 30px;
   box-shadow: var(--box-shadow);
   border-radius: 10px;
+  background-color: var(--main-white);
+}
+
+.add-data-form h1 {
+  color: var(--main-color);
+  margin-bottom: 1rem;
+}
+
+.ant-form-item-label > label, .add-form-select .select-lable {
+  color: var(--content-blue-green)!important;
 }
 
 .add-form-row .ant-form-item-label {
