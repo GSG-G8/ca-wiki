@@ -1,10 +1,12 @@
 import React from 'react';
-import { NavLink, useHistory } from 'react-router-dom';
+import { NavLink, useHistory, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Layout, Button } from 'antd';
 import logo from '../../assets/images/logo.png';
 import './style.css';
 import LogoutContext from '../../Contexts/LogoutContext';
+
+import * as ROUTES from '../../constants/routes';
 
 const { Header } = Layout;
 
@@ -19,7 +21,9 @@ const AdminContainer = ({ children, buttonContent, buttonRoute }) => {
       <Layout>
         <Header>
           <div className="admin-header-image">
-            <img src={logo} alt="logo" />
+            <Link to={ROUTES.HOME_PAGE}>
+              <img src={logo} alt="Code Academy" />
+            </Link>
           </div>
           <div className="admin-header-btn">
             {buttonContent !== undefined && (

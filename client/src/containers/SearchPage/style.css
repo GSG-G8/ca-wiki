@@ -1,15 +1,16 @@
 .search-page {
+  margin: 120px 8% 0;
   display: flex;
-  margin-top: 120px;
-  margin-left: 150px;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
 
 .search-form {
-  width: 300px;
   border: 1px solid #707070;
   box-shadow: var(--card-shadow);
   border-radius: 0px 0px 5px 5px;
   text-align: left;
+  width: 25%;
   height: 400px;
 }
 
@@ -43,51 +44,67 @@
 }
 
 .display-cohort {
-  margin-left: 45px;
-  width: 720px;
+  width: 65%;
 }
 
 .cohort {
   display: flex;
   height: 120px;
-  box-shadow: 0px 0px 17px #AFAFAF29;
+  box-shadow: 0px 0px 17px #afafaf29;
   margin-bottom: 15px;
   align-items: center;
   border-radius: 5px;
   border-right: 6px solid var(--main-color);
-  padding-right: 30px;
 }
 
 .cohort-img img {
-  width: 75px;
+  max-width: 100%;
   border-radius: 50%;
+  max-height: 100%;
 }
 
 .cohort-img {
-  padding: 22px 30px;
-  flex: 0.5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  width: 20%;
+  height: 100%;
 }
 
 .cohort-name {
   font-weight: bold;
 }
 
-.cohort-details {
-  padding: 22px 0;
-  flex: 1.5;
+.cohort-name a {
+  color: var(--main-color);
 }
 
-.cohort a {
-  width: 220px;
-  margin-left: 25px;
-  padding: 11px 0;
+.cohort-details {
+  padding: 22px 0;
+  width: 50%;
+}
+
+.cohort-link {
+  width: 30%;
+}
+
+.cohort .cohort-link a {
+  width: 80%;
+  display: inline-block;
+  padding: 9px;
   background-color: var(--main-color);
-  color: white;
-  box-shadow: 0px 3px 6px #AFAFAF29;
+  color: var(--main-white);
+  box-shadow: 0px 3px 6px #afafaf29;
   border-radius: 5px;
 }
 
-.show, .hide {
+.cohort .small-font a {
+  margin: 6px 0;
+}
+
+.show,
+.hide {
   padding: 0 30px;
   height: 50%;
 }
@@ -102,10 +119,56 @@
   color: #d9d9d9;
 }
 
-.student {
+.student-details .student-name a {
+  color: var(--content-blue-green);
+  font-weight: bold;
+}
+
+.student-details .student-cohort-name,
+.student-details .student-email {
+  display: flex;
+  align-items: center;
+}
+
+.student-details .student-projects {
+  padding: 10px 0 0 17px;
+}
+
+.student-details .student-projects h3 {
+  margin: 0;
+}
+
+.student-details .student-projects h4 {
+  padding-left: 10px;
+}
+
+.one-student {
+  height: auto;
+}
+.student-details .student-cohort-name svg {
+  color: var(--main-color);
+}
+
+.student-details .student-cohort-name a {
+  color: var(--pagination-color);
+}
+
+.student-details .student-email svg {
+  color: var(--main-color);
+}
+
+.student-details {
+  text-align: left;
+}
+
+.student-details h4 {
+  margin-bottom: 0;
+}
+
+.project {
   display: flex;
   height: 120px;
-  box-shadow: 0px 0px 17px #AFAFAF29;
+  box-shadow: 0px 0px 17px #afafaf29;
   margin-bottom: 15px;
   align-items: center;
   border-radius: 5px;
@@ -113,53 +176,13 @@
   padding-right: 30px;
 }
 
-.student a {
+.project .project-link {
   width: 220px;
   margin-left: 25px;
   padding: 11px 0;
-  background-color: #E8505B;
-  color: white;
-  box-shadow: 0px 3px 6px #AFAFAF29;
-  border-radius: 5px;
-}
-
-.student-img img {
-  width: 75px;
-  border-radius: 50%;
-}
-
-.student-img {
-  padding: 22px 30px;
-  flex: 0.5;
-}
-
-.student-details {
-  padding: 22px 0;
-  flex: 1.5;
-}
-
-.student-name {
-  font-weight: bold;
-}
-
-.project {
-  display: flex;
-  height: 120px;
-  box-shadow: 0px 0px 17px #AFAFAF29;
-  margin-bottom: 15px;
-  align-items: center;
-  border-radius: 5px;
-  border-right: 6px solid #E8505B;
-  padding-right: 30px;
-}
-
-.project a {
-  width: 220px;
-  margin-left: 25px;
-  padding: 11px 0;
-  background-color: #E8505B;
-  color: white;
-  box-shadow: 0px 3px 6px #AFAFAF29;
+  background-color: var(--main-color);
+  color: var(--main-white);
+  box-shadow: 0px 3px 6px #afafaf29;
   border-radius: 5px;
 }
 
@@ -180,4 +203,127 @@
 
 .project-name {
   font-weight: bold;
+}
+
+.search-svg {
+  position: absolute;
+  left: 2%;
+  bottom: 2%;
+  height: 20%;
+}
+
+@media (max-width: 1200px) {
+  .search-page {
+    margin: 120px 4% 0;
+  }
+  .cohort {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 992px) {
+  .display-cohort {
+    width: 58%;
+  }
+  .search-form {
+    width: 32%;
+  }
+  .cohort {
+    font-size: 13px;
+  }
+  .cohort .small-font {
+    font-size: 12px;
+  }
+  .search-page .display-cohort .ant-pagination {
+    left: 55%;
+    transform: translate(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .display-cohort {
+    width: 100%;
+  }
+  .search-form {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 205px;
+    margin-bottom: 30px;
+  }
+  .search-form .show {
+    width: 50%;
+    height: 100%;
+    border-right: 0;
+    border-top: 6px solid var(--main-color);
+  }
+  .search-form .hide {
+    width: 50%;
+    height: 100%;
+  }
+  .search-form .ant-select:last-child {
+    margin-bottom: 20px;
+  }
+  .search-page .display-cohort .ant-pagination {
+    transform: translate(0);
+    position: initial;
+    margin: 50px 0;
+  }
+}
+
+@media (max-width: 576px) {
+  .search-page {
+    margin: 120px 10% 0;
+  }
+  .display-cohort {
+    width: 100%;
+  }
+  .search-form {
+    width: 100%;
+    height: auto;
+    margin-bottom: 30px;
+  }
+  .search-form .show {
+    width: 100%;
+    height: auto;
+    border-top: 0;
+    border-right: 6px solid var(--main-color);
+  }
+  .search-form .hide {
+    width: 100%;
+    height: auto;
+  }
+  .search-form .ant-select:last-child {
+    margin-bottom: 20px;
+  }
+  .one-student {
+    flex-wrap: wrap;
+    padding: 20px 30px;
+  }
+
+  .one-student .cohort-img,
+  .one-student .student-details,
+  .one-student .cohort-link {
+    width: 100%;
+  }
+
+  .one-student .student-details {
+    margin: 0 auto;
+    width: 80%;
+  }
+
+  .search-svg {
+    display: none;
+  }
+  .student-details .student-email h4 {
+    font-size: 9px;
+  }
+
+  .cohort .cohort-link {
+    font-size: 8px;
+  }
+
+  .search-project .cohort-img {
+    width: 30%;
+  }
 }
