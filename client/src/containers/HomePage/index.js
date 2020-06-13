@@ -8,7 +8,7 @@ const data = {
   firstTitle: "PALESTINE'S FIRST",
   secondTitle: 'FULL-STACK CODE ACADEMY',
   content:
-    'The Code Academy Is Palestine’s First Full-Stack Coding Bootcamp With A Flagship Campus In Gaza And Second Campus Opening In The West Bank In November 2018. The Code Academy Is A Joint Project Of Mercy Corps/Gaza Sky Geeks And Founders & Coders International. We Train 16 Students Per Cohort In A Full-Time, Intensive Course For 8 Weeks With An Additional 16 Weeks Of Project-Based Learning With Real-World Clients To Jumpstart Your Professional Portfolio. The Objective Is To Graduate As Full-Stack Developers Who Can Deploy Production-Grade Software Online And Secure High-Quality Jobs With Companies Or Work As Freelance Developers.',
+    'The GSG Code Academy is Palestine’s first immersive, 6-month career accelerating web development bootcamp with a flagship campus in Gaza City and second campus in the West Bank city of Hebron. This program is for anyone truly serious about putting in the time, effort, and determination to become a junior web developer ready to work in a tech company. A university degree or prior technical experience is not required. The goal of the Code Academy is to accelerate the growth of globally competitive coding talent in Palestine. We believe that by helping Palestinian youth build high-tech and modern skills to participate in the exponentially growing tech sector, they will have a sustainable and long-term pathway to high-quality employment.',
   buttonText: 'JOIN THE CODE ACADEMY',
   imageSource: homeImg,
   externalLink: 'https://gazaskygeeks.com/code/',
