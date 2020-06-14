@@ -1,6 +1,6 @@
 # Code Academy wiki
 
-[You can visit our site from this link]([link])
+[You can visit our site from this link](https://ca-wiki-v1.herokuapp.com/)
 
 ## Team Leader
 
