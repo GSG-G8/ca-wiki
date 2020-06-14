@@ -1,5 +1,5 @@
 .search-page {
-  margin: 120px 8% 0;
+  padding: 120px 8% 0;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
@@ -214,7 +214,7 @@
 
 @media (max-width: 1200px) {
   .search-page {
-    margin: 120px 4% 0;
+    padding: 120px 4% 0;
   }
   .cohort {
     font-size: 13px;
@@ -273,7 +273,7 @@
 
 @media (max-width: 576px) {
   .search-page {
-    margin: 120px 10% 0;
+    padding: 120px 10% 0;
   }
   .display-cohort {
     width: 100%;
