@@ -31,7 +31,7 @@ const PageviewsReport = () => {
     setReportData(newReportData);
   };
 
-  useEffect(async () => {
+  const reactAppView = async () => {
     const { REACT_APP_VIEW_ID } = await getSecrets();
     const request = {
       viewID: REACT_APP_VIEW_ID,
@@ -58,6 +58,10 @@ const PageviewsReport = () => {
           }),
       1000
     );
+  };
+
+  useEffect(() => {
+    reactAppView();
   }, [startDate, endDate]);
 
   return (
