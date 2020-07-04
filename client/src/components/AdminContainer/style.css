@@ -136,6 +136,11 @@
   .admin-side {
     justify-content: space-between;
     align-items: center;
+    height: 55px;
+  }
+
+  .admin-content .ant-list-items {
+    margin-top: 5px;
   }
 
   .admin-menu, .admin-side-btn {
@@ -181,6 +186,10 @@
 @media screen and (max-width: 762px) {
   .admin-container-side {
     top: 67px;
+  }
+  .admin-content .pagination {
+    position: initial;
+    transform: translate(0);
   }
 }
 
@@ -269,17 +278,3 @@
     width: 156px;
   }
 }
-
-/* @media screen and (max-width: 900px) {
-  .admin-container {
-    display: block;
-  }
-  
-.admin-side {
-  width: 100%;
-  position: absolute;
-  top: 2px;
-  right: 2px;
-  height: auto;
-}
-} */

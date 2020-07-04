@@ -591,7 +591,6 @@ class SearchPage extends Component {
                             >
                               {project.name}
                             </Link>
-                            <h3 className="cohort-name">{project.name} </h3>
                             <h4>{project.project_type}</h4>
                           </div>
                           <div className="cohort-link small-font">

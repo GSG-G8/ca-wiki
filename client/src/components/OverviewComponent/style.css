@@ -95,7 +95,10 @@
     } 
 
     .overview-container .right-part {
-        background-color: var(--main-white);
+        background-color: var(--main-color);
+        width: 65%!important;
+        border-radius: 0 0 259px 0;
+        box-shadow: 1px 1px 12px #3A5A6E;
     }
 
     .overview-container {
@@ -127,6 +130,10 @@
     .overview-container .container-content .ant-btn {
         margin-top: 14px;
     }
+    /* .overview-container .left-part {
+        width: 50%;
+        background-color: var(--main-color);
+    } */
 }
 
 @media screen and (max-width: 768px) {

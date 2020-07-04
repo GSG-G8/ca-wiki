@@ -2,7 +2,6 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  transition: 0.3s;
 }
 
 :root {
@@ -25,7 +24,6 @@ html {
 
 body {
   font-family: var(--main-font);
-  overflow: hidden;
 }
 
 .App {
@@ -42,7 +40,7 @@ li {
 
 .pagination {
   position: absolute;
-  bottom: 4%;
+  bottom: 1%;
   left: 50%;
   transform: translate(-50%, -5%);
 }

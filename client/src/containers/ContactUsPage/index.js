@@ -24,9 +24,9 @@ const ContactUS = () => {
         <div className="img-container">
           <img src={contactPhoto} alt="contact" />
         </div>
-        <div className="content-container">
+        <div className="contact-page-container">
           <div className="content-parent">
-            <div className="child-container">
+            <div className="contact-child-container">
               <h4>FOLLOW US</h4>
               <p>Gaza Sky Geeks</p>
               <div className="icons-container">
@@ -61,7 +61,7 @@ const ContactUS = () => {
                 </a>
               </div>
             </div>
-            <div className="child-container">
+            <div className="contact-child-container">
               <h4>CONTACT US</h4>
               <p>Phone: +970 8282 6331</p>
               <p>
@@ -72,7 +72,7 @@ const ContactUS = () => {
                 </a>
               </p>
             </div>
-            <div className="child-container">
+            <div className="contact-child-container">
               <h4>Sections of the site</h4>
               <div className="section-container-1">
                 <Link to={ROUTES.HOME_PAGE}>

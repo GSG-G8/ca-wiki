@@ -109,3 +109,13 @@
 .state .ant-progress-bg {
 background-color: var(--main-color);
 }
+
+@media screen and (max-width: 762px) {
+    .state-container .admin-chart{
+      display: none;
+    }
+    .state-container .state{
+      width: 100%;
+      margin-top: 20px;
+    }
+  }
